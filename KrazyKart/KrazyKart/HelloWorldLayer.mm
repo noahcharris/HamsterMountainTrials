@@ -64,7 +64,8 @@ enum {
         _ball.position = ccp(100, 300);
         [self addChild:_ball];
         
-        
+        //this is set to true during touch sequence
+        nextKick = false;
     
         
         
@@ -132,7 +133,7 @@ enum {
         groundEdge.Set(b2Vec2(0, 0), b2Vec2(6, 3));
         groundBody->CreateFixture(&boxShapeDef);
         
-        groundEdge.Set(b2Vec2(7.5, 0), b2Vec2(15, 4));
+        groundEdge.Set(b2Vec2(19, 0), b2Vec2(22, 0));
         groundBody->CreateFixture(&boxShapeDef);
         
         groundEdge.Set(b2Vec2(25, 0), b2Vec2(30, 0));
@@ -171,7 +172,7 @@ enum {
         
         b2FixtureDef ballShapeDef;
         ballShapeDef.shape = &circle;
-        ballShapeDef.density = 1.0f;
+        ballShapeDef.density = 1.4f;
         ballShapeDef.friction = 10.0f;
         ballShapeDef.restitution = 0.14f;
         _body->CreateFixture(&ballShapeDef);
@@ -180,14 +181,38 @@ enum {
         
         _world->SetContactListener(contactListener);
         
+        //sensor shape
+        b2PolygonShape sensorShape;
+        sensorShape.SetAsBox(0.5, 0.3, b2Vec2(0,-0.7), 0);
+        
+        //sensor body
+        b2BodyDef sensorBodyDef;
+        sensorBodyDef.type = b2_dynamicBody;
+        sensorBodyDef.position.Set(100/PTM_RATIO, 300/PTM_RATIO);
+        sensorBodyDef.userData = _ball;
+        _sensor = _world->CreateBody(&sensorBodyDef);
+        
         //add foot sensor fixture
         b2FixtureDef sensorFixtureDef;
-        sensorFixtureDef.shape = &circle;
+        sensorFixtureDef.shape = &sensorShape;
         sensorFixtureDef.density = 0;
-        //polygonShape.SetAsBox(0.3, 0.3, b2Vec2(0,-2), 0);
         sensorFixtureDef.isSensor = true;
-        b2Fixture* footSensorFixture = _body->CreateFixture(&sensorFixtureDef);
+        b2Fixture* footSensorFixture = _sensor->CreateFixture( &sensorFixtureDef );
         footSensorFixture->SetUserData( (void*)3 );
+        
+        
+        //join between jump sensor and ball
+        b2RevoluteJointDef revoluteJointDef;
+        revoluteJointDef.bodyA = _body;
+        revoluteJointDef.bodyB = _sensor;
+        revoluteJointDef.localAnchorA.Set(0,0);
+        revoluteJointDef.localAnchorB.Set(0,0);
+        revoluteJointDef.referenceAngle = 0;
+        revoluteJointDef.collideConnected = false;
+        
+        _joint = (b2RevoluteJoint*)_world->CreateJoint( &revoluteJointDef );
+        
+        
         
         
         
@@ -218,7 +243,7 @@ enum {
     
     if (_body->GetAngularVelocity() > -10.0f) {
         
-        _body->ApplyTorque(-18);
+        _body->ApplyTorque(-21);
         
     }
     //NSLog(@"%f", _body->GetAngularVelocity());
@@ -238,17 +263,20 @@ enum {
     
 }
 
+//need to throttle kick
 
 - (void)kick {
-    b2Vec2 force = b2Vec2(0, 12);
+    b2Vec2 force = b2Vec2(0, 20);
     //_body->ApplyLinearImpulse(force,_body->GetPosition());
     if (contactListener->getGround()) {
+        NSLog(@"kick1");
         _body->ApplyLinearImpulse(force,_body->GetPosition());
     }
-    //_body->ApplyTorque(-270);
-    
-    //if ball is already spinning fast enough, stop adding to it
+    //_body->ApplyTorque(-10);
+
 }
+
+
 
 
 
@@ -392,13 +420,14 @@ enum {
 
 
 - (void)ccTouchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
+    nextKick = true;
     [self kick];
 }
 
 
 - (void)ccTouchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
 {
-
+    nextKick = false;
 }
 
 @end

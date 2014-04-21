@@ -28,11 +28,14 @@
 	b2World* _world;					// strong ref
 	GLESDebugDraw *m_debugDraw;		// strong ref
     b2Body *_body;
+    b2Body *_sensor;
     CCSprite *_ball;
+    b2RevoluteJoint *_joint;
     
-    MyContactListener *contactListener;;
+    MyContactListener *contactListener;
     
-    BOOL _onGround;
+    BOOL nextKick;
+
 }
 
 // returns a CCScene that contains the HelloWorldLayer as the only child
