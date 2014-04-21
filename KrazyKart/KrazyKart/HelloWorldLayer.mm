@@ -229,6 +229,13 @@ enum {
 	
 	[self setPosition:newPos];
     
+    
+    
+    //check for game end
+    if (pos.y < -2.7) {
+        NSLog(@"END GAME");
+    }
+    
 }
 
 
