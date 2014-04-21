@@ -32,6 +32,7 @@
     CCSprite *_ball;
     b2RevoluteJoint *_joint;
     
+    
     MyContactListener *contactListener;
     
     BOOL nextKick;

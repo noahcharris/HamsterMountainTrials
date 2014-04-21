@@ -22,10 +22,11 @@ enum {
 #pragma mark - HelloWorldLayer
 
 @interface HelloWorldLayer()
--(void) initPhysics;
--(void) addNewSpriteAtPosition:(CGPoint)p;
+-(void) createNewHamster;
+-(void) drawStartingArea;
+-(void) checkAndRemoveColumns;
 -(void) tick:(ccTime)dt;
-- (void)kick;
+- (void) kick;
 @end
 
 @implementation HelloWorldLayer
@@ -43,7 +44,63 @@ enum {
 }
 
 
-
+-(void) createNewHamster {
+    _ball = [CCSprite spriteWithFile:@"ball.png" rect:CGRectMake(0, 0, 52, 52)];
+    _ball.position = ccp(100, 300);
+    [self addChild:_ball];
+    
+    // Create ball body and shape
+    b2BodyDef ballBodyDef;
+    ballBodyDef.type = b2_dynamicBody;
+    ballBodyDef.position.Set(100/PTM_RATIO, 300/PTM_RATIO);
+    ballBodyDef.userData = _ball;
+    _body = _world->CreateBody(&ballBodyDef);
+    
+    b2CircleShape circle;
+    circle.m_radius = 26.0/PTM_RATIO;
+    
+    b2FixtureDef ballShapeDef;
+    ballShapeDef.shape = &circle;
+    ballShapeDef.density = 1.4f;
+    ballShapeDef.friction = 10.0f;
+    ballShapeDef.restitution = 0.14f;
+    _body->CreateFixture(&ballShapeDef);
+    
+    contactListener = new MyContactListener;
+    
+    _world->SetContactListener(contactListener);
+    
+    //sensor shape
+    b2PolygonShape sensorShape;
+    sensorShape.SetAsBox(0.5, 0.3, b2Vec2(0,-0.7), 0);
+    
+    //sensor body
+    b2BodyDef sensorBodyDef;
+    sensorBodyDef.type = b2_dynamicBody;
+    sensorBodyDef.position.Set(100/PTM_RATIO, 300/PTM_RATIO);
+    sensorBodyDef.userData = _ball;
+    _sensor = _world->CreateBody(&sensorBodyDef);
+    
+    //add foot sensor fixture
+    b2FixtureDef sensorFixtureDef;
+    sensorFixtureDef.shape = &sensorShape;
+    sensorFixtureDef.density = 0;
+    sensorFixtureDef.isSensor = true;
+    b2Fixture* footSensorFixture = _sensor->CreateFixture( &sensorFixtureDef );
+    footSensorFixture->SetUserData( (void*)3 );
+    
+    
+    //join between jump sensor and ball
+    b2RevoluteJointDef revoluteJointDef;
+    revoluteJointDef.bodyA = _body;
+    revoluteJointDef.bodyB = _sensor;
+    revoluteJointDef.localAnchorA.Set(0,0);
+    revoluteJointDef.localAnchorB.Set(0,0);
+    revoluteJointDef.referenceAngle = 0;
+    revoluteJointDef.collideConnected = false;
+    
+    _joint = (b2RevoluteJoint*)_world->CreateJoint( &revoluteJointDef );
+}
 
 
 
@@ -58,19 +115,14 @@ enum {
         self.isTouchEnabled = YES;
 		CGSize winSize = [CCDirector sharedDirector].winSize;
         
-        // Create sprite and add it to the layer
-        
-        _ball = [CCSprite spriteWithFile:@"ball.png" rect:CGRectMake(0, 0, 52, 52)];
-        _ball.position = ccp(100, 300);
-        [self addChild:_ball];
         
         
-        // Standard method to create a button
-        CCMenuItem *starMenuItem = [CCMenuItemImage
+        // create restart button
+        CCMenuItem *restartButton= [CCMenuItemImage
                                     itemFromNormalImage:@"Icon.png" selectedImage:@"Icon-Small.png"
                                     target:self selector:@selector(restartTapped)];
-        starMenuItem.position = ccp(60, 60);
-        CCMenu *starMenu = [CCMenu menuWithItems:starMenuItem, nil];
+        restartButton.position = ccp(400, 280);
+        CCMenu *starMenu = [CCMenu menuWithItems:restartButton, nil];
         starMenu.position = CGPointZero;
         [self addChild:starMenu];
     
@@ -90,147 +142,25 @@ enum {
         
         
         
-        
-        
-        
-        // Create edges around the entire screen
-        b2BodyDef groundBodyDef;
-        groundBodyDef.position.Set(0,0);
-        
-        b2Body *groundBody = _world->CreateBody(&groundBodyDef);
-        b2EdgeShape groundEdge;
-        b2FixtureDef boxShapeDef;
-        boxShapeDef.friction = 10.0f;
-        boxShapeDef.shape = &groundEdge;
-        
-        
-        
-        b2Vec2 vs[4];
-        
-        vs[0].Set(1.7f, 0.0f);
-        
-        vs[1].Set(2.0f, 1.25f);
-        
-        vs[2].Set(0.0f, 0.0f);
-        
-        vs[3].Set(-3.6f, 0.4f);
-        
-        
-        
-        b2ChainShape chain;
-        b2FixtureDef chainShapeDef;
-        chainShapeDef.friction = 10.0f;
-        chainShapeDef.shape = &chain;
-        
-        chain.CreateChain(vs, 4);
-        
-        groundBody->CreateFixture(&chainShapeDef);
-        
-        
-        
-        //wall definitions
-        groundEdge.Set(b2Vec2(0,0), b2Vec2(winSize.width/PTM_RATIO, 0));
-        groundBody->CreateFixture(&boxShapeDef);
-        
-        groundEdge.Set(b2Vec2(0,0), b2Vec2(0,winSize.height/PTM_RATIO));
-        groundBody->CreateFixture(&boxShapeDef);
-        
-        
-        //my own contributions:
-        groundEdge.Set(b2Vec2(0, 0), b2Vec2(6, 3));
-        groundBody->CreateFixture(&boxShapeDef);
-        
-        groundEdge.Set(b2Vec2(19, 0), b2Vec2(22, 0));
-        groundBody->CreateFixture(&boxShapeDef);
-        
-        groundEdge.Set(b2Vec2(25, 0), b2Vec2(30, 0));
-        groundBody->CreateFixture(&boxShapeDef);
-        
-        groundEdge.Set(b2Vec2(36, 2), b2Vec2(40, 1.7));
-        groundBody->CreateFixture(&boxShapeDef);
-
-        groundEdge.Set(b2Vec2(45, 1), b2Vec2(50, 1.4));
-        groundBody->CreateFixture(&boxShapeDef);
-
-        groundEdge.Set(b2Vec2(60, 3), b2Vec2(70, 3));
-        groundBody->CreateFixture(&boxShapeDef);
 
         
+        [self drawStartingArea];
         
+        [self createNewHamster];
         
-        groundEdge.Set(b2Vec2(0, winSize.height/PTM_RATIO),
-                       b2Vec2(winSize.width/PTM_RATIO, winSize.height/PTM_RATIO));
-        groundBody->CreateFixture(&boxShapeDef);
-        
-//        groundEdge.Set(b2Vec2(winSize.width/PTM_RATIO, winSize.height/PTM_RATIO),
-//                       b2Vec2(winSize.width/PTM_RATIO, 0));
-//        groundBody->CreateFixture(&boxShapeDef);
-        
-        
-        // Create ball body and shape
-        b2BodyDef ballBodyDef;
-        ballBodyDef.type = b2_dynamicBody;
-        ballBodyDef.position.Set(100/PTM_RATIO, 300/PTM_RATIO);
-        ballBodyDef.userData = _ball;
-        _body = _world->CreateBody(&ballBodyDef);
-        
-        b2CircleShape circle;
-        circle.m_radius = 26.0/PTM_RATIO;
-        
-        b2FixtureDef ballShapeDef;
-        ballShapeDef.shape = &circle;
-        ballShapeDef.density = 1.4f;
-        ballShapeDef.friction = 10.0f;
-        ballShapeDef.restitution = 0.14f;
-        _body->CreateFixture(&ballShapeDef);
-        
-        contactListener = new MyContactListener;
-        
-        _world->SetContactListener(contactListener);
-        
-        //sensor shape
-        b2PolygonShape sensorShape;
-        sensorShape.SetAsBox(0.5, 0.3, b2Vec2(0,-0.7), 0);
-        
-        //sensor body
-        b2BodyDef sensorBodyDef;
-        sensorBodyDef.type = b2_dynamicBody;
-        sensorBodyDef.position.Set(100/PTM_RATIO, 300/PTM_RATIO);
-        sensorBodyDef.userData = _ball;
-        _sensor = _world->CreateBody(&sensorBodyDef);
-        
-        //add foot sensor fixture
-        b2FixtureDef sensorFixtureDef;
-        sensorFixtureDef.shape = &sensorShape;
-        sensorFixtureDef.density = 0;
-        sensorFixtureDef.isSensor = true;
-        b2Fixture* footSensorFixture = _sensor->CreateFixture( &sensorFixtureDef );
-        footSensorFixture->SetUserData( (void*)3 );
-        
-        
-        //join between jump sensor and ball
-        b2RevoluteJointDef revoluteJointDef;
-        revoluteJointDef.bodyA = _body;
-        revoluteJointDef.bodyB = _sensor;
-        revoluteJointDef.localAnchorA.Set(0,0);
-        revoluteJointDef.localAnchorB.Set(0,0);
-        revoluteJointDef.referenceAngle = 0;
-        revoluteJointDef.collideConnected = false;
-        
-        _joint = (b2RevoluteJoint*)_world->CreateJoint( &revoluteJointDef );
-        
-        
-        
-        
-        
-        //[self schedule:@selector(kick) interval:3.0];
         
         [self schedule:@selector(tick:)];
+        
+        [self schedule:@selector(checkAndRemoveColumns) interval:3.0];
+        
+        
         
 
 	}
 	return self;
 }
+
+
 
 
 
@@ -261,14 +191,16 @@ enum {
 	
 	[self setPosition:newPos];
     
-    
-    
     //check for game end
     if (pos.y < -2.7) {
         NSLog(@"END GAME");
     }
     
 }
+
+
+
+
 
 //need to throttle kick?
 
@@ -286,8 +218,85 @@ enum {
 
 
 - (void)restartTapped {
-    NSLog(@"restart");
+    
+    [self createNewHamster];
+    
 }
+
+
+-(void) checkAndRemoveColumns {
+    //if any bodies in the column array (I will make one) are sufficiently behind the current position,
+    //remove them
+}
+
+
+-(void) drawStartingArea {
+    CGSize winSize = [CCDirector sharedDirector].winSize;
+    
+    // Create edges around the entire screen
+    b2BodyDef groundBodyDef;
+    groundBodyDef.position.Set(0,0);
+    
+    b2Body *groundBody = _world->CreateBody(&groundBodyDef);
+    b2EdgeShape groundEdge;
+    b2FixtureDef boxShapeDef;
+    boxShapeDef.friction = 10.0f;
+    boxShapeDef.shape = &groundEdge;
+    
+    
+    //chain stuff
+    b2Vec2 vs[4];
+    
+    vs[0].Set(1.7f, 0.0f);
+    
+    vs[1].Set(2.0f, 1.25f);
+    
+    vs[2].Set(0.0f, 0.0f);
+    
+    vs[3].Set(-3.6f, 0.4f);
+    
+    b2ChainShape chain;
+    b2FixtureDef chainShapeDef;
+    chainShapeDef.friction = 10.0f;
+    chainShapeDef.shape = &chain;
+    
+    chain.CreateChain(vs, 4);
+    
+    groundBody->CreateFixture(&chainShapeDef);
+    
+    
+    //wall definitions
+    groundEdge.Set(b2Vec2(0,0), b2Vec2(winSize.width/PTM_RATIO, 0));
+    groundBody->CreateFixture(&boxShapeDef);
+    
+    groundEdge.Set(b2Vec2(0,0), b2Vec2(0,winSize.height/PTM_RATIO));
+    groundBody->CreateFixture(&boxShapeDef);
+    
+    groundEdge.Set(b2Vec2(0, 0), b2Vec2(6, 3));
+    groundBody->CreateFixture(&boxShapeDef);
+    
+    groundEdge.Set(b2Vec2(19, 0), b2Vec2(22, 0));
+    groundBody->CreateFixture(&boxShapeDef);
+    
+    groundEdge.Set(b2Vec2(25, 0), b2Vec2(30, 0));
+    groundBody->CreateFixture(&boxShapeDef);
+    
+    groundEdge.Set(b2Vec2(36, 2), b2Vec2(40, 1.7));
+    groundBody->CreateFixture(&boxShapeDef);
+    
+    groundEdge.Set(b2Vec2(45, 1), b2Vec2(50, 1.4));
+    groundBody->CreateFixture(&boxShapeDef);
+    
+    groundEdge.Set(b2Vec2(60, 3), b2Vec2(70, 3));
+    groundBody->CreateFixture(&boxShapeDef);
+    
+    groundEdge.Set(b2Vec2(0, winSize.height/PTM_RATIO),
+                   b2Vec2(winSize.width/PTM_RATIO, winSize.height/PTM_RATIO));
+    groundBody->CreateFixture(&boxShapeDef);
+}
+
+
+
 
 
 
@@ -302,65 +311,9 @@ enum {
 	m_debugDraw = NULL;
 	
 	[super dealloc];
-}	
+}
 
 
-//-(void) initPhysics
-//{
-//	
-//	CGSize s = [[CCDirector sharedDirector] winSize];
-//	
-//	b2Vec2 gravity;
-//	gravity.Set(0.0f, -10.0f);
-//	world = new b2World(gravity);
-//	
-//	
-//	// Do we want to let bodies sleep?
-//	world->SetAllowSleeping(true);
-//	
-//	world->SetContinuousPhysics(true);
-//	
-//	m_debugDraw = new GLESDebugDraw( PTM_RATIO );
-//	world->SetDebugDraw(m_debugDraw);
-//	
-//	uint32 flags = 0;
-//	flags += b2Draw::e_shapeBit;
-//	//		flags += b2Draw::e_jointBit;
-//	//		flags += b2Draw::e_aabbBit;
-//	//		flags += b2Draw::e_pairBit;
-//	//		flags += b2Draw::e_centerOfMassBit;
-//	m_debugDraw->SetFlags(flags);		
-//	
-//	
-//	// Define the ground body.
-//	b2BodyDef groundBodyDef;
-//	groundBodyDef.position.Set(0, 0); // bottom-left corner
-//	
-//	// Call the body factory which allocates memory for the ground body
-//	// from a pool and creates the ground box shape (also from a pool).
-//	// The body is also added to the world.
-//	b2Body* groundBody = world->CreateBody(&groundBodyDef);
-//	
-//	// Define the ground box shape.
-//	b2EdgeShape groundBox;		
-//	
-//	// bottom
-//	
-//	groundBox.Set(b2Vec2(0,0), b2Vec2(s.width/PTM_RATIO,0));
-//	groundBody->CreateFixture(&groundBox,0);
-//	
-//	// top
-//	groundBox.Set(b2Vec2(0,s.height/PTM_RATIO), b2Vec2(s.width/PTM_RATIO,s.height/PTM_RATIO));
-//	groundBody->CreateFixture(&groundBox,0);
-//	
-//	// left
-//	groundBox.Set(b2Vec2(0,s.height/PTM_RATIO), b2Vec2(0,0));
-//	groundBody->CreateFixture(&groundBox,0);
-//	
-//	// right
-//	groundBox.Set(b2Vec2(s.width/PTM_RATIO,s.height/PTM_RATIO), b2Vec2(s.width/PTM_RATIO,0));
-//	groundBody->CreateFixture(&groundBox,0);
-//}
 
 -(void) draw
 {
@@ -380,55 +333,6 @@ enum {
 	kmGLPopMatrix();
 }
 
-//-(void) addNewSpriteAtPosition:(CGPoint)p
-//{
-//	CCLOG(@"Add sprite %0.2f x %02.f",p.x,p.y);
-//	CCNode *parent = [self getChildByTag:kTagParentNode];
-//	
-//	//We have a 64x64 sprite sheet with 4 different 32x32 images.  The following code is
-//	//just randomly picking one of the images
-//	int idx = (CCRANDOM_0_1() > .5 ? 0:1);
-//	int idy = (CCRANDOM_0_1() > .5 ? 0:1);
-//	PhysicsSprite *sprite = [PhysicsSprite spriteWithTexture:spriteTexture_ rect:CGRectMake(32 * idx,32 * idy,32,32)];						
-//	[parent addChild:sprite];
-//	
-//	sprite.position = ccp( p.x, p.y);
-//	
-//	// Define the dynamic body.
-//	//Set up a 1m squared box in the physics world
-//	b2BodyDef bodyDef;
-//	bodyDef.type = b2_dynamicBody;
-//	bodyDef.position.Set(p.x/PTM_RATIO, p.y/PTM_RATIO);
-//	b2Body *body = world->CreateBody(&bodyDef);
-//	
-//	// Define another box shape for our dynamic body.
-//	b2PolygonShape dynamicBox;
-//	dynamicBox.SetAsBox(.5f, .5f);//These are mid points for our 1m box
-//	
-//	// Define the dynamic body fixture.
-//	b2FixtureDef fixtureDef;
-//	fixtureDef.shape = &dynamicBox;	
-//	fixtureDef.density = 1.0f;
-//	fixtureDef.friction = 0.3f;
-//	body->CreateFixture(&fixtureDef);
-//	
-//	[sprite setPhysicsBody:body];
-//}
-//
-//-(void) update: (ccTime) dt
-//{
-//	//It is recommended that a fixed time step is used with Box2D for stability
-//	//of the simulation, however, we are using a variable time step here.
-//	//You need to make an informed choice, the following URL is useful
-//	//http://gafferongames.com/game-physics/fix-your-timestep/
-//	
-//	int32 velocityIterations = 8;
-//	int32 positionIterations = 1;
-//	
-//	// Instruct the world to perform a single step of simulation. It is
-//	// generally best to keep the time step and iterations fixed.
-//	world->Step(dt, velocityIterations, positionIterations);	
-//}
 
 
 - (void)ccTouchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
