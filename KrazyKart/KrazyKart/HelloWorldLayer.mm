@@ -26,7 +26,8 @@ enum {
 -(void) drawStartingArea;
 -(void) checkAndRemoveColumns;
 -(void) tick:(ccTime)dt;
-- (void) kick;
+-(void) kick1;
+-(void) kick2;
 @end
 
 @implementation HelloWorldLayer
@@ -44,63 +45,6 @@ enum {
 }
 
 
--(void) createNewHamster {
-    _ball = [CCSprite spriteWithFile:@"ball.png" rect:CGRectMake(0, 0, 52, 52)];
-    _ball.position = ccp(100, 300);
-    [self addChild:_ball];
-    
-    // Create ball body and shape
-    b2BodyDef ballBodyDef;
-    ballBodyDef.type = b2_dynamicBody;
-    ballBodyDef.position.Set(100/PTM_RATIO, 300/PTM_RATIO);
-    ballBodyDef.userData = _ball;
-    _body = _world->CreateBody(&ballBodyDef);
-    
-    b2CircleShape circle;
-    circle.m_radius = 26.0/PTM_RATIO;
-    
-    b2FixtureDef ballShapeDef;
-    ballShapeDef.shape = &circle;
-    ballShapeDef.density = 1.4f;
-    ballShapeDef.friction = 10.0f;
-    ballShapeDef.restitution = 0.14f;
-    _body->CreateFixture(&ballShapeDef);
-    
-    contactListener = new MyContactListener;
-    
-    _world->SetContactListener(contactListener);
-    
-    //sensor shape
-    b2PolygonShape sensorShape;
-    sensorShape.SetAsBox(0.5, 0.3, b2Vec2(0,-0.7), 0);
-    
-    //sensor body
-    b2BodyDef sensorBodyDef;
-    sensorBodyDef.type = b2_dynamicBody;
-    sensorBodyDef.position.Set(100/PTM_RATIO, 300/PTM_RATIO);
-    sensorBodyDef.userData = _ball;
-    _sensor = _world->CreateBody(&sensorBodyDef);
-    
-    //add foot sensor fixture
-    b2FixtureDef sensorFixtureDef;
-    sensorFixtureDef.shape = &sensorShape;
-    sensorFixtureDef.density = 0;
-    sensorFixtureDef.isSensor = true;
-    b2Fixture* footSensorFixture = _sensor->CreateFixture( &sensorFixtureDef );
-    footSensorFixture->SetUserData( (void*)3 );
-    
-    
-    //join between jump sensor and ball
-    b2RevoluteJointDef revoluteJointDef;
-    revoluteJointDef.bodyA = _body;
-    revoluteJointDef.bodyB = _sensor;
-    revoluteJointDef.localAnchorA.Set(0,0);
-    revoluteJointDef.localAnchorB.Set(0,0);
-    revoluteJointDef.referenceAngle = 0;
-    revoluteJointDef.collideConnected = false;
-    
-    _joint = (b2RevoluteJoint*)_world->CreateJoint( &revoluteJointDef );
-}
 
 
 
@@ -194,6 +138,7 @@ enum {
     //check for game end
     if (pos.y < -2.7) {
         NSLog(@"END GAME");
+        [self createNewHamster];
     }
     
 }
@@ -204,15 +149,27 @@ enum {
 
 //need to throttle kick?
 
-- (void)kick {
-    b2Vec2 force = b2Vec2(0, 23);
-    //_body->ApplyLinearImpulse(force,_body->GetPosition());
-    if (contactListener->getGround()) {
-        NSLog(@"kick1");
+- (void)kick1 {
+        if (!nextKick) {
+            b2Vec2 force = b2Vec2(0, 23);
+            //_body->ApplyLinearImpulse(force,_body->GetPosition());
+            if (contactListener->getGround()) {
+                NSLog(@"kick1");
+                _body->ApplyLinearImpulse(force,_body->GetPosition());
+                //_body->ApplyTorque(-10);
+                [self scheduleOnce:@selector(kick2) delay:0.3];
+            }
+        }
+    
+
+}
+
+-(void) kick2 {
+    if (nextKick) {
+        NSLog(@"kick2");
+        b2Vec2 force = b2Vec2(0, 3);
         _body->ApplyLinearImpulse(force,_body->GetPosition());
     }
-    //_body->ApplyTorque(-10);
-
 }
 
 
@@ -234,6 +191,65 @@ enum {
     //if any bodies in the column array (I will make one) are sufficiently behind the current position,
     //remove them
 }
+
+-(void) createNewHamster {
+    _ball = [CCSprite spriteWithFile:@"ball.png" rect:CGRectMake(0, 0, 52, 52)];
+    _ball.position = ccp(100, 300);
+    [self addChild:_ball];
+    
+    // Create ball body and shape
+    b2BodyDef ballBodyDef;
+    ballBodyDef.type = b2_dynamicBody;
+    ballBodyDef.position.Set(100/PTM_RATIO, 300/PTM_RATIO);
+    ballBodyDef.userData = _ball;
+    _body = _world->CreateBody(&ballBodyDef);
+    
+    b2CircleShape circle;
+    circle.m_radius = 26.0/PTM_RATIO;
+    
+    b2FixtureDef ballShapeDef;
+    ballShapeDef.shape = &circle;
+    ballShapeDef.density = 1.4f;
+    ballShapeDef.friction = 10.0f;
+    ballShapeDef.restitution = 0.14f;
+    _body->CreateFixture(&ballShapeDef);
+    
+    contactListener = new MyContactListener;
+    
+    _world->SetContactListener(contactListener);
+    
+    //sensor shape
+    b2PolygonShape sensorShape;
+    sensorShape.SetAsBox(0.55, 0.3, b2Vec2(0,-0.7), 0);
+    
+    //sensor body
+    b2BodyDef sensorBodyDef;
+    sensorBodyDef.type = b2_dynamicBody;
+    sensorBodyDef.position.Set(100/PTM_RATIO, 300/PTM_RATIO);
+    sensorBodyDef.userData = _ball;
+    _sensor = _world->CreateBody(&sensorBodyDef);
+    
+    //add foot sensor fixture
+    b2FixtureDef sensorFixtureDef;
+    sensorFixtureDef.shape = &sensorShape;
+    sensorFixtureDef.density = 0;
+    sensorFixtureDef.isSensor = true;
+    b2Fixture* footSensorFixture = _sensor->CreateFixture( &sensorFixtureDef );
+    footSensorFixture->SetUserData( (void*)3 );
+    
+    
+    //join between jump sensor and ball
+    b2RevoluteJointDef revoluteJointDef;
+    revoluteJointDef.bodyA = _body;
+    revoluteJointDef.bodyB = _sensor;
+    revoluteJointDef.localAnchorA.Set(0,0);
+    revoluteJointDef.localAnchorB.Set(0,0);
+    revoluteJointDef.referenceAngle = 0;
+    revoluteJointDef.collideConnected = false;
+    
+    _joint = (b2RevoluteJoint*)_world->CreateJoint( &revoluteJointDef );
+}
+
 
 
 -(void) drawStartingArea {
@@ -342,8 +358,8 @@ enum {
 
 
 - (void)ccTouchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
+    [self kick1];
     nextKick = true;
-    [self kick];
 }
 
 
