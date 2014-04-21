@@ -64,8 +64,15 @@ enum {
         _ball.position = ccp(100, 300);
         [self addChild:_ball];
         
-        //this is set to true during touch sequence
-        nextKick = false;
+        
+        // Standard method to create a button
+        CCMenuItem *starMenuItem = [CCMenuItemImage
+                                    itemFromNormalImage:@"Icon.png" selectedImage:@"Icon-Small.png"
+                                    target:self selector:@selector(restartTapped)];
+        starMenuItem.position = ccp(60, 60);
+        CCMenu *starMenu = [CCMenu menuWithItems:starMenuItem, nil];
+        starMenu.position = CGPointZero;
+        [self addChild:starMenu];
     
         
         
@@ -241,9 +248,9 @@ enum {
         }
     }
     
-    if (_body->GetAngularVelocity() > -10.0f) {
+    if (_body->GetAngularVelocity() > -8.7f) {
         
-        _body->ApplyTorque(-21);
+        _body->ApplyTorque(-20);
         
     }
     //NSLog(@"%f", _body->GetAngularVelocity());
@@ -263,10 +270,10 @@ enum {
     
 }
 
-//need to throttle kick
+//need to throttle kick?
 
 - (void)kick {
-    b2Vec2 force = b2Vec2(0, 20);
+    b2Vec2 force = b2Vec2(0, 23);
     //_body->ApplyLinearImpulse(force,_body->GetPosition());
     if (contactListener->getGround()) {
         NSLog(@"kick1");
@@ -276,6 +283,11 @@ enum {
 
 }
 
+
+
+- (void)restartTapped {
+    NSLog(@"restart");
+}
 
 
 
