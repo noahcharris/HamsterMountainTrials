@@ -223,6 +223,12 @@ enum {
     
 }
 
+-(void) checkAndDrawNextColumn {
+    //check how far away the 'lastColumnEdge' is. If it is close enough, generate
+    //a random number between a set bounds, and create the next column that distance ahead
+    //of lastColumnEdge, then give lastColumnEdge its new value.
+}
+
 
 -(void) checkAndRemoveColumns {
     //if any bodies in the column array (I will make one) are sufficiently behind the current position,

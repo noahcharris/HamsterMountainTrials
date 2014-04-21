@@ -32,6 +32,9 @@
     CCSprite *_ball;
     b2RevoluteJoint *_joint;
     
+    //the right edge of the last column we created (reference for creating the next column)
+    float lastColumnEdge;
+    
     
     MyContactListener *contactListener;
     
