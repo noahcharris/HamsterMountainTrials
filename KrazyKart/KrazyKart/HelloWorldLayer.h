@@ -29,7 +29,7 @@
     b2Body *_body;
     b2Body *_sensor;
     CCSprite *_ball;
-    //CCSprite *_hamster;
+    CCSprite *_hamster;
     b2RevoluteJoint *_joint;
     
     //the right edge of the last column we created (reference for creating the next column)
