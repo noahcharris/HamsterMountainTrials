@@ -30,11 +30,9 @@ enum {
 -(void) runAnimation;
 -(void) kick1;
 -(void) kick2;
+- (void)drawColumn:(int) n;
 
 
-@property (nonatomic, strong) CCSprite *hamster;
-//@property (nonatomic, strong) CCAction *walkAction;
-//@property (nonatomic, strong) CCAction *moveAction;
 
 @end
 
@@ -70,11 +68,10 @@ enum {
         run = false;
         
         
-        
         //draw background
-        _background = [CCSprite spriteWithFile:@"background.png"];
-        _background.position = ccp(winSize.width/2, winSize.height/2);
-        //[self addChild:_background];
+//        _background = [CCSprite spriteWithFile:@"background.png"];
+//        _background.position = ccp(winSize.width/2, winSize.height/2);
+//        [self addChild:_background];
         
         
         
@@ -95,13 +92,12 @@ enum {
         
         [self createNewHamster];
         
-        
-        
-        
-        
 
         
         [self drawStartingArea];
+        
+        
+        [self drawColumn:7 atDistance:10 atHeight:1];
         
         
         
@@ -123,6 +119,7 @@ enum {
 //THIS IS WHERE EVERYTHING IS UPDATED
 
 - (void)tick:(ccTime) dt {
+    
     
     _world->Step(dt, 10, 10);
     //ball
@@ -162,6 +159,7 @@ enum {
     
     CGSize winSize = [CCDirector sharedDirector].winSize;
     
+    //scroll background
     //_background.position = ccp(pos.x * PTM_RATIO - 110 + winSize.width/2, self.position.y * PTM_RATIO + winSize.height/2);
     
     
@@ -302,6 +300,11 @@ enum {
     _joint = (b2RevoluteJoint*)_world->CreateJoint( &revoluteJointDef );
     
     
+    _shading = [CCSprite spriteWithFile:@"hamsterShading.png" rect:CGRectMake(0, 0, 52, 52)];
+    _shading.position = ccp(100, 300);
+    [self addChild:_shading];
+    
+    
     
     //animation
     
@@ -334,10 +337,6 @@ enum {
     _lines = [CCSprite spriteWithFile:@"hamsterBallLines.png" rect:CGRectMake(0, 0, 52, 52)];
     _lines.position = ccp(100, 300);
     [self addChild:_lines z:10];
-    
-    _shading = [CCSprite spriteWithFile:@"hamsterShading.png" rect:CGRectMake(0, 0, 52, 52)];
-    _shading.position = ccp(100, 300);
-    [self addChild:_shading z:11];
 
 
     
@@ -388,34 +387,196 @@ enum {
     groundEdge.Set(b2Vec2(0,0), b2Vec2(0,winSize.height/PTM_RATIO));
     groundBody->CreateFixture(&boxShapeDef);
     
-    groundEdge.Set(b2Vec2(19, 0), b2Vec2(22, 0));
-    groundBody->CreateFixture(&boxShapeDef);
-    
-    groundEdge.Set(b2Vec2(27, 0), b2Vec2(30, 0));
-    groundBody->CreateFixture(&boxShapeDef);
-    
-    groundEdge.Set(b2Vec2(36, 2), b2Vec2(40, 1.7));
-    groundBody->CreateFixture(&boxShapeDef);
-    
-    groundEdge.Set(b2Vec2(45, 1), b2Vec2(50, 1.4));
-    groundBody->CreateFixture(&boxShapeDef);
-    
-    groundEdge.Set(b2Vec2(59.6, 3), b2Vec2(70, 3));
-    groundBody->CreateFixture(&boxShapeDef);
-    
-    groundEdge.Set(b2Vec2(75, 5.5), b2Vec2(82, 6.2));
-    groundBody->CreateFixture(&boxShapeDef);
-    
-    groundEdge.Set(b2Vec2(90, 0.5), b2Vec2(93, 0.3));
-    groundBody->CreateFixture(&boxShapeDef);
-    
-    groundEdge.Set(b2Vec2(100, 0.5), b2Vec2(110, 0.3));
-    groundBody->CreateFixture(&boxShapeDef);
-    
-    
     groundEdge.Set(b2Vec2(0, winSize.height/PTM_RATIO),
                    b2Vec2(winSize.width/PTM_RATIO, winSize.height/PTM_RATIO));
     groundBody->CreateFixture(&boxShapeDef);
+}
+
+
+
+- (void)drawColumn:(int)n atDistance:(int)x atHeight:(int)y {
+    
+    // Create body and definition
+    b2BodyDef platformBodyDef;
+    platformBodyDef.position.Set(0,0);
+    
+    b2Body *platformBody;platformBody = _world->CreateBody(&platformBodyDef);
+    b2EdgeShape platformEdge1;
+    b2EdgeShape platformEdge2;
+    b2EdgeShape platformEdge3;
+    b2FixtureDef platformFixtureDef;
+    platformFixtureDef.friction = 10.0f;
+    
+    if (n == 1) {
+    
+        platformEdge1.Set(b2Vec2(x, y), b2Vec2(x + 88.0/PTM_RATIO , y + 25.0/PTM_RATIO));
+        platformEdge2.Set(b2Vec2(x, y), b2Vec2(x, 0));
+        platformEdge3.Set(b2Vec2(x + 88.0/PTM_RATIO, y + 25.0/PTM_RATIO), b2Vec2(x + 88.0/PTM_RATIO, 0));
+    
+        platformFixtureDef.shape = &platformEdge1;
+        platformBody->CreateFixture(&platformFixtureDef);
+    
+        platformFixtureDef.shape = &platformEdge2;
+        platformBody->CreateFixture(&platformFixtureDef);
+
+        platformFixtureDef.shape = &platformEdge3;
+        platformBody->CreateFixture(&platformFixtureDef);
+
+    
+    
+    
+        CCSprite *platform = [CCSprite spriteWithFile:@"platform1.png"];
+        platform.position = ccp(x*PTM_RATIO + 44, y*PTM_RATIO-130);
+        [self addChild:platform z:10];
+        
+    } else if (n == 2) {
+        
+        platformEdge1.Set(b2Vec2(x, y), b2Vec2(x + 119.0/PTM_RATIO , y - 25.0/PTM_RATIO));
+        platformEdge2.Set(b2Vec2(x, y), b2Vec2(x, 0));
+        platformEdge3.Set(b2Vec2(x + 119.0/PTM_RATIO, y - 25.0/PTM_RATIO), b2Vec2(x + 119.0/PTM_RATIO, 0));
+        
+        platformFixtureDef.shape = &platformEdge1;
+        platformBody->CreateFixture(&platformFixtureDef);
+        
+        platformFixtureDef.shape = &platformEdge2;
+        platformBody->CreateFixture(&platformFixtureDef);
+        
+        platformFixtureDef.shape = &platformEdge3;
+        platformBody->CreateFixture(&platformFixtureDef);
+        
+        
+        
+        
+        CCSprite *platform = [CCSprite spriteWithFile:@"platform2.png"];
+        platform.position = ccp(x*PTM_RATIO + 59.5, y*PTM_RATIO-124);
+        [self addChild:platform z:10];
+
+    } else if (n == 3) {
+        
+        platformEdge1.Set(b2Vec2(x, y), b2Vec2(x + 110.0/PTM_RATIO , y - 50.0/PTM_RATIO));
+        platformEdge2.Set(b2Vec2(x, y), b2Vec2(x, 0));
+        platformEdge3.Set(b2Vec2(x + 110.0/PTM_RATIO, y - 50.0/PTM_RATIO), b2Vec2(x + 110.0/PTM_RATIO, 0));
+        
+        platformFixtureDef.shape = &platformEdge1;
+        platformBody->CreateFixture(&platformFixtureDef);
+        
+        platformFixtureDef.shape = &platformEdge2;
+        platformBody->CreateFixture(&platformFixtureDef);
+        
+        platformFixtureDef.shape = &platformEdge3;
+        platformBody->CreateFixture(&platformFixtureDef);
+        
+        
+        
+        
+        CCSprite *platform = [CCSprite spriteWithFile:@"platform3.png"];
+        platform.position = ccp(x*PTM_RATIO + 55, y*PTM_RATIO-175);
+        [self addChild:platform z:10];
+        
+    } else if (n == 4) {
+        
+        platformEdge1.Set(b2Vec2(x, y), b2Vec2(x + 120.0/PTM_RATIO , y));
+        platformEdge2.Set(b2Vec2(x, y), b2Vec2(x, 0));
+        platformEdge3.Set(b2Vec2(x + 120.0/PTM_RATIO, y), b2Vec2(x + 120.0/PTM_RATIO, 0));
+        
+        platformFixtureDef.shape = &platformEdge1;
+        platformBody->CreateFixture(&platformFixtureDef);
+        
+        platformFixtureDef.shape = &platformEdge2;
+        platformBody->CreateFixture(&platformFixtureDef);
+        
+        platformFixtureDef.shape = &platformEdge3;
+        platformBody->CreateFixture(&platformFixtureDef);
+        
+        
+        
+        
+        CCSprite *platform = [CCSprite spriteWithFile:@"platform4.png"];
+        platform.position = ccp(x*PTM_RATIO + 60, y*PTM_RATIO-150);
+        [self addChild:platform z:10];
+        
+    } else if (n == 5) {
+        
+        platformEdge1.Set(b2Vec2(x, y), b2Vec2(x + 119.0/PTM_RATIO , y + 25.0/PTM_RATIO));
+        platformEdge2.Set(b2Vec2(x, y), b2Vec2(x, 0));
+        platformEdge3.Set(b2Vec2(x + 119.0/PTM_RATIO, y + 25.0/PTM_RATIO), b2Vec2(x + 119.0/PTM_RATIO, 0));
+        
+        platformFixtureDef.shape = &platformEdge1;
+        platformBody->CreateFixture(&platformFixtureDef);
+        
+        platformFixtureDef.shape = &platformEdge2;
+        platformBody->CreateFixture(&platformFixtureDef);
+        
+        platformFixtureDef.shape = &platformEdge3;
+        platformBody->CreateFixture(&platformFixtureDef);
+        
+        
+        
+        
+        CCSprite *platform = [CCSprite spriteWithFile:@"platform5.png"];
+        platform.position = ccp(x*PTM_RATIO + 59.5, y*PTM_RATIO-100);
+        [self addChild:platform z:10];
+        
+    } else if (n == 6) {
+        
+        platformEdge1.Set(b2Vec2(x, y), b2Vec2(x + 110.0/PTM_RATIO , y + 50.0/PTM_RATIO));
+        platformEdge2.Set(b2Vec2(x, y), b2Vec2(x, 0));
+        platformEdge3.Set(b2Vec2(x + 110.0/PTM_RATIO, y + 50.0/PTM_RATIO), b2Vec2(x + 110.0/PTM_RATIO, 0));
+        
+        platformFixtureDef.shape = &platformEdge1;
+        platformBody->CreateFixture(&platformFixtureDef);
+        
+        platformFixtureDef.shape = &platformEdge2;
+        platformBody->CreateFixture(&platformFixtureDef);
+        
+        platformFixtureDef.shape = &platformEdge3;
+        platformBody->CreateFixture(&platformFixtureDef);
+        
+        
+        
+        
+        CCSprite *platform = [CCSprite spriteWithFile:@"platform6.png"];
+        platform.position = ccp(x*PTM_RATIO + 55, y*PTM_RATIO-124);
+        [self addChild:platform z:10];
+        
+    } else if (n == 7) {
+        
+        platformEdge1.Set(b2Vec2(x, y), b2Vec2(x + 200.0/PTM_RATIO , y + 25.0/PTM_RATIO));
+        platformEdge2.Set(b2Vec2(x, y), b2Vec2(x, 0));
+        platformEdge3.Set(b2Vec2(x + 200.0/PTM_RATIO, y + 25.0/PTM_RATIO), b2Vec2(x + 200.0/PTM_RATIO, 0));
+        
+        platformFixtureDef.shape = &platformEdge1;
+        platformBody->CreateFixture(&platformFixtureDef);
+        
+        platformFixtureDef.shape = &platformEdge2;
+        platformBody->CreateFixture(&platformFixtureDef);
+        
+        platformFixtureDef.shape = &platformEdge3;
+        platformBody->CreateFixture(&platformFixtureDef);
+        
+        
+        
+        
+        CCSprite *platform = [CCSprite spriteWithFile:@"platform7.png"];
+        platform.position = ccp(x*PTM_RATIO + 100, y*PTM_RATIO-119);
+        [self addChild:platform z:10];
+        
+    }
+
+
+
+
+    
+    
+
+    
+    
+    
+}
+
+-(int)getRandomNumberBetween:(int)from to:(int)to {
+    
+    return (int)from + arc4random() % (to-from+1);
 }
 
 

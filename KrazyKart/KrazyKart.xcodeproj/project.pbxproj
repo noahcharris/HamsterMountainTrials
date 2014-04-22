@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B915981119072B450071196A /* platform2.png in Resources */ = {isa = PBXBuildFile; fileRef = B915981019072B450071196A /* platform2.png */; };
+		B915981319072CD30071196A /* platform3.png in Resources */ = {isa = PBXBuildFile; fileRef = B915981219072CD30071196A /* platform3.png */; };
+		B915981519072DCE0071196A /* platform4.png in Resources */ = {isa = PBXBuildFile; fileRef = B915981419072DCE0071196A /* platform4.png */; };
+		B915981719072E750071196A /* platform5.png in Resources */ = {isa = PBXBuildFile; fileRef = B915981619072E750071196A /* platform5.png */; };
+		B915981919072F460071196A /* platform6.png in Resources */ = {isa = PBXBuildFile; fileRef = B915981819072F460071196A /* platform6.png */; };
+		B915981B190730120071196A /* platform7.png in Resources */ = {isa = PBXBuildFile; fileRef = B915981A190730120071196A /* platform7.png */; };
 		B91CF9A71904D4C800E92440 /* MyContactListener.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B91CF9A51904D4C800E92440 /* MyContactListener.cpp */; };
 		B94A524919011C25005CD71E /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B94A524819011C25005CD71E /* QuartzCore.framework */; };
 		B94A524B19011C25005CD71E /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B94A524A19011C25005CD71E /* OpenGLES.framework */; };
@@ -188,10 +194,17 @@
 		B97A643E1906E5E4001510B8 /* background.png in Resources */ = {isa = PBXBuildFile; fileRef = B97A643D1906E5E4001510B8 /* background.png */; };
 		B97A64401906E726001510B8 /* hamsterEmptyBall.png in Resources */ = {isa = PBXBuildFile; fileRef = B97A643F1906E726001510B8 /* hamsterEmptyBall.png */; };
 		B97A64421906E745001510B8 /* hamsterBallLines.png in Resources */ = {isa = PBXBuildFile; fileRef = B97A64411906E745001510B8 /* hamsterBallLines.png */; };
+		B97A644419070879001510B8 /* platform1.png in Resources */ = {isa = PBXBuildFile; fileRef = B97A644319070879001510B8 /* platform1.png */; };
 		B9D7D9DB19060B0B007429B3 /* iphoneHamsterBall.png in Resources */ = {isa = PBXBuildFile; fileRef = B9D7D9DA19060B0B007429B3 /* iphoneHamsterBall.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		B915981019072B450071196A /* platform2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = platform2.png; sourceTree = "<group>"; };
+		B915981219072CD30071196A /* platform3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = platform3.png; sourceTree = "<group>"; };
+		B915981419072DCE0071196A /* platform4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = platform4.png; sourceTree = "<group>"; };
+		B915981619072E750071196A /* platform5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = platform5.png; sourceTree = "<group>"; };
+		B915981819072F460071196A /* platform6.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = platform6.png; sourceTree = "<group>"; };
+		B915981A190730120071196A /* platform7.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = platform7.png; sourceTree = "<group>"; };
 		B91CF9A51904D4C800E92440 /* MyContactListener.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = MyContactListener.cpp; path = ../MyContactListener.cpp; sourceTree = "<group>"; };
 		B91CF9A61904D4C800E92440 /* MyContactListener.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MyContactListener.h; path = ../MyContactListener.h; sourceTree = "<group>"; };
 		B94A524519011C25005CD71E /* KrazyKart.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = KrazyKart.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -561,6 +574,7 @@
 		B97A643D1906E5E4001510B8 /* background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = background.png; sourceTree = "<group>"; };
 		B97A643F1906E726001510B8 /* hamsterEmptyBall.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = hamsterEmptyBall.png; sourceTree = "<group>"; };
 		B97A64411906E745001510B8 /* hamsterBallLines.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = hamsterBallLines.png; sourceTree = "<group>"; };
+		B97A644319070879001510B8 /* platform1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = platform1.png; sourceTree = "<group>"; };
 		B9D7D9DA19060B0B007429B3 /* iphoneHamsterBall.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = iphoneHamsterBall.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -642,6 +656,13 @@
 		B94A525B19011C25005CD71E /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				B915981A190730120071196A /* platform7.png */,
+				B915981819072F460071196A /* platform6.png */,
+				B915981619072E750071196A /* platform5.png */,
+				B915981419072DCE0071196A /* platform4.png */,
+				B915981019072B450071196A /* platform2.png */,
+				B915981219072CD30071196A /* platform3.png */,
+				B97A644319070879001510B8 /* platform1.png */,
 				B97A64411906E745001510B8 /* hamsterBallLines.png */,
 				B97A643F1906E726001510B8 /* hamsterEmptyBall.png */,
 				B97A643D1906E5E4001510B8 /* background.png */,
@@ -1239,6 +1260,13 @@
 				B97A643E1906E5E4001510B8 /* background.png in Resources */,
 				B97A64401906E726001510B8 /* hamsterEmptyBall.png in Resources */,
 				B97A64421906E745001510B8 /* hamsterBallLines.png in Resources */,
+				B97A644419070879001510B8 /* platform1.png in Resources */,
+				B915981119072B450071196A /* platform2.png in Resources */,
+				B915981319072CD30071196A /* platform3.png in Resources */,
+				B915981519072DCE0071196A /* platform4.png in Resources */,
+				B915981719072E750071196A /* platform5.png in Resources */,
+				B915981919072F460071196A /* platform6.png in Resources */,
+				B915981B190730120071196A /* platform7.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
