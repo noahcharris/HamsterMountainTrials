@@ -24,6 +24,7 @@ enum {
 @interface HelloWorldLayer()
 -(void) createNewHamster;
 -(void) drawStartingArea;
+-(void) checkAndDrawNextColumn;
 -(void) checkAndRemoveColumns;
 -(void) tick:(ccTime)dt;
 -(void) kick1;
@@ -61,19 +62,10 @@ enum {
         
         
         
-        // create restart button
-        CCMenuItem *restartButton= [CCMenuItemImage
-                                    itemFromNormalImage:@"Icon.png" selectedImage:@"Icon-Small.png"
-                                    target:self selector:@selector(restartTapped)];
-        restartButton.position = ccp(400, 280);
-        CCMenu *starMenu = [CCMenu menuWithItems:restartButton, nil];
-        starMenu.position = CGPointZero;
-        [self addChild:starMenu];
-    
         
         
         // Create a world
-        b2Vec2 gravity = b2Vec2(0.0f, -8.0f);
+        b2Vec2 gravity = b2Vec2(0.0f, -9.8f);
         _world = new b2World(gravity);
         
         
@@ -122,9 +114,9 @@ enum {
         }
     }
     
-    if (_body->GetAngularVelocity() > -8.7f) {
+    if (_body->GetAngularVelocity() > -10.0f) {
         
-        _body->ApplyTorque(-20);
+        _body->ApplyTorque(-40);
         
     }
     //NSLog(@"%f", _body->GetAngularVelocity());
@@ -135,10 +127,27 @@ enum {
 	
 	[self setPosition:newPos];
     
+    if (gameOver) {
+        _restartButton.position = ccp(pos.x * PTM_RATIO + 300, self.position.y * PTM_RATIO + 270);
+    }
+    
     //check for game end
     if (pos.y < -2.7) {
         NSLog(@"END GAME");
-        [self createNewHamster];
+        
+        if (!gameOver) {
+//          [self createNewHamster];
+        
+            // create restart button
+            _restartButton= [CCMenuItemImage
+                            itemFromNormalImage:@"Icon.png" selectedImage:@"Icon-Small.png"
+                            target:self selector:@selector(restartTapped)];
+            _restartButton.position = ccp(400, 280);
+            starMenu = [CCMenu menuWithItems:_restartButton, nil];
+            starMenu.position = CGPointZero;
+            [self addChild:starMenu];
+        }
+        gameOver = true;
     }
     
 }
@@ -151,7 +160,7 @@ enum {
 
 - (void)kick1 {
         if (!nextKick) {
-            b2Vec2 force = b2Vec2(0, 23);
+            b2Vec2 force = b2Vec2(0, 20);
             //_body->ApplyLinearImpulse(force,_body->GetPosition());
             if (contactListener->getGround()) {
                 NSLog(@"kick1");
@@ -167,7 +176,7 @@ enum {
 -(void) kick2 {
     if (nextKick) {
         NSLog(@"kick2");
-        b2Vec2 force = b2Vec2(0, 3);
+        b2Vec2 force = b2Vec2(0, 7);
         _body->ApplyLinearImpulse(force,_body->GetPosition());
     }
 }
@@ -177,13 +186,18 @@ enum {
 - (void)restartTapped {
     
     [self createNewHamster];
+    //remove the restart
+    gameOver = false;
+    [self removeChild:starMenu cleanup:YES];
     
 }
 
 -(void) checkAndDrawNextColumn {
     //check how far away the 'lastColumnEdge' is. If it is close enough, generate
     //a random number between a set bounds, and create the next column that distance ahead
-    //of lastColumnEdge, then give lastColumnEdge its new value.
+    //of lastColumnEdge,
+    //generate a second random value between 1 and n, use that to determine which of n options will be drawn
+    //then give lastColumnEdge its new value.
 }
 
 
@@ -193,7 +207,7 @@ enum {
 }
 
 -(void) createNewHamster {
-    _ball = [CCSprite spriteWithFile:@"ball.png" rect:CGRectMake(0, 0, 52, 52)];
+    _ball = [CCSprite spriteWithFile:@"iphoneHamsterBall.png" rect:CGRectMake(0, 0, 52, 52)];
     _ball.position = ccp(100, 300);
     [self addChild:_ball];
     
@@ -203,7 +217,6 @@ enum {
     ballBodyDef.position.Set(100/PTM_RATIO, 300/PTM_RATIO);
     ballBodyDef.userData = _ball;
     _body = _world->CreateBody(&ballBodyDef);
-    
     b2CircleShape circle;
     circle.m_radius = 26.0/PTM_RATIO;
     
@@ -220,7 +233,7 @@ enum {
     
     //sensor shape
     b2PolygonShape sensorShape;
-    sensorShape.SetAsBox(0.55, 0.3, b2Vec2(0,-0.7), 0);
+    sensorShape.SetAsBox(0.6, 0.3, b2Vec2(0,-0.7), 0);
     
     //sensor body
     b2BodyDef sensorBodyDef;
@@ -294,13 +307,10 @@ enum {
     groundEdge.Set(b2Vec2(0,0), b2Vec2(0,winSize.height/PTM_RATIO));
     groundBody->CreateFixture(&boxShapeDef);
     
-    groundEdge.Set(b2Vec2(0, 0), b2Vec2(6, 3));
-    groundBody->CreateFixture(&boxShapeDef);
-    
     groundEdge.Set(b2Vec2(19, 0), b2Vec2(22, 0));
     groundBody->CreateFixture(&boxShapeDef);
     
-    groundEdge.Set(b2Vec2(25, 0), b2Vec2(30, 0));
+    groundEdge.Set(b2Vec2(27, 0), b2Vec2(30, 0));
     groundBody->CreateFixture(&boxShapeDef);
     
     groundEdge.Set(b2Vec2(36, 2), b2Vec2(40, 1.7));
@@ -309,7 +319,10 @@ enum {
     groundEdge.Set(b2Vec2(45, 1), b2Vec2(50, 1.4));
     groundBody->CreateFixture(&boxShapeDef);
     
-    groundEdge.Set(b2Vec2(60, 3), b2Vec2(70, 3));
+    groundEdge.Set(b2Vec2(59.6, 3), b2Vec2(70, 3));
+    groundBody->CreateFixture(&boxShapeDef);
+    
+    groundEdge.Set(b2Vec2(75, 5.5), b2Vec2(82, 6.2));
     groundBody->CreateFixture(&boxShapeDef);
     
     groundEdge.Set(b2Vec2(0, winSize.height/PTM_RATIO),

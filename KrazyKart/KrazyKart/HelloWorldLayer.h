@@ -36,8 +36,14 @@
     float lastColumnEdge;
     
     
+    CCMenuItem *_restartButton;
+    
+    CCMenu *starMenu;
+    
+    
     MyContactListener *contactListener;
     
+    BOOL gameOver;
     BOOL nextKick;
 
 }
