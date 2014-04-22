@@ -325,6 +325,13 @@ enum {
     groundEdge.Set(b2Vec2(75, 5.5), b2Vec2(82, 6.2));
     groundBody->CreateFixture(&boxShapeDef);
     
+    groundEdge.Set(b2Vec2(90, 0.5), b2Vec2(93, 0.3));
+    groundBody->CreateFixture(&boxShapeDef);
+    
+    groundEdge.Set(b2Vec2(100, 0.5), b2Vec2(110, 0.3));
+    groundBody->CreateFixture(&boxShapeDef);
+    
+    
     groundEdge.Set(b2Vec2(0, winSize.height/PTM_RATIO),
                    b2Vec2(winSize.width/PTM_RATIO, winSize.height/PTM_RATIO));
     groundBody->CreateFixture(&boxShapeDef);
