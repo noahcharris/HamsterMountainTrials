@@ -102,8 +102,6 @@ enum {
         
         [self schedule:@selector(checkAndRemoveColumns) interval:3.0];
         
-        //[self schedule:@selector(runAnimation) interval:0.4];
-        
         
         
 
@@ -226,45 +224,6 @@ enum {
     //remove them
 }
 
--(void) loadAnimation {
-    CCAnimation* animation = nil;
-    animation = [[CCAnimationCache sharedAnimationCache]  animationByName:@"ANIMATION_HAMSTER"];
-    
-    if(!animation)
-    {
-        CCSpriteFrameCache *cache = [CCSpriteFrameCache sharedSpriteFrameCache];
-        
-        NSMutableArray *animFrames = [NSMutableArray array];
-        
-        for( int i=1;i<=2;i++)
-        {
-            CCSpriteFrame *frame = [cache spriteFrameByName:[NSString stringWithFormat:@"hamsterRun_%d.png",i]];
-            [animFrames addObject:frame];
-        }
-        
-        animation = [CCAnimation animationWithSpriteFrames:animFrames];
-        
-        animation.delayPerUnit = 0.15f;
-        animation.restoreOriginalFrame = NO;
-        
-        [[CCAnimationCache sharedAnimationCache] addAnimation:animation name:@"ANIMATION_HAMSTER"];
-    }
-}
-
--(void) runHamster {
-    CCAnimation* animation = nil;
-    animation = [[CCAnimationCache sharedAnimationCache]  animationByName:@"ANIMATION_HAMSTER"];
-    
-    animation.delayPerUnit = 0.15f;
-    
-    CCAnimate *animAction  = [CCAnimate actionWithAnimation:animation];
-    CCRepeatForever *runningAnim  = [CCRepeatForever actionWithAction:animAction];
-    runningAnim.tag = 1;
-    
-    [self stopActionByTag: 1];
-    
-    [_hamster runAction:runningAnim];
-}
 
 -(void) createNewHamster {
     _ball = [CCSprite spriteWithFile:@"iphoneHamsterBall.png" rect:CGRectMake(0, 0, 52, 52)];
@@ -277,7 +236,7 @@ enum {
     // Create ball body and shape
     b2BodyDef ballBodyDef;
     ballBodyDef.type = b2_dynamicBody;
-    ballBodyDef.position.Set(100/PTM_RATIO, 300/PTM_RATIO);
+    ballBodyDef.position.Set(100/PTM_RATIO, 50/PTM_RATIO);
     ballBodyDef.userData = _ball;
     _body = _world->CreateBody(&ballBodyDef);
     b2CircleShape circle;
@@ -327,8 +286,8 @@ enum {
     
     
     
-    
     //animation
+    
     [[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:@"hamsterRun.plist"];
     
     CCSpriteBatchNode *spriteSheet = [CCSpriteBatchNode batchNodeWithFile:@"hamsterRun.png"];
@@ -341,19 +300,20 @@ enum {
           [NSString stringWithFormat:@"hamsterRun%d.png",i]]];
     }
     
-    CCAnimation *runAnim = [CCAnimation
-                            animationWithSpriteFrames:runFrames delay:0.1f];
+    runAnim = [CCAnimation animationWithSpriteFrames:runFrames delay:0.1f];
+    //runAnim.delayPerUnit = 0.15f;
     
     _hamster = [CCSprite spriteWithSpriteFrameName:@"hamsterRun1.png"];
     _hamster.position = ccp(100, 300);
     
     runAction = [CCRepeatForever actionWithAction:
                  [CCAnimate actionWithAnimation:runAnim]];
+    
+    
     [_hamster runAction:runAction];
     [spriteSheet addChild:_hamster];
 
-    
-    
+
     
     
 }
