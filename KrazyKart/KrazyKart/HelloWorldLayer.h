@@ -28,7 +28,10 @@
 	GLESDebugDraw *m_debugDraw;		// strong ref
     b2Body *_body;
     b2Body *_sensor;
+    CCSprite *_background;
     CCSprite *_ball;
+    CCSprite *_lines;
+    CCSprite *_shading;
     CCSprite *_hamster;
     b2RevoluteJoint *_joint;
     

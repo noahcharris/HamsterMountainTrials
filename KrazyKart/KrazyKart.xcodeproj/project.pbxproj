@@ -185,6 +185,9 @@
 		B97A64381906B498001510B8 /* hamsterShading.png in Resources */ = {isa = PBXBuildFile; fileRef = B97A64351906B498001510B8 /* hamsterShading.png */; };
 		B97A643B1906C9A1001510B8 /* hamsterRun.plist in Resources */ = {isa = PBXBuildFile; fileRef = B97A64391906C9A0001510B8 /* hamsterRun.plist */; };
 		B97A643C1906C9A1001510B8 /* hamsterRun.png in Resources */ = {isa = PBXBuildFile; fileRef = B97A643A1906C9A0001510B8 /* hamsterRun.png */; };
+		B97A643E1906E5E4001510B8 /* background.png in Resources */ = {isa = PBXBuildFile; fileRef = B97A643D1906E5E4001510B8 /* background.png */; };
+		B97A64401906E726001510B8 /* hamsterEmptyBall.png in Resources */ = {isa = PBXBuildFile; fileRef = B97A643F1906E726001510B8 /* hamsterEmptyBall.png */; };
+		B97A64421906E745001510B8 /* hamsterBallLines.png in Resources */ = {isa = PBXBuildFile; fileRef = B97A64411906E745001510B8 /* hamsterBallLines.png */; };
 		B9D7D9DB19060B0B007429B3 /* iphoneHamsterBall.png in Resources */ = {isa = PBXBuildFile; fileRef = B9D7D9DA19060B0B007429B3 /* iphoneHamsterBall.png */; };
 /* End PBXBuildFile section */
 
@@ -555,6 +558,9 @@
 		B97A64351906B498001510B8 /* hamsterShading.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = hamsterShading.png; sourceTree = "<group>"; };
 		B97A64391906C9A0001510B8 /* hamsterRun.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = hamsterRun.plist; sourceTree = "<group>"; };
 		B97A643A1906C9A0001510B8 /* hamsterRun.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = hamsterRun.png; sourceTree = "<group>"; };
+		B97A643D1906E5E4001510B8 /* background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = background.png; sourceTree = "<group>"; };
+		B97A643F1906E726001510B8 /* hamsterEmptyBall.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = hamsterEmptyBall.png; sourceTree = "<group>"; };
+		B97A64411906E745001510B8 /* hamsterBallLines.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = hamsterBallLines.png; sourceTree = "<group>"; };
 		B9D7D9DA19060B0B007429B3 /* iphoneHamsterBall.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = iphoneHamsterBall.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -636,6 +642,9 @@
 		B94A525B19011C25005CD71E /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				B97A64411906E745001510B8 /* hamsterBallLines.png */,
+				B97A643F1906E726001510B8 /* hamsterEmptyBall.png */,
+				B97A643D1906E5E4001510B8 /* background.png */,
 				B97A64391906C9A0001510B8 /* hamsterRun.plist */,
 				B97A643A1906C9A0001510B8 /* hamsterRun.png */,
 				B97A64351906B498001510B8 /* hamsterShading.png */,
@@ -1227,6 +1236,9 @@
 				B97A64381906B498001510B8 /* hamsterShading.png in Resources */,
 				B97A643B1906C9A1001510B8 /* hamsterRun.plist in Resources */,
 				B97A643C1906C9A1001510B8 /* hamsterRun.png in Resources */,
+				B97A643E1906E5E4001510B8 /* background.png in Resources */,
+				B97A64401906E726001510B8 /* hamsterEmptyBall.png in Resources */,
+				B97A64421906E745001510B8 /* hamsterBallLines.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

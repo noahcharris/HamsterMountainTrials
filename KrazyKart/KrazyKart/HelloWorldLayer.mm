@@ -18,7 +18,7 @@ enum {
 	kTagParentNode = 1,
 };
 
-
+    
 #pragma mark - HelloWorldLayer
 
 @interface HelloWorldLayer()
@@ -68,6 +68,13 @@ enum {
 		CGSize winSize = [CCDirector sharedDirector].winSize;
         
         run = false;
+        
+        
+        
+        //draw background
+        _background = [CCSprite spriteWithFile:@"background.png"];
+        _background.position = ccp(winSize.width/2, winSize.height/2);
+        //[self addChild:_background];
         
         
         
@@ -123,7 +130,14 @@ enum {
     _ball.position = ccp(_body->GetPosition().x * PTM_RATIO,
                             _body->GetPosition().y * PTM_RATIO);
     _ball.rotation = -1 * CC_RADIANS_TO_DEGREES(_body->GetAngle());
-            
+    
+    _lines.position = ccp(_body->GetPosition().x * PTM_RATIO,
+                         _body->GetPosition().y * PTM_RATIO);
+    _lines.rotation = -1 * CC_RADIANS_TO_DEGREES(_body->GetAngle());
+    
+    _shading.position = ccp(_body->GetPosition().x * PTM_RATIO,
+                            _body->GetPosition().y * PTM_RATIO);
+    
     //hamster
     //NSLog(@"HAMSTER:  %f", _hamster.position.x);
     _hamster.position = ccp(_body->GetPosition().x * PTM_RATIO,
@@ -139,24 +153,27 @@ enum {
     //NSLog(@"%f", _body->GetAngularVelocity());
     
 
+    //scroll screen with player
     b2Vec2 pos = _body->GetPosition();
 	
 	CGPoint newPos = ccp(-1 * pos.x * PTM_RATIO + 110, self.position.y * PTM_RATIO);
 	
 	[self setPosition:newPos];
     
+    CGSize winSize = [CCDirector sharedDirector].winSize;
+    
+    //_background.position = ccp(pos.x * PTM_RATIO - 110 + winSize.width/2, self.position.y * PTM_RATIO + winSize.height/2);
+    
+    
+    //game over stuff
     if (gameOver) {
         _restartButton.position = ccp(pos.x * PTM_RATIO + 300, self.position.y * PTM_RATIO + 270);
     }
     
-    //check for game end
     if (pos.y < -2.7) {
         NSLog(@"END GAME");
         
         if (!gameOver) {
-//          [self createNewHamster];
-        
-            // create restart button
             _restartButton= [CCMenuItemImage
                             itemFromNormalImage:@"Icon.png" selectedImage:@"Icon-Small.png"
                             target:self selector:@selector(restartTapped)];
@@ -226,7 +243,7 @@ enum {
 
 
 -(void) createNewHamster {
-    _ball = [CCSprite spriteWithFile:@"iphoneHamsterBall.png" rect:CGRectMake(0, 0, 52, 52)];
+    _ball = [CCSprite spriteWithFile:@"hamsterEmptyBall.png" rect:CGRectMake(0, 0, 52, 52)];
     //_hamster = [CCSprite spriteWithFile:@"hamsterRun1.png"];
     //_hamster.position = ccp(100, 300);
     _ball.position = ccp(100, 300);
@@ -312,6 +329,15 @@ enum {
     
     [_hamster runAction:runAction];
     [spriteSheet addChild:_hamster];
+    
+    //ball lines (on top of hamster)
+    _lines = [CCSprite spriteWithFile:@"hamsterBallLines.png" rect:CGRectMake(0, 0, 52, 52)];
+    _lines.position = ccp(100, 300);
+    [self addChild:_lines z:10];
+    
+    _shading = [CCSprite spriteWithFile:@"hamsterShading.png" rect:CGRectMake(0, 0, 52, 52)];
+    _shading.position = ccp(100, 300);
+    [self addChild:_shading z:11];
 
 
     
