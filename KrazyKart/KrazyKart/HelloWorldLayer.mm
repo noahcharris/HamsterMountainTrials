@@ -30,7 +30,6 @@ enum {
 -(void) runAnimation;
 -(void) kick1;
 -(void) kick2;
-- (void)drawColumn:(int) n;
 
 
 
@@ -66,6 +65,8 @@ enum {
 		CGSize winSize = [CCDirector sharedDirector].winSize;
         
         run = false;
+        lastColumnCornerDistance = 10;
+        lastColumnCornerHeight = 0;
         
         
         //draw background
@@ -97,7 +98,7 @@ enum {
         [self drawStartingArea];
         
         
-        [self drawColumn:7 atDistance:10 atHeight:1];
+        //[self drawColumn:7 atDistance:10 atHeight:1];
         
         
         
@@ -150,23 +151,28 @@ enum {
     //NSLog(@"%f", _body->GetAngularVelocity());
     
 
-    //scroll screen with player
     b2Vec2 pos = _body->GetPosition();
-	
 	CGPoint newPos = ccp(-1 * pos.x * PTM_RATIO + 110, self.position.y * PTM_RATIO);
-	
 	[self setPosition:newPos];
     
-    CGSize winSize = [CCDirector sharedDirector].winSize;
-    
     //scroll background
+    CGSize winSize = [CCDirector sharedDirector].winSize;
     //_background.position = ccp(pos.x * PTM_RATIO - 110 + winSize.width/2, self.position.y * PTM_RATIO + winSize.height/2);
-    
     
     //game over stuff
     if (gameOver) {
         _restartButton.position = ccp(pos.x * PTM_RATIO + 300, self.position.y * PTM_RATIO + 270);
     }
+    
+    //DRAWING COLUMNS
+        //pos + the distance forward to check
+    if ((pos.x + 50) > lastColumnCornerDistance) {
+        [self drawNextColumn];
+    }
+    
+    
+    
+    
     
     if (pos.y < -2.7) {
         NSLog(@"END GAME");
@@ -225,19 +231,6 @@ enum {
     
 }
 
--(void) checkAndDrawNextColumn {
-    //check how far away the 'lastColumnEdge' is. If it is close enough, generate
-    //a random number between a set bounds, and create the next column that distance ahead
-    //of lastColumnEdge,
-    //generate a second random value between 1 and n, use that to determine which of n options will be drawn
-    //then give lastColumnEdge its new value.
-}
-
-
--(void) checkAndRemoveColumns {
-    //if any bodies in the column array (I will make one) are sufficiently behind the current position,
-    //remove them
-}
 
 
 -(void) createNewHamster {
@@ -304,10 +297,7 @@ enum {
     _shading.position = ccp(100, 300);
     [self addChild:_shading];
     
-    
-    
     //animation
-    
     [[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:@"hamsterRun.plist"];
     
     CCSpriteBatchNode *spriteSheet = [CCSpriteBatchNode batchNodeWithFile:@"hamsterRun.png"];
@@ -329,7 +319,6 @@ enum {
     runAction = [CCRepeatForever actionWithAction:
                  [CCAnimate actionWithAnimation:runAnim]];
     
-    
     [_hamster runAction:runAction];
     [spriteSheet addChild:_hamster];
     
@@ -337,9 +326,6 @@ enum {
     _lines = [CCSprite spriteWithFile:@"hamsterBallLines.png" rect:CGRectMake(0, 0, 52, 52)];
     _lines.position = ccp(100, 300);
     [self addChild:_lines z:10];
-
-
-    
     
 }
 
@@ -393,8 +379,27 @@ enum {
 }
 
 
+-(void) drawNextColumn {
+    NSLog(@"Draw next column");
+    float x = (float)[self getRandomNumberBetween:3 to:7];
+    int n = [self getRandomNumberBetween:1 to:7];
+    float temp = [self drawColumn:n atDistance: (lastColumnCornerDistance + x) atHeight:1];
+    lastColumnCornerDistance += temp + x;
+    
+}
 
-- (void)drawColumn:(int)n atDistance:(int)x atHeight:(int)y {
+-(void) checkAndRemoveColumns {
+    //if any bodies in the column array (I will make one) are sufficiently behind the current position,
+    //remove them
+}
+
+-(int)getRandomNumberBetween:(int)from to:(int)to {
+    
+    return (int)from + arc4random() % (to-from+1);
+}
+
+//returns the width, so that lastCorner can be reset
+- (float)drawColumn:(int)n atDistance:(int)x atHeight:(int)y {
     
     // Create body and definition
     b2BodyDef platformBodyDef;
@@ -429,6 +434,8 @@ enum {
         platform.position = ccp(x*PTM_RATIO + 44, y*PTM_RATIO-130);
         [self addChild:platform z:10];
         
+        return 88.0/PTM_RATIO;
+        
     } else if (n == 2) {
         
         platformEdge1.Set(b2Vec2(x, y), b2Vec2(x + 119.0/PTM_RATIO , y - 25.0/PTM_RATIO));
@@ -450,6 +457,8 @@ enum {
         CCSprite *platform = [CCSprite spriteWithFile:@"platform2.png"];
         platform.position = ccp(x*PTM_RATIO + 59.5, y*PTM_RATIO-124);
         [self addChild:platform z:10];
+        
+        return 119.0/PTM_RATIO;
 
     } else if (n == 3) {
         
@@ -473,6 +482,8 @@ enum {
         platform.position = ccp(x*PTM_RATIO + 55, y*PTM_RATIO-175);
         [self addChild:platform z:10];
         
+        return 110.0/PTM_RATIO;
+        
     } else if (n == 4) {
         
         platformEdge1.Set(b2Vec2(x, y), b2Vec2(x + 120.0/PTM_RATIO , y));
@@ -489,11 +500,11 @@ enum {
         platformBody->CreateFixture(&platformFixtureDef);
         
         
-        
-        
         CCSprite *platform = [CCSprite spriteWithFile:@"platform4.png"];
         platform.position = ccp(x*PTM_RATIO + 60, y*PTM_RATIO-150);
         [self addChild:platform z:10];
+        
+        return 120.0/PTM_RATIO;
         
     } else if (n == 5) {
         
@@ -510,12 +521,11 @@ enum {
         platformFixtureDef.shape = &platformEdge3;
         platformBody->CreateFixture(&platformFixtureDef);
         
-        
-        
-        
         CCSprite *platform = [CCSprite spriteWithFile:@"platform5.png"];
         platform.position = ccp(x*PTM_RATIO + 59.5, y*PTM_RATIO-100);
         [self addChild:platform z:10];
+        
+        return 119.0/PTM_RATIO;
         
     } else if (n == 6) {
         
@@ -532,12 +542,11 @@ enum {
         platformFixtureDef.shape = &platformEdge3;
         platformBody->CreateFixture(&platformFixtureDef);
         
-        
-        
-        
         CCSprite *platform = [CCSprite spriteWithFile:@"platform6.png"];
         platform.position = ccp(x*PTM_RATIO + 55, y*PTM_RATIO-124);
         [self addChild:platform z:10];
+        
+        return 110.0/PTM_RATIO;
         
     } else if (n == 7) {
         
@@ -554,12 +563,11 @@ enum {
         platformFixtureDef.shape = &platformEdge3;
         platformBody->CreateFixture(&platformFixtureDef);
         
-        
-        
-        
         CCSprite *platform = [CCSprite spriteWithFile:@"platform7.png"];
         platform.position = ccp(x*PTM_RATIO + 100, y*PTM_RATIO-119);
         [self addChild:platform z:10];
+        
+        return 200.0/PTM_RATIO;
         
     }
 
@@ -568,15 +576,6 @@ enum {
 
     
     
-
-    
-    
-    
-}
-
--(int)getRandomNumberBetween:(int)from to:(int)to {
-    
-    return (int)from + arc4random() % (to-from+1);
 }
 
 

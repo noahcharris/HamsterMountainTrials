@@ -35,8 +35,8 @@
     CCSprite *_hamster;
     b2RevoluteJoint *_joint;
     
-    //the right edge of the last column we created (reference for creating the next column)
-    float lastColumnEdge;
+    float lastColumnCornerDistance;
+    float lastColumnCornerHeight;
     
     NSMutableArray *runFrames;
     CCAction *runAction;
