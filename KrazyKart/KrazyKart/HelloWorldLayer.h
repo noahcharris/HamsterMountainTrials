@@ -24,16 +24,22 @@
 // HelloWorldLayer
 @interface HelloWorldLayer : CCLayer <GKAchievementViewControllerDelegate, GKLeaderboardViewControllerDelegate>
 {
-	CCTexture2D *spriteTexture_;	// weak ref
 	b2World* _world;					// strong ref
 	GLESDebugDraw *m_debugDraw;		// strong ref
     b2Body *_body;
     b2Body *_sensor;
     CCSprite *_ball;
+    //CCSprite *_hamster;
     b2RevoluteJoint *_joint;
     
     //the right edge of the last column we created (reference for creating the next column)
     float lastColumnEdge;
+    
+    NSMutableArray *runFrames;
+    CCAction *runAction;
+    CCAnimation *runAnim;
+    CCSprite *hamster;
+    
     
     
     CCMenuItem *_restartButton;
@@ -45,6 +51,7 @@
     
     BOOL gameOver;
     BOOL nextKick;
+    BOOL run;
 
 }
 

@@ -27,8 +27,15 @@ enum {
 -(void) checkAndDrawNextColumn;
 -(void) checkAndRemoveColumns;
 -(void) tick:(ccTime)dt;
+-(void) runAnimation;
 -(void) kick1;
 -(void) kick2;
+
+
+@property (nonatomic, strong) CCSprite *hamster;
+//@property (nonatomic, strong) CCAction *walkAction;
+//@property (nonatomic, strong) CCAction *moveAction;
+
 @end
 
 @implementation HelloWorldLayer
@@ -60,7 +67,7 @@ enum {
         self.isTouchEnabled = YES;
 		CGSize winSize = [CCDirector sharedDirector].winSize;
         
-        
+        run = false;
         
         
         
@@ -78,6 +85,33 @@ enum {
         
         
         
+        //animation
+        [[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:@"hamsterRun.plist"];
+        
+        CCSpriteBatchNode *spriteSheet = [CCSpriteBatchNode batchNodeWithFile:@"hamsterRun.png"];
+        [self addChild:spriteSheet];
+    
+        runFrames = [NSMutableArray array];
+        for (int i=1; i<=2; i++) {
+            [runFrames addObject:
+                [[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:
+                [NSString stringWithFormat:@"hamsterRun%d.png",i]]];
+        }
+        
+        CCAnimation *runAnim = [CCAnimation
+                                 animationWithSpriteFrames:runFrames delay:0.1f];
+        
+        hamster = [CCSprite spriteWithSpriteFrameName:@"hamsterRun1.png"];
+        hamster.position = ccp(winSize.width/2, winSize.height/2);
+        runAction = [CCRepeatForever actionWithAction:
+                           [CCAnimate actionWithAnimation:runAnim]];
+        [hamster runAction:runAction];
+        [spriteSheet addChild:hamster];
+        
+        
+        
+        
+        
 
         
         [self drawStartingArea];
@@ -88,6 +122,8 @@ enum {
         [self schedule:@selector(tick:)];
         
         [self schedule:@selector(checkAndRemoveColumns) interval:3.0];
+        
+        //[self schedule:@selector(runAnimation) interval:0.4];
         
         
         
@@ -105,14 +141,17 @@ enum {
 - (void)tick:(ccTime) dt {
     
     _world->Step(dt, 10, 10);
-    for(b2Body *b = _world->GetBodyList(); b; b=b->GetNext()) {
-        if (b->GetUserData() != NULL) {
-            CCSprite *ballData = (CCSprite *)b->GetUserData();
-            ballData.position = ccp(b->GetPosition().x * PTM_RATIO,
-                                    b->GetPosition().y * PTM_RATIO);
-            ballData.rotation = -1 * CC_RADIANS_TO_DEGREES(b->GetAngle());
-        }
-    }
+    //ball
+    //CCSprite *ballData = (CCSprite *)b->GetUserData();
+    _ball.position = ccp(_body->GetPosition().x * PTM_RATIO,
+                            _body->GetPosition().y * PTM_RATIO);
+    _ball.rotation = -1 * CC_RADIANS_TO_DEGREES(_body->GetAngle());
+            
+    //hamster
+    //NSLog(@"HAMSTER:  %f", _hamster.position.x);
+    hamster.position = ccp(_body->GetPosition().x * PTM_RATIO,
+                            _body->GetPosition().y * PTM_RATIO);
+
     
     if (_body->GetAngularVelocity() > -10.0f) {
         
@@ -121,6 +160,7 @@ enum {
     }
     //NSLog(@"%f", _body->GetAngularVelocity());
     
+
     b2Vec2 pos = _body->GetPosition();
 	
 	CGPoint newPos = ccp(-1 * pos.x * PTM_RATIO + 110, self.position.y * PTM_RATIO);
@@ -185,8 +225,8 @@ enum {
 
 - (void)restartTapped {
     
-    [self createNewHamster];
     //remove the restart
+    [self createNewHamster];
     gameOver = false;
     [self removeChild:starMenu cleanup:YES];
     
@@ -206,10 +246,26 @@ enum {
     //remove them
 }
 
+-(void) runAnimation {
+    CGPoint pos = ccp(_hamster.position.x, _hamster.position.y);
+    if (!run) {
+        _hamster = [CCSprite spriteWithFile:@"hamsterRun2.png"];
+        _hamster.position = pos;
+        run = true;
+    } else {
+        _hamster = [CCSprite spriteWithFile:@"hamsterRun1.png"];
+        _hamster.position = pos;
+        run = false;
+    }
+}
+
 -(void) createNewHamster {
     _ball = [CCSprite spriteWithFile:@"iphoneHamsterBall.png" rect:CGRectMake(0, 0, 52, 52)];
+    //_hamster = [CCSprite spriteWithFile:@"hamsterRun1.png"];
+    _hamster.position = ccp(100, 300);
     _ball.position = ccp(100, 300);
-    [self addChild:_ball];
+    [self addChild:_ball z:0];
+    //[self addChild:_hamster z:1];
     
     // Create ball body and shape
     b2BodyDef ballBodyDef;

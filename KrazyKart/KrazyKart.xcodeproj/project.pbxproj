@@ -182,6 +182,9 @@
 		B94A547019011C29005CD71E /* GLES-Render.mm in Sources */ = {isa = PBXBuildFile; fileRef = B94A546F19011C29005CD71E /* GLES-Render.mm */; };
 		B94A547319011C29005CD71E /* PhysicsSprite.mm in Sources */ = {isa = PBXBuildFile; fileRef = B94A547219011C29005CD71E /* PhysicsSprite.mm */; };
 		B94A547519011C29005CD71E /* blocks.png in Resources */ = {isa = PBXBuildFile; fileRef = B94A547419011C29005CD71E /* blocks.png */; };
+		B97A64381906B498001510B8 /* hamsterShading.png in Resources */ = {isa = PBXBuildFile; fileRef = B97A64351906B498001510B8 /* hamsterShading.png */; };
+		B97A643B1906C9A1001510B8 /* hamsterRun.plist in Resources */ = {isa = PBXBuildFile; fileRef = B97A64391906C9A0001510B8 /* hamsterRun.plist */; };
+		B97A643C1906C9A1001510B8 /* hamsterRun.png in Resources */ = {isa = PBXBuildFile; fileRef = B97A643A1906C9A0001510B8 /* hamsterRun.png */; };
 		B9D7D9DB19060B0B007429B3 /* iphoneHamsterBall.png in Resources */ = {isa = PBXBuildFile; fileRef = B9D7D9DA19060B0B007429B3 /* iphoneHamsterBall.png */; };
 /* End PBXBuildFile section */
 
@@ -549,6 +552,9 @@
 		B94A547119011C29005CD71E /* PhysicsSprite.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PhysicsSprite.h; sourceTree = "<group>"; };
 		B94A547219011C29005CD71E /* PhysicsSprite.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = PhysicsSprite.mm; sourceTree = "<group>"; };
 		B94A547419011C29005CD71E /* blocks.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = blocks.png; path = Resources/blocks.png; sourceTree = "<group>"; };
+		B97A64351906B498001510B8 /* hamsterShading.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = hamsterShading.png; sourceTree = "<group>"; };
+		B97A64391906C9A0001510B8 /* hamsterRun.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = hamsterRun.plist; sourceTree = "<group>"; };
+		B97A643A1906C9A0001510B8 /* hamsterRun.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = hamsterRun.png; sourceTree = "<group>"; };
 		B9D7D9DA19060B0B007429B3 /* iphoneHamsterBall.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = iphoneHamsterBall.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -630,6 +636,9 @@
 		B94A525B19011C25005CD71E /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				B97A64391906C9A0001510B8 /* hamsterRun.plist */,
+				B97A643A1906C9A0001510B8 /* hamsterRun.png */,
+				B97A64351906B498001510B8 /* hamsterShading.png */,
 				B9D7D9DA19060B0B007429B3 /* iphoneHamsterBall.png */,
 				B94A525C19011C25005CD71E /* Default.png */,
 				B94A525E19011C25005CD71E /* Default-Landscape~ipad.png */,
@@ -1215,6 +1224,9 @@
 				B94A53B219011C28005CD71E /* ChangeLog in Resources */,
 				B94A547519011C29005CD71E /* blocks.png in Resources */,
 				B9D7D9DB19060B0B007429B3 /* iphoneHamsterBall.png in Resources */,
+				B97A64381906B498001510B8 /* hamsterShading.png in Resources */,
+				B97A643B1906C9A1001510B8 /* hamsterRun.plist in Resources */,
+				B97A643C1906C9A1001510B8 /* hamsterRun.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
