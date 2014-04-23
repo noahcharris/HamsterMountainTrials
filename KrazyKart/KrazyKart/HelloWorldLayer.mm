@@ -8,6 +8,7 @@
 
 // Import the interfaces
 #import "HelloWorldLayer.h"
+#include <iostream.h>
 
 // Needed to obtain the Navigation Controller
 #import "AppDelegate.h"
@@ -69,9 +70,9 @@ enum {
         
         
         //draw background
-//        _background = [CCSprite spriteWithFile:@"background.png"];
-//        _background.position = ccp(winSize.width/2, winSize.height/2);
-//        [self addChild:_background];
+        _background = [CCSprite spriteWithFile:@"background.png"];
+        _background.position = ccp(winSize.width/2, winSize.height/2);
+        [self addChild:_background];
         
         
         
@@ -108,7 +109,7 @@ enum {
         
         [self schedule:@selector(tick:)];
         
-        [self schedule:@selector(checkAndRemoveColumns) interval:3.0];
+        //[self schedule:@selector(checkAndRemoveColumns) interval:3.0];
         
         
         
@@ -165,7 +166,7 @@ enum {
     
     //scroll background
     CGSize winSize = [CCDirector sharedDirector].winSize;
-    //_background.position = ccp(pos.x * PTM_RATIO - 110 + winSize.width/2, self.position.y * PTM_RATIO + winSize.height/2);
+    _background.position = ccp(pos.x * PTM_RATIO - 110 + winSize.width/2, self.position.y * PTM_RATIO + winSize.height/2);
     
     //game over stuff
     if (gameOver) {
@@ -228,6 +229,8 @@ enum {
 - (void)restartTapped {
     
     //remove the restart
+    [self checkAndRemoveColumns];
+    [self drawStartingArea];
     [self createNewHamster];
     gameOver = false;
     [self removeChild:starMenu cleanup:YES];
@@ -390,7 +393,17 @@ enum {
 -(void) checkAndRemoveColumns {
     //if any bodies in the column array (I will make one) are sufficiently behind the current position,
     //remove them
+    for (b2Body* b = _world->GetBodyList(); b; b = b->GetNext())
+    {
+        _world->DestroyBody(b);
+        if (b->GetUserData() != nil) {
+            cout << "HELLO";
+            [self removeChild: (CCSprite *)b->GetUserData() cleanup:YES];
+        }
+    }
+    lastColumnCornerDistance = 10;
 }
+
 
 -(int)getRandomNumberBetween:(int)from to:(int)to {
     
@@ -433,6 +446,8 @@ enum {
         platform.position = ccp(x*PTM_RATIO + 44, y*PTM_RATIO-130);
         [self addChild:platform z:10];
         
+        platformBody->SetUserData(platform);
+        
         return 88.0/PTM_RATIO;
         
     } else if (n == 2) {
@@ -456,6 +471,8 @@ enum {
         CCSprite *platform = [CCSprite spriteWithFile:@"platform2.png"];
         platform.position = ccp(x*PTM_RATIO + 59.5, y*PTM_RATIO-124);
         [self addChild:platform z:10];
+        
+        platformBody->SetUserData(platform);
         
         return 119.0/PTM_RATIO;
 
@@ -481,6 +498,8 @@ enum {
         platform.position = ccp(x*PTM_RATIO + 55, y*PTM_RATIO-175);
         [self addChild:platform z:10];
         
+        platformBody->SetUserData(platform);
+        
         return 110.0/PTM_RATIO;
         
     } else if (n == 4) {
@@ -503,6 +522,8 @@ enum {
         platform.position = ccp(x*PTM_RATIO + 60, y*PTM_RATIO-150);
         [self addChild:platform z:10];
         
+        platformBody->SetUserData(platform);
+        
         return 120.0/PTM_RATIO;
         
     } else if (n == 5) {
@@ -523,6 +544,8 @@ enum {
         CCSprite *platform = [CCSprite spriteWithFile:@"platform5.png"];
         platform.position = ccp(x*PTM_RATIO + 59.5, y*PTM_RATIO-100);
         [self addChild:platform z:10];
+        
+        platformBody->SetUserData(platform);
         
         return 119.0/PTM_RATIO;
         
@@ -545,6 +568,8 @@ enum {
         platform.position = ccp(x*PTM_RATIO + 55, y*PTM_RATIO-124);
         [self addChild:platform z:10];
         
+        platformBody->SetUserData(platform);
+        
         return 110.0/PTM_RATIO;
         
     } else if (n == 7) {
@@ -565,6 +590,8 @@ enum {
         CCSprite *platform = [CCSprite spriteWithFile:@"platform7.png"];
         platform.position = ccp(x*PTM_RATIO + 100, y*PTM_RATIO-119);
         [self addChild:platform z:10];
+        
+        platformBody->SetUserData(platform);
         
         return 200.0/PTM_RATIO;
         
