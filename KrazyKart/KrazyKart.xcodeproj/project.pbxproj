@@ -187,6 +187,10 @@
 		B94A547019011C29005CD71E /* GLES-Render.mm in Sources */ = {isa = PBXBuildFile; fileRef = B94A546F19011C29005CD71E /* GLES-Render.mm */; };
 		B94A547319011C29005CD71E /* PhysicsSprite.mm in Sources */ = {isa = PBXBuildFile; fileRef = B94A547219011C29005CD71E /* PhysicsSprite.mm */; };
 		B94A547519011C29005CD71E /* blocks.png in Resources */ = {isa = PBXBuildFile; fileRef = B94A547419011C29005CD71E /* blocks.png */; };
+		B9702FB919082C2800E8785B /* platform10.png in Resources */ = {isa = PBXBuildFile; fileRef = B9702FB819082C2800E8785B /* platform10.png */; };
+		B9702FBB19082D9E00E8785B /* platform11.png in Resources */ = {isa = PBXBuildFile; fileRef = B9702FBA19082D9E00E8785B /* platform11.png */; };
+		B9702FBD19082E5B00E8785B /* platform12.png in Resources */ = {isa = PBXBuildFile; fileRef = B9702FBC19082E5B00E8785B /* platform12.png */; };
+		B9702FBF19082E6D00E8785B /* platform13.png in Resources */ = {isa = PBXBuildFile; fileRef = B9702FBE19082E6D00E8785B /* platform13.png */; };
 		B97A64381906B498001510B8 /* hamsterShading.png in Resources */ = {isa = PBXBuildFile; fileRef = B97A64351906B498001510B8 /* hamsterShading.png */; };
 		B97A643B1906C9A1001510B8 /* hamsterRun.plist in Resources */ = {isa = PBXBuildFile; fileRef = B97A64391906C9A0001510B8 /* hamsterRun.plist */; };
 		B97A643C1906C9A1001510B8 /* hamsterRun.png in Resources */ = {isa = PBXBuildFile; fileRef = B97A643A1906C9A0001510B8 /* hamsterRun.png */; };
@@ -569,6 +573,10 @@
 		B94A547119011C29005CD71E /* PhysicsSprite.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PhysicsSprite.h; sourceTree = "<group>"; };
 		B94A547219011C29005CD71E /* PhysicsSprite.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = PhysicsSprite.mm; sourceTree = "<group>"; };
 		B94A547419011C29005CD71E /* blocks.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = blocks.png; path = Resources/blocks.png; sourceTree = "<group>"; };
+		B9702FB819082C2800E8785B /* platform10.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = platform10.png; sourceTree = "<group>"; };
+		B9702FBA19082D9E00E8785B /* platform11.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = platform11.png; sourceTree = "<group>"; };
+		B9702FBC19082E5B00E8785B /* platform12.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = platform12.png; sourceTree = "<group>"; };
+		B9702FBE19082E6D00E8785B /* platform13.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = platform13.png; sourceTree = "<group>"; };
 		B97A64351906B498001510B8 /* hamsterShading.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = hamsterShading.png; sourceTree = "<group>"; };
 		B97A64391906C9A0001510B8 /* hamsterRun.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = hamsterRun.plist; sourceTree = "<group>"; };
 		B97A643A1906C9A0001510B8 /* hamsterRun.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = hamsterRun.png; sourceTree = "<group>"; };
@@ -660,6 +668,10 @@
 		B94A525B19011C25005CD71E /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				B9702FBE19082E6D00E8785B /* platform13.png */,
+				B9702FBC19082E5B00E8785B /* platform12.png */,
+				B9702FBA19082D9E00E8785B /* platform11.png */,
+				B9702FB819082C2800E8785B /* platform10.png */,
 				B9BE3AE21907851C00ACEDDD /* platform9.png */,
 				B9BE3AE01907841100ACEDDD /* platform8.png */,
 				B9BE3ADE1907829B00ACEDDD /* aplatform3.png */,
@@ -1275,6 +1287,10 @@
 				B9BE3ADF1907829B00ACEDDD /* aplatform3.png in Resources */,
 				B9BE3AE11907841100ACEDDD /* platform8.png in Resources */,
 				B9BE3AE31907851C00ACEDDD /* platform9.png in Resources */,
+				B9702FB919082C2800E8785B /* platform10.png in Resources */,
+				B9702FBB19082D9E00E8785B /* platform11.png in Resources */,
+				B9702FBD19082E5B00E8785B /* platform12.png in Resources */,
+				B9702FBF19082E6D00E8785B /* platform13.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
