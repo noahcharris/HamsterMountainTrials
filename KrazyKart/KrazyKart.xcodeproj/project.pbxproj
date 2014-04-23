@@ -187,6 +187,9 @@
 		B94A547019011C29005CD71E /* GLES-Render.mm in Sources */ = {isa = PBXBuildFile; fileRef = B94A546F19011C29005CD71E /* GLES-Render.mm */; };
 		B94A547319011C29005CD71E /* PhysicsSprite.mm in Sources */ = {isa = PBXBuildFile; fileRef = B94A547219011C29005CD71E /* PhysicsSprite.mm */; };
 		B94A547519011C29005CD71E /* blocks.png in Resources */ = {isa = PBXBuildFile; fileRef = B94A547419011C29005CD71E /* blocks.png */; };
+		B958584B19087C5900D70930 /* BannerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B958584A19087C5900D70930 /* BannerViewController.m */; };
+		B958584D19087C7F00D70930 /* iAd.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B958584C19087C7F00D70930 /* iAd.framework */; };
+		B958584F19087D2D00D70930 /* GoogleAdMobAdsSdkiOS-6.8.0 in Frameworks */ = {isa = PBXBuildFile; fileRef = B958584E19087D2C00D70930 /* GoogleAdMobAdsSdkiOS-6.8.0 */; };
 		B9702FB919082C2800E8785B /* platform10.png in Resources */ = {isa = PBXBuildFile; fileRef = B9702FB819082C2800E8785B /* platform10.png */; };
 		B9702FBB19082D9E00E8785B /* platform11.png in Resources */ = {isa = PBXBuildFile; fileRef = B9702FBA19082D9E00E8785B /* platform11.png */; };
 		B9702FBD19082E5B00E8785B /* platform12.png in Resources */ = {isa = PBXBuildFile; fileRef = B9702FBC19082E5B00E8785B /* platform12.png */; };
@@ -573,6 +576,10 @@
 		B94A547119011C29005CD71E /* PhysicsSprite.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PhysicsSprite.h; sourceTree = "<group>"; };
 		B94A547219011C29005CD71E /* PhysicsSprite.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = PhysicsSprite.mm; sourceTree = "<group>"; };
 		B94A547419011C29005CD71E /* blocks.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = blocks.png; path = Resources/blocks.png; sourceTree = "<group>"; };
+		B958584919087C5900D70930 /* BannerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BannerViewController.h; sourceTree = "<group>"; };
+		B958584A19087C5900D70930 /* BannerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BannerViewController.m; sourceTree = "<group>"; };
+		B958584C19087C7F00D70930 /* iAd.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = iAd.framework; path = System/Library/Frameworks/iAd.framework; sourceTree = SDKROOT; };
+		B958584E19087D2C00D70930 /* GoogleAdMobAdsSdkiOS-6.8.0 */ = {isa = PBXFileReference; lastKnownFileType = folder; name = "GoogleAdMobAdsSdkiOS-6.8.0"; path = "../../GoogleAdMobAdsSdkiOS-6.8.0"; sourceTree = "<group>"; };
 		B9702FB819082C2800E8785B /* platform10.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = platform10.png; sourceTree = "<group>"; };
 		B9702FBA19082D9E00E8785B /* platform11.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = platform11.png; sourceTree = "<group>"; };
 		B9702FBC19082E5B00E8785B /* platform12.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = platform12.png; sourceTree = "<group>"; };
@@ -595,6 +602,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B958584F19087D2D00D70930 /* GoogleAdMobAdsSdkiOS-6.8.0 in Frameworks */,
+				B958584D19087C7F00D70930 /* iAd.framework in Frameworks */,
 				B94A524919011C25005CD71E /* QuartzCore.framework in Frameworks */,
 				B94A524B19011C25005CD71E /* OpenGLES.framework in Frameworks */,
 				B94A524D19011C25005CD71E /* OpenAL.framework in Frameworks */,
@@ -613,6 +622,8 @@
 		B94A523C19011C25005CD71E = {
 			isa = PBXGroup;
 			children = (
+				B958584E19087D2C00D70930 /* GoogleAdMobAdsSdkiOS-6.8.0 */,
+				B958584C19087C7F00D70930 /* iAd.framework */,
 				B94A525A19011C25005CD71E /* KrazyKart */,
 				B94A524719011C25005CD71E /* Frameworks */,
 				B94A524619011C25005CD71E /* Products */,
@@ -652,6 +663,8 @@
 				B94A546619011C29005CD71E /* AppDelegate.mm */,
 				B94A546819011C29005CD71E /* HelloWorldLayer.h */,
 				B94A546919011C29005CD71E /* HelloWorldLayer.mm */,
+				B958584919087C5900D70930 /* BannerViewController.h */,
+				B958584A19087C5900D70930 /* BannerViewController.m */,
 				B94A546B19011C29005CD71E /* IntroLayer.h */,
 				B94A546C19011C29005CD71E /* IntroLayer.mm */,
 				B94A546E19011C29005CD71E /* GLES-Render.h */,
@@ -1453,6 +1466,7 @@
 				B94A547019011C29005CD71E /* GLES-Render.mm in Sources */,
 				B94A547319011C29005CD71E /* PhysicsSprite.mm in Sources */,
 				B91CF9A71904D4C800E92440 /* MyContactListener.cpp in Sources */,
+				B958584B19087C5900D70930 /* BannerViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

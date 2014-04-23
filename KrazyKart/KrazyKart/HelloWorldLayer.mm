@@ -148,11 +148,11 @@ enum {
     _hamster.position = ccp(_body->GetPosition().x * PTM_RATIO,
                            _body->GetPosition().y * PTM_RATIO);
 
-
+    //good setup: top speed = -12, torque = -26.5
     
-    if (_body->GetAngularVelocity() > -16.0f) {
+    if (_body->GetAngularVelocity() > -9.5f) {
         
-        _body->ApplyTorque(-33);
+        _body->ApplyTorque(-35);
         
     }
     //NSLog(@"%f", _body->GetAngularVelocity());
@@ -200,7 +200,7 @@ enum {
 }
 
 
-
+//20 and 7
 - (void)kick1 {
         if (!nextKick) {
             b2Vec2 force = b2Vec2(0, 20);
@@ -384,8 +384,9 @@ enum {
 -(void) drawNextColumn {
     NSLog(@"Draw next column");
     float x = (float)[self getRandomNumberBetween:4 to:6];
+    float y = (float)[self getRandomNumberBetween:1 to:2];
     int n = [self getRandomNumberBetween:1 to:9];
-    float temp = [self drawColumn:n atDistance: (lastColumnCornerDistance + x) atHeight:1];
+    float temp = [self drawColumn:n atDistance: (lastColumnCornerDistance + x) atHeight:y];
     lastColumnCornerDistance += temp + x;
     
 }
@@ -450,11 +451,11 @@ enum {
         
         return 88.0/PTM_RATIO;
         
-    } else if (n == 2) {
+    } else if (n == 2) {    //ALWAYS HEIGHT 2 FOR PLATFORM 2
         
-        platformEdge1.Set(b2Vec2(x, y), b2Vec2(x + 119.0/PTM_RATIO , y - 25.0/PTM_RATIO));
-        platformEdge2.Set(b2Vec2(x, y), b2Vec2(x, 0));
-        platformEdge3.Set(b2Vec2(x + 119.0/PTM_RATIO, y - 25.0/PTM_RATIO), b2Vec2(x + 119.0/PTM_RATIO, 0));
+        platformEdge1.Set(b2Vec2(x, 2), b2Vec2(x + 119.0/PTM_RATIO , 2 - 25.0/PTM_RATIO));
+        platformEdge2.Set(b2Vec2(x, 2), b2Vec2(x, 0));
+        platformEdge3.Set(b2Vec2(x + 119.0/PTM_RATIO, 2 - 25.0/PTM_RATIO), b2Vec2(x + 119.0/PTM_RATIO, 0));
         
         platformFixtureDef.shape = &platformEdge1;
         platformBody->CreateFixture(&platformFixtureDef);
@@ -469,18 +470,18 @@ enum {
         
         
         CCSprite *platform = [CCSprite spriteWithFile:@"platform2.png"];
-        platform.position = ccp(x*PTM_RATIO + 59.5, y*PTM_RATIO-124);
+        platform.position = ccp(x*PTM_RATIO + 59.5, 2*PTM_RATIO-124);
         [self addChild:platform z:10];
         
         platformBody->SetUserData(platform);
         
         return 119.0/PTM_RATIO;
 
-    } else if (n == 3) {
+    } else if (n == 3) {    //ALWAYS HEIGHT 2 FOR PLATFORM 3
         
-        platformEdge1.Set(b2Vec2(x, y), b2Vec2(x + 88.0/PTM_RATIO , y - 25.0/PTM_RATIO));
-        platformEdge2.Set(b2Vec2(x, y), b2Vec2(x, 0));
-        platformEdge3.Set(b2Vec2(x + 88.0/PTM_RATIO, y - 25.0/PTM_RATIO), b2Vec2(x + 88.0/PTM_RATIO, 0));
+        platformEdge1.Set(b2Vec2(x, 2), b2Vec2(x + 88.0/PTM_RATIO , 2 - 25.0/PTM_RATIO));
+        platformEdge2.Set(b2Vec2(x, 2), b2Vec2(x, 0));
+        platformEdge3.Set(b2Vec2(x + 88.0/PTM_RATIO, 2 - 25.0/PTM_RATIO), b2Vec2(x + 88.0/PTM_RATIO, 0));
         
         platformFixtureDef.shape = &platformEdge1;
         platformBody->CreateFixture(&platformFixtureDef);
@@ -495,7 +496,7 @@ enum {
         
         
         CCSprite *platform = [CCSprite spriteWithFile:@"aplatform3.png"];
-        platform.position = ccp(x*PTM_RATIO + 44, y*PTM_RATIO-154);
+        platform.position = ccp(x*PTM_RATIO + 44, 2*PTM_RATIO-154);
         [self addChild:platform z:10];
         
         platformBody->SetUserData(platform);
