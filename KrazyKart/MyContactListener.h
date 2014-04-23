@@ -15,7 +15,7 @@
 class MyContactListener : public b2ContactListener
 {
 private:
-    bool onGround = false;
+    int numFootContacts = 0;
 public:
     void BeginContact(b2Contact* contact);
     void EndContact(b2Contact* contact);

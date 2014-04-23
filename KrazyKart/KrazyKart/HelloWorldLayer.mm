@@ -77,7 +77,7 @@ enum {
         
         
         // Create a world
-        b2Vec2 gravity = b2Vec2(0.0f, -9.8f);
+        b2Vec2 gravity = b2Vec2(0.0f, -10.5f);
         _world = new b2World(gravity);
         
         
@@ -98,7 +98,7 @@ enum {
         [self drawStartingArea];
         
         
-        //[self drawColumn:7 atDistance:10 atHeight:1];
+        [self drawColumn:7 atDistance:10 atHeight:1];
         
         
         
@@ -120,6 +120,8 @@ enum {
 //THIS IS WHERE EVERYTHING IS UPDATED
 
 - (void)tick:(ccTime) dt {
+    
+    
     
     
     _world->Step(dt, 10, 10);
@@ -167,7 +169,7 @@ enum {
     //DRAWING COLUMNS
         //pos + the distance forward to check
     if ((pos.x + 50) > lastColumnCornerDistance) {
-        [self drawNextColumn];
+        //[self drawNextColumn];
     }
     
     
@@ -192,10 +194,6 @@ enum {
 }
 
 
-
-
-
-//need to throttle kick?
 
 - (void)kick1 {
         if (!nextKick) {
