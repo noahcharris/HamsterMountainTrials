@@ -103,7 +103,7 @@ enum {
         [self drawStartingArea];
         
         
-        //[self drawColumn:7 atDistance:10 atHeight:1];
+        //[self drawColumn:9 atDistance:10 atHeight:1];
         
         
         
@@ -150,9 +150,9 @@ enum {
 
 
     
-    if (_body->GetAngularVelocity() > -10.0f) {
+    if (_body->GetAngularVelocity() > -16.0f) {
         
-        _body->ApplyTorque(-40);
+        _body->ApplyTorque(-33);
         
     }
     //NSLog(@"%f", _body->GetAngularVelocity());
@@ -383,8 +383,8 @@ enum {
 
 -(void) drawNextColumn {
     NSLog(@"Draw next column");
-    float x = (float)[self getRandomNumberBetween:3 to:7];
-    int n = [self getRandomNumberBetween:1 to:7];
+    float x = (float)[self getRandomNumberBetween:4 to:6];
+    int n = [self getRandomNumberBetween:1 to:9];
     float temp = [self drawColumn:n atDistance: (lastColumnCornerDistance + x) atHeight:1];
     lastColumnCornerDistance += temp + x;
     
@@ -478,9 +478,9 @@ enum {
 
     } else if (n == 3) {
         
-        platformEdge1.Set(b2Vec2(x, y), b2Vec2(x + 110.0/PTM_RATIO , y - 50.0/PTM_RATIO));
+        platformEdge1.Set(b2Vec2(x, y), b2Vec2(x + 88.0/PTM_RATIO , y - 25.0/PTM_RATIO));
         platformEdge2.Set(b2Vec2(x, y), b2Vec2(x, 0));
-        platformEdge3.Set(b2Vec2(x + 110.0/PTM_RATIO, y - 50.0/PTM_RATIO), b2Vec2(x + 110.0/PTM_RATIO, 0));
+        platformEdge3.Set(b2Vec2(x + 88.0/PTM_RATIO, y - 25.0/PTM_RATIO), b2Vec2(x + 88.0/PTM_RATIO, 0));
         
         platformFixtureDef.shape = &platformEdge1;
         platformBody->CreateFixture(&platformFixtureDef);
@@ -494,13 +494,13 @@ enum {
         
         
         
-        CCSprite *platform = [CCSprite spriteWithFile:@"platform3.png"];
-        platform.position = ccp(x*PTM_RATIO + 55, y*PTM_RATIO-175);
+        CCSprite *platform = [CCSprite spriteWithFile:@"aplatform3.png"];
+        platform.position = ccp(x*PTM_RATIO + 44, y*PTM_RATIO-154);
         [self addChild:platform z:10];
         
         platformBody->SetUserData(platform);
         
-        return 110.0/PTM_RATIO;
+        return 88.0/PTM_RATIO;
         
     } else if (n == 4) {
         
@@ -595,7 +595,54 @@ enum {
         
         return 200.0/PTM_RATIO;
         
+    } else if (n == 8) {
+        
+        platformEdge1.Set(b2Vec2(x, y), b2Vec2(x + 90.0/PTM_RATIO , y));
+        platformEdge2.Set(b2Vec2(x, y), b2Vec2(x, 0));
+        platformEdge3.Set(b2Vec2(x + 90.0/PTM_RATIO, y), b2Vec2(x + 90.0/PTM_RATIO, 0));
+        
+        platformFixtureDef.shape = &platformEdge1;
+        platformBody->CreateFixture(&platformFixtureDef);
+        
+        platformFixtureDef.shape = &platformEdge2;
+        platformBody->CreateFixture(&platformFixtureDef);
+        
+        platformFixtureDef.shape = &platformEdge3;
+        platformBody->CreateFixture(&platformFixtureDef);
+        
+        CCSprite *platform = [CCSprite spriteWithFile:@"platform8.png"];
+        platform.position = ccp(x*PTM_RATIO + 45, y*PTM_RATIO-149);
+        [self addChild:platform z:10];
+        
+        platformBody->SetUserData(platform);
+        
+        return 90.0/PTM_RATIO;
+        
+    } else if (n == 9) {
+        
+        platformEdge1.Set(b2Vec2(x, y), b2Vec2(x + 76.0/PTM_RATIO , y + 50.0/PTM_RATIO));
+        platformEdge2.Set(b2Vec2(x, y), b2Vec2(x, 0));
+        platformEdge3.Set(b2Vec2(x + 76.0/PTM_RATIO, y + 50.0/PTM_RATIO), b2Vec2(x + 76.0/PTM_RATIO, 0));
+        
+        platformFixtureDef.shape = &platformEdge1;
+        platformBody->CreateFixture(&platformFixtureDef);
+        
+        platformFixtureDef.shape = &platformEdge2;
+        platformBody->CreateFixture(&platformFixtureDef);
+        
+        platformFixtureDef.shape = &platformEdge3;
+        platformBody->CreateFixture(&platformFixtureDef);
+        
+        CCSprite *platform = [CCSprite spriteWithFile:@"platform9.png"];
+        platform.position = ccp(x*PTM_RATIO + 38, y*PTM_RATIO-100);
+        [self addChild:platform z:10];
+        
+        platformBody->SetUserData(platform);
+        
+        return 76.0/PTM_RATIO;
+        
     }
+
 
 
 
