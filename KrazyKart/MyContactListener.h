@@ -17,9 +17,10 @@ class MyContactListener : public b2ContactListener
 private:
     int numFootContacts = 0;
 public:
+    MyContactListener();
     void BeginContact(b2Contact* contact);
     void EndContact(b2Contact* contact);
-    bool getGround();
+    int getGround();
 };
 
 #endif /* defined(__KrazyKart__MyContactListener__) */

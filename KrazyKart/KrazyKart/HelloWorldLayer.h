@@ -54,7 +54,6 @@
     
     BOOL gameOver;
     BOOL nextKick;
-    BOOL run;
 
 }
 

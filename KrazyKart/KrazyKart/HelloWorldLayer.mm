@@ -64,7 +64,6 @@ enum {
         self.isTouchEnabled = YES;
 		CGSize winSize = [CCDirector sharedDirector].winSize;
         
-        run = false;
         lastColumnCornerDistance = 10;
         lastColumnCornerHeight = 0;
         
@@ -79,6 +78,11 @@ enum {
         // Create a world
         b2Vec2 gravity = b2Vec2(0.0f, -10.5f);
         _world = new b2World(gravity);
+        
+        
+        contactListener = new MyContactListener;
+        
+        _world->SetContactListener(contactListener);
         
         
         //debug drawing setup
@@ -98,7 +102,7 @@ enum {
         [self drawStartingArea];
         
         
-        [self drawColumn:7 atDistance:10 atHeight:1];
+        //[self drawColumn:7 atDistance:10 atHeight:1];
         
         
         
@@ -152,6 +156,8 @@ enum {
     }
     //NSLog(@"%f", _body->GetAngularVelocity());
     
+   // NSLog(@"%d", contactListener->getGround());
+    
 
     b2Vec2 pos = _body->GetPosition();
 	CGPoint newPos = ccp(-1 * pos.x * PTM_RATIO + 110, self.position.y * PTM_RATIO);
@@ -167,9 +173,8 @@ enum {
     }
     
     //DRAWING COLUMNS
-        //pos + the distance forward to check
     if ((pos.x + 50) > lastColumnCornerDistance) {
-        //[self drawNextColumn];
+        [self drawNextColumn];
     }
     
     
@@ -177,7 +182,7 @@ enum {
     
     
     if (pos.y < -2.7) {
-        NSLog(@"END GAME");
+        //NSLog(@"END GAME");
         
         if (!gameOver) {
             _restartButton= [CCMenuItemImage
@@ -199,7 +204,7 @@ enum {
         if (!nextKick) {
             b2Vec2 force = b2Vec2(0, 20);
             //_body->ApplyLinearImpulse(force,_body->GetPosition());
-            if (contactListener->getGround()) {
+            if (contactListener->getGround() == 1) {
                 NSLog(@"kick1");
                 _body->ApplyLinearImpulse(force,_body->GetPosition());
                 //_body->ApplyTorque(-10);
@@ -242,7 +247,7 @@ enum {
     // Create ball body and shape
     b2BodyDef ballBodyDef;
     ballBodyDef.type = b2_dynamicBody;
-    ballBodyDef.position.Set(100/PTM_RATIO, 50/PTM_RATIO);
+    ballBodyDef.position.Set(100/PTM_RATIO, 100/PTM_RATIO);
     ballBodyDef.userData = _ball;
     _body = _world->CreateBody(&ballBodyDef);
     b2CircleShape circle;
@@ -254,10 +259,6 @@ enum {
     ballShapeDef.friction = 10.0f;
     ballShapeDef.restitution = 0.14f;
     _body->CreateFixture(&ballShapeDef);
-    
-    contactListener = new MyContactListener;
-    
-    _world->SetContactListener(contactListener);
     
     //sensor shape
     b2PolygonShape sensorShape;
@@ -617,8 +618,10 @@ enum {
 
 
 - (void)ccTouchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
-    [self kick1];
-    nextKick = true;
+    if (contactListener->getGround() == 1) {
+        [self kick1];
+        nextKick = true;
+    }
 }
 
 

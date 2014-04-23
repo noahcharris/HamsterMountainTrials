@@ -10,40 +10,47 @@
 #import "Box2D.h"
 
 
+MyContactListener::MyContactListener() {
+    numFootContacts = 0;
+}
     
 void MyContactListener::BeginContact(b2Contact* contact) {
+        std::cout << "begin contact";
+    std::cout << numFootContacts;
         //check if fixture A was the foot sensor
         void* fixtureUserData = contact->GetFixtureA()->GetUserData();
         if ( (int)fixtureUserData == 3 ) {
-            numFootContacts++;
+            numFootContacts = numFootContacts + 1;
         }
         
         //check if fixture B was the foot sensor
         fixtureUserData = contact->GetFixtureB()->GetUserData();
         if ( (int)fixtureUserData == 3 ) {
-            numFootContacts++;
+            numFootContacts = numFootContacts + 1;
         }
     }
     
 void MyContactListener::EndContact(b2Contact* contact) {
+    std::cout << "end contact";
+    std::cout << numFootContacts;
         //check if fixture A was the foot sensor
         void* fixtureUserData = contact->GetFixtureA()->GetUserData();
         if ( (int)fixtureUserData == 3 ) {
-            numFootContacts--;
+            numFootContacts = numFootContacts - 1;
         }
         //numFootContacts--;
         //check if fixture B was the foot sensor
         fixtureUserData = contact->GetFixtureB()->GetUserData();
         if ( (int)fixtureUserData == 3 ) {
-            numFootContacts--;
+            numFootContacts = numFootContacts - 1;
         }
     }
     
-bool MyContactListener::getGround() {
+int MyContactListener::getGround() {
         if (numFootContacts > 0) {
-            return true;
+            return 1;
         } else {
-            return false;
+            return 0;
         }
     }
     
