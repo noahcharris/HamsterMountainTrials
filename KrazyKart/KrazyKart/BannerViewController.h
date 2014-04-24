@@ -7,7 +7,7 @@
 
 
 #import <iAd/iAd.h>
-//#import "GADBannerView.h"
+#import "GADBannerView.h"
 
 @interface BannerViewController  : UIViewController <ADBannerViewDelegate>//, GADBannerViewDelegate>
 {

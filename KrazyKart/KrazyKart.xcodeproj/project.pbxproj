@@ -205,8 +205,6 @@
 		B9BE3AE31907851C00ACEDDD /* platform9.png in Resources */ = {isa = PBXBuildFile; fileRef = B9BE3AE21907851C00ACEDDD /* platform9.png */; };
 		B9D7D9DB19060B0B007429B3 /* iphoneHamsterBall.png in Resources */ = {isa = PBXBuildFile; fileRef = B9D7D9DA19060B0B007429B3 /* iphoneHamsterBall.png */; };
 		B9E7454319088274007C15D7 /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B9E7454219088274007C15D7 /* AdSupport.framework */; };
-		B9E7454A190883EC007C15D7 /* GoogleAdMobAdsSdkiOS-6.8.0 in Resources */ = {isa = PBXBuildFile; fileRef = B9E74549190883EC007C15D7 /* GoogleAdMobAdsSdkiOS-6.8.0 */; };
-		B9E7454D19088450007C15D7 /* GoogleAdMobAdsSdkiOS-6.8.0 in Frameworks */ = {isa = PBXBuildFile; fileRef = B9E74549190883EC007C15D7 /* GoogleAdMobAdsSdkiOS-6.8.0 */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -605,7 +603,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B9E7454D19088450007C15D7 /* GoogleAdMobAdsSdkiOS-6.8.0 in Frameworks */,
 				B9E7454319088274007C15D7 /* AdSupport.framework in Frameworks */,
 				B958584D19087C7F00D70930 /* iAd.framework in Frameworks */,
 				B94A524919011C25005CD71E /* QuartzCore.framework in Frameworks */,
@@ -1320,7 +1317,6 @@
 				B9702FBB19082D9E00E8785B /* platform11.png in Resources */,
 				B9702FBD19082E5B00E8785B /* platform12.png in Resources */,
 				B9702FBF19082E6D00E8785B /* platform13.png in Resources */,
-				B9E7454A190883EC007C15D7 /* GoogleAdMobAdsSdkiOS-6.8.0 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
