@@ -53,6 +53,8 @@
     std::queue<int> *score_queue;
     int score;
     
+    CCLabelTTF *scoreLabel;
+    
     
     CCMenuItem *_restartButton;
     

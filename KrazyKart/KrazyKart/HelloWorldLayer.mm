@@ -85,6 +85,10 @@ enum {
         score_queue->push(2);
         int p = (int)score_queue->front();
         
+        scoreLabel = [CCLabelTTF labelWithString:@"0" fontName:@"Marker Felt" fontSize:24];
+        scoreLabel.position = ccp(240, 160); //Middle of the screen...
+        [self addChild:scoreLabel z:1];
+        
         
         
         
@@ -203,11 +207,13 @@ enum {
     
     
     //score stuff
+    scoreLabel.position = ccp(pos.x * PTM_RATIO - 90, 270);
     std::cout << score;
     if (score_queue->front() < pos.x) {
         score_queue->pop();
         if (pos.x > 11 && !gameOver) {
             score ++;
+            [scoreLabel setString:[NSString stringWithFormat:@"%d", score]];
         }
     }
     
@@ -268,6 +274,9 @@ enum {
     gameOver = false;
     [self removeChild:starMenu cleanup:YES];
     score = 0;
+    [scoreLabel setString:[NSString stringWithFormat:@"%d", 0]];
+    
+    //empty the queue
     while (!score_queue->empty()) {
         score_queue->pop();
     }
@@ -427,7 +436,7 @@ enum {
     lastColumnCornerDistance += temp + x;
     
     
-    //store the beginning of the platform, for use by scorekeeper, but not the first
+    //store the beginning of the platform, for use by scorekeeper
     score_queue->push(lastColumnCornerDistance - temp);
 
     
