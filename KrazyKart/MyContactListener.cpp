@@ -15,8 +15,6 @@ MyContactListener::MyContactListener() {
 }
     
 void MyContactListener::BeginContact(b2Contact* contact) {
-        std::cout << "begin contact";
-    std::cout << numFootContacts;
         //check if fixture A was the foot sensor
         void* fixtureUserData = contact->GetFixtureA()->GetUserData();
         if ( (int)fixtureUserData == 3 ) {
@@ -31,8 +29,6 @@ void MyContactListener::BeginContact(b2Contact* contact) {
     }
     
 void MyContactListener::EndContact(b2Contact* contact) {
-    std::cout << "end contact";
-    std::cout << numFootContacts;
         //check if fixture A was the foot sensor
         void* fixtureUserData = contact->GetFixtureA()->GetUserData();
         if ( (int)fixtureUserData == 3 ) {

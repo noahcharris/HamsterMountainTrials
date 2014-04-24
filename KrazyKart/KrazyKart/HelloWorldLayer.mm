@@ -208,7 +208,6 @@ enum {
     
     //score stuff
     scoreLabel.position = ccp(pos.x * PTM_RATIO - 90, 270);
-    std::cout << score;
     if (score_queue->front() < pos.x) {
         score_queue->pop();
         if (pos.x > 11 && !gameOver) {
@@ -428,7 +427,7 @@ enum {
 
 
 -(void) drawNextColumn {
-    NSLog(@"Draw next column");
+    //NSLog(@"Draw next column");
     float x = (float)[self getRandomNumberBetween:4 to:6];
     float y = (float)[self getRandomNumberBetween:1 to:2];
     int n = [self getRandomNumberBetween:1 to:9];
@@ -546,7 +545,7 @@ enum {
         
         
         
-        CCSprite *platform = [CCSprite spriteWithFile:@"aplatform3.png"];
+        CCSprite *platform = [CCSprite spriteWithFile:@"platform3.png"];
         platform.position = ccp(x*PTM_RATIO + 44, 2*PTM_RATIO-154);
         [self addChild:platform z:10];
         
