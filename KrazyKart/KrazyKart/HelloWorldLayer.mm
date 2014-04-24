@@ -15,6 +15,8 @@
 
 #import "PhysicsSprite.h"
 
+#include <iostream>
+
 enum {
 	kTagParentNode = 1,
 };
@@ -67,12 +69,21 @@ enum {
         
         
         if ([[NSUserDefaults standardUserDefaults] objectForKey:@"removedAds"] == nil) {
-        }
             banner = [[BannerViewController alloc] init];
             [banner initiAdBanner];
             [banner initgAdBanner];
             [[CCDirector sharedDirector].openGLView addSubview:banner.view];
+        }
+        
+        
+        //queue for scorekeeping
 
+        score = 0;
+        
+        score_queue = new std::queue<int>();
+        
+        score_queue->push(2);
+        int p = (int)score_queue->front();
         
         
         
@@ -140,7 +151,6 @@ enum {
     
     
     
-    
     _world->Step(dt, 10, 10);
     //ball
     //CCSprite *ballData = (CCSprite *)b->GetUserData();
@@ -170,6 +180,7 @@ enum {
     //NSLog(@"%f", _body->GetAngularVelocity());
     
    // NSLog(@"%d", contactListener->getGround());
+
     
 
     b2Vec2 pos = _body->GetPosition();
@@ -188,6 +199,16 @@ enum {
     //DRAWING COLUMNS
     if ((pos.x + 50) > lastColumnCornerDistance) {
         [self drawNextColumn];
+    }
+    
+    
+    //score stuff
+    std::cout << score;
+    if (score_queue->front() < pos.x) {
+        score_queue->pop();
+        if (pos.x > 11 && !gameOver) {
+            score ++;
+        }
     }
     
     
@@ -246,6 +267,10 @@ enum {
     [self createNewHamster];
     gameOver = false;
     [self removeChild:starMenu cleanup:YES];
+    score = 0;
+    while (!score_queue->empty()) {
+        score_queue->pop();
+    }
     
 }
 
@@ -400,6 +425,11 @@ enum {
     int n = [self getRandomNumberBetween:1 to:9];
     float temp = [self drawColumn:n atDistance: (lastColumnCornerDistance + x) atHeight:y];
     lastColumnCornerDistance += temp + x;
+    
+    
+    //store the beginning of the platform, for use by scorekeeper, but not the first
+    score_queue->push(lastColumnCornerDistance - temp);
+
     
 }
 

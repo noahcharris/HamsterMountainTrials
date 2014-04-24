@@ -16,6 +16,8 @@
 #import "MyContactListener.h"
 #import "BannerViewController.h"
 
+#include <queue>
+
 //Pixel to metres ratio. Box2D uses metres as the unit for measurement.
 //This ratio defines how many pixels correspond to 1 Box2D "metre"
 //Box2D is optimized for objects of 1x1 metre therefore it makes sense
@@ -45,8 +47,11 @@
     CCSprite *hamster;
     
     
+    
     BannerViewController *banner;
     
+    std::queue<int> *score_queue;
+    int score;
     
     
     CCMenuItem *_restartButton;
