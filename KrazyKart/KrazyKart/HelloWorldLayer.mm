@@ -68,12 +68,12 @@ enum {
 		CGSize winSize = [CCDirector sharedDirector].winSize;
         
         
-        if ([[NSUserDefaults standardUserDefaults] objectForKey:@"removedAds"] == nil) {
-            banner = [[BannerViewController alloc] init];
-            [banner initiAdBanner];
-            [banner initgAdBanner];
-            [[CCDirector sharedDirector].openGLView addSubview:banner.view];
-        }
+//        if ([[NSUserDefaults standardUserDefaults] objectForKey:@"removedAds"] == nil) {
+//            banner = [[BannerViewController alloc] init];
+//            [banner initiAdBanner];
+//            [banner initgAdBanner];
+//            [[CCDirector sharedDirector].openGLView addSubview:banner.view];
+//        }
         
         
         //queue for scorekeeping
@@ -128,10 +128,6 @@ enum {
 
         
         [self drawStartingArea];
-        
-        
-        //[self drawColumn:13 atDistance:10 atHeight:1];
-        
         
         
         [self schedule:@selector(tick:)];
@@ -295,7 +291,7 @@ enum {
     // Create ball body and shape
     b2BodyDef ballBodyDef;
     ballBodyDef.type = b2_dynamicBody;
-    ballBodyDef.position.Set(100/PTM_RATIO, 100/PTM_RATIO);
+    ballBodyDef.position.Set(300/PTM_RATIO, 250/PTM_RATIO);
     ballBodyDef.userData = _ball;
     _body = _world->CreateBody(&ballBodyDef);
     b2CircleShape circle;
@@ -379,50 +375,10 @@ enum {
 
 
 -(void) drawStartingArea {
-    CGSize winSize = [CCDirector sharedDirector].winSize;
-    
-    // Create edges around the entire screen
-    b2BodyDef groundBodyDef;
-    groundBodyDef.position.Set(0,0);
-    
-    b2Body *groundBody = _world->CreateBody(&groundBodyDef);
-    b2EdgeShape groundEdge;
-    b2FixtureDef boxShapeDef;
-    boxShapeDef.friction = 10.0f;
-    boxShapeDef.shape = &groundEdge;
     
     
-    //chain stuff
-    b2Vec2 vs[4];
+    [self drawColumn:11 atDistance:4 atHeight:1];
     
-    vs[0].Set(1.7f, 0.0f);
-    
-    vs[1].Set(2.0f, 1.25f);
-    
-    vs[2].Set(0.0f, 0.0f);
-    
-    vs[3].Set(-3.6f, 0.4f);
-    
-    b2ChainShape chain;
-    b2FixtureDef chainShapeDef;
-    chainShapeDef.friction = 10.0f;
-    chainShapeDef.shape = &chain;
-    
-    chain.CreateChain(vs, 4);
-    
-    groundBody->CreateFixture(&chainShapeDef);
-    
-    
-    //wall definitions
-    groundEdge.Set(b2Vec2(0,0), b2Vec2(winSize.width/PTM_RATIO, 0));
-    groundBody->CreateFixture(&boxShapeDef);
-    
-    groundEdge.Set(b2Vec2(0,0), b2Vec2(0,winSize.height/PTM_RATIO));
-    groundBody->CreateFixture(&boxShapeDef);
-    
-    groundEdge.Set(b2Vec2(0, winSize.height/PTM_RATIO),
-                   b2Vec2(winSize.width/PTM_RATIO, winSize.height/PTM_RATIO));
-    groundBody->CreateFixture(&boxShapeDef);
 }
 
 

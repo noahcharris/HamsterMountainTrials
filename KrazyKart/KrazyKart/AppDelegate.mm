@@ -94,15 +94,26 @@
 }
 
 // Supported orientations: Landscape. Customize it for your own needs
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
-{
-	return UIInterfaceOrientationIsLandscape(interfaceOrientation);
+
+//- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
+//{
+//    NSLog(@"SHOULD AUTO ROTATE");
+//	return UIInterfaceOrientationIsLandscape(interfaceOrientation);
+//}
+
+- (BOOL)shouldAutorotate {
+    return NO;
+}
+
+- (NSUInteger) supportedInterfaceOrientations{
+    return UIInterfaceOrientationMaskLandscape;
 }
 
 
 // getting a call, pause the game
 -(void) applicationWillResignActive:(UIApplication *)application
 {
+    NSLog(@"RESIGN ACTIVE");
 	if( [navController_ visibleViewController] == director_ )
 		[director_ pause];
 }
@@ -110,18 +121,21 @@
 // call got rejected
 -(void) applicationDidBecomeActive:(UIApplication *)application
 {
+    NSLog(@"BECAME ACTIVE");
 	if( [navController_ visibleViewController] == director_ )
 		[director_ resume];
 }
 
 -(void) applicationDidEnterBackground:(UIApplication*)application
 {
+    NSLog(@"ENTERED BACKGROUND");
 	if( [navController_ visibleViewController] == director_ )
 		[director_ stopAnimation];
 }
 
 -(void) applicationWillEnterForeground:(UIApplication*)application
 {
+    NSLog(@"WILL ENTER FOREGROUND");
 	if( [navController_ visibleViewController] == director_ )
 		[director_ startAnimation];
 }

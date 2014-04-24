@@ -102,7 +102,7 @@
         
         [UIView beginAnimations:@"showBanner" context:nil];
                                     //winSize.height-bannerHeight
-        banner.frame = CGRectMake(0, 0, bannerWidth, bannerHeight);
+        banner.frame = CGRectMake(0, 24, bannerWidth, bannerHeight);
         //banner.frame = CGRectOffset(banner.frame, 0, -bannerHeight);
         [UIView commitAnimations];
         banner.hidden = FALSE;
