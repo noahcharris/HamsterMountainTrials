@@ -12,7 +12,7 @@
 
 @synthesize iAdBannerView;
 
-//@synthesize gAdBannerView;
+@synthesize gAdBannerView;
 
 
 
@@ -40,31 +40,31 @@
     }
 }
 
-//-(void)initgAdBanner
-//{
-//    //janky
-//    BOOL IS_IPAD = false;
-//    
-//    if (!self.gAdBannerView)
-//    {
-//        CGPoint origin = CGPointMake(0.0,
-//                                     self.view.frame.size.height);
-//        
-//        self.gAdBannerView = [[[GADBannerView alloc] initWithAdSize:kGADAdSizeBanner
-//                                                             origin:origin]
-//                              autorelease];
-//        if (IS_IPAD)
-//        {
-//            self.gAdBannerView.adUnitID = @"a1511abac90ecda";
-//        } else {
-//            self.gAdBannerView.adUnitID = @"a1511abb4509b21";
-//        }
-//        self.gAdBannerView.rootViewController = self;
-//        self.gAdBannerView.delegate = self;
-//        self.gAdBannerView.hidden = TRUE;
-//        [self.view addSubview:self.gAdBannerView];
-//    }
-//}
+-(void)initgAdBanner
+{
+    //janky
+    BOOL IS_IPAD = false;
+    
+    if (!self.gAdBannerView)
+    {
+        CGPoint origin = CGPointMake(0.0,
+                                     self.view.frame.size.height);
+        
+        self.gAdBannerView = [[[GADBannerView alloc] initWithAdSize:kGADAdSizeBanner
+                                                             origin:origin]
+                              autorelease];
+        if (IS_IPAD)
+        {
+            self.gAdBannerView.adUnitID = @"a1511abac90ecda";
+        } else {
+            self.gAdBannerView.adUnitID = @"a1511abb4509b21";
+        }
+        self.gAdBannerView.rootViewController = self;
+        self.gAdBannerView.delegate = self;
+        self.gAdBannerView.hidden = TRUE;
+        [self.view addSubview:self.gAdBannerView];
+    }
+}
 
 
 -(void)hideBanner:(UIView *)banner
@@ -118,7 +118,7 @@
     
     NSLog(@"iAd load...");
     [self showBanner:iAdBannerView];  //new method
-    //[self hideBanner:gAdBannerView];
+    [self hideBanner:gAdBannerView];
 }
 
 -(void)bannerView:(ADBannerView *)banner didFailToReceiveAdWithError:(NSError *)error;
@@ -126,25 +126,25 @@
     NSLog(@"iAdError, %@", error);
     [self hideBanner:iAdBannerView];
     NSLog(@"Requesting ad from admob");
-    //[self.gAdBannerView loadRequest:[GADRequest request]];
+    [self.gAdBannerView loadRequest:[GADRequest request]];
 }
 
 
 
 // AdMob delegate methods
 
-//- (void)adViewDidReceiveAd:(GADBannerView *)view
-//{
-//    NSLog(@"Admob load");
-//    [self hideBanner:self.iAdBannerView];
-//    [self showBanner:self.gAdBannerView];
-//}
+- (void)adViewDidReceiveAd:(GADBannerView *)view
+{
+    NSLog(@"Admob load");
+    [self hideBanner:self.iAdBannerView];
+    [self showBanner:self.gAdBannerView];
+}
 
-//- (void)adView:(GADBannerView *)view didFailToReceiveAdWithError:(GADRequestError *)error
-//{
-//    NSLog(@"Admob error: %@", error);
-//    [self hideBanner:self.gAdBannerView];
-//}
+- (void)adView:(GADBannerView *)view didFailToReceiveAdWithError:(GADRequestError *)error
+{
+    NSLog(@"Admob error: %@", error);
+    [self hideBanner:self.gAdBannerView];
+}
 
 
 

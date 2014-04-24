@@ -70,7 +70,7 @@ enum {
         }
             banner = [[BannerViewController alloc] init];
             [banner initiAdBanner];
-            //[banner initgAdBanner];
+            [banner initgAdBanner];
             [[CCDirector sharedDirector].openGLView addSubview:banner.view];
 
         
