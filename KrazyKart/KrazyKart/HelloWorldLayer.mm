@@ -65,6 +65,18 @@ enum {
         self.isTouchEnabled = YES;
 		CGSize winSize = [CCDirector sharedDirector].winSize;
         
+        
+        if ([[NSUserDefaults standardUserDefaults] objectForKey:@"removedAds"] == nil) {
+        }
+            banner = [[BannerViewController alloc] init];
+            [banner initiAdBanner];
+            //[banner initgAdBanner];
+            [[CCDirector sharedDirector].openGLView addSubview:banner.view];
+
+        
+        
+        
+        
         lastColumnCornerDistance = 10;
         lastColumnCornerHeight = 0;
         

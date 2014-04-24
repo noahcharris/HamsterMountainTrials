@@ -189,7 +189,6 @@
 		B94A547519011C29005CD71E /* blocks.png in Resources */ = {isa = PBXBuildFile; fileRef = B94A547419011C29005CD71E /* blocks.png */; };
 		B958584B19087C5900D70930 /* BannerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B958584A19087C5900D70930 /* BannerViewController.m */; };
 		B958584D19087C7F00D70930 /* iAd.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B958584C19087C7F00D70930 /* iAd.framework */; };
-		B958584F19087D2D00D70930 /* GoogleAdMobAdsSdkiOS-6.8.0 in Frameworks */ = {isa = PBXBuildFile; fileRef = B958584E19087D2C00D70930 /* GoogleAdMobAdsSdkiOS-6.8.0 */; };
 		B9702FB919082C2800E8785B /* platform10.png in Resources */ = {isa = PBXBuildFile; fileRef = B9702FB819082C2800E8785B /* platform10.png */; };
 		B9702FBB19082D9E00E8785B /* platform11.png in Resources */ = {isa = PBXBuildFile; fileRef = B9702FBA19082D9E00E8785B /* platform11.png */; };
 		B9702FBD19082E5B00E8785B /* platform12.png in Resources */ = {isa = PBXBuildFile; fileRef = B9702FBC19082E5B00E8785B /* platform12.png */; };
@@ -205,6 +204,9 @@
 		B9BE3AE11907841100ACEDDD /* platform8.png in Resources */ = {isa = PBXBuildFile; fileRef = B9BE3AE01907841100ACEDDD /* platform8.png */; };
 		B9BE3AE31907851C00ACEDDD /* platform9.png in Resources */ = {isa = PBXBuildFile; fileRef = B9BE3AE21907851C00ACEDDD /* platform9.png */; };
 		B9D7D9DB19060B0B007429B3 /* iphoneHamsterBall.png in Resources */ = {isa = PBXBuildFile; fileRef = B9D7D9DA19060B0B007429B3 /* iphoneHamsterBall.png */; };
+		B9E7454319088274007C15D7 /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B9E7454219088274007C15D7 /* AdSupport.framework */; };
+		B9E7454A190883EC007C15D7 /* GoogleAdMobAdsSdkiOS-6.8.0 in Resources */ = {isa = PBXBuildFile; fileRef = B9E74549190883EC007C15D7 /* GoogleAdMobAdsSdkiOS-6.8.0 */; };
+		B9E7454D19088450007C15D7 /* GoogleAdMobAdsSdkiOS-6.8.0 in Frameworks */ = {isa = PBXBuildFile; fileRef = B9E74549190883EC007C15D7 /* GoogleAdMobAdsSdkiOS-6.8.0 */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -579,7 +581,6 @@
 		B958584919087C5900D70930 /* BannerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BannerViewController.h; sourceTree = "<group>"; };
 		B958584A19087C5900D70930 /* BannerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BannerViewController.m; sourceTree = "<group>"; };
 		B958584C19087C7F00D70930 /* iAd.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = iAd.framework; path = System/Library/Frameworks/iAd.framework; sourceTree = SDKROOT; };
-		B958584E19087D2C00D70930 /* GoogleAdMobAdsSdkiOS-6.8.0 */ = {isa = PBXFileReference; lastKnownFileType = folder; name = "GoogleAdMobAdsSdkiOS-6.8.0"; path = "../../GoogleAdMobAdsSdkiOS-6.8.0"; sourceTree = "<group>"; };
 		B9702FB819082C2800E8785B /* platform10.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = platform10.png; sourceTree = "<group>"; };
 		B9702FBA19082D9E00E8785B /* platform11.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = platform11.png; sourceTree = "<group>"; };
 		B9702FBC19082E5B00E8785B /* platform12.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = platform12.png; sourceTree = "<group>"; };
@@ -595,6 +596,8 @@
 		B9BE3AE01907841100ACEDDD /* platform8.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = platform8.png; sourceTree = "<group>"; };
 		B9BE3AE21907851C00ACEDDD /* platform9.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = platform9.png; sourceTree = "<group>"; };
 		B9D7D9DA19060B0B007429B3 /* iphoneHamsterBall.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = iphoneHamsterBall.png; sourceTree = "<group>"; };
+		B9E7454219088274007C15D7 /* AdSupport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdSupport.framework; path = System/Library/Frameworks/AdSupport.framework; sourceTree = SDKROOT; };
+		B9E74549190883EC007C15D7 /* GoogleAdMobAdsSdkiOS-6.8.0 */ = {isa = PBXFileReference; lastKnownFileType = folder; path = "GoogleAdMobAdsSdkiOS-6.8.0"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -602,7 +605,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B958584F19087D2D00D70930 /* GoogleAdMobAdsSdkiOS-6.8.0 in Frameworks */,
+				B9E7454D19088450007C15D7 /* GoogleAdMobAdsSdkiOS-6.8.0 in Frameworks */,
+				B9E7454319088274007C15D7 /* AdSupport.framework in Frameworks */,
 				B958584D19087C7F00D70930 /* iAd.framework in Frameworks */,
 				B94A524919011C25005CD71E /* QuartzCore.framework in Frameworks */,
 				B94A524B19011C25005CD71E /* OpenGLES.framework in Frameworks */,
@@ -622,7 +626,7 @@
 		B94A523C19011C25005CD71E = {
 			isa = PBXGroup;
 			children = (
-				B958584E19087D2C00D70930 /* GoogleAdMobAdsSdkiOS-6.8.0 */,
+				B9E7454219088274007C15D7 /* AdSupport.framework */,
 				B958584C19087C7F00D70930 /* iAd.framework */,
 				B94A525A19011C25005CD71E /* KrazyKart */,
 				B94A524719011C25005CD71E /* Frameworks */,
@@ -657,6 +661,7 @@
 		B94A525A19011C25005CD71E /* KrazyKart */ = {
 			isa = PBXGroup;
 			children = (
+				B9E74549190883EC007C15D7 /* GoogleAdMobAdsSdkiOS-6.8.0 */,
 				B91CF9A51904D4C800E92440 /* MyContactListener.cpp */,
 				B91CF9A61904D4C800E92440 /* MyContactListener.h */,
 				B94A546519011C29005CD71E /* AppDelegate.h */,
@@ -1222,6 +1227,16 @@
 		};
 /* End PBXGroup section */
 
+/* Begin PBXHeadersBuildPhase section */
+		B9E7454E19088488007C15D7 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
 /* Begin PBXNativeTarget section */
 		B94A524419011C25005CD71E /* KrazyKart */ = {
 			isa = PBXNativeTarget;
@@ -1230,6 +1245,7 @@
 				B94A524119011C25005CD71E /* Sources */,
 				B94A524219011C25005CD71E /* Frameworks */,
 				B94A524319011C25005CD71E /* Resources */,
+				B9E7454E19088488007C15D7 /* Headers */,
 			);
 			buildRules = (
 			);
@@ -1304,6 +1320,7 @@
 				B9702FBB19082D9E00E8785B /* platform11.png in Resources */,
 				B9702FBD19082E5B00E8785B /* platform12.png in Resources */,
 				B9702FBF19082E6D00E8785B /* platform13.png in Resources */,
+				B9E7454A190883EC007C15D7 /* GoogleAdMobAdsSdkiOS-6.8.0 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1523,6 +1540,11 @@
 				GCC_PREFIX_HEADER = KrazyKart/Prefix.pch;
 				HEADER_SEARCH_PATHS = "\"KrazyKart/libs/kazmath/include\"";
 				INFOPLIST_FILE = KrazyKart/Resources/Info.plist;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../../GoogleAdMobAdsSdkiOS-6.8.0\"",
+					"\"$(SRCROOT)/KrazyKart/GoogleAdMobAdsSdkiOS-6.8.0\"",
+				);
 				OTHER_LDFLAGS = (
 					"-lz",
 					"-ObjC",
@@ -1542,6 +1564,11 @@
 				GCC_PREFIX_HEADER = KrazyKart/Prefix.pch;
 				HEADER_SEARCH_PATHS = "\"KrazyKart/libs/kazmath/include\"";
 				INFOPLIST_FILE = KrazyKart/Resources/Info.plist;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../../GoogleAdMobAdsSdkiOS-6.8.0\"",
+					"\"$(SRCROOT)/KrazyKart/GoogleAdMobAdsSdkiOS-6.8.0\"",
+				);
 				OTHER_LDFLAGS = (
 					"-lz",
 					"-ObjC",

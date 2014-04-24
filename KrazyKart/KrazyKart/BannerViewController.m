@@ -6,12 +6,13 @@
 #import <iAd/iAd.h>
 
 #import "BannerViewController.h"
+#import "cocos2d.h"
 
 @implementation BannerViewController
 
 @synthesize iAdBannerView;
 
-@synthesize gAdBannerView;
+//@synthesize gAdBannerView;
 
 
 
@@ -20,7 +21,8 @@
 {
     if (!self.iAdBannerView)
     {
-        CGRect rect = CGRectMake(0, self.view.frame.size.height, 0, 0);
+                                    //self.view.frame.size.height
+        CGRect rect = CGRectMake(0, 0 , 0, 0);
         self.iAdBannerView = [[ADBannerView alloc] initWithFrame:rect];
         
         //self.iAdBannerView = [[ADBannerView alloc] initWithFrame:CGRectZero];
@@ -38,28 +40,31 @@
     }
 }
 
--(void)initgAdBanner
-{
-    if (!self.gAdBannerView)
-    {
-        CGPoint origin = CGPointMake(0.0,
-                                     self.view.frame.size.height);
-        
-        self.gAdBannerView = [[[GADBannerView alloc] initWithAdSize:kGADAdSizeBanner
-                                                             origin:origin]
-                              autorelease];
-        if (IS_IPAD)
-        {
-            self.gAdBannerView.adUnitID = @"a1511abac90ecda";
-        } else {
-            self.gAdBannerView.adUnitID = @"a1511abb4509b21";
-        }
-        self.gAdBannerView.rootViewController = self;
-        self.gAdBannerView.delegate = self;
-        self.gAdBannerView.hidden = TRUE;
-        [self.view addSubview:self.gAdBannerView];
-    }
-}
+//-(void)initgAdBanner
+//{
+//    //janky
+//    BOOL IS_IPAD = false;
+//    
+//    if (!self.gAdBannerView)
+//    {
+//        CGPoint origin = CGPointMake(0.0,
+//                                     self.view.frame.size.height);
+//        
+//        self.gAdBannerView = [[[GADBannerView alloc] initWithAdSize:kGADAdSizeBanner
+//                                                             origin:origin]
+//                              autorelease];
+//        if (IS_IPAD)
+//        {
+//            self.gAdBannerView.adUnitID = @"a1511abac90ecda";
+//        } else {
+//            self.gAdBannerView.adUnitID = @"a1511abb4509b21";
+//        }
+//        self.gAdBannerView.rootViewController = self;
+//        self.gAdBannerView.delegate = self;
+//        self.gAdBannerView.hidden = TRUE;
+//        [self.view addSubview:self.gAdBannerView];
+//    }
+//}
 
 
 -(void)hideBanner:(UIView *)banner
@@ -76,6 +81,10 @@
 
 -(void)showBanner:(UIView *)banner
 {
+    
+    //janky
+    BOOL IS_IPAD = false;
+    
     if (banner && banner.hidden)
     {
         if (IS_IPAD)
@@ -89,10 +98,11 @@
             bannerHeight = 32;
         }
         
-        CGSize windowSize = [[CCDirector sharedDirector] winSize];
+        CGSize winSize = [CCDirector sharedDirector].winSize;
         
         [UIView beginAnimations:@"showBanner" context:nil];
-        banner.frame = CGRectMake(0, windowSize.height-bannerHeight, bannerWidth, bannerHeight);
+                                    //winSize.height-bannerHeight
+        banner.frame = CGRectMake(0, 0, bannerWidth, bannerHeight);
         //banner.frame = CGRectOffset(banner.frame, 0, -bannerHeight);
         [UIView commitAnimations];
         banner.hidden = FALSE;
@@ -108,7 +118,7 @@
     
     NSLog(@"iAd load...");
     [self showBanner:iAdBannerView];  //new method
-    [self hideBanner:gAdBannerView];
+    //[self hideBanner:gAdBannerView];
 }
 
 -(void)bannerView:(ADBannerView *)banner didFailToReceiveAdWithError:(NSError *)error;
@@ -116,25 +126,32 @@
     NSLog(@"iAdError, %@", error);
     [self hideBanner:iAdBannerView];
     NSLog(@"Requesting ad from admob");
-    [self.gAdBannerView loadRequest:[GADRequest request]];
+    //[self.gAdBannerView loadRequest:[GADRequest request]];
 }
 
 
 
 // AdMob delegate methods
 
-- (void)adViewDidReceiveAd:(GADBannerView *)view
-{
-    NSLog(@"Admob load");
-    [self hideBanner:self.iAdBannerView];
-    [self showBanner:self.gAdBannerView];
-}
+//- (void)adViewDidReceiveAd:(GADBannerView *)view
+//{
+//    NSLog(@"Admob load");
+//    [self hideBanner:self.iAdBannerView];
+//    [self showBanner:self.gAdBannerView];
+//}
 
-- (void)adView:(GADBannerView *)view didFailToReceiveAdWithError:(GADRequestError *)error
-{
-    NSLog(@"Admob error: %@", error);
-    [self hideBanner:self.gAdBannerView];
-}
+//- (void)adView:(GADBannerView *)view didFailToReceiveAdWithError:(GADRequestError *)error
+//{
+//    NSLog(@"Admob error: %@", error);
+//    [self hideBanner:self.gAdBannerView];
+//}
+
+
+
+
+
+
+
 
 
 #pragma mark - old methods

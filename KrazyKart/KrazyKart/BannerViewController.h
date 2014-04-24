@@ -7,18 +7,18 @@
 
 
 #import <iAd/iAd.h>
-#import "GADBannerView.h"
+//#import "GADBannerView.h"
 
-@interface BannerViewController  : UIViewController <ADBannerViewDelegate, GADBannerViewDelegate>
+@interface BannerViewController  : UIViewController <ADBannerViewDelegate>//, GADBannerViewDelegate>
 {
     ADBannerView *iAdBannerView;
-    GADBannerView *gAdBannerView;
+//    GADBannerView *gAdBannerView;
     float bannerWidth;
     float bannerHeight;
 }
 
 @property (nonatomic,retain) ADBannerView *iAdBannerView;
-@property (nonatomic, retain) GADBannerView *gAdBannerView;
+//@property (nonatomic, retain) GADBannerView *gAdBannerView;
 
 
 //oldmethods
@@ -37,8 +37,8 @@
 -(void)bannerView:(ADBannerView *)banner didFailToReceiveAdWithError:(NSError *)error;
 
 //AdMob delegate methods
--(void)adViewDidReceiveAd:(GADBannerView *)view;
--(void)adView:(GADBannerView *)view didFailToReceiveAdWithError:(GADRequestError *)error;
+//-(void)adViewDidReceiveAd:(GADBannerView *)view;
+//-(void)adView:(GADBannerView *)view didFailToReceiveAdWithError:(GADRequestError *)error;
 
 
 
