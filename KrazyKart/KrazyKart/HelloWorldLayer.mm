@@ -104,7 +104,8 @@ enum {
         
         
         // Create a world
-        b2Vec2 gravity = b2Vec2(0.0f, -10.5f);
+        // -10.5
+        b2Vec2 gravity = b2Vec2(0.0f, -12.5f);
         _world = new b2World(gravity);
         
         
@@ -171,10 +172,11 @@ enum {
                            _body->GetPosition().y * PTM_RATIO);
 
     //good setup: top speed = -12, torque = -26.5
+    // -9.5 -35
     
-    if (_body->GetAngularVelocity() > -9.5f) {
+    if (_body->GetAngularVelocity() > -13.2f) {
         
-        _body->ApplyTorque(-35);
+        _body->ApplyTorque(-40);
         
     }
     //NSLog(@"%f", _body->GetAngularVelocity());
@@ -237,7 +239,7 @@ enum {
 //20 and 7
 - (void)kick1 {
         if (!nextKick) {
-            b2Vec2 force = b2Vec2(0, 20);
+            b2Vec2 force = b2Vec2(0, 22);
             //_body->ApplyLinearImpulse(force,_body->GetPosition());
             if (contactListener->getGround() == 1) {
                 NSLog(@"kick1");
@@ -253,7 +255,7 @@ enum {
 -(void) kick2 {
     if (nextKick) {
         NSLog(@"kick2");
-        b2Vec2 force = b2Vec2(0, 7);
+        b2Vec2 force = b2Vec2(0, 10);
         _body->ApplyLinearImpulse(force,_body->GetPosition());
     }
 }
@@ -291,7 +293,7 @@ enum {
     // Create ball body and shape
     b2BodyDef ballBodyDef;
     ballBodyDef.type = b2_dynamicBody;
-    ballBodyDef.position.Set(300/PTM_RATIO, 250/PTM_RATIO);
+    ballBodyDef.position.Set(200/PTM_RATIO, 250/PTM_RATIO);
     ballBodyDef.userData = _ball;
     _body = _world->CreateBody(&ballBodyDef);
     b2CircleShape circle;
@@ -385,7 +387,7 @@ enum {
 -(void) drawNextColumn {
     //NSLog(@"Draw next column");
     float x = (float)[self getRandomNumberBetween:4 to:6];
-    float y = (float)[self getRandomNumberBetween:1 to:2];
+    float y = (float)[self getRandomNumberBetween:2 to:3];
     int n = [self getRandomNumberBetween:1 to:9];
     float temp = [self drawColumn:n atDistance: (lastColumnCornerDistance + x) atHeight:y];
     lastColumnCornerDistance += temp + x;
@@ -618,7 +620,7 @@ enum {
         platformBody->CreateFixture(&platformFixtureDef);
         
         CCSprite *platform = [CCSprite spriteWithFile:@"platform8.png"];
-        platform.position = ccp(x*PTM_RATIO + 45, y*PTM_RATIO-149);
+        platform.position = ccp(x*PTM_RATIO + 45, y*PTM_RATIO-153);
         [self addChild:platform z:10];
         
         platformBody->SetUserData(platform);
