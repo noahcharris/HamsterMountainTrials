@@ -54,6 +54,33 @@ enum {
 
 
 
+//[[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"packBought"];
+//if ([[NSUserDefaults standardUserDefaults] objectForKey:@"removedAds"] == nil)
+
+-(void) handlePurchases {
+    
+    if ([[NSUserDefaults standardUserDefaults] integerForKey:@"removedAds"] == nil) {
+        
+        adsRemoved = false;
+        //IN APP PURCHASES
+        
+        _helper = [IAPHelper sharedInstance];      //create an instance of our in-app purchase helper
+        
+        [_helper requestProductsWithCompletionHandler:^(BOOL success, NSArray *products) {
+            if (success) {
+                
+                NSDictionary *dataDict = [NSDictionary dictionaryWithObject:products forKey:@"productsList"];
+                [[NSNotificationCenter defaultCenter] postNotificationName:@"productsReceived" object:self userInfo:dataDict];
+            }
+        }];
+
+        
+    } else {
+        
+        adsRemoved = true;
+        
+    }
+}
 
 
 
@@ -65,30 +92,23 @@ enum {
         
         
         
-        //IN APP PURCHASES
-        _helper = [IAPHelper sharedInstance];      //create an instance of our in-app purchase helper
+        //for testing
+        [[NSUserDefaults standardUserDefaults] setInteger:0 forKey:@"highScore"];
+
         
-        [_helper requestProductsWithCompletionHandler:^(BOOL success, NSArray *products) {
-            if (success) {
-                
-                NSDictionary *dataDict = [NSDictionary dictionaryWithObject:products forKey:@"productsList"];
-                [[NSNotificationCenter defaultCenter] postNotificationName:@"productsReceived" object:self userInfo:dataDict];
-            }
-        }];
-        
-        
+        [self handlePurchases];
 
         
         self.isTouchEnabled = YES;
 		CGSize winSize = [CCDirector sharedDirector].winSize;
         
         
-//        if ([[NSUserDefaults standardUserDefaults] objectForKey:@"removedAds"] == nil) {
-//            banner = [[BannerViewController alloc] init];
-//            [banner initiAdBanner];
-//            [banner initgAdBanner];
-//            [[CCDirector sharedDirector].openGLView addSubview:banner.view];
-//        }
+        if (!adsRemoved) {
+            banner = [[BannerViewController alloc] init];
+            [banner initiAdBanner];
+            [banner initgAdBanner];
+            [[CCDirector sharedDirector].openGLView addSubview:banner.view];
+        }
         
         
         //queue for scorekeeping
@@ -98,7 +118,6 @@ enum {
         score_queue = new std::queue<int>();
         
         score_queue->push(2);
-        int p = (int)score_queue->front();
         
         scoreLabel = [CCLabelTTF labelWithString:@"0" fontName:@"Marker Felt" fontSize:24];
         scoreLabel.position = ccp(240, 160); //Middle of the screen...
@@ -167,11 +186,9 @@ enum {
 
 - (void)tick:(ccTime) dt {
     
-    
-    
     _world->Step(dt, 10, 10);
-    //ball
-    //CCSprite *ballData = (CCSprite *)b->GetUserData();
+    
+    //update sprites
     _ball.position = ccp(_body->GetPosition().x * PTM_RATIO,
                             _body->GetPosition().y * PTM_RATIO);
     _ball.rotation = -1 * CC_RADIANS_TO_DEGREES(_body->GetAngle());
@@ -182,9 +199,7 @@ enum {
     
     _shading.position = ccp(_body->GetPosition().x * PTM_RATIO,
                             _body->GetPosition().y * PTM_RATIO);
-    
     //hamster
-    //NSLog(@"HAMSTER:  %f", _hamster.position.x);
     _hamster.position = ccp(_body->GetPosition().x * PTM_RATIO,
                            _body->GetPosition().y * PTM_RATIO);
 
@@ -196,15 +211,10 @@ enum {
     // -40
     if (_body->GetAngularVelocity() > -9.5f) {
         
-        _body->ApplyTorque(-35);
-        
+        _body->ApplyTorque(-45);
     }
-    //NSLog(@"%f", _body->GetAngularVelocity());
-    
-   // NSLog(@"%d", contactListener->getGround());
 
-    
-
+    //moving screen
     b2Vec2 pos = _body->GetPosition();                  //110
 	CGPoint newPos = ccp(-1 * pos.x * PTM_RATIO * 0.6 + 110, self.position.y * PTM_RATIO);
 	[self setPosition:newPos];
@@ -213,8 +223,10 @@ enum {
     CGSize winSize = [CCDirector sharedDirector].winSize;
     _background.position = ccp(pos.x * PTM_RATIO - 110 + winSize.width/2, self.position.y * PTM_RATIO + winSize.height/2);
     
+    
     //game over stuff
     if (gameOver) {
+        highScoreLabel.position = ccp(pos.x * PTM_RATIO, 270);
         _restartButton.position = ccp(pos.x * PTM_RATIO + 300, self.position.y * PTM_RATIO + 270);
     }
     
@@ -235,12 +247,7 @@ enum {
     }
     
     
-    
-    
-    
     if (pos.y < -2.7) {
-        //NSLog(@"END GAME");
-        
         if (!gameOver) {
             [self gameOver];
         }
@@ -258,7 +265,47 @@ enum {
     starMenu = [CCMenu menuWithItems:_restartButton, nil];
     starMenu.position = CGPointZero;
     [self addChild:starMenu];
+    
+    highScoreLabel = [CCLabelTTF labelWithString:@"0" fontName:@"Marker Felt" fontSize:24];
+    highScoreLabel.position = ccp(300, 160); //Middle of the screen...
+    
+    
+    [self addChild:highScoreLabel z:1];
+    
+    NSLog(@"%d", [[NSUserDefaults standardUserDefaults] integerForKey:@"highScore"]);
+    
+    if (score > [[NSUserDefaults standardUserDefaults] integerForKey:@"highScore"]
+        || [[NSUserDefaults standardUserDefaults] integerForKey:@"highScore"] == 0) {
+        
+        NSLog(@"hi");
+        [[NSUserDefaults standardUserDefaults] setInteger:score forKey:@"highScore"];
+    }
+    
+    [highScoreLabel setString:[NSString stringWithFormat:@"%d",[[NSUserDefaults standardUserDefaults] integerForKey:@"highScore"]]];
+    
 }
+
+- (void)restartTapped {
+    
+    //remove the restart
+    [self checkAndRemoveColumns];
+    [self drawStartingArea];
+    [self createNewHamster];
+    gameOver = false;
+    [self removeChild:starMenu cleanup:YES];
+    [self removeChild:highScoreLabel cleanup:YES];
+    score = 0;
+    [scoreLabel setString:[NSString stringWithFormat:@"%d", 0]];
+    
+    //empty the queue
+    while (!score_queue->empty()) {
+        score_queue->pop();
+    }
+    
+}
+
+
+
 
 
 //20 and 7
@@ -285,25 +332,6 @@ enum {
     }
 }
 
-
-
-- (void)restartTapped {
-    
-    //remove the restart
-    [self checkAndRemoveColumns];
-    [self drawStartingArea];
-    [self createNewHamster];
-    gameOver = false;
-    [self removeChild:starMenu cleanup:YES];
-    score = 0;
-    [scoreLabel setString:[NSString stringWithFormat:@"%d", 0]];
-    
-    //empty the queue
-    while (!score_queue->empty()) {
-        score_queue->pop();
-    }
-    
-}
 
 -(void) createNewHamster {
     _ball = [CCSprite spriteWithFile:@"hamsterEmptyBall.png" rect:CGRectMake(0, 0, 52, 52)];
