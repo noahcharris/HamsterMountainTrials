@@ -261,7 +261,7 @@ enum {
     _restartButton= [CCMenuItemImage
                      itemFromNormalImage:@"Icon.png" selectedImage:@"Icon-Small.png"
                      target:self selector:@selector(restartTapped)];
-    _restartButton.position = ccp(400, 280);
+    _restartButton.position = ccp(-300, 280);
     starMenu = [CCMenu menuWithItems:_restartButton, nil];
     starMenu.position = CGPointZero;
     [self addChild:starMenu];
