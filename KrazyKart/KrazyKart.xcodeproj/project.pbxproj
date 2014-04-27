@@ -180,7 +180,6 @@
 		B94A546A19011C29005CD71E /* HelloWorldLayer.mm in Sources */ = {isa = PBXBuildFile; fileRef = B94A546919011C29005CD71E /* HelloWorldLayer.mm */; };
 		B94A546D19011C29005CD71E /* IntroLayer.mm in Sources */ = {isa = PBXBuildFile; fileRef = B94A546C19011C29005CD71E /* IntroLayer.mm */; };
 		B94A547019011C29005CD71E /* GLES-Render.mm in Sources */ = {isa = PBXBuildFile; fileRef = B94A546F19011C29005CD71E /* GLES-Render.mm */; };
-		B94A547319011C29005CD71E /* PhysicsSprite.mm in Sources */ = {isa = PBXBuildFile; fileRef = B94A547219011C29005CD71E /* PhysicsSprite.mm */; };
 		B94A547519011C29005CD71E /* blocks.png in Resources */ = {isa = PBXBuildFile; fileRef = B94A547419011C29005CD71E /* blocks.png */; };
 		B958584B19087C5900D70930 /* BannerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B958584A19087C5900D70930 /* BannerViewController.m */; };
 		B958584D19087C7F00D70930 /* iAd.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B958584C19087C7F00D70930 /* iAd.framework */; };
@@ -585,8 +584,6 @@
 		B94A546C19011C29005CD71E /* IntroLayer.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = IntroLayer.mm; sourceTree = "<group>"; };
 		B94A546E19011C29005CD71E /* GLES-Render.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "GLES-Render.h"; sourceTree = "<group>"; };
 		B94A546F19011C29005CD71E /* GLES-Render.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = "GLES-Render.mm"; sourceTree = "<group>"; };
-		B94A547119011C29005CD71E /* PhysicsSprite.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PhysicsSprite.h; sourceTree = "<group>"; };
-		B94A547219011C29005CD71E /* PhysicsSprite.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = PhysicsSprite.mm; sourceTree = "<group>"; };
 		B94A547419011C29005CD71E /* blocks.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = blocks.png; path = Resources/blocks.png; sourceTree = "<group>"; };
 		B958584919087C5900D70930 /* BannerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BannerViewController.h; sourceTree = "<group>"; };
 		B958584A19087C5900D70930 /* BannerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BannerViewController.m; sourceTree = "<group>"; };
@@ -717,8 +714,6 @@
 				B94A546C19011C29005CD71E /* IntroLayer.mm */,
 				B94A546E19011C29005CD71E /* GLES-Render.h */,
 				B94A546F19011C29005CD71E /* GLES-Render.mm */,
-				B94A547119011C29005CD71E /* PhysicsSprite.h */,
-				B94A547219011C29005CD71E /* PhysicsSprite.mm */,
 				B94A525B19011C25005CD71E /* Resources */,
 				B94A527519011C25005CD71E /* libs */,
 				B94A546119011C29005CD71E /* Supporting Files */,
@@ -1558,7 +1553,6 @@
 				B94A546A19011C29005CD71E /* HelloWorldLayer.mm in Sources */,
 				B94A546D19011C29005CD71E /* IntroLayer.mm in Sources */,
 				B94A547019011C29005CD71E /* GLES-Render.mm in Sources */,
-				B94A547319011C29005CD71E /* PhysicsSprite.mm in Sources */,
 				B91CF9A71904D4C800E92440 /* MyContactListener.cpp in Sources */,
 				B958584B19087C5900D70930 /* BannerViewController.m in Sources */,
 			);

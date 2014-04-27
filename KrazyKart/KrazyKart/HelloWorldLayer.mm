@@ -13,7 +13,6 @@
 // Needed to obtain the Navigation Controller
 #import "AppDelegate.h"
 
-#import "PhysicsSprite.h"
 #include <iostream>
 
 
@@ -138,6 +137,8 @@ enum {
 		m_debugDraw->SetFlags(flags);
         
         
+        id zoomOut = [CCScaleTo actionWithDuration:0.0f scale:0.6f];
+        [self runAction:zoomOut];
         
         
         [self createNewHamster];
@@ -204,8 +205,8 @@ enum {
 
     
 
-    b2Vec2 pos = _body->GetPosition();
-	CGPoint newPos = ccp(-1 * pos.x * PTM_RATIO + 110, self.position.y * PTM_RATIO);
+    b2Vec2 pos = _body->GetPosition();                  //110
+	CGPoint newPos = ccp(-1 * pos.x * PTM_RATIO * 0.6 + 110, self.position.y * PTM_RATIO);
 	[self setPosition:newPos];
     
     //scroll background
@@ -241,17 +242,22 @@ enum {
         //NSLog(@"END GAME");
         
         if (!gameOver) {
-            _restartButton= [CCMenuItemImage
-                            itemFromNormalImage:@"Icon.png" selectedImage:@"Icon-Small.png"
-                            target:self selector:@selector(restartTapped)];
-            _restartButton.position = ccp(400, 280);
-            starMenu = [CCMenu menuWithItems:_restartButton, nil];
-            starMenu.position = CGPointZero;
-            [self addChild:starMenu];
+            [self gameOver];
         }
-        gameOver = true;
     }
     
+}
+
+
+-(void)gameOver {
+    gameOver = true;
+    _restartButton= [CCMenuItemImage
+                     itemFromNormalImage:@"Icon.png" selectedImage:@"Icon-Small.png"
+                     target:self selector:@selector(restartTapped)];
+    _restartButton.position = ccp(400, 280);
+    starMenu = [CCMenu menuWithItems:_restartButton, nil];
+    starMenu.position = CGPointZero;
+    [self addChild:starMenu];
 }
 
 
@@ -298,8 +304,6 @@ enum {
     }
     
 }
-
-
 
 -(void) createNewHamster {
     _ball = [CCSprite spriteWithFile:@"hamsterEmptyBall.png" rect:CGRectMake(0, 0, 52, 52)];
@@ -400,6 +404,7 @@ enum {
     
     [self drawColumn:11 atDistance:4 atHeight:1];
     
+    
 }
 
 
@@ -425,7 +430,6 @@ enum {
     {
         _world->DestroyBody(b);
         if (b->GetUserData() != nil) {
-            cout << "HELLO";
             [self removeChild: (CCSprite *)b->GetUserData() cleanup:YES];
         }
     }
@@ -762,17 +766,9 @@ enum {
         return 200.0/PTM_RATIO;
         
     }
+    return 0;
 
-
-
-
-    
 }
-
-
-
-
-
 
 
 -(void) dealloc
