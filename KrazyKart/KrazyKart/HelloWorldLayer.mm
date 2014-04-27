@@ -68,17 +68,20 @@ enum {
         
         [_helper requestProductsWithCompletionHandler:^(BOOL success, NSArray *products) {
             if (success) {
-                
+
                 NSDictionary *dataDict = [NSDictionary dictionaryWithObject:products forKey:@"productsList"];
                 [[NSNotificationCenter defaultCenter] postNotificationName:@"productsReceived" object:self userInfo:dataDict];
             }
         }];
-
         
     } else {
-        
         adsRemoved = true;
-        
+    }
+    if (!adsRemoved) {
+        banner = [[BannerViewController alloc] init];
+        [banner initiAdBanner];
+        [banner initgAdBanner];
+        [[CCDirector sharedDirector].openGLView addSubview:banner.view];
     }
 }
 
@@ -90,99 +93,65 @@ enum {
 {
 	if( (self=[super init])) {
         
-        
-        
         //for testing
         [[NSUserDefaults standardUserDefaults] setInteger:0 forKey:@"highScore"];
 
-        
         [self handlePurchases];
 
-        
         self.isTouchEnabled = YES;
 		CGSize winSize = [CCDirector sharedDirector].winSize;
         
-        
-        if (!adsRemoved) {
-            banner = [[BannerViewController alloc] init];
-            [banner initiAdBanner];
-            [banner initgAdBanner];
-            [[CCDirector sharedDirector].openGLView addSubview:banner.view];
-        }
-        
-        
-        //queue for scorekeeping
-
+        //scorekeeping
         score = 0;
-        
         score_queue = new std::queue<int>();
-        
         score_queue->push(2);
         
         scoreLabel = [CCLabelTTF labelWithString:@"0" fontName:@"Marker Felt" fontSize:24];
         scoreLabel.position = ccp(240, 160); //Middle of the screen...
         [self addChild:scoreLabel z:1];
         
-        
-        
-        
+        //initalize these variables
         lastColumnCornerDistance = 10;
         lastColumnCornerHeight = 0;
-        
         
         //draw background
         _background = [CCSprite spriteWithFile:@"background.png"];
         _background.position = ccp(winSize.width/2, winSize.height/2);
         [self addChild:_background];
         
-        
-        
         // Create a world
         // -10.5
         b2Vec2 gravity = b2Vec2(0.0f, -10.5f);
         _world = new b2World(gravity);
         
-        
+        //contact listener
         contactListener = new MyContactListener;
         
         _world->SetContactListener(contactListener);
         
-        
-        //debug drawing setup
+        //DEBUG DRAWING
         m_debugDraw = new GLESDebugDraw(PTM_RATIO);
 		_world->SetDebugDraw(m_debugDraw);
 		uint32 flags = 0;
 		flags += b2Draw::e_shapeBit;
 		m_debugDraw->SetFlags(flags);
         
-        
+        //zoom out
         id zoomOut = [CCScaleTo actionWithDuration:0.0f scale:0.6f];
         [self runAction:zoomOut];
         
-        
+        //START THE GAME
         [self createNewHamster];
-        
-
-        
         [self drawStartingArea];
-        
-        
         [self schedule:@selector(tick:)];
         
+        //will need this if number of platforms gets out of hand
         //[self schedule:@selector(checkAndRemoveColumns) interval:3.0];
         
-        
-        
-
 	}
 	return self;
 }
 
-
-
-
-
-//THIS IS WHERE EVERYTHING IS UPDATED
 
 - (void)tick:(ccTime) dt {
     
@@ -216,6 +185,9 @@ enum {
 
     //moving screen
     b2Vec2 pos = _body->GetPosition();                  //110
+    if (gameOver) {
+        pos.x = 0;
+    }
 	CGPoint newPos = ccp(-1 * pos.x * PTM_RATIO * 0.6 + 110, self.position.y * PTM_RATIO);
 	[self setPosition:newPos];
     
@@ -252,8 +224,12 @@ enum {
             [self gameOver];
         }
     }
-    
+   
 }
+
+
+
+
 
 
 -(void)gameOver {
@@ -304,11 +280,20 @@ enum {
     
 }
 
+- (void)ccTouchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
+    if (contactListener->getGround() == 1) {
+        [self kick1];
+        nextKick = true;
+    }
+}
 
 
+- (void)ccTouchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
+{
+    nextKick = false;
+}
 
 
-//20 and 7
 - (void)kick1 {
         if (!nextKick) {
             b2Vec2 force = b2Vec2(0, 20);
@@ -798,21 +783,6 @@ enum {
 
 }
 
-
--(void) dealloc
-{
-	delete _world;
-    _body = NULL;
-	_world = NULL;
-	
-	delete m_debugDraw;
-	m_debugDraw = NULL;
-	
-	[super dealloc];
-}
-
-
-
 -(void) draw
 {
 	//
@@ -832,18 +802,16 @@ enum {
 }
 
 
-
-- (void)ccTouchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
-    if (contactListener->getGround() == 1) {
-        [self kick1];
-        nextKick = true;
-    }
-}
-
-
-- (void)ccTouchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
+-(void) dealloc
 {
-    nextKick = false;
+	delete _world;
+    _body = NULL;
+	_world = NULL;
+	
+	delete m_debugDraw;
+	m_debugDraw = NULL;
+	
+	[super dealloc];
 }
 
 @end
