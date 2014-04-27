@@ -200,6 +200,8 @@
 		B9673B451908A6AD0029EB7A /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B9673B3D1908A43D0029EB7A /* StoreKit.framework */; };
 		B9673B461908A6B60029EB7A /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B9673B3F1908A44C0029EB7A /* SystemConfiguration.framework */; };
 		B9D7D9DB19060B0B007429B3 /* iphoneHamsterBall.png in Resources */ = {isa = PBXBuildFile; fileRef = B9D7D9DA19060B0B007429B3 /* iphoneHamsterBall.png */; };
+		B9DD5705190D983A009A99EA /* IAPHelper.h in Headers */ = {isa = PBXBuildFile; fileRef = B9DD5703190D983A009A99EA /* IAPHelper.h */; };
+		B9DD5706190D983A009A99EA /* IAPHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = B9DD5704190D983A009A99EA /* IAPHelper.m */; };
 		B9E6D3E91909D30C00DAF980 /* background.png in Resources */ = {isa = PBXBuildFile; fileRef = B9E6D3E81909D30C00DAF980 /* background.png */; };
 		B9E6D3EB1909D34B00DAF980 /* hamsterBallLines.png in Resources */ = {isa = PBXBuildFile; fileRef = B9E6D3EA1909D34B00DAF980 /* hamsterBallLines.png */; };
 		B9E6D3ED1909D35200DAF980 /* hamsterEmptyBall.png in Resources */ = {isa = PBXBuildFile; fileRef = B9E6D3EC1909D35200DAF980 /* hamsterEmptyBall.png */; };
@@ -606,6 +608,8 @@
 		B9673B411908A69F0029EB7A /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
 		B9673B431908A6A60029EB7A /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		B9D7D9DA19060B0B007429B3 /* iphoneHamsterBall.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = iphoneHamsterBall.png; sourceTree = "<group>"; };
+		B9DD5703190D983A009A99EA /* IAPHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IAPHelper.h; sourceTree = "<group>"; };
+		B9DD5704190D983A009A99EA /* IAPHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IAPHelper.m; sourceTree = "<group>"; };
 		B9E6D3E81909D30C00DAF980 /* background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = background.png; sourceTree = "<group>"; };
 		B9E6D3EA1909D34B00DAF980 /* hamsterBallLines.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = hamsterBallLines.png; sourceTree = "<group>"; };
 		B9E6D3EC1909D35200DAF980 /* hamsterEmptyBall.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = hamsterEmptyBall.png; sourceTree = "<group>"; };
@@ -699,6 +703,8 @@
 		B94A525A19011C25005CD71E /* KrazyKart */ = {
 			isa = PBXGroup;
 			children = (
+				B9DD5703190D983A009A99EA /* IAPHelper.h */,
+				B9DD5704190D983A009A99EA /* IAPHelper.m */,
 				B91CF9A51904D4C800E92440 /* MyContactListener.cpp */,
 				B91CF9A61904D4C800E92440 /* MyContactListener.h */,
 				B94A546519011C29005CD71E /* AppDelegate.h */,
@@ -1290,6 +1296,7 @@
 				B9673B301908A3F20029EB7A /* GADAdMobExtras.h in Headers */,
 				B9673B311908A3F20029EB7A /* GADAdNetworkExtras.h in Headers */,
 				B9673B321908A3F20029EB7A /* GADAdSize.h in Headers */,
+				B9DD5705190D983A009A99EA /* IAPHelper.h in Headers */,
 				B9673B331908A3F20029EB7A /* GADBannerView.h in Headers */,
 				B9673B341908A3F20029EB7A /* GADBannerViewDelegate.h in Headers */,
 				B9673B351908A3F20029EB7A /* GADInterstitial.h in Headers */,
@@ -1406,6 +1413,7 @@
 				B94A528219011C25005CD71E /* CCActionEase.m in Sources */,
 				B94A528519011C25005CD71E /* CCActionGrid.m in Sources */,
 				B94A528819011C25005CD71E /* CCActionGrid3D.m in Sources */,
+				B9DD5706190D983A009A99EA /* IAPHelper.m in Sources */,
 				B94A528B19011C25005CD71E /* CCActionInstant.m in Sources */,
 				B94A528E19011C25005CD71E /* CCActionInterval.m in Sources */,
 				B94A529119011C25005CD71E /* CCActionManager.m in Sources */,

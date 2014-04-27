@@ -14,8 +14,8 @@
 #import "AppDelegate.h"
 
 #import "PhysicsSprite.h"
-
 #include <iostream>
+
 
 enum {
 	kTagParentNode = 1,
@@ -64,6 +64,22 @@ enum {
 {
 	if( (self=[super init])) {
         
+        
+        
+        //IN APP PURCHASES
+        _helper = [IAPHelper sharedInstance];      //create an instance of our in-app purchase helper
+        
+        [_helper requestProductsWithCompletionHandler:^(BOOL success, NSArray *products) {
+            if (success) {
+                
+                NSDictionary *dataDict = [NSDictionary dictionaryWithObject:products forKey:@"productsList"];
+                [[NSNotificationCenter defaultCenter] postNotificationName:@"productsReceived" object:self userInfo:dataDict];
+            }
+        }];
+        
+        
+
+        
         self.isTouchEnabled = YES;
 		CGSize winSize = [CCDirector sharedDirector].winSize;
         
@@ -105,7 +121,7 @@ enum {
         
         // Create a world
         // -10.5
-        b2Vec2 gravity = b2Vec2(0.0f, -12.5f);
+        b2Vec2 gravity = b2Vec2(0.0f, -10.5f);
         _world = new b2World(gravity);
         
         
@@ -174,9 +190,12 @@ enum {
     //good setup: top speed = -12, torque = -26.5
     // -9.5 -35
     
-    if (_body->GetAngularVelocity() > -13.2f) {
+    
+    // -13.2
+    // -40
+    if (_body->GetAngularVelocity() > -9.5f) {
         
-        _body->ApplyTorque(-40);
+        _body->ApplyTorque(-35);
         
     }
     //NSLog(@"%f", _body->GetAngularVelocity());
@@ -239,7 +258,7 @@ enum {
 //20 and 7
 - (void)kick1 {
         if (!nextKick) {
-            b2Vec2 force = b2Vec2(0, 22);
+            b2Vec2 force = b2Vec2(0, 20);
             //_body->ApplyLinearImpulse(force,_body->GetPosition());
             if (contactListener->getGround() == 1) {
                 NSLog(@"kick1");
@@ -255,7 +274,7 @@ enum {
 -(void) kick2 {
     if (nextKick) {
         NSLog(@"kick2");
-        b2Vec2 force = b2Vec2(0, 10);
+        b2Vec2 force = b2Vec2(0, 7);
         _body->ApplyLinearImpulse(force,_body->GetPosition());
     }
 }
@@ -387,7 +406,7 @@ enum {
 -(void) drawNextColumn {
     //NSLog(@"Draw next column");
     float x = (float)[self getRandomNumberBetween:4 to:6];
-    float y = (float)[self getRandomNumberBetween:2 to:3];
+    float y = (float)[self getRandomNumberBetween:1 to:2];
     int n = [self getRandomNumberBetween:1 to:9];
     float temp = [self drawColumn:n atDistance: (lastColumnCornerDistance + x) atHeight:y];
     lastColumnCornerDistance += temp + x;

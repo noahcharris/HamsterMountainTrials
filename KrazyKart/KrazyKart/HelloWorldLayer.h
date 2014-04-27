@@ -15,6 +15,7 @@
 #import "GLES-Render.h"
 #import "MyContactListener.h"
 #import "BannerViewController.h"
+#import "IAPHelper.h"
 
 #include <queue>
 
@@ -45,6 +46,12 @@
     CCAction *runAction;
     CCAnimation *runAnim;
     CCSprite *hamster;
+    
+    
+    
+    //in app purchase stuff
+    IAPHelper* _helper;
+    NSMutableArray *_products;
     
     
     
