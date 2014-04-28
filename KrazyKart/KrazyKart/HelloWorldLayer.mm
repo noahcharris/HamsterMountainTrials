@@ -502,13 +502,8 @@ enum {
             y = (float)[self getRandomNumberBetween:1 to:4];
         }
     }
-    
-    
     int n = [self getRandomNumberBetween:1 to:9];
-    
     lastPlatformNumber = n;
-    
-    
     
     float temp = [self drawColumn:n atDistance: (lastColumnCornerDistance + x) atHeight:y];
     
@@ -570,7 +565,6 @@ enum {
 
     
     
-        //need to do this for all the platforms, and the hamster ball
         if (isRetina) {
             CCSprite *platform = [CCSprite spriteWithFile:@"platform1.png"];
             platform.position = ccp(x*PTM_RATIO + 44, y*PTM_RATIO-130);
@@ -581,7 +575,6 @@ enum {
             platform.position = ccp(x*PTM_RATIO + 44, y*PTM_RATIO-130);
             [self addChild:platform z:10];
             platformBody->SetUserData(platform);
-
         }
         
         
@@ -603,13 +596,17 @@ enum {
         platformBody->CreateFixture(&platformFixtureDef);
         
         
-        
-        
-        CCSprite *platform = [CCSprite spriteWithFile:@"platform2.png"];
-        platform.position = ccp(x*PTM_RATIO + 59.5, 2*PTM_RATIO-124);
-        [self addChild:platform z:10];
-        
-        platformBody->SetUserData(platform);
+        if (isRetina) {
+            CCSprite *platform = [CCSprite spriteWithFile:@"platform2.png"];
+            platform.position = ccp(x*PTM_RATIO + 59.5, 2*PTM_RATIO-124);
+            [self addChild:platform z:10];
+            platformBody->SetUserData(platform);
+        } else {
+            CCSprite *platform = [CCSprite spriteWithFile:@"NRplatform2.png"];
+            platform.position = ccp(x*PTM_RATIO + 59.5, 2*PTM_RATIO-124);
+            [self addChild:platform z:10];
+            platformBody->SetUserData(platform);
+        }
         
         return 119.0/PTM_RATIO;
 
@@ -630,13 +627,17 @@ enum {
         
         
         
-        
-        CCSprite *platform = [CCSprite spriteWithFile:@"platform3.png"];
-        platform.position = ccp(x*PTM_RATIO + 44, 2*PTM_RATIO-154);
-        [self addChild:platform z:10];
-        
-        platformBody->SetUserData(platform);
-        
+        if (isRetina) {
+            CCSprite *platform = [CCSprite spriteWithFile:@"platform3.png"];
+            platform.position = ccp(x*PTM_RATIO + 44, 2*PTM_RATIO-154);
+            [self addChild:platform z:10];
+            platformBody->SetUserData(platform);
+        } else {
+            CCSprite *platform = [CCSprite spriteWithFile:@"NRplatform3.png"];
+            platform.position = ccp(x*PTM_RATIO + 44, 2*PTM_RATIO-154);
+            [self addChild:platform z:10];
+            platformBody->SetUserData(platform);
+        }
         return 88.0/PTM_RATIO;
         
     } else if (n == 4) {
@@ -654,12 +655,17 @@ enum {
         platformFixtureDef.shape = &platformEdge3;
         platformBody->CreateFixture(&platformFixtureDef);
         
-        
-        CCSprite *platform = [CCSprite spriteWithFile:@"platform4.png"];
-        platform.position = ccp(x*PTM_RATIO + 60, y*PTM_RATIO-150);
-        [self addChild:platform z:10];
-        
-        platformBody->SetUserData(platform);
+        if (isRetina) {
+            CCSprite *platform = [CCSprite spriteWithFile:@"platform4.png"];
+            platform.position = ccp(x*PTM_RATIO + 60, y*PTM_RATIO-150);
+            [self addChild:platform z:10];
+            platformBody->SetUserData(platform);
+        } else {
+            CCSprite *platform = [CCSprite spriteWithFile:@"NRplatform4.png"];
+            platform.position = ccp(x*PTM_RATIO + 60, y*PTM_RATIO-150);
+            [self addChild:platform z:10];
+            platformBody->SetUserData(platform);
+        }
         
         return 120.0/PTM_RATIO;
         
@@ -678,11 +684,17 @@ enum {
         platformFixtureDef.shape = &platformEdge3;
         platformBody->CreateFixture(&platformFixtureDef);
         
-        CCSprite *platform = [CCSprite spriteWithFile:@"platform5.png"];
-        platform.position = ccp(x*PTM_RATIO + 59.5, y*PTM_RATIO-100);
-        [self addChild:platform z:10];
-        
-        platformBody->SetUserData(platform);
+        if (isRetina) {
+            CCSprite *platform = [CCSprite spriteWithFile:@"platform5.png"];
+            platform.position = ccp(x*PTM_RATIO + 59.5, y*PTM_RATIO-100);
+            [self addChild:platform z:10];
+            platformBody->SetUserData(platform);
+        } else {
+            CCSprite *platform = [CCSprite spriteWithFile:@"NRplatform5.png"];
+            platform.position = ccp(x*PTM_RATIO + 59.5, y*PTM_RATIO-100);
+            [self addChild:platform z:10];
+            platformBody->SetUserData(platform);
+        }
         
         return 119.0/PTM_RATIO;
         
@@ -701,11 +713,17 @@ enum {
         platformFixtureDef.shape = &platformEdge3;
         platformBody->CreateFixture(&platformFixtureDef);
         
-        CCSprite *platform = [CCSprite spriteWithFile:@"platform6.png"];
-        platform.position = ccp(x*PTM_RATIO + 55, y*PTM_RATIO-124);
-        [self addChild:platform z:10];
-        
-        platformBody->SetUserData(platform);
+        if (isRetina) {
+            CCSprite *platform = [CCSprite spriteWithFile:@"platform6.png"];
+            platform.position = ccp(x*PTM_RATIO + 55, y*PTM_RATIO-124);
+            [self addChild:platform z:10];
+            platformBody->SetUserData(platform);
+        } else {
+            CCSprite *platform = [CCSprite spriteWithFile:@"NRplatform6.png"];
+            platform.position = ccp(x*PTM_RATIO + 55, y*PTM_RATIO-124);
+            [self addChild:platform z:10];
+            platformBody->SetUserData(platform);
+        }
         
         return 110.0/PTM_RATIO;
         
@@ -724,11 +742,17 @@ enum {
         platformFixtureDef.shape = &platformEdge3;
         platformBody->CreateFixture(&platformFixtureDef);
         
-        CCSprite *platform = [CCSprite spriteWithFile:@"platform7.png"];
-        platform.position = ccp(x*PTM_RATIO + 100, y*PTM_RATIO-119);
-        [self addChild:platform z:10];
-        
-        platformBody->SetUserData(platform);
+        if (isRetina) {
+            CCSprite *platform = [CCSprite spriteWithFile:@"platform7.png"];
+            platform.position = ccp(x*PTM_RATIO + 100, y*PTM_RATIO-119);
+            [self addChild:platform z:10];
+            platformBody->SetUserData(platform);
+        } else {
+            CCSprite *platform = [CCSprite spriteWithFile:@"NRplatform7.png"];
+            platform.position = ccp(x*PTM_RATIO + 100, y*PTM_RATIO-119);
+            [self addChild:platform z:10];
+            platformBody->SetUserData(platform);
+        }
         
         return 200.0/PTM_RATIO;
         
@@ -747,11 +771,17 @@ enum {
         platformFixtureDef.shape = &platformEdge3;
         platformBody->CreateFixture(&platformFixtureDef);
         
-        CCSprite *platform = [CCSprite spriteWithFile:@"platform8.png"];
-        platform.position = ccp(x*PTM_RATIO + 45, y*PTM_RATIO-153);
-        [self addChild:platform z:10];
-        
-        platformBody->SetUserData(platform);
+        if (isRetina) {
+            CCSprite *platform = [CCSprite spriteWithFile:@"platform8.png"];
+            platform.position = ccp(x*PTM_RATIO + 45, y*PTM_RATIO-153);
+            [self addChild:platform z:10];
+            platformBody->SetUserData(platform);
+        } else {
+            CCSprite *platform = [CCSprite spriteWithFile:@"NRplatform8.png"];
+            platform.position = ccp(x*PTM_RATIO + 45, y*PTM_RATIO-153);
+            [self addChild:platform z:10];
+            platformBody->SetUserData(platform);
+        }
         
         return 90.0/PTM_RATIO;
         
@@ -770,11 +800,17 @@ enum {
         platformFixtureDef.shape = &platformEdge3;
         platformBody->CreateFixture(&platformFixtureDef);
         
-        CCSprite *platform = [CCSprite spriteWithFile:@"platform9.png"];
-        platform.position = ccp(x*PTM_RATIO + 38, y*PTM_RATIO-100);
-        [self addChild:platform z:10];
-        
-        platformBody->SetUserData(platform);
+        if (isRetina) {
+            CCSprite *platform = [CCSprite spriteWithFile:@"platform9.png"];
+            platform.position = ccp(x*PTM_RATIO + 38, y*PTM_RATIO-100);
+            [self addChild:platform z:10];
+            platformBody->SetUserData(platform);
+        } else {
+            CCSprite *platform = [CCSprite spriteWithFile:@"NRplatform9.png"];
+            platform.position = ccp(x*PTM_RATIO + 38, y*PTM_RATIO-100);
+            [self addChild:platform z:10];
+            platformBody->SetUserData(platform);
+        }
         
         return 76.0/PTM_RATIO;
         
@@ -794,11 +830,17 @@ enum {
         platformFixtureDef.shape = &platformEdge3;
         platformBody->CreateFixture(&platformFixtureDef);
         
-        CCSprite *platform = [CCSprite spriteWithFile:@"platform10.png"];
-        platform.position = ccp(x*PTM_RATIO + 100, y*PTM_RATIO-150);
-        [self addChild:platform z:10];
-        
-        //platformBody->SetUserData(platform);
+        if (isRetina) {
+            CCSprite *platform = [CCSprite spriteWithFile:@"platform11.png"];
+            platform.position = ccp(x*PTM_RATIO + 100, y*PTM_RATIO-150);
+            [self addChild:platform z:10];
+            platformBody->SetUserData(platform);
+        } else {
+            CCSprite *platform = [CCSprite spriteWithFile:@"NRplatform11.png"];
+            platform.position = ccp(x*PTM_RATIO + 100, y*PTM_RATIO-150);
+            [self addChild:platform z:10];
+            platformBody->SetUserData(platform);
+        }
         
         return 200.0/PTM_RATIO;
         
