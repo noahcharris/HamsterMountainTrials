@@ -360,7 +360,6 @@ enum {
     
     //remove the restart
     [self checkAndRemoveColumns];
-    [self drawStartingArea];
     
     //hamster body is destroyed by checkAndRemoveColumns,
     //but we still have to clean up sprites
@@ -382,6 +381,8 @@ enum {
     while (!score_queue->empty()) {
         score_queue->pop();
     }
+    
+    [self drawStartingArea];
     
 }
 
