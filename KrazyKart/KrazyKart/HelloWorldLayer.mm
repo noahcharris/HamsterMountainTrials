@@ -389,9 +389,15 @@ enum {
 
 
 -(void) createNewHamster {
-    _ball = [CCSprite spriteWithFile:@"hamsterEmptyBall.png" rect:CGRectMake(0, 0, 52, 52)];
-    //_hamster = [CCSprite spriteWithFile:@"hamsterRun1.png"];
-    //_hamster.position = ccp(100, 300);
+    
+    
+    if (isRetina) {
+        _ball = [CCSprite spriteWithFile:@"hamsterEmptyBall.png" rect:CGRectMake(0, 0, 52, 52)];
+    } else {
+        _ball = [CCSprite spriteWithFile:@"NRhamsterEmptyBall.png" rect:CGRectMake(0, 0, 52, 52)];
+    }
+
+    
     _ball.position = ccp(100, 300);
     [self addChild:_ball z:0];
     //[self addChild:_hamster z:1];
@@ -443,40 +449,76 @@ enum {
     
     _joint = (b2RevoluteJoint*)_world->CreateJoint( &revoluteJointDef );
     
-    
-    _shading = [CCSprite spriteWithFile:@"hamsterShading.png" rect:CGRectMake(0, 0, 52, 52)];
-    _shading.position = ccp(100, 300);
-    [self addChild:_shading];
-    
-    //animation
-    [[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:@"hamsterRun.plist"];
-    
-    spriteSheet = [CCSpriteBatchNode batchNodeWithFile:@"hamsterRun.png"];
-    [self addChild:spriteSheet];
-    
-    runFrames = [NSMutableArray array];
-    for (int i=1; i<=2; i++) {
-        [runFrames addObject:
-         [[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:
-          [NSString stringWithFormat:@"hamsterRun%d.png",i]]];
+    //different hamsters for retina/non-retina
+    if (isRetina) {
+        _shading = [CCSprite spriteWithFile:@"hamsterShading.png" rect:CGRectMake(0, 0, 52, 52)];
+        _shading.position = ccp(100, 300);
+        [self addChild:_shading];
+        
+        //animation
+        [[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:@"hamsterRun.plist"];
+        
+        spriteSheet = [CCSpriteBatchNode batchNodeWithFile:@"hamsterRun.png"];
+        [self addChild:spriteSheet];
+        
+        runFrames = [NSMutableArray array];
+        for (int i=1; i<=2; i++) {
+            [runFrames addObject:
+             [[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:
+              [NSString stringWithFormat:@"hamsterRun%d.png",i]]];
+        }
+        
+        runAnim = [CCAnimation animationWithSpriteFrames:runFrames delay:0.1f];
+        //runAnim.delayPerUnit = 0.15f;
+        
+        _hamster = [CCSprite spriteWithSpriteFrameName:@"hamsterRun1.png"];
+        _hamster.position = ccp(100, 300);
+        
+        runAction = [CCRepeatForever actionWithAction:
+                     [CCAnimate actionWithAnimation:runAnim]];
+        
+        [_hamster runAction:runAction];
+        [spriteSheet addChild:_hamster];
+        
+        //ball lines (on top of hamster)
+        _lines = [CCSprite spriteWithFile:@"hamsterBallLines.png" rect:CGRectMake(0, 0, 52, 52)];
+        _lines.position = ccp(100, 300);
+        [self addChild:_lines z:10];
+    } else {
+        _shading = [CCSprite spriteWithFile:@"NRhamsterShading.png" rect:CGRectMake(0, 0, 52, 52)];
+        _shading.position = ccp(100, 300);
+        [self addChild:_shading];
+        
+        //animation
+        [[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:@"NRhamsterRun.plist"];
+        
+        spriteSheet = [CCSpriteBatchNode batchNodeWithFile:@"NRhamsterRun.png"];
+        [self addChild:spriteSheet];
+        
+        runFrames = [NSMutableArray array];
+        for (int i=1; i<=2; i++) {
+            [runFrames addObject:
+             [[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:
+              [NSString stringWithFormat:@"NRhamsterRun%d.png",i]]];
+        }
+        
+        runAnim = [CCAnimation animationWithSpriteFrames:runFrames delay:0.1f];
+        //runAnim.delayPerUnit = 0.15f;
+        
+        _hamster = [CCSprite spriteWithSpriteFrameName:@"NRhamsterRun1.png"];
+        _hamster.position = ccp(100, 300);
+        
+        runAction = [CCRepeatForever actionWithAction:
+                     [CCAnimate actionWithAnimation:runAnim]];
+        
+        [_hamster runAction:runAction];
+        [spriteSheet addChild:_hamster];
+        
+        //ball lines (on top of hamster)
+        _lines = [CCSprite spriteWithFile:@"NRhamsterBallLines.png" rect:CGRectMake(0, 0, 52, 52)];
+        _lines.position = ccp(100, 300);
+        [self addChild:_lines z:10];
     }
-    
-    runAnim = [CCAnimation animationWithSpriteFrames:runFrames delay:0.1f];
-    //runAnim.delayPerUnit = 0.15f;
-    
-    _hamster = [CCSprite spriteWithSpriteFrameName:@"hamsterRun1.png"];
-    _hamster.position = ccp(100, 300);
-    
-    runAction = [CCRepeatForever actionWithAction:
-                 [CCAnimate actionWithAnimation:runAnim]];
-    
-    [_hamster runAction:runAction];
-    [spriteSheet addChild:_hamster];
-    
-    //ball lines (on top of hamster)
-    _lines = [CCSprite spriteWithFile:@"hamsterBallLines.png" rect:CGRectMake(0, 0, 52, 52)];
-    _lines.position = ccp(100, 300);
-    [self addChild:_lines z:10];
     
 }
 
