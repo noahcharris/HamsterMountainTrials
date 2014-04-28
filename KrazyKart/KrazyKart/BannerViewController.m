@@ -44,6 +44,15 @@
 {
     //janky
     BOOL IS_IPAD = false;
+    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
+    {
+        IS_IPAD = true;
+    }
+    else
+    {
+        IS_IPAD = false;
+    }
+
     
     if (!self.gAdBannerView)
     {
@@ -84,6 +93,14 @@
     
     //janky
     BOOL IS_IPAD = false;
+    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
+    {
+        IS_IPAD = true;
+    }
+    else
+    {
+        IS_IPAD = false;
+    }
     
     if (banner && banner.hidden)
     {

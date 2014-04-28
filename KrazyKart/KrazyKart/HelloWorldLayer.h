@@ -57,6 +57,14 @@
     float torque;
     float topSpeed;
     
+    float screenOffsetX;
+    float screenOffsetY;
+    
+    
+    //dimensions
+    BOOL isiPhone;
+    BOOL isiPhone5;
+    BOOL isRetina;
     
     
     //in app purchase stuff
@@ -70,6 +78,7 @@
     int score;
     CCLabelTTF *scoreLabel;
     CCLabelTTF *highScoreLabel;
+    CCLabelTTF *highScorePrefixLabel;
     
     
     CCMenuItem *_restartButton;

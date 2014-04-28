@@ -724,25 +724,9 @@
 		B94A525B19011C25005CD71E /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				B9A7CA78190DCDE0008DB3B4 /* background.png */,
-				B9E6D3F81909D5D000DAF980 /* platform1.png */,
-				B9E6D3F91909D5D000DAF980 /* platform2.png */,
-				B9E6D3FA1909D5D000DAF980 /* platform3.png */,
-				B9E6D3FB1909D5D000DAF980 /* platform4.png */,
-				B9E6D3FC1909D5D000DAF980 /* platform5.png */,
-				B9E6D3FD1909D5D000DAF980 /* platform6.png */,
-				B9E6D3FE1909D5D000DAF980 /* platform7.png */,
-				B9E6D3FF1909D5D000DAF980 /* platform8.png */,
-				B9E6D4001909D5D000DAF980 /* platform9.png */,
-				B9E6D4011909D5D000DAF980 /* platform10.png */,
-				B9E6D4021909D5D000DAF980 /* platform11.png */,
-				B9E6D4031909D5D000DAF980 /* platform12.png */,
-				B9E6D4041909D5D000DAF980 /* platform13.png */,
-				B9E6D3F41909D4D100DAF980 /* hamsterRun.png */,
+				B9DB247B190E19B9000A4681 /* NonRetina */,
+				B9DB247A190E1970000A4681 /* Retina */,
 				B9E6D3F51909D4D100DAF980 /* hamsterRun.plist */,
-				B9E6D3EE1909D36E00DAF980 /* hamsterShading.png */,
-				B9E6D3EC1909D35200DAF980 /* hamsterEmptyBall.png */,
-				B9E6D3EA1909D34B00DAF980 /* hamsterBallLines.png */,
 				B9D7D9DA19060B0B007429B3 /* iphoneHamsterBall.png */,
 				B94A525C19011C25005CD71E /* Default.png */,
 				B94A525E19011C25005CD71E /* Default-Landscape~ipad.png */,
@@ -1279,6 +1263,38 @@
 				B9673B2F1908A3F20029EB7A /* README.txt */,
 			);
 			name = AdMob;
+			sourceTree = "<group>";
+		};
+		B9DB247A190E1970000A4681 /* Retina */ = {
+			isa = PBXGroup;
+			children = (
+				B9E6D3EA1909D34B00DAF980 /* hamsterBallLines.png */,
+				B9E6D3EE1909D36E00DAF980 /* hamsterShading.png */,
+				B9E6D3EC1909D35200DAF980 /* hamsterEmptyBall.png */,
+				B9A7CA78190DCDE0008DB3B4 /* background.png */,
+				B9E6D3F81909D5D000DAF980 /* platform1.png */,
+				B9E6D3F91909D5D000DAF980 /* platform2.png */,
+				B9E6D3FA1909D5D000DAF980 /* platform3.png */,
+				B9E6D3FB1909D5D000DAF980 /* platform4.png */,
+				B9E6D3FC1909D5D000DAF980 /* platform5.png */,
+				B9E6D3FD1909D5D000DAF980 /* platform6.png */,
+				B9E6D3FE1909D5D000DAF980 /* platform7.png */,
+				B9E6D3FF1909D5D000DAF980 /* platform8.png */,
+				B9E6D4001909D5D000DAF980 /* platform9.png */,
+				B9E6D4011909D5D000DAF980 /* platform10.png */,
+				B9E6D4021909D5D000DAF980 /* platform11.png */,
+				B9E6D4031909D5D000DAF980 /* platform12.png */,
+				B9E6D4041909D5D000DAF980 /* platform13.png */,
+				B9E6D3F41909D4D100DAF980 /* hamsterRun.png */,
+			);
+			name = Retina;
+			sourceTree = "<group>";
+		};
+		B9DB247B190E19B9000A4681 /* NonRetina */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = NonRetina;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

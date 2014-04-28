@@ -98,10 +98,45 @@ enum {
         kick1y = 25;
         kick2y = 8;
 
-        scaling = 0.7;
+        //0.5 for iphone
+        scaling = 1.5;
         //negative is forward for these two values
         torque = -45;
         topSpeed = -12.5;
+        
+        screenOffsetX = 100;
+        screenOffsetY = 10;
+        
+        
+        //check for ipad
+        if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
+        {
+            isiPhone = false;
+        }
+        else
+        {
+            isiPhone = true;
+        }
+        
+        //check phone version
+        if (isiPhone) {
+            if([UIScreen mainScreen].bounds.size.height == 568){
+                isiPhone5 = true;
+            } else{
+                isiPhone5 = false;
+            }
+            
+        }
+        
+        //check retina
+        if ([[UIScreen mainScreen] respondsToSelector:@selector(displayLinkWithTarget:selector:)] &&
+            ([UIScreen mainScreen].scale == 2.0)) {
+            isRetina = true;
+        } else {
+            isRetina = false;
+        }
+        
+        
         
         
         
@@ -205,7 +240,7 @@ enum {
     //moving screen
     b2Vec2 pos = _body->GetPosition();                  //110
     if (gameOver) {
-        pos.x = 0;
+        pos.x = 6.25 * scaling;
     }
 	CGPoint newPos = ccp(-1 * pos.x * PTM_RATIO * scaling, self.position.y * PTM_RATIO);
 	[self setPosition:newPos];
@@ -217,7 +252,8 @@ enum {
     
     //game over stuff
     if (gameOver) {
-        highScoreLabel.position = ccp(pos.x * PTM_RATIO, 270);
+        highScoreLabel.position = ccp(pos.x * PTM_RATIO + 100, 270);
+        highScorePrefixLabel.position = ccp(pos.x * PTM_RATIO, 270);
         _restartButton.position = ccp(pos.x * PTM_RATIO + 300, self.position.y * PTM_RATIO + 270);
     }
     
@@ -262,10 +298,13 @@ enum {
     [self addChild:starMenu];
     
     highScoreLabel = [CCLabelTTF labelWithString:@"0" fontName:@"Marker Felt" fontSize:24];
-    highScoreLabel.position = ccp(300, 160); //Middle of the screen...
+    highScoreLabel.position = ccp(-300, 160); //off the screen
     
+    highScorePrefixLabel = [CCLabelTTF labelWithString:@"High Score:" fontName:@"Marker Felt" fontSize:24];
+    highScoreLabel.position = ccp(-300, 160); //off the screen
     
     [self addChild:highScoreLabel z:1];
+    [self addChild:highScorePrefixLabel z:1];
     
     NSLog(@"%d", [[NSUserDefaults standardUserDefaults] integerForKey:@"highScore"]);
     
@@ -289,6 +328,7 @@ enum {
     gameOver = false;
     [self removeChild:starMenu cleanup:YES];
     [self removeChild:highScoreLabel cleanup:YES];
+    [self removeChild:highScorePrefixLabel cleanup:YES];
     score = 0;
     [scoreLabel setString:[NSString stringWithFormat:@"%d", 0]];
     
@@ -505,12 +545,20 @@ enum {
 
     
     
-    
-        CCSprite *platform = [CCSprite spriteWithFile:@"platform1.png"];
-        platform.position = ccp(x*PTM_RATIO + 44, y*PTM_RATIO-130);
-        [self addChild:platform z:10];
+        //need to do this for all the platforms, and the hamster ball
+        if (isRetina) {
+            CCSprite *platform = [CCSprite spriteWithFile:@"platform1.png"];
+            platform.position = ccp(x*PTM_RATIO + 44, y*PTM_RATIO-130);
+            [self addChild:platform z:10];
+            platformBody->SetUserData(platform);
+        } else {
+            CCSprite *platform = [CCSprite spriteWithFile:@"NRplatform1.png"];
+            platform.position = ccp(x*PTM_RATIO + 44, y*PTM_RATIO-130);
+            [self addChild:platform z:10];
+            platformBody->SetUserData(platform);
+
+        }
         
-        platformBody->SetUserData(platform);
         
         return 88.0/PTM_RATIO;
         
@@ -705,29 +753,6 @@ enum {
         
         return 76.0/PTM_RATIO;
         
-    } else if (n == 10) {
-        
-        platformEdge1.Set(b2Vec2(x, y), b2Vec2(x + 200.0/PTM_RATIO , y - 25.0/PTM_RATIO));
-        platformEdge2.Set(b2Vec2(x, y), b2Vec2(x, 0));
-        platformEdge3.Set(b2Vec2(x + 200.0/PTM_RATIO, y - 25.0/PTM_RATIO), b2Vec2(x + 200.0/PTM_RATIO, 0));
-        
-        platformFixtureDef.shape = &platformEdge1;
-        platformBody->CreateFixture(&platformFixtureDef);
-        
-        platformFixtureDef.shape = &platformEdge2;
-        platformBody->CreateFixture(&platformFixtureDef);
-        
-        platformFixtureDef.shape = &platformEdge3;
-        platformBody->CreateFixture(&platformFixtureDef);
-        
-        CCSprite *platform = [CCSprite spriteWithFile:@"platform10.png"];
-        platform.position = ccp(x*PTM_RATIO + 100, y*PTM_RATIO-144);
-        [self addChild:platform z:10];
-        
-        platformBody->SetUserData(platform);
-        
-        return 200.0/PTM_RATIO;
-        
     } else if (n == 11) {
         
         platformEdge1.Set(b2Vec2(x, y), b2Vec2(x + 200.0/PTM_RATIO , y));
@@ -745,52 +770,6 @@ enum {
         
         CCSprite *platform = [CCSprite spriteWithFile:@"platform11.png"];
         platform.position = ccp(x*PTM_RATIO + 100, y*PTM_RATIO-150);
-        [self addChild:platform z:10];
-        
-        platformBody->SetUserData(platform);
-        
-        return 200.0/PTM_RATIO;
-        
-    } else if (n == 12) {
-        
-        platformEdge1.Set(b2Vec2(x, y), b2Vec2(x + 200.0/PTM_RATIO , y + 50.0/PTM_RATIO));
-        platformEdge2.Set(b2Vec2(x, y), b2Vec2(x, 0));
-        platformEdge3.Set(b2Vec2(x + 200.0/PTM_RATIO, y + 50.0/PTM_RATIO), b2Vec2(x + 200.0/PTM_RATIO, 0));
-        
-        platformFixtureDef.shape = &platformEdge1;
-        platformBody->CreateFixture(&platformFixtureDef);
-        
-        platformFixtureDef.shape = &platformEdge2;
-        platformBody->CreateFixture(&platformFixtureDef);
-        
-        platformFixtureDef.shape = &platformEdge3;
-        platformBody->CreateFixture(&platformFixtureDef);
-        
-        CCSprite *platform = [CCSprite spriteWithFile:@"platform12.png"];
-        platform.position = ccp(x*PTM_RATIO + 100, y*PTM_RATIO-118);
-        [self addChild:platform z:10];
-        
-        platformBody->SetUserData(platform);
-        
-        return 200.0/PTM_RATIO;
-        
-    } else if (n == 13) {
-        
-        platformEdge1.Set(b2Vec2(x, y), b2Vec2(x + 200.0/PTM_RATIO , y - 50.0/PTM_RATIO));
-        platformEdge2.Set(b2Vec2(x, y), b2Vec2(x, 0));
-        platformEdge3.Set(b2Vec2(x + 200.0/PTM_RATIO, y - 50.0/PTM_RATIO), b2Vec2(x + 200.0/PTM_RATIO, 0));
-        
-        platformFixtureDef.shape = &platformEdge1;
-        platformBody->CreateFixture(&platformFixtureDef);
-        
-        platformFixtureDef.shape = &platformEdge2;
-        platformBody->CreateFixture(&platformFixtureDef);
-        
-        platformFixtureDef.shape = &platformEdge3;
-        platformBody->CreateFixture(&platformFixtureDef);
-        
-        CCSprite *platform = [CCSprite spriteWithFile:@"platform13.png"];
-        platform.position = ccp(x*PTM_RATIO + 100, y*PTM_RATIO-170);
         [self addChild:platform z:10];
         
         platformBody->SetUserData(platform);
