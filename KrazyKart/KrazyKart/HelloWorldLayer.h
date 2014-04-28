@@ -63,6 +63,9 @@
     float screenOffsetX;
     float screenOffsetY;
     
+    float hamsterStartX;
+    float hamsterStartY;
+    
     
     //dimensions
     BOOL isiPhone;

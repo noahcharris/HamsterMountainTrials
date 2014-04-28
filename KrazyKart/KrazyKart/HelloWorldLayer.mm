@@ -94,18 +94,23 @@ enum {
 	if( (self=[super init])) {
         
         kick1x = 0;
-        kick2x = 0;
-        kick1y = 25;
-        kick2y = 8;
+        kick2x = 1;
+        kick1y = 23;
+        kick2y = 12;
 
         //0.5 for iphone
-        scaling = 0.5;
+        scaling = 1.0;
         //negative is forward for these two values
-        torque = -45;
-        topSpeed = -12.5;
+        torque = -35;
+        topSpeed = -10;
         
-        screenOffsetX = 100;
-        screenOffsetY = 10;
+        //this affects screen view
+        screenOffsetX = 120;
+        //this affects column draw height
+        screenOffsetY = 5;
+        
+        hamsterStartX = 6.25;
+        hamsterStartY = 7.8;
         
         
         //initalize these variables
@@ -244,7 +249,7 @@ enum {
     if (gameOver) {
         pos.x = 6.25 * scaling;
     }
-	CGPoint newPos = ccp(-1 * pos.x * PTM_RATIO * scaling, self.position.y * PTM_RATIO);
+	CGPoint newPos = ccp(-1 * pos.x * PTM_RATIO * scaling + screenOffsetX, self.position.y * PTM_RATIO);
 	[self setPosition:newPos];
     
     //scroll background
@@ -398,14 +403,14 @@ enum {
     }
 
     
-    _ball.position = ccp(100, 300);
+    _ball.position = ccp(-300, 300);
     [self addChild:_ball z:0];
     //[self addChild:_hamster z:1];
     
     // Create ball body and shape
     b2BodyDef ballBodyDef;
     ballBodyDef.type = b2_dynamicBody;
-    ballBodyDef.position.Set(200/PTM_RATIO, 250/PTM_RATIO);
+    ballBodyDef.position.Set(hamsterStartX, hamsterStartY + screenOffsetY);
     ballBodyDef.userData = _ball;
     _body = _world->CreateBody(&ballBodyDef);
     b2CircleShape circle;
@@ -523,11 +528,12 @@ enum {
 }
 
 
-
+//while screenOffsetX works in tick
+//screenOffsetY adjusts the column heights
 -(void) drawStartingArea {
     
     
-    [self drawColumn:10 atDistance:4 atHeight:1];
+    [self drawColumn:10 atDistance:4 atHeight:1+screenOffsetY];
     
     
 }
@@ -536,20 +542,23 @@ enum {
 -(void) drawNextColumn {
     //NSLog(@"Draw next column");
     float x = (float)[self getRandomNumberBetween:3 to:7];
-    float y = (float)[self getRandomNumberBetween:1 to:4];
+    float y = (float)[self getRandomNumberBetween:1 to:2];
+    y += screenOffsetY;
     
     //this prevents down slopes from leading into higher columns (too hard)
     if (lastPlatformNumber == 2 || lastPlatformNumber == 3) {
-        while (y > lastColumnCornerHeight) {
+        while (y < lastColumnCornerHeight) {
             y = (float)[self getRandomNumberBetween:1 to:4];
+            y += screenOffsetY;
         }
     }
     int n = [self getRandomNumberBetween:1 to:9];
-    lastPlatformNumber = n;
     
     float temp = [self drawColumn:n atDistance: (lastColumnCornerDistance + x) atHeight:y];
     
     lastColumnCornerDistance += temp + x;
+    lastColumnCornerHeight = y;
+    lastPlatformNumber = n;
     
     //store the beginning of the platform, for use by scorekeeper
     score_queue->push(lastColumnCornerDistance - temp);
@@ -622,10 +631,10 @@ enum {
         
         return 88.0/PTM_RATIO;
         
-    } else if (n == 2) {    //ALWAYS HEIGHT 2 FOR PLATFORM 2
+    } else if (n == 2) {
         
-        platformEdge1.Set(b2Vec2(x, 2), b2Vec2(x + 119.0/PTM_RATIO , 2 - 25.0/PTM_RATIO));
-        platformEdge2.Set(b2Vec2(x, 2), b2Vec2(x, 0));
+        platformEdge1.Set(b2Vec2(x, y), b2Vec2(x + 119.0/PTM_RATIO , 2 - 25.0/PTM_RATIO));
+        platformEdge2.Set(b2Vec2(x, y), b2Vec2(x, 0));
         platformEdge3.Set(b2Vec2(x + 119.0/PTM_RATIO, 2 - 25.0/PTM_RATIO), b2Vec2(x + 119.0/PTM_RATIO, 0));
         
         platformFixtureDef.shape = &platformEdge1;
@@ -640,22 +649,22 @@ enum {
         
         if (isRetina) {
             CCSprite *platform = [CCSprite spriteWithFile:@"platform2.png"];
-            platform.position = ccp(x*PTM_RATIO + 59.5, 2*PTM_RATIO-124);
+            platform.position = ccp(x*PTM_RATIO + 59.5, y*PTM_RATIO-124);
             [self addChild:platform z:10];
             platformBody->SetUserData(platform);
         } else {
             CCSprite *platform = [CCSprite spriteWithFile:@"NRplatform2.png"];
-            platform.position = ccp(x*PTM_RATIO + 59.5, 2*PTM_RATIO-124);
+            platform.position = ccp(x*PTM_RATIO + 59.5, y*PTM_RATIO-124);
             [self addChild:platform z:10];
             platformBody->SetUserData(platform);
         }
         
         return 119.0/PTM_RATIO;
 
-    } else if (n == 3) {    //ALWAYS HEIGHT 2 FOR PLATFORM 3
+    } else if (n == 3) {
         
-        platformEdge1.Set(b2Vec2(x, 2), b2Vec2(x + 88.0/PTM_RATIO , 2 - 25.0/PTM_RATIO));
-        platformEdge2.Set(b2Vec2(x, 2), b2Vec2(x, 0));
+        platformEdge1.Set(b2Vec2(x, y), b2Vec2(x + 88.0/PTM_RATIO , 2 - 25.0/PTM_RATIO));
+        platformEdge2.Set(b2Vec2(x, y), b2Vec2(x, 0));
         platformEdge3.Set(b2Vec2(x + 88.0/PTM_RATIO, 2 - 25.0/PTM_RATIO), b2Vec2(x + 88.0/PTM_RATIO, 0));
         
         platformFixtureDef.shape = &platformEdge1;
@@ -671,12 +680,12 @@ enum {
         
         if (isRetina) {
             CCSprite *platform = [CCSprite spriteWithFile:@"platform3.png"];
-            platform.position = ccp(x*PTM_RATIO + 44, 2*PTM_RATIO-154);
+            platform.position = ccp(x*PTM_RATIO + 44, y*PTM_RATIO-154);
             [self addChild:platform z:10];
             platformBody->SetUserData(platform);
         } else {
             CCSprite *platform = [CCSprite spriteWithFile:@"NRplatform3.png"];
-            platform.position = ccp(x*PTM_RATIO + 44, 2*PTM_RATIO-154);
+            platform.position = ccp(x*PTM_RATIO + 44, y*PTM_RATIO-154);
             [self addChild:platform z:10];
             platformBody->SetUserData(platform);
         }
