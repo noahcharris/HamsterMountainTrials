@@ -59,6 +59,7 @@
     float scaling;
     float torque;
     float topSpeed;
+    float bounce;
     
     float screenOffsetX;
     float screenOffsetY;

@@ -199,6 +199,7 @@
 		B9C13D39190EEA9C00C47D89 /* NRhamsterRun.plist in Resources */ = {isa = PBXBuildFile; fileRef = B9C13D37190EEA9C00C47D89 /* NRhamsterRun.plist */; };
 		B9C13D3A190EEA9C00C47D89 /* NRhamsterRun.png in Resources */ = {isa = PBXBuildFile; fileRef = B9C13D38190EEA9C00C47D89 /* NRhamsterRun.png */; };
 		B9C13D3B190EF14100C47D89 /* NRhamsterEmptyBall.png in Resources */ = {isa = PBXBuildFile; fileRef = B9D7D9DA19060B0B007429B3 /* NRhamsterEmptyBall.png */; };
+		B9C13D3E190F04E000C47D89 /* NRplatform12.png in Resources */ = {isa = PBXBuildFile; fileRef = B9C13D3C190F04E000C47D89 /* NRplatform12.png */; };
 		B9DD5705190D983A009A99EA /* IAPHelper.h in Headers */ = {isa = PBXBuildFile; fileRef = B9DD5703190D983A009A99EA /* IAPHelper.h */; };
 		B9DD5706190D983A009A99EA /* IAPHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = B9DD5704190D983A009A99EA /* IAPHelper.m */; };
 		B9E7454319088274007C15D7 /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B9E7454219088274007C15D7 /* AdSupport.framework */; };
@@ -601,6 +602,7 @@
 		B9C13D35190EEA9100C47D89 /* NRhamsterShading.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = NRhamsterShading.png; sourceTree = "<group>"; };
 		B9C13D37190EEA9C00C47D89 /* NRhamsterRun.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = NRhamsterRun.plist; sourceTree = "<group>"; };
 		B9C13D38190EEA9C00C47D89 /* NRhamsterRun.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = NRhamsterRun.png; sourceTree = "<group>"; };
+		B9C13D3C190F04E000C47D89 /* NRplatform12.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = NRplatform12.png; sourceTree = "<group>"; };
 		B9D7D9DA19060B0B007429B3 /* NRhamsterEmptyBall.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = NRhamsterEmptyBall.png; sourceTree = "<group>"; };
 		B9DD5703190D983A009A99EA /* IAPHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IAPHelper.h; sourceTree = "<group>"; };
 		B9DD5704190D983A009A99EA /* IAPHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IAPHelper.m; sourceTree = "<group>"; };
@@ -1280,6 +1282,7 @@
 		B9DB247B190E19B9000A4681 /* NonRetina */ = {
 			isa = PBXGroup;
 			children = (
+				B9C13D3C190F04E000C47D89 /* NRplatform12.png */,
 				B9C13D37190EEA9C00C47D89 /* NRhamsterRun.plist */,
 				B9C13D38190EEA9C00C47D89 /* NRhamsterRun.png */,
 				B9C13D35190EEA9100C47D89 /* NRhamsterShading.png */,
@@ -1386,6 +1389,7 @@
 				B9C13D3B190EF14100C47D89 /* NRhamsterEmptyBall.png in Resources */,
 				B9C13D2C190EE1B800C47D89 /* NRplatform7.png in Resources */,
 				B9C13D27190EE1B800C47D89 /* NRplatform2.png in Resources */,
+				B9C13D3E190F04E000C47D89 /* NRplatform12.png in Resources */,
 				B9C13D36190EEA9100C47D89 /* NRhamsterShading.png in Resources */,
 				B9C13D2B190EE1B800C47D89 /* NRplatform6.png in Resources */,
 				B9C13D2A190EE1B800C47D89 /* NRplatform5.png in Resources */,

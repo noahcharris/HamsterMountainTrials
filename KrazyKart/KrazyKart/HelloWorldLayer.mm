@@ -104,13 +104,16 @@ enum {
         torque = -35;
         topSpeed = -10;
         
+        //0.14
+        bounce = 0.14;
+        
         //this affects screen view
         screenOffsetX = 120;
         //this affects column draw height
         screenOffsetY = 5;
         
         hamsterStartX = 6.25;
-        hamsterStartY = 7.8;
+        hamsterStartY = 26;
         
         
         //initalize these variables
@@ -247,7 +250,8 @@ enum {
     //moving screen
     b2Vec2 pos = _body->GetPosition();                  //110
     if (gameOver) {
-        pos.x = 6.25 * scaling;
+        //why the fuck is it 5.4 and not 6.25???
+        pos.x = 5.4;
     }
 	CGPoint newPos = ccp(-1 * pos.x * PTM_RATIO * scaling + screenOffsetX, self.position.y * PTM_RATIO);
 	[self setPosition:newPos];
@@ -420,7 +424,7 @@ enum {
     ballShapeDef.shape = &circle;
     ballShapeDef.density = 1.4f;
     ballShapeDef.friction = 10.0f;
-    ballShapeDef.restitution = 0.14f;
+    ballShapeDef.restitution = bounce;
     _body->CreateFixture(&ballShapeDef);
     
     //sensor shape
@@ -533,7 +537,7 @@ enum {
 -(void) drawStartingArea {
     
     
-    [self drawColumn:10 atDistance:4 atHeight:1+screenOffsetY];
+    [self drawColumn:11 atDistance:4 atHeight:1+screenOffsetY];
     
     
 }
@@ -552,7 +556,7 @@ enum {
             y += screenOffsetY;
         }
     }
-    int n = [self getRandomNumberBetween:1 to:9];
+    int n = [self getRandomNumberBetween:1 to:12];
     
     float temp = [self drawColumn:n atDistance: (lastColumnCornerDistance + x) atHeight:y];
     
@@ -633,9 +637,9 @@ enum {
         
     } else if (n == 2) {
         
-        platformEdge1.Set(b2Vec2(x, y), b2Vec2(x + 119.0/PTM_RATIO , 2 - 25.0/PTM_RATIO));
+        platformEdge1.Set(b2Vec2(x, y), b2Vec2(x + 119.0/PTM_RATIO , y - 25.0/PTM_RATIO));
         platformEdge2.Set(b2Vec2(x, y), b2Vec2(x, 0));
-        platformEdge3.Set(b2Vec2(x + 119.0/PTM_RATIO, 2 - 25.0/PTM_RATIO), b2Vec2(x + 119.0/PTM_RATIO, 0));
+        platformEdge3.Set(b2Vec2(x + 119.0/PTM_RATIO, y - 25.0/PTM_RATIO), b2Vec2(x + 119.0/PTM_RATIO, 0));
         
         platformFixtureDef.shape = &platformEdge1;
         platformBody->CreateFixture(&platformFixtureDef);
@@ -663,9 +667,9 @@ enum {
 
     } else if (n == 3) {
         
-        platformEdge1.Set(b2Vec2(x, y), b2Vec2(x + 88.0/PTM_RATIO , 2 - 25.0/PTM_RATIO));
+        platformEdge1.Set(b2Vec2(x, y), b2Vec2(x + 88.0/PTM_RATIO , y - 25.0/PTM_RATIO));
         platformEdge2.Set(b2Vec2(x, y), b2Vec2(x, 0));
-        platformEdge3.Set(b2Vec2(x + 88.0/PTM_RATIO, 2 - 25.0/PTM_RATIO), b2Vec2(x + 88.0/PTM_RATIO, 0));
+        platformEdge3.Set(b2Vec2(x + 88.0/PTM_RATIO, y - 25.0/PTM_RATIO), b2Vec2(x + 88.0/PTM_RATIO, 0));
         
         platformFixtureDef.shape = &platformEdge1;
         platformBody->CreateFixture(&platformFixtureDef);
@@ -866,6 +870,35 @@ enum {
         return 76.0/PTM_RATIO;
         
     } else if (n == 10) {
+        
+        platformEdge1.Set(b2Vec2(x, y), b2Vec2(x + 200.0/PTM_RATIO , y - 25.0/PTM_RATIO));
+        platformEdge2.Set(b2Vec2(x, y), b2Vec2(x, 0));
+        platformEdge3.Set(b2Vec2(x + 200.0/PTM_RATIO, y - 25.0/PTM_RATIO), b2Vec2(x + 200.0/PTM_RATIO, 0));
+        
+        platformFixtureDef.shape = &platformEdge1;
+        platformBody->CreateFixture(&platformFixtureDef);
+        
+        platformFixtureDef.shape = &platformEdge2;
+        platformBody->CreateFixture(&platformFixtureDef);
+        
+        platformFixtureDef.shape = &platformEdge3;
+        platformBody->CreateFixture(&platformFixtureDef);
+        
+        if (isRetina) {
+            CCSprite *platform = [CCSprite spriteWithFile:@"platform10.png"];
+            platform.position = ccp(x*PTM_RATIO + 100, y*PTM_RATIO-144);
+            [self addChild:platform z:10];
+            platformBody->SetUserData(platform);
+        } else {
+            CCSprite *platform = [CCSprite spriteWithFile:@"NRplatform10.png"];
+            platform.position = ccp(x*PTM_RATIO + 100, y*PTM_RATIO-144);
+            [self addChild:platform z:10];
+            platformBody->SetUserData(platform);
+        }
+        
+        return 200.0/PTM_RATIO;
+        
+    } else if (n == 11) {
 
         
         platformEdge1.Set(b2Vec2(x, y), b2Vec2(x + 200.0/PTM_RATIO , y));
@@ -889,6 +922,35 @@ enum {
         } else {
             CCSprite *platform = [CCSprite spriteWithFile:@"NRplatform11.png"];
             platform.position = ccp(x*PTM_RATIO + 100, y*PTM_RATIO-150);
+            [self addChild:platform z:10];
+            platformBody->SetUserData(platform);
+        }
+        
+        return 200.0/PTM_RATIO;
+        
+    } else if (n == 12) {
+        
+        platformEdge1.Set(b2Vec2(x, y), b2Vec2(x + 200.0/PTM_RATIO , y + 50.0/PTM_RATIO));
+        platformEdge2.Set(b2Vec2(x, y), b2Vec2(x, 0));
+        platformEdge3.Set(b2Vec2(x + 200.0/PTM_RATIO, y + 50.0/PTM_RATIO), b2Vec2(x + 200.0/PTM_RATIO, 0));
+        
+        platformFixtureDef.shape = &platformEdge1;
+        platformBody->CreateFixture(&platformFixtureDef);
+        
+        platformFixtureDef.shape = &platformEdge2;
+        platformBody->CreateFixture(&platformFixtureDef);
+        
+        platformFixtureDef.shape = &platformEdge3;
+        platformBody->CreateFixture(&platformFixtureDef);
+        
+        if (isRetina) {
+            CCSprite *platform = [CCSprite spriteWithFile:@"platform12.png"];
+            platform.position = ccp(x*PTM_RATIO + 100, y*PTM_RATIO-118);
+            [self addChild:platform z:10];
+            platformBody->SetUserData(platform);
+        } else {
+            CCSprite *platform = [CCSprite spriteWithFile:@"NRplatform12.png"];
+            platform.position = ccp(x*PTM_RATIO + 100, y*PTM_RATIO-118);
             [self addChild:platform z:10];
             platformBody->SetUserData(platform);
         }
