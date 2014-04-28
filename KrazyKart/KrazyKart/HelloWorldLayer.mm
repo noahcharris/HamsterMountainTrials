@@ -99,7 +99,7 @@ enum {
         kick2y = 8;
 
         //0.5 for iphone
-        scaling = 1.5;
+        scaling = 0.5;
         //negative is forward for these two values
         torque = -45;
         topSpeed = -12.5;
@@ -474,7 +474,7 @@ enum {
 -(void) drawStartingArea {
     
     
-    [self drawColumn:11 atDistance:4 atHeight:1];
+    [self drawColumn:10 atDistance:4 atHeight:1];
     
     
 }
@@ -753,7 +753,9 @@ enum {
         
         return 76.0/PTM_RATIO;
         
-    } else if (n == 11) {
+    } else if (n == 10) {
+        
+        NSLog(@"N EQUALS TEN");
         
         platformEdge1.Set(b2Vec2(x, y), b2Vec2(x + 200.0/PTM_RATIO , y));
         platformEdge2.Set(b2Vec2(x, y), b2Vec2(x, 0));
@@ -768,7 +770,7 @@ enum {
         platformFixtureDef.shape = &platformEdge3;
         platformBody->CreateFixture(&platformFixtureDef);
         
-        CCSprite *platform = [CCSprite spriteWithFile:@"platform11.png"];
+        CCSprite *platform = [CCSprite spriteWithFile:@"platform10.png"];
         platform.position = ccp(x*PTM_RATIO + 100, y*PTM_RATIO-150);
         [self addChild:platform z:10];
         
