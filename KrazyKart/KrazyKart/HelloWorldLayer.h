@@ -34,10 +34,13 @@
     CCSprite *_lines;
     CCSprite *_shading;
     CCSprite *_hamster;
+    CCSpriteBatchNode *spriteSheet;
     b2RevoluteJoint *_joint;
     
     float lastColumnCornerDistance;
     float lastColumnCornerHeight;
+    
+    int lastPlatformNumber;
     
     NSMutableArray *runFrames;
     CCAction *runAction;

@@ -108,6 +108,12 @@ enum {
         screenOffsetY = 10;
         
         
+        //initalize these variables
+        lastColumnCornerDistance = 10;
+        lastColumnCornerHeight = 1;
+        lastPlatformNumber = 10;
+        
+        
         //check for ipad
         if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
         {
@@ -156,10 +162,6 @@ enum {
         scoreLabel = [CCLabelTTF labelWithString:@"0" fontName:@"Marker Felt" fontSize:24];
         scoreLabel.position = ccp(240, 160); //Middle of the screen...
         [self addChild:scoreLabel z:1];
-        
-        //initalize these variables
-        lastColumnCornerDistance = 10;
-        lastColumnCornerHeight = 0;
         
         //draw background
         _background = [CCSprite spriteWithFile:@"background.png"];
@@ -324,6 +326,15 @@ enum {
     //remove the restart
     [self checkAndRemoveColumns];
     [self drawStartingArea];
+    
+    //hamster body is destroyed by checkAndRemoveColumns,
+    //but we still have to clean up sprites
+    [self removeChild:_ball cleanup:YES];
+    [self removeChild:_lines cleanup:YES];
+    [self removeChild:_shading cleanup:YES];
+    [self removeChild:_hamster cleanup:YES];
+    [self removeChild:spriteSheet cleanup:YES];
+    
     [self createNewHamster];
     gameOver = false;
     [self removeChild:starMenu cleanup:YES];
@@ -440,7 +451,7 @@ enum {
     //animation
     [[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:@"hamsterRun.plist"];
     
-    CCSpriteBatchNode *spriteSheet = [CCSpriteBatchNode batchNodeWithFile:@"hamsterRun.png"];
+    spriteSheet = [CCSpriteBatchNode batchNodeWithFile:@"hamsterRun.png"];
     [self addChild:spriteSheet];
     
     runFrames = [NSMutableArray array];
@@ -484,10 +495,24 @@ enum {
     //NSLog(@"Draw next column");
     float x = (float)[self getRandomNumberBetween:3 to:7];
     float y = (float)[self getRandomNumberBetween:1 to:4];
-    int n = [self getRandomNumberBetween:1 to:9];
-    float temp = [self drawColumn:n atDistance: (lastColumnCornerDistance + x) atHeight:y];
-    lastColumnCornerDistance += temp + x;
     
+    //this prevents down slopes from leading into higher columns (too hard)
+    if (lastPlatformNumber == 2 || lastPlatformNumber == 3) {
+        while (y > lastColumnCornerHeight) {
+            y = (float)[self getRandomNumberBetween:1 to:4];
+        }
+    }
+    
+    
+    int n = [self getRandomNumberBetween:1 to:9];
+    
+    lastPlatformNumber = n;
+    
+    
+    
+    float temp = [self drawColumn:n atDistance: (lastColumnCornerDistance + x) atHeight:y];
+    
+    lastColumnCornerDistance += temp + x;
     
     //store the beginning of the platform, for use by scorekeeper
     score_queue->push(lastColumnCornerDistance - temp);
@@ -754,8 +779,7 @@ enum {
         return 76.0/PTM_RATIO;
         
     } else if (n == 10) {
-        
-        NSLog(@"N EQUALS TEN");
+
         
         platformEdge1.Set(b2Vec2(x, y), b2Vec2(x + 200.0/PTM_RATIO , y));
         platformEdge2.Set(b2Vec2(x, y), b2Vec2(x, 0));
@@ -774,7 +798,7 @@ enum {
         platform.position = ccp(x*PTM_RATIO + 100, y*PTM_RATIO-150);
         [self addChild:platform z:10];
         
-        platformBody->SetUserData(platform);
+        //platformBody->SetUserData(platform);
         
         return 200.0/PTM_RATIO;
         
