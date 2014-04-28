@@ -79,6 +79,9 @@
     float restartX;
     float restartY;
     
+    float removeAdsX;
+    float removeAdsY;
+    
     
     //dimensions
     BOOL isiPhone;
@@ -101,6 +104,7 @@
     
     
     CCMenuItem *_restartButton;
+    CCMenuItem *_removeAdsButton;
     CCMenu *starMenu;
     
 

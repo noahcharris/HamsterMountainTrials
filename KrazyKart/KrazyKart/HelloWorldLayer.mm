@@ -127,6 +127,9 @@ enum {
         
         restartX = 7;
         restartY = 8;
+        
+        removeAdsX = 5;
+        removeAdsY = 8;
 
         
         lastColumnCornerDistance = 10;
@@ -279,6 +282,10 @@ enum {
         highScoreLabel.position = ccp(pos.x * PTM_RATIO + highScoreX * PTM_RATIO, highScoreY * PTM_RATIO);
         highScorePrefixLabel.position = ccp(pos.x * PTM_RATIO + highScorePrefixX * PTM_RATIO, highScorePrefixY * PTM_RATIO);
         _restartButton.position = ccp(pos.x * PTM_RATIO + restartX * PTM_RATIO, self.position.y * PTM_RATIO + restartY * PTM_RATIO);
+        
+        if (!adsRemoved) {
+            _removeAdsButton.position = ccp(pos.x * PTM_RATIO + removeAdsX * PTM_RATIO, self.position.y * PTM_RATIO + removeAdsY * PTM_RATIO);
+        }
     }
     
     //DRAWING COLUMNS
@@ -317,7 +324,13 @@ enum {
                      itemFromNormalImage:@"Icon.png" selectedImage:@"Icon-Small.png"
                      target:self selector:@selector(restartTapped)];
     _restartButton.position = ccp(-300, 280);
-    starMenu = [CCMenu menuWithItems:_restartButton, nil];
+    
+    _removeAdsButton= [CCMenuItemImage
+                     itemFromNormalImage:@"blocks.png" selectedImage:@"Icon-Small.png"
+                     target:self selector:@selector(removeAds)];
+    _removeAdsButton.position = ccp(-300, 280);
+    
+    starMenu = [CCMenu menuWithItems:_restartButton, _removeAdsButton, nil];
     starMenu.position = CGPointZero;
     [self addChild:starMenu];
     
@@ -371,6 +384,16 @@ enum {
     }
     
 }
+
+
+
+
+-(void)removeAds {
+    //TODO
+}
+
+
+
 
 - (void)ccTouchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
     if (contactListener->getGround() == 1) {
