@@ -198,6 +198,7 @@
 		B9C13D36190EEA9100C47D89 /* NRhamsterShading.png in Resources */ = {isa = PBXBuildFile; fileRef = B9C13D35190EEA9100C47D89 /* NRhamsterShading.png */; };
 		B9C13D39190EEA9C00C47D89 /* NRhamsterRun.plist in Resources */ = {isa = PBXBuildFile; fileRef = B9C13D37190EEA9C00C47D89 /* NRhamsterRun.plist */; };
 		B9C13D3A190EEA9C00C47D89 /* NRhamsterRun.png in Resources */ = {isa = PBXBuildFile; fileRef = B9C13D38190EEA9C00C47D89 /* NRhamsterRun.png */; };
+		B9C13D3B190EF14100C47D89 /* NRhamsterEmptyBall.png in Resources */ = {isa = PBXBuildFile; fileRef = B9D7D9DA19060B0B007429B3 /* NRhamsterEmptyBall.png */; };
 		B9DD5705190D983A009A99EA /* IAPHelper.h in Headers */ = {isa = PBXBuildFile; fileRef = B9DD5703190D983A009A99EA /* IAPHelper.h */; };
 		B9DD5706190D983A009A99EA /* IAPHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = B9DD5704190D983A009A99EA /* IAPHelper.m */; };
 		B9E7454319088274007C15D7 /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B9E7454219088274007C15D7 /* AdSupport.framework */; };
@@ -1382,6 +1383,7 @@
 				B9C13D28190EE1B800C47D89 /* NRplatform3.png in Resources */,
 				B9C13D32190EE4E400C47D89 /* NRhamsterBallLines.png in Resources */,
 				B9C13D26190EE1B800C47D89 /* NRplatform1.png in Resources */,
+				B9C13D3B190EF14100C47D89 /* NRhamsterEmptyBall.png in Resources */,
 				B9C13D2C190EE1B800C47D89 /* NRplatform7.png in Resources */,
 				B9C13D27190EE1B800C47D89 /* NRplatform2.png in Resources */,
 				B9C13D36190EEA9100C47D89 /* NRhamsterShading.png in Resources */,
