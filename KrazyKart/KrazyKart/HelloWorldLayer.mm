@@ -8,7 +8,6 @@
 
 // Import the interfaces
 #import "HelloWorldLayer.h"
-#include <iostream.h>
 
 // Needed to obtain the Navigation Controller
 #import "AppDelegate.h"
@@ -130,10 +129,6 @@ enum {
         restartY = 8;
 
         
-        
-        
-        
-        //initalize these variables
         lastColumnCornerDistance = 10;
         lastColumnCornerHeight = 1;
         lastPlatformNumber = 10;

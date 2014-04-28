@@ -10,11 +10,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "KrazyKart/HelloWorldLayer.mm"
-            timestampString = "420417165.331285"
+            timestampString = "420417771.97562"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "420"
-            endingLineNumber = "420"
+            startingLineNumber = "415"
+            endingLineNumber = "415"
             landmarkName = "-createNewHamster"
             landmarkType = "5">
          </BreakpointContent>
@@ -26,11 +26,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "KrazyKart/HelloWorldLayer.mm"
-            timestampString = "420417165.331285"
+            timestampString = "420417771.97562"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "567"
-            endingLineNumber = "567"
+            startingLineNumber = "562"
+            endingLineNumber = "562"
             landmarkName = "-drawNextColumn"
             landmarkType = "5">
          </BreakpointContent>
