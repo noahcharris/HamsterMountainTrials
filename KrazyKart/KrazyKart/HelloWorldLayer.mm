@@ -116,6 +116,23 @@ enum {
         hamsterStartY = 26;
         
         
+        
+        scoreLabelX = -3;
+        scoreLabelY = 8;
+        
+        highScorePrefixX = 0;
+        highScorePrefixY = 8;
+        
+        highScoreX = 2;
+        highScoreY = 8;
+        
+        restartX = 7;
+        restartY = 8;
+
+        
+        
+        
+        
         //initalize these variables
         lastColumnCornerDistance = 10;
         lastColumnCornerHeight = 1;
@@ -261,11 +278,12 @@ enum {
     _background.position = ccp(pos.x * PTM_RATIO + winSize.width/(2), self.position.y * PTM_RATIO + winSize.height/(2));
     
     
+    
     //game over stuff
     if (gameOver) {
-        highScoreLabel.position = ccp(pos.x * PTM_RATIO + 100, 270);
-        highScorePrefixLabel.position = ccp(pos.x * PTM_RATIO, 270);
-        _restartButton.position = ccp(pos.x * PTM_RATIO + 300, self.position.y * PTM_RATIO + 270);
+        highScoreLabel.position = ccp(pos.x * PTM_RATIO + highScoreX * PTM_RATIO, highScoreY * PTM_RATIO);
+        highScorePrefixLabel.position = ccp(pos.x * PTM_RATIO + highScorePrefixX * PTM_RATIO, highScorePrefixY * PTM_RATIO);
+        _restartButton.position = ccp(pos.x * PTM_RATIO + restartX * PTM_RATIO, self.position.y * PTM_RATIO + restartY * PTM_RATIO);
     }
     
     //DRAWING COLUMNS
@@ -275,7 +293,7 @@ enum {
     
     
     //score stuff
-    scoreLabel.position = ccp(pos.x * PTM_RATIO - 90, 270);
+    scoreLabel.position = ccp(pos.x * PTM_RATIO + scoreLabelX * PTM_RATIO, scoreLabelY * PTM_RATIO);
     if (score_queue->front() < pos.x) {
         score_queue->pop();
         if (pos.x > 11 && !gameOver) {

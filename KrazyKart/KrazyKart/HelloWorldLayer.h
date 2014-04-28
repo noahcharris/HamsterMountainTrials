@@ -67,6 +67,18 @@
     float hamsterStartX;
     float hamsterStartY;
     
+    float scoreLabelX;
+    float scoreLabelY;
+    
+    float highScorePrefixX;
+    float highScorePrefixY;
+    
+    float highScoreX;
+    float highScoreY;
+    
+    float restartX;
+    float restartY;
+    
     
     //dimensions
     BOOL isiPhone;
