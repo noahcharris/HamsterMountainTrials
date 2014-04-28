@@ -93,6 +93,18 @@ enum {
 {
 	if( (self=[super init])) {
         
+        kick1x = 0;
+        kick2x = 0;
+        kick1y = 25;
+        kick2y = 8;
+
+        scaling = 0.7;
+        //negative is forward for these two values
+        torque = -45;
+        topSpeed = -12.5;
+        
+        
+        
         //for testing
         [[NSUserDefaults standardUserDefaults] setInteger:0 forKey:@"highScore"];
 
@@ -116,7 +128,7 @@ enum {
         
         //draw background
         _background = [CCSprite spriteWithFile:@"background.png"];
-        _background.position = ccp(winSize.width/2, winSize.height/2);
+        _background.position = ccp(winSize.width/(2*0.6), winSize.height/(2*0.6));
         [self addChild:_background];
         
         // Create a world
@@ -136,9 +148,16 @@ enum {
 		flags += b2Draw::e_shapeBit;
 		m_debugDraw->SetFlags(flags);
         
-        //zoom out
-        id zoomOut = [CCScaleTo actionWithDuration:0.0f scale:0.6f];
+        
+        
+        
+        //zoom out (DON't ZOOM out on IPAD, maybe even zoom in)
+        //0.6
+        id zoomOut = [CCScaleTo actionWithDuration:0.0f scale:scaling];
         [self runAction:zoomOut];
+        
+        
+        
         
         //START THE GAME
         [self createNewHamster];
@@ -178,9 +197,9 @@ enum {
     
     // -13.2
     // -40
-    if (_body->GetAngularVelocity() > -9.5f) {
+    if (_body->GetAngularVelocity() > topSpeed) {
         
-        _body->ApplyTorque(-45);
+        _body->ApplyTorque(torque);
     }
 
     //moving screen
@@ -188,12 +207,12 @@ enum {
     if (gameOver) {
         pos.x = 0;
     }
-	CGPoint newPos = ccp(-1 * pos.x * PTM_RATIO * 0.6 + 110, self.position.y * PTM_RATIO);
+	CGPoint newPos = ccp(-1 * pos.x * PTM_RATIO * scaling, self.position.y * PTM_RATIO);
 	[self setPosition:newPos];
     
     //scroll background
     CGSize winSize = [CCDirector sharedDirector].winSize;
-    _background.position = ccp(pos.x * PTM_RATIO - 110 + winSize.width/2, self.position.y * PTM_RATIO + winSize.height/2);
+    _background.position = ccp(pos.x * PTM_RATIO + winSize.width/(2), self.position.y * PTM_RATIO + winSize.height/(2));
     
     
     //game over stuff
@@ -296,7 +315,7 @@ enum {
 
 - (void)kick1 {
         if (!nextKick) {
-            b2Vec2 force = b2Vec2(0, 20);
+            b2Vec2 force = b2Vec2(kick1x, kick1y);
             //_body->ApplyLinearImpulse(force,_body->GetPosition());
             if (contactListener->getGround() == 1) {
                 NSLog(@"kick1");
@@ -312,7 +331,7 @@ enum {
 -(void) kick2 {
     if (nextKick) {
         NSLog(@"kick2");
-        b2Vec2 force = b2Vec2(0, 7);
+        b2Vec2 force = b2Vec2(kick2x, kick2y);
         _body->ApplyLinearImpulse(force,_body->GetPosition());
     }
 }
@@ -423,8 +442,8 @@ enum {
 
 -(void) drawNextColumn {
     //NSLog(@"Draw next column");
-    float x = (float)[self getRandomNumberBetween:4 to:6];
-    float y = (float)[self getRandomNumberBetween:1 to:2];
+    float x = (float)[self getRandomNumberBetween:3 to:7];
+    float y = (float)[self getRandomNumberBetween:1 to:4];
     int n = [self getRandomNumberBetween:1 to:9];
     float temp = [self drawColumn:n atDistance: (lastColumnCornerDistance + x) atHeight:y];
     lastColumnCornerDistance += temp + x;

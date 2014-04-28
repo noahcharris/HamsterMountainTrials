@@ -49,6 +49,14 @@
     BOOL gameOver;
     BOOL nextKick;
     
+    float kick1x;
+    float kick2x;
+    float kick1y;
+    float kick2y;
+    float scaling;
+    float torque;
+    float topSpeed;
+    
     
     
     //in app purchase stuff

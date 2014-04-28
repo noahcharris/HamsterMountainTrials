@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>0687E02A-1F40-4B14-A8DF-E974F892E4EA</string>
+	<key>IDESourceControlProjectName</key>
+	<string>KrazyKart</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>AE2EFF66-4A7F-4F6C-A980-0A7FA2CCCE0B</key>
+		<string>ssh://github.com/noahcharris/HamsterMountainTrials.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>KrazyKart/KrazyKart.xcodeproj/project.xcworkspace</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>AE2EFF66-4A7F-4F6C-A980-0A7FA2CCCE0B</key>
+		<string>../../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>ssh://github.com/noahcharris/HamsterMountainTrials.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>110</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>AE2EFF66-4A7F-4F6C-A980-0A7FA2CCCE0B</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>AE2EFF66-4A7F-4F6C-A980-0A7FA2CCCE0B</string>
+			<key>IDESourceControlWCCName</key>
+			<string>HamsterMountainTrials</string>
+		</dict>
+	</array>
+</dict>
+</plist>
