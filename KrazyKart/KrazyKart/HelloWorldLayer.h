@@ -99,7 +99,7 @@
     BOOL adsRemoved;
     BOOL showingBuyPopup;
     
-    BannerViewController *banner;
+    BannerViewController *_banner;
     
     
     

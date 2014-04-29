@@ -53,10 +53,24 @@ enum {
 
 
 
-//[[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"packBought"];
-//if ([[NSUserDefaults standardUserDefaults] objectForKey:@"removedAds"] == nil)
+
+// ###############################
+// ###### IN APP PURCHASES #######
+// ###############################
 
 -(void) handlePurchases {
+    
+    [[NSNotificationCenter defaultCenter]
+     addObserver:self
+     selector:@selector(receiveProducts:)
+     name:@"productsReceived"
+     object:nil];
+    
+    [[NSNotificationCenter defaultCenter]
+     addObserver:self
+     selector:@selector(provideProducts:)
+     name:@"productBought"
+     object:nil];
     
     if ([[NSUserDefaults standardUserDefaults] integerForKey:@"removedAds"] == nil) {
         
@@ -65,24 +79,79 @@ enum {
         
         _helper = [IAPHelper sharedInstance];      //create an instance of our in-app purchase helper
         
+        //ask for products
         [_helper requestProductsWithCompletionHandler:^(BOOL success, NSArray *products) {
             if (success) {
 
                 NSDictionary *dataDict = [NSDictionary dictionaryWithObject:products forKey:@"productsList"];
                 [[NSNotificationCenter defaultCenter] postNotificationName:@"productsReceived" object:self userInfo:dataDict];
+            } else {
+                //??
             }
         }];
+        //check to restore completed transactions
+        [_helper restoreCompletedTransactions];
         
     } else {
         adsRemoved = true;
     }
+    
+    //AD CONTROLLER INITIALIZATION
+    
     if (!adsRemoved) {
-        banner = [[BannerViewController alloc] init];
-        [banner initiAdBanner];
-        [banner initgAdBanner];
-        [[CCDirector sharedDirector].openGLView addSubview:banner.view];
+        _banner = [[BannerViewController alloc] init];
+        [_banner initiAdBanner];
+        [_banner initgAdBanner];
+        [[CCDirector sharedDirector].openGLView addSubview:_banner.view];
     }
+    
+    
 }
+
+-(void)receiveProducts:(NSNotification *)note {
+    
+    NSDictionary *theData = [note userInfo];
+    _products = [[NSMutableArray alloc] initWithArray:[theData objectForKey:@"productsList"]];
+    _removeAds = [_products objectAtIndex:0];
+    NSLog(@"SK product objects stored");
+    NSLog(_removeAds.productIdentifier);
+    
+    //check if the product has been purchased
+//    if ([_helper productPurchased:_removeAds.productIdentifier]) {
+//        
+//    }
+    
+}
+
+-(void)provideProducts:(NSNotification *)note {
+    //TODO
+    showingBuyPopup = NO;
+    //[self itemNodeByName:@"loader"].visible = NO;
+    NSDictionary *theData = [note userInfo];
+    SKPaymentTransaction *transaction = [theData objectForKey:@"transaction"];
+    NSLog(transaction.originalTransaction.payment.productIdentifier);
+    if ([transaction.originalTransaction.payment.productIdentifier isEqualToString:@"removeAds"]) {
+        [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"removedAds"];
+        
+        adsRemoved = true;
+        [_banner stop];
+        
+    }
+//    if ([transaction.originalTransaction.payment.productIdentifier isEqualToString:@"drawingPack"]) {
+//        [self onBoughtDrawingPack];
+//    }
+    
+}
+
+
+// ###############################
+// ###############################
+// ###############################
+
+
+
+
+
 
 
 
@@ -174,9 +243,13 @@ enum {
         
         
         //for testing
-        [[NSUserDefaults standardUserDefaults] setInteger:0 forKey:@"highScore"];
+        //[[NSUserDefaults standardUserDefaults] setInteger:0 forKey:@"highScore"];
+        
+        
 
         [self handlePurchases];
+        
+        
 
         self.isTouchEnabled = YES;
 		CGSize winSize = [CCDirector sharedDirector].winSize;

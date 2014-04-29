@@ -16,6 +16,15 @@
 
 
 
+-(void)stop {
+    self.iAdBannerView.delegate = nil;
+    self.iAdBannerView.hidden = FALSE;
+    self.gAdBannerView.delegate = nil;
+    self.iAdBannerView.hidden = FALSE;
+    [self hideBanner:iAdBannerView];
+    [self hideBanner:gAdBannerView];
+}
+
 
 -(void)initiAdBanner
 {
@@ -164,88 +173,5 @@
 }
 
 
-
-
-
-
-
-
-
-#pragma mark - old methods
-/*
- 
- - (void)viewDidLoad {
- 
- [super viewDidLoad];
- 
- if ([[NSUserDefaults standardUserDefaults] objectForKey:@"removedAds"] != nil)
- return;
- 
- if (IS_IPAD)
- {
- bannerWidth = 1024;
- bannerHeight = 66;
- }
- else
- {
- bannerWidth = 480;
- bannerHeight = 32;
- }
- 
- 
- 
- self.iAdBannerView = [[ADBannerView alloc] initWithFrame:CGRectZero];
- [self.iAdBannerView setRequiredContentSizeIdentifiers:[NSSet setWithObjects:
- //       ADBannerContentSizeIdentifier320x50,
- ADBannerContentSizeIdentifierLandscape, nil]];
- 
- self.iAdBannerView.currentContentSizeIdentifier = ADBannerContentSizeIdentifierLandscape;
- 
- [self.iAdBannerView setDelegate:self];
- 
- [self.view addSubview:self.iAdBannerView];
- [self moveBannerOffScreen];
- 
- 
- }
- 
- 
- -(void)moveBannerOnScreen
- {
- CGSize windowSize = [[CCDirector sharedDirector] winSize];
- 
- [UIView beginAnimations:@"BannerViewIntro" context:NULL];
- 
- self.iAdBannerView.frame = CGRectMake(0, windowSize.height-bannerHeight, bannerWidth, bannerHeight);
- [UIView commitAnimations];
- }
- 
- -(void)moveBannerOffScreen
- {
- CGSize windowSize = [[CCDirector sharedDirector] winSize];
- 
- self.iAdBannerView.frame = CGRectMake(0, windowSize.height, bannerWidth, bannerHeight);
- 
- }
- 
- 
- 
- 
- 
- -(void)bannerViewDidLoadAd:(ADBannerView *)banner  //old method
- {
- NSLog(@"bannerViewDidLoadAd");
- 
- [self moveBannerOnScreen];
- }
- 
- 
- 
- -(void)onExit
- {
- [self.iAdBannerView setDelegate:nil];
- }
- 
- */
 
 @end

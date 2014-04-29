@@ -105,6 +105,12 @@ NSString *const IAPHelperProductPurchasedNotification = @"IAPHelperProductPurcha
  }
  */
 
+
+
+
+
+
+
 #pragma mark - SKProductsRequestDelegate
 
 - (void)productsRequest:(SKProductsRequest *)request didReceiveResponse:(SKProductsResponse *)response {
@@ -134,6 +140,13 @@ NSString *const IAPHelperProductPurchasedNotification = @"IAPHelperProductPurcha
     _completionHandler = nil;
     
 }
+
+
+
+
+
+
+
 
 #pragma mark - SKPaymentTransactionObserver
 
