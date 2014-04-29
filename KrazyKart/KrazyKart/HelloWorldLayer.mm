@@ -116,19 +116,12 @@ enum {
     NSLog(@"SK product objects stored");
     NSLog(_removeAds.productIdentifier);
     
-    //check if the product has been purchased
-//    if ([_helper productPurchased:_removeAds.productIdentifier]) {
-//        
-//    }
-    
 }
 
 -(void)provideProducts:(NSNotification *)note {
-    //TODO
-    showingBuyPopup = NO;
-    //[self itemNodeByName:@"loader"].visible = NO;
     NSDictionary *theData = [note userInfo];
     SKPaymentTransaction *transaction = [theData objectForKey:@"transaction"];
+    NSLog(@"Attempting to provide products..");
     NSLog(transaction.originalTransaction.payment.productIdentifier);
     if ([transaction.originalTransaction.payment.productIdentifier isEqualToString:@"removeAds"]) {
         [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"removedAds"];
