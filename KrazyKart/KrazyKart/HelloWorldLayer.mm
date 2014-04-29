@@ -53,7 +53,6 @@ enum {
 
 
 
-
 // ###############################
 // ###### IN APP PURCHASES #######
 // ###############################
@@ -783,7 +782,7 @@ enum {
     b2FixtureDef platformFixtureDef;
     platformFixtureDef.friction = 10.0f;
     
-    if (n == 1) { //CHANGE THE ZEROS TO SO THAT SCREENOFFSETY WORKS CORRECTLY
+    if (n == 1) {
     
         platformEdge1.Set(b2Vec2(x, y), b2Vec2(x + 88.0/PTM_RATIO , y + 25.0/PTM_RATIO));
         platformEdge2.Set(b2Vec2(x, y), b2Vec2(x, -10));
