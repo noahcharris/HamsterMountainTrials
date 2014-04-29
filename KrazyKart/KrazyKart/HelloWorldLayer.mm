@@ -106,6 +106,10 @@ enum {
         //0.14
         bounce = 0.14;
         
+        
+        gravity1 = b2Vec2(0.0f, -10.5f);
+        gravity2 = b2Vec2(0.0f, -8.0f);
+        
         //this affects screen view
         screenOffsetX = 120;
         //this affects column draw height
@@ -193,8 +197,7 @@ enum {
         
         // Create a world
         // -10.5
-        b2Vec2 gravity = b2Vec2(0.0f, -10.5f);
-        _world = new b2World(gravity);
+        _world = new b2World(gravity1);
         
         //contact listener
         contactListener = new MyContactListener;
@@ -250,6 +253,9 @@ enum {
     //hamster
     _hamster.position = ccp(_body->GetPosition().x * PTM_RATIO,
                            _body->GetPosition().y * PTM_RATIO);
+    
+    
+    
 
     //good setup: top speed = -12, torque = -26.5
     // -9.5 -35
@@ -398,15 +404,19 @@ enum {
 
 - (void)ccTouchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
     if (contactListener->getGround() == 1) {
+        NSLog(@"on");
         [self kick1];
         nextKick = true;
+        _world->SetGravity(gravity2);
     }
 }
 
 
 - (void)ccTouchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
 {
+    NSLog(@"off");
     nextKick = false;
+    _world->SetGravity(gravity1);
 }
 
 
@@ -587,7 +597,7 @@ enum {
     y += screenOffsetY;
     
     //this prevents down slopes from leading into higher columns (too hard)
-    if (lastPlatformNumber == 2 || lastPlatformNumber == 3) {
+    if (lastPlatformNumber == 2 || lastPlatformNumber == 3 || lastPlatformNumber == 10) {
         while (y < lastColumnCornerHeight) {
             y = (float)[self getRandomNumberBetween:1 to:4];
             y += screenOffsetY;

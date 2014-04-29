@@ -60,6 +60,8 @@
     float torque;
     float topSpeed;
     float bounce;
+    b2Vec2 gravity1;
+    b2Vec2 gravity2;
     
     float screenOffsetX;
     float screenOffsetY;
@@ -92,8 +94,13 @@
     //in app purchase stuff
     IAPHelper* _helper;
     NSMutableArray *_products;
+    SKProduct *_removeAds;
+    
     BOOL adsRemoved;
+    BOOL showingBuyPopup;
+    
     BannerViewController *banner;
+    
     
     
     std::queue<int> *score_queue;
