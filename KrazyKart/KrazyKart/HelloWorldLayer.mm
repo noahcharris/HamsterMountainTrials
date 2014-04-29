@@ -89,8 +89,11 @@ enum {
                 //??
             }
         }];
+        
+        
         //check to restore completed transactions
-        [_helper restoreCompletedTransactions];
+        //[_helper restoreCompletedTransactions];
+        
         
     } else {
         adsRemoved = true;
@@ -112,8 +115,11 @@ enum {
     
     NSDictionary *theData = [note userInfo];
     _products = [[NSMutableArray alloc] initWithArray:[theData objectForKey:@"productsList"]];
-    _removeAds = [_products objectAtIndex:0];
-    NSLog(@"SK product objects stored");
+    if ([_products count] != 0) {
+        NSLog(@"SK product objects stored");
+        _removeAds = [_products objectAtIndex:0];
+    }
+    NSLog(@"no product objects to store");
     NSLog(_removeAds.productIdentifier);
     
 }
@@ -180,8 +186,6 @@ enum {
         hamsterStartX = 6.25;
         hamsterStartY = 26;
         
-        
-        
         scoreLabelX = -3;
         scoreLabelY = 8;
         
@@ -202,6 +206,8 @@ enum {
         lastColumnCornerHeight = 1;
         lastPlatformNumber = 10;
         
+        
+        
         //check for ipad
         if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
         {
@@ -212,7 +218,7 @@ enum {
             isiPhone = true;
         }
         
-        //check phone version
+        //check phone version ( I DON'T THINK THIS IS WORKING )
         if (isiPhone) {
             if([UIScreen mainScreen].bounds.size.height == 568){
                 isiPhone5 = true;
@@ -239,26 +245,40 @@ enum {
             if (isRetina) {
                 
                 //TODO IPAD RETINA
+                NSLog(@"ipad retina");
+                scaling = 1.0f;
                 
             } else {
                 
                 //TODO IPAD ORIGINAL
+                NSLog(@"ipad original");
+                scaling = 1.0f;
                 
             }
         } else {
             if (isRetina) {
                 if (isiPhone5) {
                     
-                    //TODO IPHONE 5 RETINA (WIDER)
+                    //TODO IPHONE 5 RETINA (WIDER) ( I DON'T THINK THIS IS WORKING )
+//                    NSLog(@"4-inch iphone retina");
+//                    scaling = 0.5f;
                     
                 } else {
                  
-                    //TODO IPHONE 4 RETINA
+                    //TODO IPHONE 4 RETINA !!!!
+                    NSLog(@"3.5-inch iphone retina");
+                    scaling = 0.5f;
+                    screenOffsetY = 0;
+                    screenOffsetX  = 30;
                     
                 }
             } else {
              
                 //TODO ORIGINAL IPHONE
+                NSLog(@"original iphone");
+                scaling = 0.5f;
+                screenOffsetY = -1;
+                screenOffsetX  = 30;
                 
             }
         }
@@ -387,7 +407,7 @@ enum {
         highScorePrefixLabel.position = ccp(pos.x * PTM_RATIO + highScorePrefixX * PTM_RATIO, highScorePrefixY * PTM_RATIO);
         _restartButton.position = ccp(pos.x * PTM_RATIO + restartX * PTM_RATIO, self.position.y * PTM_RATIO + restartY * PTM_RATIO);
         
-        if (_products[0] != nil) {
+        if ([_products count] != 0) {
             _removeAdsButton.position = ccp(pos.x * PTM_RATIO + removeAdsX * PTM_RATIO, self.position.y * PTM_RATIO + removeAdsY * PTM_RATIO);
         }
     }
@@ -763,11 +783,11 @@ enum {
     b2FixtureDef platformFixtureDef;
     platformFixtureDef.friction = 10.0f;
     
-    if (n == 1) {
+    if (n == 1) { //CHANGE THE ZEROS TO SO THAT SCREENOFFSETY WORKS CORRECTLY
     
         platformEdge1.Set(b2Vec2(x, y), b2Vec2(x + 88.0/PTM_RATIO , y + 25.0/PTM_RATIO));
-        platformEdge2.Set(b2Vec2(x, y), b2Vec2(x, 0));
-        platformEdge3.Set(b2Vec2(x + 88.0/PTM_RATIO, y + 25.0/PTM_RATIO), b2Vec2(x + 88.0/PTM_RATIO, 0));
+        platformEdge2.Set(b2Vec2(x, y), b2Vec2(x, -10));
+        platformEdge3.Set(b2Vec2(x + 88.0/PTM_RATIO, y + 25.0/PTM_RATIO), b2Vec2(x + 88.0/PTM_RATIO, -10));
     
         platformFixtureDef.shape = &platformEdge1;
         platformBody->CreateFixture(&platformFixtureDef);
@@ -798,8 +818,8 @@ enum {
     } else if (n == 2) {
         
         platformEdge1.Set(b2Vec2(x, y), b2Vec2(x + 119.0/PTM_RATIO , y - 25.0/PTM_RATIO));
-        platformEdge2.Set(b2Vec2(x, y), b2Vec2(x, 0));
-        platformEdge3.Set(b2Vec2(x + 119.0/PTM_RATIO, y - 25.0/PTM_RATIO), b2Vec2(x + 119.0/PTM_RATIO, 0));
+        platformEdge2.Set(b2Vec2(x, y), b2Vec2(x, -10));
+        platformEdge3.Set(b2Vec2(x + 119.0/PTM_RATIO, y - 25.0/PTM_RATIO), b2Vec2(x + 119.0/PTM_RATIO, -10));
         
         platformFixtureDef.shape = &platformEdge1;
         platformBody->CreateFixture(&platformFixtureDef);
@@ -828,8 +848,8 @@ enum {
     } else if (n == 3) {
         
         platformEdge1.Set(b2Vec2(x, y), b2Vec2(x + 88.0/PTM_RATIO , y - 25.0/PTM_RATIO));
-        platformEdge2.Set(b2Vec2(x, y), b2Vec2(x, 0));
-        platformEdge3.Set(b2Vec2(x + 88.0/PTM_RATIO, y - 25.0/PTM_RATIO), b2Vec2(x + 88.0/PTM_RATIO, 0));
+        platformEdge2.Set(b2Vec2(x, y), b2Vec2(x, -10));
+        platformEdge3.Set(b2Vec2(x + 88.0/PTM_RATIO, y - 25.0/PTM_RATIO), b2Vec2(x + 88.0/PTM_RATIO, -10));
         
         platformFixtureDef.shape = &platformEdge1;
         platformBody->CreateFixture(&platformFixtureDef);
@@ -858,8 +878,8 @@ enum {
     } else if (n == 4) {
         
         platformEdge1.Set(b2Vec2(x, y), b2Vec2(x + 120.0/PTM_RATIO , y));
-        platformEdge2.Set(b2Vec2(x, y), b2Vec2(x, 0));
-        platformEdge3.Set(b2Vec2(x + 120.0/PTM_RATIO, y), b2Vec2(x + 120.0/PTM_RATIO, 0));
+        platformEdge2.Set(b2Vec2(x, y), b2Vec2(x, -10));
+        platformEdge3.Set(b2Vec2(x + 120.0/PTM_RATIO, y), b2Vec2(x + 120.0/PTM_RATIO, -10));
         
         platformFixtureDef.shape = &platformEdge1;
         platformBody->CreateFixture(&platformFixtureDef);
@@ -887,8 +907,8 @@ enum {
     } else if (n == 5) {
         
         platformEdge1.Set(b2Vec2(x, y), b2Vec2(x + 119.0/PTM_RATIO , y + 25.0/PTM_RATIO));
-        platformEdge2.Set(b2Vec2(x, y), b2Vec2(x, 0));
-        platformEdge3.Set(b2Vec2(x + 119.0/PTM_RATIO, y + 25.0/PTM_RATIO), b2Vec2(x + 119.0/PTM_RATIO, 0));
+        platformEdge2.Set(b2Vec2(x, y), b2Vec2(x, -10));
+        platformEdge3.Set(b2Vec2(x + 119.0/PTM_RATIO, y + 25.0/PTM_RATIO), b2Vec2(x + 119.0/PTM_RATIO, -10));
         
         platformFixtureDef.shape = &platformEdge1;
         platformBody->CreateFixture(&platformFixtureDef);
@@ -916,8 +936,8 @@ enum {
     } else if (n == 6) {
         
         platformEdge1.Set(b2Vec2(x, y), b2Vec2(x + 110.0/PTM_RATIO , y + 50.0/PTM_RATIO));
-        platformEdge2.Set(b2Vec2(x, y), b2Vec2(x, 0));
-        platformEdge3.Set(b2Vec2(x + 110.0/PTM_RATIO, y + 50.0/PTM_RATIO), b2Vec2(x + 110.0/PTM_RATIO, 0));
+        platformEdge2.Set(b2Vec2(x, y), b2Vec2(x, -10));
+        platformEdge3.Set(b2Vec2(x + 110.0/PTM_RATIO, y + 50.0/PTM_RATIO), b2Vec2(x + 110.0/PTM_RATIO, -10));
         
         platformFixtureDef.shape = &platformEdge1;
         platformBody->CreateFixture(&platformFixtureDef);
@@ -945,8 +965,8 @@ enum {
     } else if (n == 7) {
         
         platformEdge1.Set(b2Vec2(x, y), b2Vec2(x + 200.0/PTM_RATIO , y + 25.0/PTM_RATIO));
-        platformEdge2.Set(b2Vec2(x, y), b2Vec2(x, 0));
-        platformEdge3.Set(b2Vec2(x + 200.0/PTM_RATIO, y + 25.0/PTM_RATIO), b2Vec2(x + 200.0/PTM_RATIO, 0));
+        platformEdge2.Set(b2Vec2(x, y), b2Vec2(x, -10));
+        platformEdge3.Set(b2Vec2(x + 200.0/PTM_RATIO, y + 25.0/PTM_RATIO), b2Vec2(x + 200.0/PTM_RATIO, -10));
         
         platformFixtureDef.shape = &platformEdge1;
         platformBody->CreateFixture(&platformFixtureDef);
@@ -974,8 +994,8 @@ enum {
     } else if (n == 8) {
         
         platformEdge1.Set(b2Vec2(x, y), b2Vec2(x + 90.0/PTM_RATIO , y));
-        platformEdge2.Set(b2Vec2(x, y), b2Vec2(x, 0));
-        platformEdge3.Set(b2Vec2(x + 90.0/PTM_RATIO, y), b2Vec2(x + 90.0/PTM_RATIO, 0));
+        platformEdge2.Set(b2Vec2(x, y), b2Vec2(x, -10));
+        platformEdge3.Set(b2Vec2(x + 90.0/PTM_RATIO, y), b2Vec2(x + 90.0/PTM_RATIO, -10));
         
         platformFixtureDef.shape = &platformEdge1;
         platformBody->CreateFixture(&platformFixtureDef);
@@ -1003,8 +1023,8 @@ enum {
     } else if (n == 9) {
         
         platformEdge1.Set(b2Vec2(x, y), b2Vec2(x + 76.0/PTM_RATIO , y + 50.0/PTM_RATIO));
-        platformEdge2.Set(b2Vec2(x, y), b2Vec2(x, 0));
-        platformEdge3.Set(b2Vec2(x + 76.0/PTM_RATIO, y + 50.0/PTM_RATIO), b2Vec2(x + 76.0/PTM_RATIO, 0));
+        platformEdge2.Set(b2Vec2(x, y), b2Vec2(x, -10));
+        platformEdge3.Set(b2Vec2(x + 76.0/PTM_RATIO, y + 50.0/PTM_RATIO), b2Vec2(x + 76.0/PTM_RATIO, -10));
         
         platformFixtureDef.shape = &platformEdge1;
         platformBody->CreateFixture(&platformFixtureDef);
@@ -1032,8 +1052,8 @@ enum {
     } else if (n == 10) {
         
         platformEdge1.Set(b2Vec2(x, y), b2Vec2(x + 200.0/PTM_RATIO , y - 25.0/PTM_RATIO));
-        platformEdge2.Set(b2Vec2(x, y), b2Vec2(x, 0));
-        platformEdge3.Set(b2Vec2(x + 200.0/PTM_RATIO, y - 25.0/PTM_RATIO), b2Vec2(x + 200.0/PTM_RATIO, 0));
+        platformEdge2.Set(b2Vec2(x, y), b2Vec2(x, -10));
+        platformEdge3.Set(b2Vec2(x + 200.0/PTM_RATIO, y - 25.0/PTM_RATIO), b2Vec2(x + 200.0/PTM_RATIO, -10));
         
         platformFixtureDef.shape = &platformEdge1;
         platformBody->CreateFixture(&platformFixtureDef);
@@ -1062,8 +1082,8 @@ enum {
 
         
         platformEdge1.Set(b2Vec2(x, y), b2Vec2(x + 200.0/PTM_RATIO , y));
-        platformEdge2.Set(b2Vec2(x, y), b2Vec2(x, 0));
-        platformEdge3.Set(b2Vec2(x + 200.0/PTM_RATIO, y), b2Vec2(x + 200.0/PTM_RATIO, 0));
+        platformEdge2.Set(b2Vec2(x, y), b2Vec2(x, -10));
+        platformEdge3.Set(b2Vec2(x + 200.0/PTM_RATIO, y), b2Vec2(x + 200.0/PTM_RATIO, -10));
         
         platformFixtureDef.shape = &platformEdge1;
         platformBody->CreateFixture(&platformFixtureDef);
@@ -1091,8 +1111,8 @@ enum {
     } else if (n == 12) {
         
         platformEdge1.Set(b2Vec2(x, y), b2Vec2(x + 200.0/PTM_RATIO , y + 50.0/PTM_RATIO));
-        platformEdge2.Set(b2Vec2(x, y), b2Vec2(x, 0));
-        platformEdge3.Set(b2Vec2(x + 200.0/PTM_RATIO, y + 50.0/PTM_RATIO), b2Vec2(x + 200.0/PTM_RATIO, 0));
+        platformEdge2.Set(b2Vec2(x, y), b2Vec2(x, -10));
+        platformEdge3.Set(b2Vec2(x + 200.0/PTM_RATIO, y + 50.0/PTM_RATIO), b2Vec2(x + 200.0/PTM_RATIO, -10));
         
         platformFixtureDef.shape = &platformEdge1;
         platformBody->CreateFixture(&platformFixtureDef);
