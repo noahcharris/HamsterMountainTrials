@@ -252,6 +252,7 @@ enum {
                 //TODO IPAD ORIGINAL
                 NSLog(@"ipad original");
                 scaling = 1.0f;
+                screenOffsetX = 150;
                 
             }
         } else {
@@ -277,7 +278,7 @@ enum {
                 NSLog(@"original iphone");
                 scaling = 0.5f;
                 screenOffsetY = -1;
-                screenOffsetX  = 30;
+                screenOffsetX  = 10;
                 
             }
         }
@@ -540,10 +541,10 @@ enum {
 
 
 - (void)ccTouchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
+    _world->SetGravity(gravity2);
     if (contactListener->getGround() == 1) {
         [self kick1];
         nextKick = true;
-        _world->SetGravity(gravity2);
     }
 }
 

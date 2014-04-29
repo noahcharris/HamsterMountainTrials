@@ -203,8 +203,8 @@
 		B9C13D3B190EF14100C47D89 /* NRhamsterEmptyBall.png in Resources */ = {isa = PBXBuildFile; fileRef = B9D7D9DA19060B0B007429B3 /* NRhamsterEmptyBall.png */; };
 		B9C13D3E190F04E000C47D89 /* NRplatform12.png in Resources */ = {isa = PBXBuildFile; fileRef = B9C13D3C190F04E000C47D89 /* NRplatform12.png */; };
 		B9C13D42190F0BE200C47D89 /* platform11.png in Resources */ = {isa = PBXBuildFile; fileRef = B9C13D40190F0BE200C47D89 /* platform11.png */; };
-		B9C13D43190F0BE200C47D89 /* platform10.png in Resources */ = {isa = PBXBuildFile; fileRef = B9C13D41190F0BE200C47D89 /* platform10.png */; };
 		B9C13D45190F0C5C00C47D89 /* platform12.png in Resources */ = {isa = PBXBuildFile; fileRef = B9C13D44190F0C5C00C47D89 /* platform12.png */; };
+		B9DBCADA19106CF400426C2B /* platform10.png in Resources */ = {isa = PBXBuildFile; fileRef = B9DBCAD919106CF400426C2B /* platform10.png */; };
 		B9DD5705190D983A009A99EA /* IAPHelper.h in Headers */ = {isa = PBXBuildFile; fileRef = B9DD5703190D983A009A99EA /* IAPHelper.h */; };
 		B9DD5706190D983A009A99EA /* IAPHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = B9DD5704190D983A009A99EA /* IAPHelper.m */; };
 		B9E7454319088274007C15D7 /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B9E7454219088274007C15D7 /* AdSupport.framework */; };
@@ -611,9 +611,9 @@
 		B9C13D38190EEA9C00C47D89 /* NRhamsterRun.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = NRhamsterRun.png; sourceTree = "<group>"; };
 		B9C13D3C190F04E000C47D89 /* NRplatform12.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = NRplatform12.png; sourceTree = "<group>"; };
 		B9C13D40190F0BE200C47D89 /* platform11.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = platform11.png; sourceTree = "<group>"; };
-		B9C13D41190F0BE200C47D89 /* platform10.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = platform10.png; sourceTree = "<group>"; };
 		B9C13D44190F0C5C00C47D89 /* platform12.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = platform12.png; sourceTree = "<group>"; };
 		B9D7D9DA19060B0B007429B3 /* NRhamsterEmptyBall.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = NRhamsterEmptyBall.png; sourceTree = "<group>"; };
+		B9DBCAD919106CF400426C2B /* platform10.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = platform10.png; sourceTree = "<group>"; };
 		B9DD5703190D983A009A99EA /* IAPHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IAPHelper.h; sourceTree = "<group>"; };
 		B9DD5704190D983A009A99EA /* IAPHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IAPHelper.m; sourceTree = "<group>"; };
 		B9E6D3EA1909D34B00DAF980 /* hamsterBallLines.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = hamsterBallLines.png; sourceTree = "<group>"; };
@@ -1272,9 +1272,9 @@
 		B9DB247A190E1970000A4681 /* Retina */ = {
 			isa = PBXGroup;
 			children = (
+				B9DBCAD919106CF400426C2B /* platform10.png */,
 				B9C13D44190F0C5C00C47D89 /* platform12.png */,
 				B9C13D40190F0BE200C47D89 /* platform11.png */,
-				B9C13D41190F0BE200C47D89 /* platform10.png */,
 				B9E6D3F51909D4D100DAF980 /* hamsterRun.plist */,
 				B9E6D3EA1909D34B00DAF980 /* hamsterBallLines.png */,
 				B9E6D3EE1909D36E00DAF980 /* hamsterShading.png */,
@@ -1398,7 +1398,6 @@
 				B9C13D3A190EEA9C00C47D89 /* NRhamsterRun.png in Resources */,
 				B9C13D2E190EE1B800C47D89 /* NRplatform9.png in Resources */,
 				B9C13D39190EEA9C00C47D89 /* NRhamsterRun.plist in Resources */,
-				B9C13D43190F0BE200C47D89 /* platform10.png in Resources */,
 				B9C13D2F190EE1B800C47D89 /* NRplatform10.png in Resources */,
 				B9C13D45190F0C5C00C47D89 /* platform12.png in Resources */,
 				B9C13D28190EE1B800C47D89 /* NRplatform3.png in Resources */,
@@ -1411,6 +1410,7 @@
 				B9C13D36190EEA9100C47D89 /* NRhamsterShading.png in Resources */,
 				B9C13D42190F0BE200C47D89 /* platform11.png in Resources */,
 				B9C13D2B190EE1B800C47D89 /* NRplatform6.png in Resources */,
+				B9DBCADA19106CF400426C2B /* platform10.png in Resources */,
 				B9C13D2A190EE1B800C47D89 /* NRplatform5.png in Resources */,
 				B9C13D29190EE1B800C47D89 /* NRplatform4.png in Resources */,
 				B9C13D30190EE1B800C47D89 /* NRplatform11.png in Resources */,
