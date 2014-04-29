@@ -202,7 +202,6 @@ enum {
         lastColumnCornerHeight = 1;
         lastPlatformNumber = 10;
         
-        
         //check for ipad
         if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
         {
@@ -229,6 +228,39 @@ enum {
             isRetina = true;
         } else {
             isRetina = false;
+        }
+        
+        
+        
+        
+        //EMPTY DEVICE IDENTIFICATION LOGIC
+        
+        if (!isiPhone) {
+            if (isRetina) {
+                
+                //TODO IPAD RETINA
+                
+            } else {
+                
+                //TODO IPAD ORIGINAL
+                
+            }
+        } else {
+            if (isRetina) {
+                if (isiPhone5) {
+                    
+                    //TODO IPHONE 5 RETINA (WIDER)
+                    
+                } else {
+                 
+                    //TODO IPHONE 4 RETINA
+                    
+                }
+            } else {
+             
+                //TODO ORIGINAL IPHONE
+                
+            }
         }
         
         
@@ -415,12 +447,9 @@ enum {
     [self addChild:highScoreLabel z:1];
     [self addChild:highScorePrefixLabel z:1];
     
-    NSLog(@"%d", [[NSUserDefaults standardUserDefaults] integerForKey:@"highScore"]);
-    
     if (score > [[NSUserDefaults standardUserDefaults] integerForKey:@"highScore"]
         || [[NSUserDefaults standardUserDefaults] integerForKey:@"highScore"] == 0) {
         
-        NSLog(@"hi");
         [[NSUserDefaults standardUserDefaults] setInteger:score forKey:@"highScore"];
     }
     
@@ -493,7 +522,6 @@ enum {
 
 - (void)ccTouchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
     if (contactListener->getGround() == 1) {
-        NSLog(@"on");
         [self kick1];
         nextKick = true;
         _world->SetGravity(gravity2);
@@ -503,7 +531,6 @@ enum {
 
 - (void)ccTouchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
 {
-    NSLog(@"off");
     nextKick = false;
     _world->SetGravity(gravity1);
 }
@@ -514,7 +541,6 @@ enum {
             b2Vec2 force = b2Vec2(kick1x, kick1y);
             //_body->ApplyLinearImpulse(force,_body->GetPosition());
             if (contactListener->getGround() == 1) {
-                NSLog(@"kick1");
                 _body->ApplyLinearImpulse(force,_body->GetPosition());
                 //_body->ApplyTorque(-10);
                 [self scheduleOnce:@selector(kick2) delay:0.3];
@@ -526,7 +552,6 @@ enum {
 
 -(void) kick2 {
     if (nextKick) {
-        NSLog(@"kick2");
         b2Vec2 force = b2Vec2(kick2x, kick2y);
         _body->ApplyLinearImpulse(force,_body->GetPosition());
     }
@@ -680,7 +705,6 @@ enum {
 
 
 -(void) drawNextColumn {
-    //NSLog(@"Draw next column");
     float x = (float)[self getRandomNumberBetween:3 to:7];
     float y = (float)[self getRandomNumberBetween:1 to:2];
     y += screenOffsetY;
