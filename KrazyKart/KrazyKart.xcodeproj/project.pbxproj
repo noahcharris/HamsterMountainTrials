@@ -167,6 +167,8 @@
 		B94A546A19011C29005CD71E /* HelloWorldLayer.mm in Sources */ = {isa = PBXBuildFile; fileRef = B94A546919011C29005CD71E /* HelloWorldLayer.mm */; };
 		B94A546D19011C29005CD71E /* IntroLayer.mm in Sources */ = {isa = PBXBuildFile; fileRef = B94A546C19011C29005CD71E /* IntroLayer.mm */; };
 		B94A547019011C29005CD71E /* GLES-Render.mm in Sources */ = {isa = PBXBuildFile; fileRef = B94A546F19011C29005CD71E /* GLES-Render.mm */; };
+		B94E3FCF190F5E2800994848 /* Reachability.h in Headers */ = {isa = PBXBuildFile; fileRef = B94E3FCD190F5E2800994848 /* Reachability.h */; };
+		B94E3FD0190F5E2800994848 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = B94E3FCE190F5E2800994848 /* Reachability.m */; };
 		B958584B19087C5900D70930 /* BannerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B958584A19087C5900D70930 /* BannerViewController.m */; };
 		B958584D19087C7F00D70930 /* iAd.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B958584C19087C7F00D70930 /* iAd.framework */; };
 		B9673B301908A3F20029EB7A /* GADAdMobExtras.h in Headers */ = {isa = PBXBuildFile; fileRef = B9673B251908A3F20029EB7A /* GADAdMobExtras.h */; };
@@ -570,6 +572,8 @@
 		B94A546E19011C29005CD71E /* GLES-Render.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "GLES-Render.h"; sourceTree = "<group>"; };
 		B94A546F19011C29005CD71E /* GLES-Render.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = "GLES-Render.mm"; sourceTree = "<group>"; };
 		B94A547419011C29005CD71E /* blocks.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = blocks.png; path = Resources/blocks.png; sourceTree = "<group>"; };
+		B94E3FCD190F5E2800994848 /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
+		B94E3FCE190F5E2800994848 /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
 		B958584919087C5900D70930 /* BannerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BannerViewController.h; sourceTree = "<group>"; };
 		B958584A19087C5900D70930 /* BannerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BannerViewController.m; sourceTree = "<group>"; };
 		B958584C19087C7F00D70930 /* iAd.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = iAd.framework; path = System/Library/Frameworks/iAd.framework; sourceTree = SDKROOT; };
@@ -700,6 +704,8 @@
 		B94A525A19011C25005CD71E /* KrazyKart */ = {
 			isa = PBXGroup;
 			children = (
+				B94E3FCD190F5E2800994848 /* Reachability.h */,
+				B94E3FCE190F5E2800994848 /* Reachability.m */,
 				B9DD5703190D983A009A99EA /* IAPHelper.h */,
 				B9DD5704190D983A009A99EA /* IAPHelper.m */,
 				B91CF9A51904D4C800E92440 /* MyContactListener.cpp */,
@@ -1325,6 +1331,7 @@
 				B9DD5705190D983A009A99EA /* IAPHelper.h in Headers */,
 				B9673B331908A3F20029EB7A /* GADBannerView.h in Headers */,
 				B9673B341908A3F20029EB7A /* GADBannerViewDelegate.h in Headers */,
+				B94E3FCF190F5E2800994848 /* Reachability.h in Headers */,
 				B9673B351908A3F20029EB7A /* GADInterstitial.h in Headers */,
 				B9673B361908A3F20029EB7A /* GADInterstitialDelegate.h in Headers */,
 				B9673B371908A3F20029EB7A /* GADRequest.h in Headers */,
@@ -1498,6 +1505,7 @@
 				B94A537519011C27005CD71E /* ccUtils.c in Sources */,
 				B94A537919011C27005CD71E /* CCVertex.m in Sources */,
 				B94A537C19011C27005CD71E /* CGPointExtension.m in Sources */,
+				B94E3FD0190F5E2800994848 /* Reachability.m in Sources */,
 				B94A537F19011C27005CD71E /* NSThread+performBlock.m in Sources */,
 				B94A538319011C27005CD71E /* TGAlib.m in Sources */,
 				B94A538619011C27005CD71E /* TransformUtils.m in Sources */,

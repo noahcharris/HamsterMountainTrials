@@ -362,7 +362,7 @@ enum {
         highScorePrefixLabel.position = ccp(pos.x * PTM_RATIO + highScorePrefixX * PTM_RATIO, highScorePrefixY * PTM_RATIO);
         _restartButton.position = ccp(pos.x * PTM_RATIO + restartX * PTM_RATIO, self.position.y * PTM_RATIO + restartY * PTM_RATIO);
         
-        if (!adsRemoved) {
+        if (_products[0] != nil) {
             _removeAdsButton.position = ccp(pos.x * PTM_RATIO + removeAdsX * PTM_RATIO, self.position.y * PTM_RATIO + removeAdsY * PTM_RATIO);
         }
     }
@@ -406,7 +406,7 @@ enum {
     
     _removeAdsButton= [CCMenuItemImage
                      itemFromNormalImage:@"blocks.png" selectedImage:@"Icon-Small.png"
-                     target:self selector:@selector(removeAds)];
+                     target:self selector:@selector(removeAdsTapped)];
     _removeAdsButton.position = ccp(-300, 280);
     
     starMenu = [CCMenu menuWithItems:_restartButton, _removeAdsButton, nil];
@@ -468,8 +468,31 @@ enum {
 
 
 
--(void)removeAds {
-    //TODO
+-(void)removeAdsTapped {
+    
+    SKProduct *product = _products[0];
+    NSLog(@"Buying: %@...", product.productIdentifier);
+    
+    if ([self connected] == NO)
+    {
+        UIAlertView *alertView = [[[UIAlertView alloc] initWithTitle:@"Error"
+                                                             message:@"Can not connect to iTunes Store. Please check your internet connection and try again."
+                                                            delegate:self
+                                                   cancelButtonTitle:@"OK"
+                                                   otherButtonTitles:nil] autorelease];
+        [alertView show];
+        return;
+    }
+    [_helper buyProduct:_removeAds];
+        
+    
+}
+
+- (BOOL)connected
+{
+    Reachability *reachability = [Reachability reachabilityWithHostName:@"google.com"];
+    NetworkStatus networkStatus = [reachability currentReachabilityStatus];
+    return !(networkStatus == NotReachable);
 }
 
 
