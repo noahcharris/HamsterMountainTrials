@@ -234,7 +234,6 @@ enum {
         lastPlatformNumber = 11;
         
         
-        
         //check for ipad
         if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
         {
@@ -264,10 +263,7 @@ enum {
         }
         
         
-        
-        
-        //EMPTY DEVICE IDENTIFICATION LOGIC
-        
+        //DEVICE IDENTIFICATION LOGIC
         if (!isiPhone) {
             if (isRetina) {
                 
@@ -306,14 +302,9 @@ enum {
             }
         }
         
-        
-        
-        
-        
         //for testing
         //[[NSUserDefaults standardUserDefaults] setInteger:0 forKey:@"highScore"];
         
-
         self.isTouchEnabled = YES;
 		CGSize winSize = [CCDirector sharedDirector].winSize;
         
@@ -355,17 +346,11 @@ enum {
 //		flags += b2Draw::e_shapeBit;
 //		m_debugDraw->SetFlags(flags);
         
-        
-        
-        
-        //zoom out (DON't ZOOM out on IPAD, maybe even zoom in)
-        //0.6
         id zoomOut = [CCScaleTo actionWithDuration:0.0f scale:scaling];
         [self runAction:zoomOut];
         
         //[self createNewHamster];
         //[self drawStartingArea];
-        
         
         [self gameOver];
         [self schedule:@selector(tick:)];
@@ -558,9 +543,6 @@ enum {
 
 
 
-
-
-
 -(void)gameOver {
     gameOver = true;
     
@@ -714,8 +696,6 @@ enum {
 }
 
 
-
-
 -(void)nothing {
     //for highscore prefix label
 }
@@ -757,8 +737,6 @@ enum {
     [self drawStartingArea];
     
 }
-
-
 
 
 -(void)removeAdsTapped {
