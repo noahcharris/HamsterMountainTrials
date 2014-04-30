@@ -345,9 +345,11 @@ enum {
         id zoomOut = [CCScaleTo actionWithDuration:0.0f scale:scaling];
         [self runAction:zoomOut];
         
-        
         [self createNewHamster];
-        [self drawStartingArea];
+        [self gameOver];
+        
+        
+        //[self drawStartingArea];
         [self schedule:@selector(tick:)];
         
         //will need this if number of platforms gets out of hand
@@ -489,7 +491,7 @@ enum {
         highScorePrefixLabel.position = ccp(-300, 280);
 
         
-        starMenu = [CCMenu menuWithItems:_restartButton, /*_removeAdsButton,*/ highScorePrefixLabel, nil];
+        starMenu = [CCMenu menuWithItems:_restartButton, /*removeAdsButton,*/ highScorePrefixLabel, nil];
         starMenu.position = CGPointZero;
         [self addChild:starMenu];
         
@@ -521,7 +523,7 @@ enum {
         highScorePrefixLabel.position = ccp(-300, 280);
         
         
-        starMenu = [CCMenu menuWithItems:_restartButton, /*_removeAdsButton,*/ highScorePrefixLabel, nil];
+        starMenu = [CCMenu menuWithItems:_restartButton,/*removeAdsButton,*/ highScorePrefixLabel, nil];
         starMenu.position = CGPointZero;
         [self addChild:starMenu];
         
