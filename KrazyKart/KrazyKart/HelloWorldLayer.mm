@@ -202,6 +202,23 @@ enum {
         highScoreX = 2;
         highScoreY = 8;
         
+        
+        scoreColumn1X = 5;
+        scoreColumn2X = 5;
+        scoreColumn3X = 5;
+        highScoreColumn1X = 5;
+        highScoreColumn2X = 5;
+        highScoreColumns3X = 5;
+        
+        scoreColumn1Y = 5;
+        scoreColumn2Y = 5;
+        scoreColumn3Y = 5;
+        highScoreColumn1Y = 5;
+        highScoreColumn2Y = 5;
+        highScoreColumns3Y = 5;
+
+        
+        
         restartX = 7;
         restartY = 8;
         
@@ -436,15 +453,70 @@ enum {
     }
         
     
-    //score stuff
+    //############# SCOREKEEPING #############
     scoreLabel.position = ccp(pos.x * PTM_RATIO + scoreLabelX * PTM_RATIO, scoreLabelY * PTM_RATIO);
+    
+    scoreColumn1.position = ccp(pos.x * PTM_RATIO + scoreColumn1X * PTM_RATIO, scoreColumn1Y * PTM_RATIO);
+    scoreColumn2.position = ccp(pos.x * PTM_RATIO + scoreColumn2X * PTM_RATIO, scoreColumn2Y * PTM_RATIO);
+    scoreColumn3.position = ccp(pos.x * PTM_RATIO + scoreColumn3X * PTM_RATIO, scoreColumn3Y * PTM_RATIO);
+    
     if (!score_queue->empty() && score_queue->front() < pos.x) {
         score_queue->pop();
         if (!gameOver) {
-            score ++;
+            if (score < 999) {
+                score ++;
+            }
+            
+            //TODO NUMBERS LOGIC
             [scoreLabel setString:[NSString stringWithFormat:@"%d", score]];
+            
+            
+            [self removeChild:scoreColumn1 cleanup:YES];
+            [self removeChild:scoreColumn2 cleanup:YES];
+            [self removeChild:scoreColumn3 cleanup:YES];
+            [scoreColumn1 dealloc];
+            [scoreColumn2 dealloc];
+            [scoreColumn3 dealloc];
+            
+            
+            if (isRetina ) {
+                
+                if (score > 9) {
+                    if (score > 99) {
+                        //3 columns
+                        int column1 = score / 100;
+                        int column2 = (score % 100) / 10;
+                        int column3 = score % 10;
+                        scoreColumn1 = [CCSprite spriteWithFile:[NSString stringWithFormat:@"number%d.png",column1]];
+                        scoreColumn2 = [CCSprite spriteWithFile:[NSString stringWithFormat:@"number%d.png",column2]];
+                        scoreColumn3 = [CCSprite spriteWithFile:[NSString stringWithFormat:@"number%d.png",column3]];
+                    } else {
+                        //2 columns
+                        int column1 = (score % 100) / 10;
+                        int column2 = score % 10;
+                        scoreColumn1 = [CCSprite spriteWithFile:[NSString stringWithFormat:@"number%d.png",column1]];
+                        scoreColumn2 = [CCSprite spriteWithFile:[NSString stringWithFormat:@"number%d.png",column2]];
+                    }
+                } else {
+                    //1 column
+                    int column1 = score % 10;
+                    scoreColumn1 = [CCSprite spriteWithFile:[NSString stringWithFormat:@"number%d.png",column1]];
+                }
+                
+             //non-retina
+            } else {
+                
+            }
+            
+            
+            
+            
+            
+            
         }
     }
+    
+    
     
     
     if (pos.y < -10) {
@@ -559,6 +631,7 @@ enum {
         [[NSUserDefaults standardUserDefaults] setInteger:score forKey:@"highScore"];
     }
     
+    // TODO NUMMBERS LOGIC
     [highScoreLabel setString:[NSString stringWithFormat:@"%d",[[NSUserDefaults standardUserDefaults] integerForKey:@"highScore"]]];
     
 }
@@ -576,6 +649,8 @@ enum {
     [self removeChild:highScorePrefixLabel cleanup:YES];
     [self removeChild:instructions cleanup:YES];
     score = 0;
+    
+    //TODO CHANGE TO ZERO
     [scoreLabel setString:[NSString stringWithFormat:@"%d", 0]];
     
     
@@ -635,7 +710,6 @@ enum {
 - (void)kick1 {
         if (!nextKick) {
             b2Vec2 force = b2Vec2(kick1x, kick1y);
-            //_body->ApplyLinearImpulse(force,_body->GetPosition());
             if (contactListener->getGround() == 1) {
                 _body->ApplyLinearImpulse(force,_body->GetPosition());
                 //_body->ApplyTorque(-10);

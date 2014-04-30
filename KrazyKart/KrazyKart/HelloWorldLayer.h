@@ -89,6 +89,21 @@
     float instructionsX;
     float instructionsY;
     
+    float scoreColumn1X;
+    float scoreColumn2X;
+    float scoreColumn3X;
+    float highScoreColumn1X;
+    float highScoreColumn2X;
+    float highScoreColumns3X;
+    
+    float scoreColumn1Y;
+    float scoreColumn2Y;
+    float scoreColumn3Y;
+    float highScoreColumn1Y;
+    float highScoreColumn2Y;
+    float highScoreColumns3Y;
+
+    
     BOOL starting;
     
     //dimensions
@@ -115,6 +130,13 @@
     CCLabelTTF *highScoreLabel;
     
     CCSprite *instructions;
+    
+    CCSprite *scoreColumn1;
+    CCSprite *scoreColumn2;
+    CCSprite *scoreColumn3;
+    CCSprite *highScoreColumn1;
+    CCSprite *highScoreColumn2;
+    CCSprite *highScoreColumn3;
     
     
     CCMenuItem *highScorePrefixLabel;
