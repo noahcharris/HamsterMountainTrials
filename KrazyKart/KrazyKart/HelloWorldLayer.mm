@@ -355,19 +355,21 @@ enum {
     _world->Step(dt, 10, 10);
     
     //update sprites
-    _ball.position = ccp(_body->GetPosition().x * PTM_RATIO,
-                            _body->GetPosition().y * PTM_RATIO);
-    _ball.rotation = -1 * CC_RADIANS_TO_DEGREES(_body->GetAngle());
-    
-    _lines.position = ccp(_body->GetPosition().x * PTM_RATIO,
-                         _body->GetPosition().y * PTM_RATIO);
-    _lines.rotation = -1 * CC_RADIANS_TO_DEGREES(_body->GetAngle());
-    
-    _shading.position = ccp(_body->GetPosition().x * PTM_RATIO,
-                            _body->GetPosition().y * PTM_RATIO);
-    //hamster
-    _hamster.position = ccp(_body->GetPosition().x * PTM_RATIO,
-                           _body->GetPosition().y * PTM_RATIO);
+    if (!gameOver) {
+        _ball.position = ccp(_body->GetPosition().x * PTM_RATIO,
+                             _body->GetPosition().y * PTM_RATIO);
+        _ball.rotation = -1 * CC_RADIANS_TO_DEGREES(_body->GetAngle());
+        
+        _lines.position = ccp(_body->GetPosition().x * PTM_RATIO,
+                              _body->GetPosition().y * PTM_RATIO);
+        _lines.rotation = -1 * CC_RADIANS_TO_DEGREES(_body->GetAngle());
+        
+        _shading.position = ccp(_body->GetPosition().x * PTM_RATIO,
+                                _body->GetPosition().y * PTM_RATIO);
+        //hamster
+        _hamster.position = ccp(_body->GetPosition().x * PTM_RATIO,
+                                _body->GetPosition().y * PTM_RATIO);
+    }
     
     
     
@@ -410,8 +412,10 @@ enum {
     }
     
     //DRAWING COLUMNS
-    if ((pos.x + 50) > lastColumnCornerDistance) {
-        [self drawNextColumn];
+    if (!gameOver) {
+        if ((pos.x + 50) > lastColumnCornerDistance) {
+            [self drawNextColumn];
+        }
     }
     
     
@@ -441,6 +445,23 @@ enum {
 
 -(void)gameOver {
     gameOver = true;
+    
+    
+    //remove the restart
+    [self checkAndRemoveColumns];
+    
+    //hamster body is destroyed by checkAndRemoveColumns,
+    //but we still have to clean up sprites
+    [self removeChild:_ball cleanup:YES];
+    [self removeChild:_lines cleanup:YES];
+    [self removeChild:_shading cleanup:YES];
+    [self removeChild:_hamster cleanup:YES];
+    [self removeChild:spriteSheet cleanup:YES];
+
+    
+    
+    //show all the buttons and whatnot
+    
     _restartButton= [CCMenuItemImage
                      itemFromNormalImage:@"Icon.png" selectedImage:@"Icon-Small.png"
                      target:self selector:@selector(restartTapped)];
@@ -475,17 +496,6 @@ enum {
 }
 
 - (void)restartTapped {
-    
-    //remove the restart
-    [self checkAndRemoveColumns];
-    
-    //hamster body is destroyed by checkAndRemoveColumns,
-    //but we still have to clean up sprites
-    [self removeChild:_ball cleanup:YES];
-    [self removeChild:_lines cleanup:YES];
-    [self removeChild:_shading cleanup:YES];
-    [self removeChild:_hamster cleanup:YES];
-    [self removeChild:spriteSheet cleanup:YES];
     
     [self createNewHamster];
     gameOver = false;
