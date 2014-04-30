@@ -207,15 +207,15 @@ enum {
         scoreColumn2X = 6;
         scoreColumn3X = 7;
         highScoreColumn1X = 5;
-        highScoreColumn2X = 5;
-        highScoreColumns3X = 5;
+        highScoreColumn2X = 6;
+        highScoreColumn3X = 7;
         
         scoreColumn1Y = 3;
         scoreColumn2Y = 3;
         scoreColumn3Y = 3;
-        highScoreColumn1Y = 5;
-        highScoreColumn2Y = 5;
-        highScoreColumns3Y = 5;
+        highScoreColumn1Y = 2;
+        highScoreColumn2Y = 2;
+        highScoreColumn3Y = 2;
 
         
         
@@ -382,7 +382,7 @@ enum {
     
     _world->Step(dt, 10, 10);
     
-    //update sprites
+    //update hamster sprites
     if (!gameOver) {
         _ball.position = ccp(_body->GetPosition().x * PTM_RATIO,
                              _body->GetPosition().y * PTM_RATIO);
@@ -400,14 +400,7 @@ enum {
     }
     
     
-    
-
-    //good setup: top speed = -12, torque = -26.5
-    // -9.5 -35
-    
-    
-    // -13.2
-    // -40
+    //acceleration
     if (!gameOver) {
         if (_body->GetAngularVelocity() > topSpeed) {
             
@@ -415,7 +408,8 @@ enum {
         }
     }
 
-    //moving screen
+    
+    //scroll screen
     b2Vec2 pos;
     if (!gameOver) {
         pos = _body->GetPosition();                  //110
@@ -432,11 +426,9 @@ enum {
     _background.position = ccp(pos.x * PTM_RATIO + winSize.width/(2) - screenOffsetX, self.position.y * PTM_RATIO + winSize.height/(2));
     
     
-    
-    //game over stuff
+    //starting screen (gameover) stuff
     if (gameOver) {
         instructions.position = ccp(pos.x * PTM_RATIO + instructionsX * PTM_RATIO, instructionsY * PTM_RATIO);
-        highScoreLabel.position = ccp(pos.x * PTM_RATIO + highScoreX * PTM_RATIO, highScoreY * PTM_RATIO);
         highScorePrefixLabel.position = ccp(pos.x * PTM_RATIO + highScorePrefixX * PTM_RATIO, highScorePrefixY * PTM_RATIO);
         _restartButton.position = ccp(pos.x * PTM_RATIO + restartX * PTM_RATIO, self.position.y * PTM_RATIO + restartY * PTM_RATIO);
         
@@ -445,18 +437,23 @@ enum {
         }
     }
     
-    //DRAWING COLUMNS
+    //drawing more columns
     if (!gameOver) {
         if ((pos.x + 50) > lastColumnCornerDistance) {
             [self drawNextColumn];
         }
     }
-        
+    
+    //game over detection
+    if (pos.y < -10) {
+        if (!gameOver) {
+            [self gameOver];
+        }
+    }
+    
     //########################################
     //############# SCOREKEEPING #############
     //########################################
-    
-    scoreLabel.position = ccp(pos.x * PTM_RATIO + scoreLabelX * PTM_RATIO, scoreLabelY * PTM_RATIO);
     
     if (scoreColumn1) {
         scoreColumn1.position = ccp(pos.x * PTM_RATIO + scoreColumn1X * PTM_RATIO, scoreColumn1Y * PTM_RATIO);
@@ -468,6 +465,15 @@ enum {
         scoreColumn3.position = ccp(pos.x * PTM_RATIO + scoreColumn3X * PTM_RATIO, scoreColumn3Y * PTM_RATIO);
     }
     
+    if (highScoreColumn1) {
+        highScoreColumn1.position = ccp(pos.x * PTM_RATIO + highScoreColumn1X * PTM_RATIO, highScoreColumn1Y * PTM_RATIO);
+    }
+    if (highScoreColumn2) {
+        highScoreColumn2.position = ccp(pos.x * PTM_RATIO + highScoreColumn2X * PTM_RATIO, highScoreColumn2Y * PTM_RATIO);
+    }
+    if (highScoreColumn3) {
+        highScoreColumn3.position = ccp(pos.x * PTM_RATIO + highScoreColumn3X * PTM_RATIO, highScoreColumn3Y * PTM_RATIO);
+    }
     
     if (!score_queue->empty() && score_queue->front() < pos.x) {
         score_queue->pop();
@@ -476,14 +482,9 @@ enum {
                 score ++;
             }
             
-            //TODO NUMBERS LOGIC
-            [scoreLabel setString:[NSString stringWithFormat:@"%d", score]];
-            
-            
             [self removeChild:scoreColumn1 cleanup:YES];
             [self removeChild:scoreColumn2 cleanup:YES];
             [self removeChild:scoreColumn3 cleanup:YES];
-            
             
             if (isRetina ) {
                 
@@ -519,22 +520,37 @@ enum {
              //non-retina
             } else {
                 
+                if (score > 9) {
+                    if (score > 99) {
+                        //3 columns
+                        int column1 = score / 100;
+                        int column2 = (score % 100) / 10;
+                        int column3 = score % 10;
+                        scoreColumn1 = [CCSprite spriteWithFile:[NSString stringWithFormat:@"NRnumber%d.png",column1]];
+                        scoreColumn2 = [CCSprite spriteWithFile:[NSString stringWithFormat:@"NRnumber%d.png",column2]];
+                        scoreColumn3 = [CCSprite spriteWithFile:[NSString stringWithFormat:@"NRnumber%d.png",column3]];
+                        [self addChild:scoreColumn1 z:11];
+                        [self addChild:scoreColumn2 z:11];
+                        [self addChild:scoreColumn3 z:11];
+                        
+                    } else {
+                        //2 columns
+                        int column1 = (score % 100) / 10;
+                        int column2 = score % 10;
+                        scoreColumn1 = [CCSprite spriteWithFile:[NSString stringWithFormat:@"NRnumber%d.png",column1]];
+                        scoreColumn2 = [CCSprite spriteWithFile:[NSString stringWithFormat:@"NRnumber%d.png",column2]];
+                        [self addChild:scoreColumn1 z:11];
+                        [self addChild:scoreColumn2 z:11];
+                    }
+                } else {
+                    //1 column
+                    int column1 = score % 10;
+                    scoreColumn1 = [CCSprite spriteWithFile:[NSString stringWithFormat:@"NRnumber%d.png",column1]];
+                    [self addChild:scoreColumn1 z:11];
+                }
+                
             }
             
-            
-            
-            
-            
-            
-        }
-    }
-    
-    
-    
-    
-    if (pos.y < -10) {
-        if (!gameOver) {
-            [self gameOver];
         }
     }
    
@@ -549,16 +565,15 @@ enum {
     gameOver = true;
     
     if (!starting) {
-        //remove the restart
-        //empty the queue
+        //empty the score queue
         while (!score_queue->empty()) {
             score_queue->pop();
         }
 
+        //remove platforms
         [self checkAndRemoveColumns];
         
-        //hamster body is destroyed by checkAndRemoveColumns,
-        //but we still have to clean up sprites
+        //remove hamster
         [self removeChild:_ball cleanup:YES];
         [self removeChild:_lines cleanup:YES];
         [self removeChild:_shading cleanup:YES];
@@ -570,7 +585,6 @@ enum {
     
     
     //show all the buttons and whatnot
-    
     if (isRetina) {
         _restartButton= [CCMenuItemImage
                          itemFromNormalImage:@"startButton.png" selectedImage:@"startButton.png"
@@ -596,13 +610,7 @@ enum {
         instructions = [CCSprite spriteWithFile:@"instructions.png"];
         instructions.position = ccp(-300, 280);
         [self addChild:instructions z:12];
-        
-        highScoreLabel = [CCLabelTTF labelWithString:@"0" fontName:@"AmericanTypewriter-Bold" fontSize:24];
-        highScoreLabel.position = ccp(-300, 160); //off the screen
-        highScoreLabel.color = ccRED;
-        
-        
-        [self addChild:highScoreLabel z:1];
+
     } else {
         _restartButton= [CCMenuItemImage
                          itemFromNormalImage:@"NRstartButton.png" selectedImage:@"NRstartButton.png"
@@ -629,54 +637,115 @@ enum {
         instructions.position = ccp(-300, 1000);
         [self addChild:instructions z:12];
         
-        highScoreLabel = [CCLabelTTF labelWithString:@"0" fontName:@"Marker Felt" fontSize:24];
-        highScoreLabel.position = ccp(-300, 160); //off the screen
-        
-        
-        [self addChild:highScoreLabel z:1];
-
     }
     
     
+    //highscore keeping
     if (score > [[NSUserDefaults standardUserDefaults] integerForKey:@"highScore"]
         || [[NSUserDefaults standardUserDefaults] integerForKey:@"highScore"] == 0) {
         
         [[NSUserDefaults standardUserDefaults] setInteger:score forKey:@"highScore"];
     }
     
-    // TODO NUMMBERS LOGIC
-    [highScoreLabel setString:[NSString stringWithFormat:@"%d",[[NSUserDefaults standardUserDefaults] integerForKey:@"highScore"]]];
+    int highScore = [[NSUserDefaults standardUserDefaults] integerForKey:@"highScore"];
     
+    //display highscore
+    if (isRetina ) {
+        if (highScore > 9) {
+            if (highScore > 99) {
+                //3 columns
+                int column1 = highScore / 100;
+                int column2 = (highScore % 100) / 10;
+                int column3 = highScore % 10;
+                highScoreColumn1 = [CCSprite spriteWithFile:[NSString stringWithFormat:@"number%d.png",column1]];
+                highScoreColumn2 = [CCSprite spriteWithFile:[NSString stringWithFormat:@"number%d.png",column2]];
+                highScoreColumn3 = [CCSprite spriteWithFile:[NSString stringWithFormat:@"number%d.png",column3]];
+                [self addChild:highScoreColumn1 z:11];
+                [self addChild:highScoreColumn2 z:11];
+                [self addChild:highScoreColumn3 z:11];
+                
+            } else {
+                //2 columns
+                int column1 = (highScore % 100) / 10;
+                int column2 = highScore % 10;
+                highScoreColumn1 = [CCSprite spriteWithFile:[NSString stringWithFormat:@"number%d.png",column1]];
+                highScoreColumn2 = [CCSprite spriteWithFile:[NSString stringWithFormat:@"number%d.png",column2]];
+                [self addChild:highScoreColumn1 z:11];
+                [self addChild:highScoreColumn2 z:11];
+            }
+        } else {
+            //1 column
+            int column1 = highScore % 10;
+            highScoreColumn1 = [CCSprite spriteWithFile:[NSString stringWithFormat:@"number%d.png",column1]];
+            [self addChild:highScoreColumn1 z:11];
+        }
+    //non-retina
+    } else {
+        
+        if (highScore > 9) {
+            if (highScore > 99) {
+                //3 columns
+                int column1 = highScore / 100;
+                int column2 = (highScore % 100) / 10;
+                int column3 = highScore % 10;
+                highScoreColumn1 = [CCSprite spriteWithFile:[NSString stringWithFormat:@"NRnumber%d.png",column1]];
+                highScoreColumn2 = [CCSprite spriteWithFile:[NSString stringWithFormat:@"NRnumber%d.png",column2]];
+                highScoreColumn3 = [CCSprite spriteWithFile:[NSString stringWithFormat:@"NRnumber%d.png",column3]];
+                [self addChild:highScoreColumn1 z:11];
+                [self addChild:highScoreColumn2 z:11];
+                [self addChild:highScoreColumn3 z:11];
+                
+            } else {
+                //2 columns
+                int column1 = (highScore % 100) / 10;
+                int column2 = highScore % 10;
+                highScoreColumn1 = [CCSprite spriteWithFile:[NSString stringWithFormat:@"NRnumber%d.png",column1]];
+                highScoreColumn2 = [CCSprite spriteWithFile:[NSString stringWithFormat:@"NRnumber%d.png",column2]];
+                [self addChild:highScoreColumn1 z:11];
+                [self addChild:highScoreColumn2 z:11];
+            }
+        } else {
+            //1 column
+            int column1 = highScore % 10;
+            highScoreColumn1 = [CCSprite spriteWithFile:[NSString stringWithFormat:@"NRnumber%d.png",column1]];
+            [self addChild:highScoreColumn1 z:11];
+        }
+    }
 }
 
+
+
+
 -(void)nothing {
-    
+    //for highscore prefix label
 }
 
 - (void)restartTapped {
+    gameOver = false;
     
     [self createNewHamster];
-    gameOver = false;
+    
     [self removeChild:starMenu cleanup:YES];
     [self removeChild:highScoreLabel cleanup:YES];
     [self removeChild:highScorePrefixLabel cleanup:YES];
     [self removeChild:instructions cleanup:YES];
+    
     score = 0;
     
-    //TODO CHANGE TO ZERO
-    [scoreLabel setString:[NSString stringWithFormat:@"%d", 0]];
-    if (scoreColumn1) {
-        [self removeChild:scoreColumn1 cleanup:YES];
-    }
-    if (scoreColumn2) {
-        [self removeChild:scoreColumn2 cleanup:YES];
-    }
-    if (scoreColumn3) {
-        [self removeChild:scoreColumn3 cleanup:YES];
-    }
+    [self removeChild:scoreColumn1 cleanup:YES];
+    [self removeChild:scoreColumn2 cleanup:YES];
+    [self removeChild:scoreColumn3 cleanup:YES];
+    
+    [self removeChild:highScoreColumn1 cleanup:YES];
+    [self removeChild:highScoreColumn2 cleanup:YES];
+    [self removeChild:highScoreColumn3 cleanup:YES];
     
     scoreColumn2 = nil;
     scoreColumn3 = nil;
+    
+    highScoreColumn1 = nil;
+    highScoreColumn2 = nil;
+    highScoreColumn3 = nil;
     
     if (isRetina) {
         scoreColumn1 = [CCSprite spriteWithFile:[NSString stringWithFormat:@"number0.png"]];
@@ -684,7 +753,6 @@ enum {
         scoreColumn1 = [CCSprite spriteWithFile:[NSString stringWithFormat:@"NRnumber0.png"]];
     }
     [self addChild:scoreColumn1 z:11];
-    
     
     [self drawStartingArea];
     
@@ -898,11 +966,7 @@ enum {
 //while screenOffsetX works in tick
 //screenOffsetY adjusts the column heights
 -(void) drawStartingArea {
-    
-    
     [self drawColumn:11 atDistance:4 atHeight:1+screenOffsetY];
-    
-    
 }
 
 
@@ -918,7 +982,7 @@ enum {
             y += screenOffsetY;
         }
     }
-                                        //1 to 12
+
     int n = [self getRandomNumberBetween:1 to:12];
     
     float temp = [self drawColumn:n atDistance: (lastColumnCornerDistance + x) atHeight:y];
@@ -927,10 +991,8 @@ enum {
     lastColumnCornerHeight = y;
     lastPlatformNumber = n;
     
-
     score_queue->push(lastColumnCornerDistance - temp);
 
-    
 }
 
 -(void) checkAndRemoveColumns {
@@ -952,7 +1014,8 @@ enum {
     return (int)from + arc4random() % (to-from+1);
 }
 
-//returns the width, so that lastCorner can be reset
+
+//returns the width, so that lastColumnCornerDistance can be reset
 - (float)drawColumn:(int)n atDistance:(int)x atHeight:(int)y {
     
     // Create body and definition
@@ -981,8 +1044,6 @@ enum {
         platformFixtureDef.shape = &platformEdge3;
         platformBody->CreateFixture(&platformFixtureDef);
 
-    
-    
         if (isRetina) {
             CCSprite *platform = [CCSprite spriteWithFile:@"platform1.png"];
             platform.position = ccp(x*PTM_RATIO + 44, y*PTM_RATIO-130);
@@ -994,7 +1055,6 @@ enum {
             [self addChild:platform z:10];
             platformBody->SetUserData(platform);
         }
-        
         
         return 88.0/PTM_RATIO;
         
@@ -1012,7 +1072,6 @@ enum {
         
         platformFixtureDef.shape = &platformEdge3;
         platformBody->CreateFixture(&platformFixtureDef);
-        
         
         if (isRetina) {
             CCSprite *platform = [CCSprite spriteWithFile:@"platform2.png"];
@@ -1042,8 +1101,6 @@ enum {
         
         platformFixtureDef.shape = &platformEdge3;
         platformBody->CreateFixture(&platformFixtureDef);
-        
-        
         
         if (isRetina) {
             CCSprite *platform = [CCSprite spriteWithFile:@"platform3.png"];

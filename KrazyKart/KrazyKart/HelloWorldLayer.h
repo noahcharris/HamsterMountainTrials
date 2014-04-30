@@ -94,14 +94,14 @@
     float scoreColumn3X;
     float highScoreColumn1X;
     float highScoreColumn2X;
-    float highScoreColumns3X;
+    float highScoreColumn3X;
     
     float scoreColumn1Y;
     float scoreColumn2Y;
     float scoreColumn3Y;
     float highScoreColumn1Y;
     float highScoreColumn2Y;
-    float highScoreColumns3Y;
+    float highScoreColumn3Y;
 
     
     BOOL starting;
