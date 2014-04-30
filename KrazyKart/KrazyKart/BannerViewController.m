@@ -73,9 +73,9 @@
                               autorelease];
         if (IS_IPAD)
         {
-            self.gAdBannerView.adUnitID = @"a1511abac90ecda";
+            self.gAdBannerView.adUnitID = @"a15360445b673ba";
         } else {
-            self.gAdBannerView.adUnitID = @"a1511abb4509b21";
+            self.gAdBannerView.adUnitID = @"a1536043a623f4c";
         }
         self.gAdBannerView.rootViewController = self;
         self.gAdBannerView.delegate = self;
