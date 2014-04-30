@@ -151,7 +151,6 @@ enum {
 	if( (self=[super init])) {
         
         starting = true;
-        first = true;
         
         //[self handlePurchases];
 
@@ -439,7 +438,7 @@ enum {
     
     //score stuff
     scoreLabel.position = ccp(pos.x * PTM_RATIO + scoreLabelX * PTM_RATIO, scoreLabelY * PTM_RATIO);
-    if (score_queue->front() < pos.x) {
+    if (!score_queue->empty() && score_queue->front() < pos.x) {
         score_queue->pop();
         if (!gameOver) {
             score ++;
@@ -470,8 +469,6 @@ enum {
         while (!score_queue->empty()) {
             score_queue->pop();
         }
-        
-        first = true;
 
         [self checkAndRemoveColumns];
         
@@ -824,11 +821,8 @@ enum {
     lastColumnCornerHeight = y;
     lastPlatformNumber = n;
     
-    //store the beginning of the platform, for use by scorekeeper
-    if (!first) {
-        score_queue->push(lastColumnCornerDistance - temp);
-    }
-    first = false;
+
+    score_queue->push(lastColumnCornerDistance - temp);
 
     
 }

@@ -90,8 +90,6 @@
     float instructionsY;
     
     BOOL starting;
-    BOOL first;
-    
     
     //dimensions
     BOOL isiPhone;
