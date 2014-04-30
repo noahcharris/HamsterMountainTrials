@@ -305,10 +305,18 @@ enum {
         scoreLabel.position = ccp(240, 160); //Middle of the screen...
         [self addChild:scoreLabel z:1];
         
+        
         //draw background
-        _background = [CCSprite spriteWithFile:@"background.png"];
-        _background.position = ccp(winSize.width/(2*0.6), winSize.height/(2*0.6));
-        [self addChild:_background];
+        if (isRetina) {
+            _background = [CCSprite spriteWithFile:@"background.png"];
+            _background.position = ccp(winSize.width/(2), winSize.height/(2));
+            [self addChild:_background];
+        } else {
+            _background = [CCSprite spriteWithFile:@"NRbackground.png"];
+            _background.position = ccp(winSize.width/(2), winSize.height/(2));
+            [self addChild:_background];
+        }
+        
         
         // Create a world
         // -10.5
@@ -396,7 +404,7 @@ enum {
     
     //scroll background
     CGSize winSize = [CCDirector sharedDirector].winSize;
-    _background.position = ccp(pos.x * PTM_RATIO + winSize.width/(2), self.position.y * PTM_RATIO + winSize.height/(2));
+    _background.position = ccp(pos.x * PTM_RATIO + winSize.width/(2) - screenOffsetX, self.position.y * PTM_RATIO + winSize.height/(2));
     
     
     

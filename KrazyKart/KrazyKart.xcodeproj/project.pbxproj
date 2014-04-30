@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		B91CF9A71904D4C800E92440 /* MyContactListener.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B91CF9A51904D4C800E92440 /* MyContactListener.cpp */; };
+		B91FA89419109A16003E28A2 /* background.png in Resources */ = {isa = PBXBuildFile; fileRef = B91FA89319109A16003E28A2 /* background.png */; };
+		B91FA89619109A20003E28A2 /* NRbackground.png in Resources */ = {isa = PBXBuildFile; fileRef = B91FA89519109A20003E28A2 /* NRbackground.png */; };
 		B94A524919011C25005CD71E /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B94A524819011C25005CD71E /* QuartzCore.framework */; };
 		B94A524B19011C25005CD71E /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B94A524A19011C25005CD71E /* OpenGLES.framework */; };
 		B94A524D19011C25005CD71E /* OpenAL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B94A524C19011C25005CD71E /* OpenAL.framework */; };
@@ -212,6 +214,8 @@
 /* Begin PBXFileReference section */
 		B91CF9A51904D4C800E92440 /* MyContactListener.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = MyContactListener.cpp; path = ../MyContactListener.cpp; sourceTree = "<group>"; };
 		B91CF9A61904D4C800E92440 /* MyContactListener.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MyContactListener.h; path = ../MyContactListener.h; sourceTree = "<group>"; };
+		B91FA89319109A16003E28A2 /* background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = background.png; sourceTree = "<group>"; };
+		B91FA89519109A20003E28A2 /* NRbackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = NRbackground.png; sourceTree = "<group>"; };
 		B94A524519011C25005CD71E /* KrazyKart.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = KrazyKart.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B94A524819011C25005CD71E /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		B94A524A19011C25005CD71E /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
@@ -591,7 +595,6 @@
 		B9673B3F1908A44C0029EB7A /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		B9673B411908A69F0029EB7A /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
 		B9673B431908A6A60029EB7A /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
-		B9A7CA78190DCDE0008DB3B4 /* background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = background.png; sourceTree = "<group>"; };
 		B9C13D1B190EE1B800C47D89 /* NRplatform1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = NRplatform1.png; sourceTree = "<group>"; };
 		B9C13D1C190EE1B800C47D89 /* NRplatform2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = NRplatform2.png; sourceTree = "<group>"; };
 		B9C13D1D190EE1B800C47D89 /* NRplatform3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = NRplatform3.png; sourceTree = "<group>"; };
@@ -1268,6 +1271,7 @@
 		B9DB247A190E1970000A4681 /* Retina */ = {
 			isa = PBXGroup;
 			children = (
+				B91FA89319109A16003E28A2 /* background.png */,
 				B9DBCAD919106CF400426C2B /* platform10.png */,
 				B9C13D44190F0C5C00C47D89 /* platform12.png */,
 				B9C13D40190F0BE200C47D89 /* platform11.png */,
@@ -1275,7 +1279,6 @@
 				B9E6D3EA1909D34B00DAF980 /* hamsterBallLines.png */,
 				B9E6D3EE1909D36E00DAF980 /* hamsterShading.png */,
 				B9E6D3EC1909D35200DAF980 /* hamsterEmptyBall.png */,
-				B9A7CA78190DCDE0008DB3B4 /* background.png */,
 				B9E6D3F81909D5D000DAF980 /* platform1.png */,
 				B9E6D3F91909D5D000DAF980 /* platform2.png */,
 				B9E6D3FA1909D5D000DAF980 /* platform3.png */,
@@ -1293,6 +1296,7 @@
 		B9DB247B190E19B9000A4681 /* NonRetina */ = {
 			isa = PBXGroup;
 			children = (
+				B91FA89519109A20003E28A2 /* NRbackground.png */,
 				B9C13D3C190F04E000C47D89 /* NRplatform12.png */,
 				B9C13D37190EEA9C00C47D89 /* NRhamsterRun.plist */,
 				B9C13D38190EEA9C00C47D89 /* NRhamsterRun.png */,
@@ -1407,11 +1411,13 @@
 				B9C13D3B190EF14100C47D89 /* NRhamsterEmptyBall.png in Resources */,
 				B9C13D2C190EE1B800C47D89 /* NRplatform7.png in Resources */,
 				B9C13D27190EE1B800C47D89 /* NRplatform2.png in Resources */,
+				B91FA89619109A20003E28A2 /* NRbackground.png in Resources */,
 				B9C13D3E190F04E000C47D89 /* NRplatform12.png in Resources */,
 				B9C13D36190EEA9100C47D89 /* NRhamsterShading.png in Resources */,
 				B9C13D42190F0BE200C47D89 /* platform11.png in Resources */,
 				B9C13D2B190EE1B800C47D89 /* NRplatform6.png in Resources */,
 				B9DBCADA19106CF400426C2B /* platform10.png in Resources */,
+				B91FA89419109A16003E28A2 /* background.png in Resources */,
 				B9C13D2A190EE1B800C47D89 /* NRplatform5.png in Resources */,
 				B9C13D29190EE1B800C47D89 /* NRplatform4.png in Resources */,
 				B9C13D30190EE1B800C47D89 /* NRplatform11.png in Resources */,
