@@ -10,6 +10,12 @@
 		B91CF9A71904D4C800E92440 /* MyContactListener.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B91CF9A51904D4C800E92440 /* MyContactListener.cpp */; };
 		B91FA89419109A16003E28A2 /* background.png in Resources */ = {isa = PBXBuildFile; fileRef = B91FA89319109A16003E28A2 /* background.png */; };
 		B91FA89619109A20003E28A2 /* NRbackground.png in Resources */ = {isa = PBXBuildFile; fileRef = B91FA89519109A20003E28A2 /* NRbackground.png */; };
+		B91FA8981910A081003E28A2 /* startButton.png in Resources */ = {isa = PBXBuildFile; fileRef = B91FA8971910A081003E28A2 /* startButton.png */; };
+		B91FA89A1910A08B003E28A2 /* NRstartButton.png in Resources */ = {isa = PBXBuildFile; fileRef = B91FA8991910A08B003E28A2 /* NRstartButton.png */; };
+		B91FA89C1910A1C8003E28A2 /* bestButton.png in Resources */ = {isa = PBXBuildFile; fileRef = B91FA89B1910A1C8003E28A2 /* bestButton.png */; };
+		B91FA89E1910A1FA003E28A2 /* NRbestButton.png in Resources */ = {isa = PBXBuildFile; fileRef = B91FA89D1910A1FA003E28A2 /* NRbestButton.png */; };
+		B91FA8A01910A297003E28A2 /* NRremoveAdsButton.png in Resources */ = {isa = PBXBuildFile; fileRef = B91FA89F1910A297003E28A2 /* NRremoveAdsButton.png */; };
+		B91FA8A21910A29F003E28A2 /* removeAdsButton.png in Resources */ = {isa = PBXBuildFile; fileRef = B91FA8A11910A29F003E28A2 /* removeAdsButton.png */; };
 		B94A524919011C25005CD71E /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B94A524819011C25005CD71E /* QuartzCore.framework */; };
 		B94A524B19011C25005CD71E /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B94A524A19011C25005CD71E /* OpenGLES.framework */; };
 		B94A524D19011C25005CD71E /* OpenAL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B94A524C19011C25005CD71E /* OpenAL.framework */; };
@@ -216,6 +222,12 @@
 		B91CF9A61904D4C800E92440 /* MyContactListener.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MyContactListener.h; path = ../MyContactListener.h; sourceTree = "<group>"; };
 		B91FA89319109A16003E28A2 /* background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = background.png; sourceTree = "<group>"; };
 		B91FA89519109A20003E28A2 /* NRbackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = NRbackground.png; sourceTree = "<group>"; };
+		B91FA8971910A081003E28A2 /* startButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = startButton.png; sourceTree = "<group>"; };
+		B91FA8991910A08B003E28A2 /* NRstartButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = NRstartButton.png; sourceTree = "<group>"; };
+		B91FA89B1910A1C8003E28A2 /* bestButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bestButton.png; sourceTree = "<group>"; };
+		B91FA89D1910A1FA003E28A2 /* NRbestButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = NRbestButton.png; sourceTree = "<group>"; };
+		B91FA89F1910A297003E28A2 /* NRremoveAdsButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = NRremoveAdsButton.png; sourceTree = "<group>"; };
+		B91FA8A11910A29F003E28A2 /* removeAdsButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = removeAdsButton.png; sourceTree = "<group>"; };
 		B94A524519011C25005CD71E /* KrazyKart.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = KrazyKart.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B94A524819011C25005CD71E /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		B94A524A19011C25005CD71E /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
@@ -1271,6 +1283,9 @@
 		B9DB247A190E1970000A4681 /* Retina */ = {
 			isa = PBXGroup;
 			children = (
+				B91FA8A11910A29F003E28A2 /* removeAdsButton.png */,
+				B91FA89B1910A1C8003E28A2 /* bestButton.png */,
+				B91FA8971910A081003E28A2 /* startButton.png */,
 				B91FA89319109A16003E28A2 /* background.png */,
 				B9DBCAD919106CF400426C2B /* platform10.png */,
 				B9C13D44190F0C5C00C47D89 /* platform12.png */,
@@ -1296,6 +1311,9 @@
 		B9DB247B190E19B9000A4681 /* NonRetina */ = {
 			isa = PBXGroup;
 			children = (
+				B91FA89F1910A297003E28A2 /* NRremoveAdsButton.png */,
+				B91FA89D1910A1FA003E28A2 /* NRbestButton.png */,
+				B91FA8991910A08B003E28A2 /* NRstartButton.png */,
 				B91FA89519109A20003E28A2 /* NRbackground.png */,
 				B9C13D3C190F04E000C47D89 /* NRplatform12.png */,
 				B9C13D37190EEA9C00C47D89 /* NRhamsterRun.plist */,
@@ -1402,26 +1420,32 @@
 			files = (
 				B9C13D3A190EEA9C00C47D89 /* NRhamsterRun.png in Resources */,
 				B9C13D2E190EE1B800C47D89 /* NRplatform9.png in Resources */,
+				B91FA89C1910A1C8003E28A2 /* bestButton.png in Resources */,
 				B9C13D39190EEA9C00C47D89 /* NRhamsterRun.plist in Resources */,
 				B9C13D2F190EE1B800C47D89 /* NRplatform10.png in Resources */,
 				B9C13D45190F0C5C00C47D89 /* platform12.png in Resources */,
 				B9C13D28190EE1B800C47D89 /* NRplatform3.png in Resources */,
+				B91FA89A1910A08B003E28A2 /* NRstartButton.png in Resources */,
 				B9C13D32190EE4E400C47D89 /* NRhamsterBallLines.png in Resources */,
 				B9C13D26190EE1B800C47D89 /* NRplatform1.png in Resources */,
 				B9C13D3B190EF14100C47D89 /* NRhamsterEmptyBall.png in Resources */,
 				B9C13D2C190EE1B800C47D89 /* NRplatform7.png in Resources */,
 				B9C13D27190EE1B800C47D89 /* NRplatform2.png in Resources */,
+				B91FA8A01910A297003E28A2 /* NRremoveAdsButton.png in Resources */,
 				B91FA89619109A20003E28A2 /* NRbackground.png in Resources */,
 				B9C13D3E190F04E000C47D89 /* NRplatform12.png in Resources */,
 				B9C13D36190EEA9100C47D89 /* NRhamsterShading.png in Resources */,
 				B9C13D42190F0BE200C47D89 /* platform11.png in Resources */,
 				B9C13D2B190EE1B800C47D89 /* NRplatform6.png in Resources */,
 				B9DBCADA19106CF400426C2B /* platform10.png in Resources */,
+				B91FA8A21910A29F003E28A2 /* removeAdsButton.png in Resources */,
 				B91FA89419109A16003E28A2 /* background.png in Resources */,
 				B9C13D2A190EE1B800C47D89 /* NRplatform5.png in Resources */,
+				B91FA89E1910A1FA003E28A2 /* NRbestButton.png in Resources */,
 				B9C13D29190EE1B800C47D89 /* NRplatform4.png in Resources */,
 				B9C13D30190EE1B800C47D89 /* NRplatform11.png in Resources */,
 				B9C13D2D190EE1B800C47D89 /* NRplatform8.png in Resources */,
+				B91FA8981910A081003E28A2 /* startButton.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

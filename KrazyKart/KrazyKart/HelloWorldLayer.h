@@ -109,9 +109,9 @@
     int score;
     CCLabelTTF *scoreLabel;
     CCLabelTTF *highScoreLabel;
-    CCLabelTTF *highScorePrefixLabel;
     
     
+    CCMenuItem *highScorePrefixLabel;
     CCMenuItem *_restartButton;
     CCMenuItem *_removeAdsButton;
     CCMenu *starMenu;

@@ -254,7 +254,7 @@ enum {
                 NSLog(@"ipad retina");
                 scaling = 1.0f;
                 screenOffsetX = 305;
-                screenOffsetY = 5;
+                screenOffsetY = 4;
                 
             } else {
                 
@@ -272,7 +272,7 @@ enum {
                 NSLog(@"3.5-inch iphone retina");
                 scaling = 0.5f;
                 screenOffsetX  = -30;
-                screenOffsetY = 0;
+                screenOffsetY = -1;
                 
             } else {
              
@@ -470,28 +470,63 @@ enum {
     
     //show all the buttons and whatnot
     
-    _restartButton= [CCMenuItemImage
-                     itemFromNormalImage:@"Icon.png" selectedImage:@"Icon-Small.png"
-                     target:self selector:@selector(restartTapped)];
-    _restartButton.position = ccp(-300, 280);
+    if (isRetina) {
+        _restartButton= [CCMenuItemImage
+                         itemFromNormalImage:@"startButton.png" selectedImage:@"startButton.png"
+                         target:self selector:@selector(restartTapped)];
+        _restartButton.position = ccp(-300, 280);
+        
+        _removeAdsButton= [CCMenuItemImage
+                           itemFromNormalImage:@"removeAdsButton.png" selectedImage:@"removeAdsButton.png"
+                           target:self selector:@selector(removeAdsTapped)];
+        _removeAdsButton.position = ccp(-300, 280);
+        
+        //not actually a button
+        highScorePrefixLabel = [CCMenuItemImage
+         itemFromNormalImage:@"bestButton.png" selectedImage:@"bestButton.png"
+         target:self selector:@selector(nothing)];
+        highScorePrefixLabel.position = ccp(-300, 280);
+
+        
+        starMenu = [CCMenu menuWithItems:_restartButton, _removeAdsButton, highScorePrefixLabel, nil];
+        starMenu.position = CGPointZero;
+        [self addChild:starMenu];
+        
+        highScoreLabel = [CCLabelTTF labelWithString:@"0" fontName:@"Marker Felt" fontSize:24];
+        highScoreLabel.position = ccp(-300, 160); //off the screen
+        
+        
+        [self addChild:highScoreLabel z:1];
+    } else {
+        _restartButton= [CCMenuItemImage
+                         itemFromNormalImage:@"NRstartButton.png" selectedImage:@"NRstartButton.png"
+                         target:self selector:@selector(restartTapped)];
+        _restartButton.position = ccp(-300, 280);
+        
+        _removeAdsButton= [CCMenuItemImage
+                           itemFromNormalImage:@"NRremoveAdsButton.png" selectedImage:@"NRremoveAdsButton.png"
+                           target:self selector:@selector(removeAdsTapped)];
+        _removeAdsButton.position = ccp(-300, 280);
+        
+        //not actually a button
+        highScorePrefixLabel = [CCMenuItemImage
+                                itemFromNormalImage:@"NRbestButton.png" selectedImage:@"NRbestButton.png"
+                                target:self selector:@selector(nothing)];
+        highScorePrefixLabel.position = ccp(-300, 280);
+        
+        
+        starMenu = [CCMenu menuWithItems:_restartButton, _removeAdsButton, highScorePrefixLabel, nil];
+        starMenu.position = CGPointZero;
+        [self addChild:starMenu];
+        
+        highScoreLabel = [CCLabelTTF labelWithString:@"0" fontName:@"Marker Felt" fontSize:24];
+        highScoreLabel.position = ccp(-300, 160); //off the screen
+        
+        
+        [self addChild:highScoreLabel z:1];
+
+    }
     
-    _removeAdsButton= [CCMenuItemImage
-                     itemFromNormalImage:@"blocks.png" selectedImage:@"Icon-Small.png"
-                     target:self selector:@selector(removeAdsTapped)];
-    _removeAdsButton.position = ccp(-300, 280);
-    
-    starMenu = [CCMenu menuWithItems:_restartButton, _removeAdsButton, nil];
-    starMenu.position = CGPointZero;
-    [self addChild:starMenu];
-    
-    highScoreLabel = [CCLabelTTF labelWithString:@"0" fontName:@"Marker Felt" fontSize:24];
-    highScoreLabel.position = ccp(-300, 160); //off the screen
-    
-    highScorePrefixLabel = [CCLabelTTF labelWithString:@"High Score:" fontName:@"Marker Felt" fontSize:24];
-    highScoreLabel.position = ccp(-300, 160); //off the screen
-    
-    [self addChild:highScoreLabel z:1];
-    [self addChild:highScorePrefixLabel z:1];
     
     if (score > [[NSUserDefaults standardUserDefaults] integerForKey:@"highScore"]
         || [[NSUserDefaults standardUserDefaults] integerForKey:@"highScore"] == 0) {
@@ -500,6 +535,10 @@ enum {
     }
     
     [highScoreLabel setString:[NSString stringWithFormat:@"%d",[[NSUserDefaults standardUserDefaults] integerForKey:@"highScore"]]];
+    
+}
+
+-(void)nothing {
     
 }
 
