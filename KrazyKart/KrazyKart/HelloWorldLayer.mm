@@ -159,6 +159,8 @@ enum {
 {
 	if( (self=[super init])) {
         
+        //[self handlePurchases];
+        
         kick1x = 0;
         kick2x = 1;
         kick1y = 23;
@@ -177,10 +179,10 @@ enum {
         gravity1 = b2Vec2(0.0f, -10.5f);
         gravity2 = b2Vec2(0.0f, -8.0f);
         
-        //this affects screen view
-        screenOffsetX = 120;
-        //this affects column draw height
-        screenOffsetY = 5;
+        //this affects screen view (in pixels)
+        screenOffsetX = 0;
+        //this affects column draw height (in 'meters')
+        screenOffsetY = 0;
         
         hamsterStartX = 6.25;
         hamsterStartY = 26;
@@ -202,8 +204,8 @@ enum {
 
         
         lastColumnCornerDistance = 10;
-        lastColumnCornerHeight = 1;
-        lastPlatformNumber = 10;
+        lastColumnCornerHeight = 1 + screenOffsetY;
+        lastPlatformNumber = 11;
         
         
         
@@ -246,39 +248,34 @@ enum {
                 //TODO IPAD RETINA
                 NSLog(@"ipad retina");
                 scaling = 1.0f;
+                screenOffsetX = 305;
+                screenOffsetY = 5;
                 
             } else {
                 
                 //TODO IPAD ORIGINAL
                 NSLog(@"ipad original");
                 scaling = 1.0f;
-                screenOffsetX = 150;
+                screenOffsetX = 200;
+                screenOffsetY = 4;
                 
             }
         } else {
             if (isRetina) {
-                if (isiPhone5) {
-                    
-                    //TODO IPHONE 5 RETINA (WIDER) ( I DON'T THINK THIS IS WORKING )
-//                    NSLog(@"4-inch iphone retina");
-//                    scaling = 0.5f;
-                    
-                } else {
                  
-                    //TODO IPHONE 4 RETINA !!!!
-                    NSLog(@"3.5-inch iphone retina");
-                    scaling = 0.5f;
-                    screenOffsetY = 0;
-                    screenOffsetX  = 30;
-                    
-                }
+                //TODO IPHONE RETINA
+                NSLog(@"3.5-inch iphone retina");
+                scaling = 0.5f;
+                screenOffsetX  = -30;
+                screenOffsetY = 0;
+                
             } else {
              
                 //TODO ORIGINAL IPHONE
                 NSLog(@"original iphone");
                 scaling = 0.5f;
-                screenOffsetY = -1;
                 screenOffsetX  = 10;
+                screenOffsetY = -1;
                 
             }
         }
@@ -289,11 +286,6 @@ enum {
         
         //for testing
         //[[NSUserDefaults standardUserDefaults] setInteger:0 forKey:@"highScore"];
-        
-        
-
-        [self handlePurchases];
-        
         
 
         self.isTouchEnabled = YES;
@@ -322,12 +314,12 @@ enum {
         
         _world->SetContactListener(contactListener);
         
-        //DEBUG DRAWING
-        m_debugDraw = new GLESDebugDraw(PTM_RATIO);
-		_world->SetDebugDraw(m_debugDraw);
-		uint32 flags = 0;
-		flags += b2Draw::e_shapeBit;
-		m_debugDraw->SetFlags(flags);
+//        //DEBUG DRAWING
+//        m_debugDraw = new GLESDebugDraw(PTM_RATIO);
+//		_world->SetDebugDraw(m_debugDraw);
+//		uint32 flags = 0;
+//		flags += b2Draw::e_shapeBit;
+//		m_debugDraw->SetFlags(flags);
         
         
         
@@ -429,7 +421,7 @@ enum {
     }
     
     
-    if (pos.y < -2.7) {
+    if (pos.y < -10) {
         if (!gameOver) {
             [self gameOver];
         }
@@ -726,13 +718,13 @@ enum {
 
 -(void) drawNextColumn {
     float x = (float)[self getRandomNumberBetween:3 to:7];
-    float y = (float)[self getRandomNumberBetween:1 to:2];
+    float y = (float)[self getRandomNumberBetween:1 to:3];
     y += screenOffsetY;
     
     //this prevents down slopes from leading into higher columns (too hard)
     if (lastPlatformNumber == 2 || lastPlatformNumber == 3 || lastPlatformNumber == 10) {
-        while (y < lastColumnCornerHeight) {
-            y = (float)[self getRandomNumberBetween:1 to:4];
+        while (y > lastColumnCornerHeight) {
+            y = (float)[self getRandomNumberBetween:1 to:3];
             y += screenOffsetY;
         }
     }
@@ -1142,23 +1134,23 @@ enum {
 
 }
 
--(void) draw
-{
-	//
-	// IMPORTANT:
-	// This is only for debug purposes
-	// It is recommend to disable it
-	//
-	[super draw];
-	
-	ccGLEnableVertexAttribs( kCCVertexAttribFlag_Position );
-	
-	kmGLPushMatrix();
-	
-	_world->DrawDebugData();
-	
-	kmGLPopMatrix();
-}
+//-(void) draw
+//{
+//	//
+//	// IMPORTANT:
+//	// This is only for debug purposes
+//	// It is recommend to disable it
+//	//
+//	[super draw];
+//	
+//	ccGLEnableVertexAttribs( kCCVertexAttribFlag_Position );
+//	
+//	kmGLPushMatrix();
+//	
+//	_world->DrawDebugData();
+//	
+//	kmGLPopMatrix();
+//}
 
 
 -(void) dealloc
