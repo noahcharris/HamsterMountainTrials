@@ -152,18 +152,20 @@ enum {
         
         
         
-        //AD CONTROLLER INITIALIZATION
+        //[self handlePurchases];
+
         
+        //AD CONTROLLER INITIALIZATION
         if (!adsRemoved) {
             _banner = [[BannerViewController alloc] init];
             [_banner initiAdBanner];
             [_banner initgAdBanner];
             [[CCDirector sharedDirector].openGLView addSubview:_banner.view];
         }
-
         
-        //[self handlePurchases];
         
+        
+        //variables
         kick1x = 0;
         kick2x = 1;
         kick1y = 23;
