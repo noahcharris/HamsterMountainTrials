@@ -151,6 +151,7 @@ enum {
 	if( (self=[super init])) {
         
         starting = true;
+        first = true;
         
         //[self handlePurchases];
 
@@ -168,13 +169,14 @@ enum {
         //variables
         kick1x = 0;
         kick2x = 0;
-        kick1y = 18;
+        kick1y = 18.3;
         kick2y = 6;
 
         //0.5 for iphone
         scaling = 1.0;
         //negative is forward for these two values
-        torque = -45;
+        //45
+        torque = -55;
         topSpeed = -12.5;
         
         //0.14
@@ -439,7 +441,7 @@ enum {
     scoreLabel.position = ccp(pos.x * PTM_RATIO + scoreLabelX * PTM_RATIO, scoreLabelY * PTM_RATIO);
     if (score_queue->front() < pos.x) {
         score_queue->pop();
-        if (pos.x > 11 && !gameOver) {
+        if (!gameOver) {
             score ++;
             [scoreLabel setString:[NSString stringWithFormat:@"%d", score]];
         }
@@ -468,6 +470,8 @@ enum {
         while (!score_queue->empty()) {
             score_queue->pop();
         }
+        
+        first = true;
 
         [self checkAndRemoveColumns];
         
@@ -811,6 +815,7 @@ enum {
             y += screenOffsetY;
         }
     }
+                                        //1 to 12
     int n = [self getRandomNumberBetween:1 to:12];
     
     float temp = [self drawColumn:n atDistance: (lastColumnCornerDistance + x) atHeight:y];
@@ -820,7 +825,10 @@ enum {
     lastPlatformNumber = n;
     
     //store the beginning of the platform, for use by scorekeeper
-    score_queue->push(lastColumnCornerDistance - temp);
+    if (!first) {
+        score_queue->push(lastColumnCornerDistance - temp);
+    }
+    first = false;
 
     
 }
