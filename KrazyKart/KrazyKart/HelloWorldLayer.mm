@@ -98,15 +98,6 @@ enum {
         adsRemoved = true;
     }
     
-    //AD CONTROLLER INITIALIZATION
-    
-    if (!adsRemoved) {
-        _banner = [[BannerViewController alloc] init];
-        [_banner initiAdBanner];
-        [_banner initgAdBanner];
-        [[CCDirector sharedDirector].openGLView addSubview:_banner.view];
-    }
-    
     
 }
 
@@ -158,6 +149,18 @@ enum {
 -(id) init
 {
 	if( (self=[super init])) {
+        
+        
+        
+        //AD CONTROLLER INITIALIZATION
+        
+        if (!adsRemoved) {
+            _banner = [[BannerViewController alloc] init];
+            [_banner initiAdBanner];
+            [_banner initgAdBanner];
+            [[CCDirector sharedDirector].openGLView addSubview:_banner.view];
+        }
+
         
         //[self handlePurchases];
         

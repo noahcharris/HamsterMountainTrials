@@ -16,7 +16,6 @@
 		B94A525319011C25005CD71E /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B94A525219011C25005CD71E /* UIKit.framework */; };
 		B94A525519011C25005CD71E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B94A525419011C25005CD71E /* Foundation.framework */; };
 		B94A525719011C25005CD71E /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B94A525619011C25005CD71E /* CoreGraphics.framework */; };
-		B94A525919011C25005CD71E /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B94A525819011C25005CD71E /* GameKit.framework */; };
 		B94A527919011C25005CD71E /* CCAction.m in Sources */ = {isa = PBXBuildFile; fileRef = B94A527819011C25005CD71E /* CCAction.m */; };
 		B94A527C19011C25005CD71E /* CCActionCamera.m in Sources */ = {isa = PBXBuildFile; fileRef = B94A527B19011C25005CD71E /* CCActionCamera.m */; };
 		B94A527F19011C25005CD71E /* CCActionCatmullRom.m in Sources */ = {isa = PBXBuildFile; fileRef = B94A527E19011C25005CD71E /* CCActionCatmullRom.m */; };
@@ -222,7 +221,6 @@
 		B94A525219011C25005CD71E /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		B94A525419011C25005CD71E /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		B94A525619011C25005CD71E /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
-		B94A525819011C25005CD71E /* GameKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameKit.framework; path = System/Library/Frameworks/GameKit.framework; sourceTree = SDKROOT; };
 		B94A525C19011C25005CD71E /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Default.png; path = Resources/Default.png; sourceTree = "<group>"; };
 		B94A525E19011C25005CD71E /* Default-Landscape~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default-Landscape~ipad.png"; path = "Resources/Default-Landscape~ipad.png"; sourceTree = "<group>"; };
 		B94A526019011C25005CD71E /* fps_images.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = fps_images.png; path = Resources/fps_images.png; sourceTree = "<group>"; };
@@ -652,7 +650,6 @@
 				B94A525319011C25005CD71E /* UIKit.framework in Frameworks */,
 				B94A525519011C25005CD71E /* Foundation.framework in Frameworks */,
 				B94A525719011C25005CD71E /* CoreGraphics.framework in Frameworks */,
-				B94A525919011C25005CD71E /* GameKit.framework in Frameworks */,
 				B9673B391908A3F20029EB7A /* libGoogleAdMobAds.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -696,7 +693,6 @@
 				B94A525219011C25005CD71E /* UIKit.framework */,
 				B94A525419011C25005CD71E /* Foundation.framework */,
 				B94A525619011C25005CD71E /* CoreGraphics.framework */,
-				B94A525819011C25005CD71E /* GameKit.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -1370,6 +1366,11 @@
 				TargetAttributes = {
 					B94A524419011C25005CD71E = {
 						DevelopmentTeam = 889W52Q6D4;
+						SystemCapabilities = {
+							com.apple.GameCenter = {
+								enabled = 0;
+							};
+						};
 					};
 				};
 			};
