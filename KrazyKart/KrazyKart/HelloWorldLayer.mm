@@ -206,6 +206,9 @@ enum {
         
         removeAdsX = 5;
         removeAdsY = 8;
+        
+        instructionsX = 4;
+        instructionsY = 5;
 
         
         lastColumnCornerDistance = 10;
@@ -343,9 +346,6 @@ enum {
         [self runAction:zoomOut];
         
         
-        
-        
-        //START THE GAME
         [self createNewHamster];
         [self drawStartingArea];
         [self schedule:@selector(tick:)];
@@ -410,6 +410,7 @@ enum {
     
     //game over stuff
     if (gameOver) {
+        instructions.position = ccp(pos.x * PTM_RATIO + instructionsX * PTM_RATIO, instructionsY * PTM_RATIO);
         highScoreLabel.position = ccp(pos.x * PTM_RATIO + highScoreX * PTM_RATIO, highScoreY * PTM_RATIO);
         highScorePrefixLabel.position = ccp(pos.x * PTM_RATIO + highScorePrefixX * PTM_RATIO, highScorePrefixY * PTM_RATIO);
         _restartButton.position = ccp(pos.x * PTM_RATIO + restartX * PTM_RATIO, self.position.y * PTM_RATIO + restartY * PTM_RATIO);
@@ -476,10 +477,10 @@ enum {
                          target:self selector:@selector(restartTapped)];
         _restartButton.position = ccp(-300, 280);
         
-        _removeAdsButton= [CCMenuItemImage
-                           itemFromNormalImage:@"removeAdsButton.png" selectedImage:@"removeAdsButton.png"
-                           target:self selector:@selector(removeAdsTapped)];
-        _removeAdsButton.position = ccp(-300, 280);
+//        _removeAdsButton= [CCMenuItemImage
+//                           itemFromNormalImage:@"removeAdsButton.png" selectedImage:@"removeAdsButton.png"
+//                           target:self selector:@selector(removeAdsTapped)];
+//        _removeAdsButton.position = ccp(-500, 280);
         
         //not actually a button
         highScorePrefixLabel = [CCMenuItemImage
@@ -488,12 +489,17 @@ enum {
         highScorePrefixLabel.position = ccp(-300, 280);
 
         
-        starMenu = [CCMenu menuWithItems:_restartButton, _removeAdsButton, highScorePrefixLabel, nil];
+        starMenu = [CCMenu menuWithItems:_restartButton, /*_removeAdsButton,*/ highScorePrefixLabel, nil];
         starMenu.position = CGPointZero;
         [self addChild:starMenu];
         
-        highScoreLabel = [CCLabelTTF labelWithString:@"0" fontName:@"Marker Felt" fontSize:24];
+        instructions = [CCSprite spriteWithFile:@"instructions.png"];
+        instructions.position = ccp(-300, 280);
+        [self addChild:instructions z:12];
+        
+        highScoreLabel = [CCLabelTTF labelWithString:@"0" fontName:@"AmericanTypewriter-Bold" fontSize:24];
         highScoreLabel.position = ccp(-300, 160); //off the screen
+        highScoreLabel.color = ccRED;
         
         
         [self addChild:highScoreLabel z:1];
@@ -503,10 +509,10 @@ enum {
                          target:self selector:@selector(restartTapped)];
         _restartButton.position = ccp(-300, 280);
         
-        _removeAdsButton= [CCMenuItemImage
-                           itemFromNormalImage:@"NRremoveAdsButton.png" selectedImage:@"NRremoveAdsButton.png"
-                           target:self selector:@selector(removeAdsTapped)];
-        _removeAdsButton.position = ccp(-300, 280);
+//        _removeAdsButton= [CCMenuItemImage
+//                           itemFromNormalImage:@"NRremoveAdsButton.png" selectedImage:@"NRremoveAdsButton.png"
+//                           target:self selector:@selector(removeAdsTapped)];
+//        _removeAdsButton.position = ccp(-300, 280);
         
         //not actually a button
         highScorePrefixLabel = [CCMenuItemImage
@@ -515,9 +521,13 @@ enum {
         highScorePrefixLabel.position = ccp(-300, 280);
         
         
-        starMenu = [CCMenu menuWithItems:_restartButton, _removeAdsButton, highScorePrefixLabel, nil];
+        starMenu = [CCMenu menuWithItems:_restartButton, /*_removeAdsButton,*/ highScorePrefixLabel, nil];
         starMenu.position = CGPointZero;
         [self addChild:starMenu];
+        
+        instructions = [CCSprite spriteWithFile:@"NRinstructions.png"];
+        instructions.position = ccp(-300, 1000);
+        [self addChild:instructions z:12];
         
         highScoreLabel = [CCLabelTTF labelWithString:@"0" fontName:@"Marker Felt" fontSize:24];
         highScoreLabel.position = ccp(-300, 160); //off the screen
@@ -549,6 +559,7 @@ enum {
     [self removeChild:starMenu cleanup:YES];
     [self removeChild:highScoreLabel cleanup:YES];
     [self removeChild:highScorePrefixLabel cleanup:YES];
+    [self removeChild:instructions cleanup:YES];
     score = 0;
     [scoreLabel setString:[NSString stringWithFormat:@"%d", 0]];
     

@@ -16,6 +16,7 @@
 		B91FA89E1910A1FA003E28A2 /* NRbestButton.png in Resources */ = {isa = PBXBuildFile; fileRef = B91FA89D1910A1FA003E28A2 /* NRbestButton.png */; };
 		B91FA8A01910A297003E28A2 /* NRremoveAdsButton.png in Resources */ = {isa = PBXBuildFile; fileRef = B91FA89F1910A297003E28A2 /* NRremoveAdsButton.png */; };
 		B91FA8A21910A29F003E28A2 /* removeAdsButton.png in Resources */ = {isa = PBXBuildFile; fileRef = B91FA8A11910A29F003E28A2 /* removeAdsButton.png */; };
+		B91FA8A41910AAA4003E28A2 /* NRinstructions.png in Resources */ = {isa = PBXBuildFile; fileRef = B91FA8A31910AAA4003E28A2 /* NRinstructions.png */; };
 		B94A524919011C25005CD71E /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B94A524819011C25005CD71E /* QuartzCore.framework */; };
 		B94A524B19011C25005CD71E /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B94A524A19011C25005CD71E /* OpenGLES.framework */; };
 		B94A524D19011C25005CD71E /* OpenAL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B94A524C19011C25005CD71E /* OpenAL.framework */; };
@@ -228,6 +229,7 @@
 		B91FA89D1910A1FA003E28A2 /* NRbestButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = NRbestButton.png; sourceTree = "<group>"; };
 		B91FA89F1910A297003E28A2 /* NRremoveAdsButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = NRremoveAdsButton.png; sourceTree = "<group>"; };
 		B91FA8A11910A29F003E28A2 /* removeAdsButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = removeAdsButton.png; sourceTree = "<group>"; };
+		B91FA8A31910AAA4003E28A2 /* NRinstructions.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = NRinstructions.png; sourceTree = "<group>"; };
 		B94A524519011C25005CD71E /* KrazyKart.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = KrazyKart.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B94A524819011C25005CD71E /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		B94A524A19011C25005CD71E /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
@@ -1311,6 +1313,7 @@
 		B9DB247B190E19B9000A4681 /* NonRetina */ = {
 			isa = PBXGroup;
 			children = (
+				B91FA8A31910AAA4003E28A2 /* NRinstructions.png */,
 				B91FA89F1910A297003E28A2 /* NRremoveAdsButton.png */,
 				B91FA89D1910A1FA003E28A2 /* NRbestButton.png */,
 				B91FA8991910A08B003E28A2 /* NRstartButton.png */,
@@ -1418,6 +1421,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B91FA8A41910AAA4003E28A2 /* NRinstructions.png in Resources */,
 				B9C13D3A190EEA9C00C47D89 /* NRhamsterRun.png in Resources */,
 				B9C13D2E190EE1B800C47D89 /* NRplatform9.png in Resources */,
 				B91FA89C1910A1C8003E28A2 /* bestButton.png in Resources */,

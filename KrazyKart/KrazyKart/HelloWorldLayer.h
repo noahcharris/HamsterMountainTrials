@@ -86,6 +86,9 @@
     float removeAdsX;
     float removeAdsY;
     
+    float instructionsX;
+    float instructionsY;
+    
     
     //dimensions
     BOOL isiPhone;
@@ -109,6 +112,8 @@
     int score;
     CCLabelTTF *scoreLabel;
     CCLabelTTF *highScoreLabel;
+    
+    CCSprite *instructions;
     
     
     CCMenuItem *highScorePrefixLabel;
