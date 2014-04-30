@@ -150,7 +150,7 @@ enum {
 {
 	if( (self=[super init])) {
         
-        
+        starting = true;
         
         //[self handlePurchases];
 
@@ -167,21 +167,21 @@ enum {
         
         //variables
         kick1x = 0;
-        kick2x = 1;
-        kick1y = 23;
-        kick2y = 12;
+        kick2x = 0;
+        kick1y = 18;
+        kick2y = 6;
 
         //0.5 for iphone
         scaling = 1.0;
         //negative is forward for these two values
-        torque = -35;
-        topSpeed = -10;
+        torque = -45;
+        topSpeed = -12.5;
         
         //0.14
         bounce = 0.14;
         
         
-        gravity1 = b2Vec2(0.0f, -10.5f);
+        gravity1 = b2Vec2(0.0f, -11.3f);
         gravity2 = b2Vec2(0.0f, -8.0f);
         
         //this affects screen view (in pixels)
@@ -345,11 +345,11 @@ enum {
         id zoomOut = [CCScaleTo actionWithDuration:0.0f scale:scaling];
         [self runAction:zoomOut];
         
-        [self createNewHamster];
-        [self gameOver];
-        
-        
+        //[self createNewHamster];
         //[self drawStartingArea];
+        
+        
+        [self gameOver];
         [self schedule:@selector(tick:)];
         
         //will need this if number of platforms gets out of hand
@@ -390,13 +390,18 @@ enum {
     
     // -13.2
     // -40
-    if (_body->GetAngularVelocity() > topSpeed) {
-        
-        _body->ApplyTorque(torque);
+    if (!gameOver) {
+        if (_body->GetAngularVelocity() > topSpeed) {
+            
+            _body->ApplyTorque(torque);
+        }
     }
 
     //moving screen
-    b2Vec2 pos = _body->GetPosition();                  //110
+    b2Vec2 pos;
+    if (!gameOver) {
+        pos = _body->GetPosition();                  //110
+    }
     if (gameOver) {
         //why the fuck is it 5.4 and not 6.25???
         pos.x = 5.4;
@@ -457,17 +462,24 @@ enum {
 -(void)gameOver {
     gameOver = true;
     
-    
-    //remove the restart
-    [self checkAndRemoveColumns];
-    
-    //hamster body is destroyed by checkAndRemoveColumns,
-    //but we still have to clean up sprites
-    [self removeChild:_ball cleanup:YES];
-    [self removeChild:_lines cleanup:YES];
-    [self removeChild:_shading cleanup:YES];
-    [self removeChild:_hamster cleanup:YES];
-    [self removeChild:spriteSheet cleanup:YES];
+    if (!starting) {
+        //remove the restart
+        //empty the queue
+        while (!score_queue->empty()) {
+            score_queue->pop();
+        }
+
+        [self checkAndRemoveColumns];
+        
+        //hamster body is destroyed by checkAndRemoveColumns,
+        //but we still have to clean up sprites
+        [self removeChild:_ball cleanup:YES];
+        [self removeChild:_lines cleanup:YES];
+        [self removeChild:_shading cleanup:YES];
+        [self removeChild:_hamster cleanup:YES];
+        [self removeChild:spriteSheet cleanup:YES];
+    }
+    starting = false;
 
     
     
@@ -565,10 +577,6 @@ enum {
     score = 0;
     [scoreLabel setString:[NSString stringWithFormat:@"%d", 0]];
     
-    //empty the queue
-    while (!score_queue->empty()) {
-        score_queue->pop();
-    }
     
     [self drawStartingArea];
     

@@ -89,6 +89,8 @@
     float instructionsX;
     float instructionsY;
     
+    BOOL starting;
+    
     
     //dimensions
     BOOL isiPhone;
