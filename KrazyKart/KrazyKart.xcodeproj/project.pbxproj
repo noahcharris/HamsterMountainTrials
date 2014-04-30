@@ -241,7 +241,6 @@
 		B94A525219011C25005CD71E /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		B94A525419011C25005CD71E /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		B94A525619011C25005CD71E /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
-		B94A525C19011C25005CD71E /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Default.png; path = Resources/Default.png; sourceTree = "<group>"; };
 		B94A525E19011C25005CD71E /* Default-Landscape~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default-Landscape~ipad.png"; path = "Resources/Default-Landscape~ipad.png"; sourceTree = "<group>"; };
 		B94A526019011C25005CD71E /* fps_images.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = fps_images.png; path = Resources/fps_images.png; sourceTree = "<group>"; };
 		B94A526219011C25005CD71E /* fps_images-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "fps_images-hd.png"; path = "Resources/fps_images-hd.png"; sourceTree = "<group>"; };
@@ -747,7 +746,6 @@
 			children = (
 				B9DB247B190E19B9000A4681 /* NonRetina */,
 				B9DB247A190E1970000A4681 /* Retina */,
-				B94A525C19011C25005CD71E /* Default.png */,
 				B94A525E19011C25005CD71E /* Default-Landscape~ipad.png */,
 				B94A526019011C25005CD71E /* fps_images.png */,
 				B94A526219011C25005CD71E /* fps_images-hd.png */,

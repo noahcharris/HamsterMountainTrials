@@ -434,7 +434,7 @@ enum {
             [self drawNextColumn];
         }
     }
-    
+        
     
     //score stuff
     scoreLabel.position = ccp(pos.x * PTM_RATIO + scoreLabelX * PTM_RATIO, scoreLabelY * PTM_RATIO);
