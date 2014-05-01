@@ -42,6 +42,8 @@
     float lastColumnCornerDistance;
     float lastColumnCornerHeight;
     
+    int platformNumber;
+    
     int lastPlatformNumber;
     
     NSMutableArray *runFrames;

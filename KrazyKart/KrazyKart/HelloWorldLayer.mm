@@ -274,6 +274,8 @@ enum {
         lastColumnCornerHeight = 1 + screenOffsetY;
         lastPlatformNumber = 11;
         
+        platformNumber = 0;
+        
         
         //check for ipad
         if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
@@ -666,6 +668,8 @@ enum {
 
         //remove platforms
         [self checkAndRemoveColumns];
+        
+        platformNumber = 0;
         
         //remove hamster
         [self removeChild:_ball cleanup:YES];
@@ -1068,7 +1072,15 @@ enum {
 
 -(void) drawNextColumn {
     float x = (float)[self getRandomNumberBetween:3 to:7];
-    float y = (float)[self getRandomNumberBetween:1 to:3];
+    
+    
+    float y;
+    if (platformNumber < 5) {
+        y = (float)[self getRandomNumberBetween:1 to:2];
+    } else {
+        y = (float)[self getRandomNumberBetween:1 to:3];
+    }
+    
     y += screenOffsetY;
     
     //this prevents down slopes from leading into higher columns (too hard)
@@ -1081,6 +1093,14 @@ enum {
 
     int n = [self getRandomNumberBetween:1 to:12];
     
+    while (platformNumber < 6 && (n == 2 || n == 3 || n == 6 || n == 9 || n == 1 || n == 8)) {
+        n = [self getRandomNumberBetween:1 to:12];
+    }
+    
+    while (platformNumber < 10 && platformNumber > 5 && (n == 2 || n == 3 || n == 6 || n == 9)) {
+        n = [self getRandomNumberBetween:1 to:12];
+    }
+    
     float temp = [self drawColumn:n atDistance: (lastColumnCornerDistance + x) atHeight:y];
     
     lastColumnCornerDistance += temp + x;
@@ -1088,6 +1108,8 @@ enum {
     lastPlatformNumber = n;
     
     score_queue->push(lastColumnCornerDistance - temp);
+    
+    platformNumber++;
 
 }
 
