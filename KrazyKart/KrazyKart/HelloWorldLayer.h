@@ -99,6 +99,23 @@
     float scoreColumn1X;
     float scoreColumn2X;
     float scoreColumn3X;
+    
+    //for providing alternate score positions for in-game/game-over screens
+    float scoreColumn1X1;
+    float scoreColumn2X1;
+    float scoreColumn3X1;
+    float scoreColumn1X2;
+    float scoreColumn2X2;
+    float scoreColumn3X2;
+    
+    float scoreColumn1Y1;
+    float scoreColumn2Y1;
+    float scoreColumn3Y1;
+    float scoreColumn1Y2;
+    float scoreColumn2Y2;
+    float scoreColumn3Y2;
+    
+    
     float highScoreColumn1X;
     float highScoreColumn2X;
     float highScoreColumn3X;

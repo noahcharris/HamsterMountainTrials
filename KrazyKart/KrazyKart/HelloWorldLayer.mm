@@ -181,7 +181,9 @@ enum {
         numberSprites = [CCSpriteBatchNode batchNodeWithFile:@"numberSheet.png"];
         
         starting = true;
-        showRemoveAdsButton = false;
+        
+        //!!!!!!!!! FOR TESTING !!!!!!!
+        showRemoveAdsButton = true;
         
         
         //variables
@@ -361,13 +363,14 @@ enum {
                     scoreColumn1X = 8.75;
                     scoreColumn2X = 9.75;
                     scoreColumn3X = 10.75;
+                    scoreColumn1Y = 9;
+                    scoreColumn2Y = 9;
+                    scoreColumn3Y = 9;
+                    
                     highScoreColumn1X = 5;
                     highScoreColumn2X = 6;
                     highScoreColumn3X = 7;
                     
-                    scoreColumn1Y = 9;
-                    scoreColumn2Y = 9;
-                    scoreColumn3Y = 9;
                     highScoreColumn1Y = 2;
                     highScoreColumn2Y = 2;
                     highScoreColumn3Y = 2;
@@ -382,8 +385,61 @@ enum {
                 screenOffsetX  = 10;
                 screenOffsetY = -1;
                 
+                scoreColumn1X1 = 6.3;
+                scoreColumn2X1 = 7.3;
+                scoreColumn3X1 = 8.3;
+                
+                scoreColumn1X2 = -3.5;
+                scoreColumn2X2 = -2.5;
+                scoreColumn3X2 = -1.5;
+                
+                scoreColumn1Y1 = 10;
+                scoreColumn2Y1 = 10;
+                scoreColumn3Y1 = 10;
+                
+                scoreColumn1Y2 = 8;
+                scoreColumn2Y2 = 8;
+                scoreColumn3Y2 = 8;
+                
+                scorePrefixX = -3.7;
+                scorePrefixY = 10;
+                
+                highScoreColumn1X = 17;
+                highScoreColumn2X = 18;
+                highScoreColumn3X = 19;
+                
+                highScoreColumn1Y = 8;
+                highScoreColumn2Y = 8;
+                highScoreColumn3Y = 8;
+                
+                highScorePrefixX = 17.5;
+                highScorePrefixY = 10;
+                
+                instructionsX = 6;
+                instructionsY = 5;
+                
+                restartX = -0.3;
+                restartY = 0;
+                
+                removeAdsX = 12.8;
+                removeAdsY = 0;
+
+
+                
             }
         }
+        
+        
+        scoreColumn1X = scoreColumn1X1;
+        scoreColumn2X = scoreColumn2X1;
+        scoreColumn3X = scoreColumn3X1;
+        
+        scoreColumn1Y = scoreColumn1Y1;
+        scoreColumn2Y = scoreColumn2Y1;
+        scoreColumn3Y = scoreColumn3Y1;
+        
+        
+        
         
         //for testing
         //[[NSUserDefaults standardUserDefaults] setInteger:0 forKey:@"highScore"];
@@ -406,6 +462,14 @@ enum {
             _background.position = ccp(winSize.width/(2), winSize.height/(2));
             [self addChild:_background];
         }
+        
+        //INITALIZE SCORE TO ZERO
+        if (isRetina) {
+            scoreColumn1 = [CCSprite spriteWithFile:@"number0.png"];
+        } else {
+            scoreColumn1 = [CCSprite spriteWithFile:@"NRnumber0.png"];
+        }
+        [self addChild:scoreColumn1 z:11];
         
         // Create a world
         _world = new b2World(gravity1);
@@ -655,9 +719,16 @@ enum {
         [self removeChild:_hamster cleanup:YES];
         [self removeChild:spriteSheet cleanup:YES];
     }
-    starting = false;
-
     
+    //switch score x position to its game over values
+    scoreColumn1X = scoreColumn1X2;
+    scoreColumn2X = scoreColumn2X2;
+    scoreColumn3X = scoreColumn3X2;
+    
+    scoreColumn1Y = scoreColumn1Y2;
+    scoreColumn2Y = scoreColumn2Y2;
+    scoreColumn3Y = scoreColumn3Y2;
+
     
     //show all the buttons and whatnot
     if (isRetina) {
@@ -679,8 +750,7 @@ enum {
         starMenu.position = CGPointZero;
         [self addChild:starMenu];
         
-        //CHANGE THIS TO THE RIGHT FILE
-        scorePrefix = [CCSprite spriteWithFile:@"bestButton.png"];
+        scorePrefix = [CCSprite spriteWithFile:@"scorePrefix.png"];
         scorePrefix.position = ccp(-300, 280);
         [self addChild:scorePrefix z:11];
         
@@ -710,8 +780,7 @@ enum {
         starMenu.position = CGPointZero;
         [self addChild:starMenu];
         
-        //CHANGE THIS TO THE RIGHT FILE
-        scorePrefix = [CCSprite spriteWithFile:@"NRbestButton.png"];
+        scorePrefix = [CCSprite spriteWithFile:@"NRscorePrefix.png"];
         scorePrefix.position = ccp(-300, 280);
         [self addChild:scorePrefix z:11];
         
@@ -724,9 +793,11 @@ enum {
         [self addChild:instructions z:12];
     }
     
+    starting = false;
+    
     //highscore keeping
     if (score > [[NSUserDefaults standardUserDefaults] integerForKey:@"highScore"]
-        || [[NSUserDefaults standardUserDefaults] integerForKey:@"highScore"] == 0) {
+        || [[NSUserDefaults standardUserDefaults] integerForKey:@"highScore"] == nil) {
         
         [[NSUserDefaults standardUserDefaults] setInteger:score forKey:@"highScore"];
     }
@@ -815,6 +886,15 @@ enum {
     
     score = 0;
     scoreOffset = 0;
+    
+    //switch score x position to its in-game values
+    scoreColumn1X = scoreColumn1X1;
+    scoreColumn2X = scoreColumn2X1;
+    scoreColumn3X = scoreColumn3X1;
+    
+    scoreColumn1Y = scoreColumn1Y1;
+    scoreColumn2Y = scoreColumn2Y1;
+    scoreColumn3Y = scoreColumn3Y1;
     
     [self removeChild:scoreColumn1 cleanup:YES];
     [self removeChild:scoreColumn2 cleanup:YES];
