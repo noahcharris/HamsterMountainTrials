@@ -303,8 +303,48 @@ enum {
                 screenOffsetX = 305;
                 screenOffsetY = 4;
                 
+                backgroundOffsetX = -10;
+                
+                scoreColumn1X1 = 6;
+                scoreColumn2X1 = 7;
+                scoreColumn3X1 = 8;
+                
+                scoreColumn1Y1 = 16;
+                scoreColumn2Y1 = 16;
+                scoreColumn3Y1 = 16;
+                
+                scoreColumn1X2 = -4.5;
+                scoreColumn2X2 = -3.5;
+                scoreColumn3X2 = -2.5;
+                
+                scoreColumn1Y2 = 14;
+                scoreColumn2Y2 = 14;
+                scoreColumn3Y2 = 14;
+                
+                scorePrefixX = -4.5;
+                scorePrefixY = 16;
+                
+                highScoreColumn1X = 17.5;
+                highScoreColumn2X = 18.5;
+                highScoreColumn3X = 19.5;
+                
+                highScoreColumn1Y = 14;
+                highScoreColumn2Y = 14;
+                highScoreColumn3Y = 14;
+                
+                highScorePrefixX = 18;
+                highScorePrefixY = 16;
+                
+                instructionsX = 6;
+                instructionsY = 10;
+                
+                restartX = -1;
+                restartY = 5;
+                
+                removeAdsX = 13;
+                removeAdsY = 5;
+                
             } else {
-                //##########################
                 //TODO IPAD ORIGINAL
                 NSLog(@"ipad original");
                 scaling = 1.0f;
@@ -351,16 +391,6 @@ enum {
                 
                 removeAdsX = 17;
                 removeAdsY = 5;
-
-                
-                
-                
-                
-                
-                
-                
-                
-                //##########################
                 
             }
         } else {
