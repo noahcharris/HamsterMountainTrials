@@ -31,7 +31,7 @@ NSString *const IAPHelperProductPurchasedNotification = @"IAPHelperProductPurcha
     static IAPHelper * sharedInstance;
     dispatch_once(&once, ^{
         NSSet * productIdentifiers = [NSSet setWithObjects:
-                                      @"com.noahharris.hamsterrun.removeAds",
+                                      @"com.noahharris.hamstermountainrun.removeads",
                                       nil];
         sharedInstance = [[self alloc] initWithProductIdentifiers:productIdentifiers];
     });

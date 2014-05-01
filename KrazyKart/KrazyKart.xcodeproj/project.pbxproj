@@ -630,6 +630,9 @@
 		B9673B3F1908A44C0029EB7A /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		B9673B411908A69F0029EB7A /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
 		B9673B431908A6A60029EB7A /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
+		B97299EE1911C651008725D3 /* hamsterIcon 120.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "hamsterIcon 120.png"; sourceTree = "<group>"; };
+		B97299EF1911C859008725D3 /* hamsterIcon 114.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "hamsterIcon 114.png"; sourceTree = "<group>"; };
+		B97299F01911C95C008725D3 /* hamsterIcon 57.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "hamsterIcon 57.png"; sourceTree = "<group>"; };
 		B9996ED61911796700137B3C /* number0.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = number0.png; sourceTree = "<group>"; };
 		B9996ED71911796700137B3C /* number1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = number1.png; sourceTree = "<group>"; };
 		B9996ED81911796700137B3C /* number2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = number2.png; sourceTree = "<group>"; };
@@ -718,6 +721,9 @@
 		B94A523C19011C25005CD71E = {
 			isa = PBXGroup;
 			children = (
+				B97299F01911C95C008725D3 /* hamsterIcon 57.png */,
+				B97299EF1911C859008725D3 /* hamsterIcon 114.png */,
+				B97299EE1911C651008725D3 /* hamsterIcon 120.png */,
 				B9673B431908A6A60029EB7A /* MessageUI.framework */,
 				B9673B411908A69F0029EB7A /* CoreTelephony.framework */,
 				B9673B3F1908A44C0029EB7A /* SystemConfiguration.framework */,

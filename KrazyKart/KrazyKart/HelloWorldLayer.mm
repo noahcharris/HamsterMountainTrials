@@ -119,7 +119,7 @@ enum {
     SKPaymentTransaction *transaction = [theData objectForKey:@"transaction"];
     NSLog(@"Attempting to provide products..");
     NSLog(transaction.originalTransaction.payment.productIdentifier);
-    if ([transaction.originalTransaction.payment.productIdentifier isEqualToString:@"removeAds"]) {
+    if ([transaction.originalTransaction.payment.productIdentifier isEqualToString:@"removeads"]) {
         [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"removedAds"];
         
         adsRemoved = true;
@@ -152,7 +152,7 @@ enum {
         
         starting = true;
         
-        //[self handlePurchases];
+        [self handlePurchases];
 
         
         //AD CONTROLLER INITIALIZATION
@@ -192,9 +192,6 @@ enum {
         
         hamsterStartX = 6.25;
         hamsterStartY = 26;
-        
-        scoreLabelX = -3;
-        scoreLabelY = 8;
         
         highScorePrefixX = 0;
         highScorePrefixY = 8;
@@ -281,6 +278,21 @@ enum {
                 screenOffsetX = 200;
                 screenOffsetY = 4;
                 
+                scoreColumn1X = 9.75;
+                scoreColumn2X = 10.75;
+                scoreColumn3X = 11.75;
+                highScoreColumn1X = 5;
+                highScoreColumn2X = 6;
+                highScoreColumn3X = 7;
+                
+                scoreColumn1Y = 19.4;
+                scoreColumn2Y = 19.4;
+                scoreColumn3Y = 19.4;
+                highScoreColumn1Y = 2;
+                highScoreColumn2Y = 2;
+                highScoreColumn3Y = 2;
+
+                
             }
         } else {
             if (isRetina) {
@@ -290,6 +302,20 @@ enum {
                 scaling = 0.5f;
                 screenOffsetX  = -30;
                 screenOffsetY = -1;
+                
+                scoreColumn1X = 8.75;
+                scoreColumn2X = 9.75;
+                scoreColumn3X = 10.75;
+                highScoreColumn1X = 5;
+                highScoreColumn2X = 6;
+                highScoreColumn3X = 7;
+                
+                scoreColumn1Y = 9;
+                scoreColumn2Y = 9;
+                scoreColumn3Y = 9;
+                highScoreColumn1Y = 2;
+                highScoreColumn2Y = 2;
+                highScoreColumn3Y = 2;
                 
             } else {
              
@@ -313,9 +339,6 @@ enum {
         score_queue = new std::queue<int>();
         score_queue->push(2);
         
-        scoreLabel = [CCLabelTTF labelWithString:@"0" fontName:@"Marker Felt" fontSize:24];
-        scoreLabel.position = ccp(240, 160); //Middle of the screen...
-        [self addChild:scoreLabel z:1];
         
         
         //draw background
