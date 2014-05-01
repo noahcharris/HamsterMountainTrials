@@ -206,50 +206,51 @@ enum {
         gravity1 = b2Vec2(0.0f, -11.3f);
         gravity2 = b2Vec2(0.0f, -8.0f);
         
-        //this affects screen view (in pixels)
-        screenOffsetX = 0;
-        //this affects column draw height (in 'meters')
-        screenOffsetY = 0;
-        backgroundOffsetX = 2;
-        
         hamsterStartX = 6.25;
         hamsterStartY = 26;
         
-        highScorePrefixX = 0;
-        highScorePrefixY = 8;
-        
-        scorePrefixX = 4;
-        scorePrefixY = 4;
-        
-        highScoreX = 2;
-        highScoreY = 8;
-        
-        
-        scoreColumn1X = 5;
-        scoreColumn2X = 6;
-        scoreColumn3X = 7;
-        highScoreColumn1X = 5;
-        highScoreColumn2X = 6;
-        highScoreColumn3X = 7;
-        
-        scoreColumn1Y = 3;
-        scoreColumn2Y = 3;
-        scoreColumn3Y = 3;
-        highScoreColumn1Y = 2;
-        highScoreColumn2Y = 2;
-        highScoreColumn3Y = 2;
-        
-        scoreOffset = 0;
-        highScoreOffset = 0;
-        
-        restartX = 7;
-        restartY = 8;
-        
-        removeAdsX = 5;
-        removeAdsY = 8;
-        
-        instructionsX = 4;
-        instructionsY = 5;
+//        //this affects screen view (in pixels)
+//        screenOffsetX = 0;
+//        //this affects column draw height (in 'meters')
+//        screenOffsetY = 0;
+//        backgroundOffsetX = 2;
+//
+//
+//        highScorePrefixX = 0;
+//        highScorePrefixY = 8;
+//        
+//        scorePrefixX = 4;
+//        scorePrefixY = 4;
+//        
+//        highScoreX = 2;
+//        highScoreY = 8;
+//        
+//        
+//        scoreColumn1X = 5;
+//        scoreColumn2X = 6;
+//        scoreColumn3X = 7;
+//        highScoreColumn1X = 5;
+//        highScoreColumn2X = 6;
+//        highScoreColumn3X = 7;
+//        
+//        scoreColumn1Y = 3;
+//        scoreColumn2Y = 3;
+//        scoreColumn3Y = 3;
+//        highScoreColumn1Y = 2;
+//        highScoreColumn2Y = 2;
+//        highScoreColumn3Y = 2;
+//        
+//        scoreOffset = 0;
+//        highScoreOffset = 0;
+//        
+//        restartX = 7;
+//        restartY = 8;
+//        
+//        removeAdsX = 5;
+//        removeAdsY = 8;
+//        
+//        instructionsX = 4;
+//        instructionsY = 5;
 
         
         lastColumnCornerDistance = 10;
@@ -303,7 +304,7 @@ enum {
                 screenOffsetY = 4;
                 
             } else {
-                
+                //##########################
                 //TODO IPAD ORIGINAL
                 NSLog(@"ipad original");
                 scaling = 1.0f;
@@ -312,20 +313,54 @@ enum {
                 
                 backgroundOffsetX = -5;
                 
-                scoreColumn1X = 9.75;
-                scoreColumn2X = 10.75;
-                scoreColumn3X = 11.75;
-                highScoreColumn1X = 5;
-                highScoreColumn2X = 6;
-                highScoreColumn3X = 7;
+                scoreColumn1X1 = 9.5;
+                scoreColumn2X1 = 10.5;
+                scoreColumn3X1 = 11.5;
                 
-                scoreColumn1Y = 19.4;
-                scoreColumn2Y = 19.4;
-                scoreColumn3Y = 19.4;
-                highScoreColumn1Y = 2;
-                highScoreColumn2Y = 2;
-                highScoreColumn3Y = 2;
+                scoreColumn1Y1 = 16;
+                scoreColumn2Y1 = 16;
+                scoreColumn3Y1 = 16;
+                
+                scoreColumn1X2 = 0;
+                scoreColumn2X2 = 1;
+                scoreColumn3X2 = 2;
+                
+                scoreColumn1Y2 = 14;
+                scoreColumn2Y2 = 14;
+                scoreColumn3Y2 = 14;
+                
+                scorePrefixX = 0;
+                scorePrefixY = 16;
+                
+                highScoreColumn1X = 20.5;
+                highScoreColumn2X = 21.5;
+                highScoreColumn3X = 22.5;
+                
+                highScoreColumn1Y = 14;
+                highScoreColumn2Y = 14;
+                highScoreColumn3Y = 14;
+                
+                highScorePrefixX = 21;
+                highScorePrefixY = 16;
+                
+                instructionsX = 10;
+                instructionsY = 11.5;
+                
+                restartX = 2;
+                restartY = 5;
+                
+                removeAdsX = 17;
+                removeAdsY = 5;
 
+                
+                
+                
+                
+                
+                
+                
+                
+                //##########################
                 
             }
         } else {
@@ -385,6 +420,8 @@ enum {
                 screenOffsetX  = 10;
                 screenOffsetY = -1;
                 
+                backgroundOffsetX = 2;
+                
                 scoreColumn1X1 = 6.3;
                 scoreColumn2X1 = 7.3;
                 scoreColumn3X1 = 8.3;
@@ -420,7 +457,7 @@ enum {
                 
                 restartX = -0.3;
                 restartY = 0;
-                
+    
                 removeAdsX = 12.8;
                 removeAdsY = 0;
 
