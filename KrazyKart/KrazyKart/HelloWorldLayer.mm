@@ -183,7 +183,7 @@ enum {
         starting = true;
         
         //!!!!!!!!! FOR TESTING !!!!!!!
-        showRemoveAdsButton = true;
+        //showRemoveAdsButton = false;
         
         
         //variables
@@ -209,49 +209,6 @@ enum {
         hamsterStartX = 6.25;
         hamsterStartY = 26;
         
-//        //this affects screen view (in pixels)
-//        screenOffsetX = 0;
-//        //this affects column draw height (in 'meters')
-//        screenOffsetY = 0;
-//        backgroundOffsetX = 2;
-//
-//
-//        highScorePrefixX = 0;
-//        highScorePrefixY = 8;
-//        
-//        scorePrefixX = 4;
-//        scorePrefixY = 4;
-//        
-//        highScoreX = 2;
-//        highScoreY = 8;
-//        
-//        
-//        scoreColumn1X = 5;
-//        scoreColumn2X = 6;
-//        scoreColumn3X = 7;
-//        highScoreColumn1X = 5;
-//        highScoreColumn2X = 6;
-//        highScoreColumn3X = 7;
-//        
-//        scoreColumn1Y = 3;
-//        scoreColumn2Y = 3;
-//        scoreColumn3Y = 3;
-//        highScoreColumn1Y = 2;
-//        highScoreColumn2Y = 2;
-//        highScoreColumn3Y = 2;
-//        
-//        scoreOffset = 0;
-//        highScoreOffset = 0;
-//        
-//        restartX = 7;
-//        restartY = 8;
-//        
-//        removeAdsX = 5;
-//        removeAdsY = 8;
-//        
-//        instructionsX = 4;
-//        instructionsY = 5;
-
         
         lastColumnCornerDistance = 10;
         lastColumnCornerHeight = 1 + screenOffsetY;
@@ -338,8 +295,11 @@ enum {
                 instructionsX = 6;
                 instructionsY = 10;
                 
-                restartX = -1;
-                restartY = 5;
+                restartX1 = -1;
+                restartY1 = 5;
+                
+                restartX2 = 6;
+                restartY2 = 5;
                 
                 removeAdsX = 13;
                 removeAdsY = 5;
@@ -386,8 +346,11 @@ enum {
                 instructionsX = 10;
                 instructionsY = 11.5;
                 
-                restartX = 2;
-                restartY = 5;
+                restartX1 = 2;
+                restartY1 = 5;
+                
+                restartX2 = 10;
+                restartY2 = 5;
                 
                 removeAdsX = 17;
                 removeAdsY = 5;
@@ -437,8 +400,11 @@ enum {
                     instructionsX = 10.5;
                     instructionsY = 5;
                     
-                    restartX = 4.2;
-                    restartY = 0;
+                    restartX1 = 4.2;
+                    restartY1 = 0;
+                    
+                    restartX2 = 10.5;
+                    restartY2 = 0;
                     
                     removeAdsX = 17;
                     removeAdsY = 0;
@@ -487,8 +453,11 @@ enum {
                     instructionsX = 9;
                     instructionsY = 5;
                     
-                    restartX = 2.7;
-                    restartY = 0;
+                    restartX1 = 2.7;
+                    restartY1 = 0;
+                    
+                    restartX2 = 9;
+                    restartY2 = 0;
                     
                     removeAdsX = 15.5;
                     removeAdsY = 0;
@@ -538,8 +507,11 @@ enum {
                 instructionsX = 6;
                 instructionsY = 5;
                 
-                restartX = -0.3;
-                restartY = 0;
+                restartX1 = -0.3;
+                restartY1 = 0;
+                
+                restartX2 = 6;
+                restartY2 = 0;
     
                 removeAdsX = 12.8;
                 removeAdsY = 0;
@@ -845,6 +817,14 @@ enum {
     scoreColumn1Y = scoreColumn1Y2;
     scoreColumn2Y = scoreColumn2Y2;
     scoreColumn3Y = scoreColumn3Y2;
+    
+    //check if remove ads button should be displayed or not and adjust the position of the start button
+    restartX = restartX1;
+    restartY = restartY1;
+    if (!showRemoveAdsButton) {
+        restartX = restartX2;
+        restartY = restartY2;
+    }
 
     
     //show all the buttons and whatnot

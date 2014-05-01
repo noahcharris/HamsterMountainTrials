@@ -90,6 +90,12 @@
     float restartX;
     float restartY;
     
+    float restartX1;
+    float restartY1;
+    
+    float restartX2;
+    float restartY2;
+    
     float removeAdsX;
     float removeAdsY;
     
