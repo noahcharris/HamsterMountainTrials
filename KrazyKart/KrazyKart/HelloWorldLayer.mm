@@ -164,6 +164,48 @@ enum {
         }
         
         
+        [[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:@"numberSheet.plist"];
+        
+        numberSprites = [CCSpriteBatchNode batchNodeWithFile:@"numberSheet.png"];
+        
+        
+        
+        //have to create sprites here and then just pull from the pointers
+        if (isRetina) {
+            number0 = [CCSprite spriteWithFile:@"number0.png"];
+            number1 = [CCSprite spriteWithFile:@"number1.png"];
+            number2 = [CCSprite spriteWithFile:@"number2.png"];
+            number3 = [CCSprite spriteWithFile:@"number3.png"];
+            number4 = [CCSprite spriteWithFile:@"number4.png"];
+            number5 = [CCSprite spriteWithFile:@"number5.png"];
+            number6 = [CCSprite spriteWithFile:@"number6.png"];
+            number7 = [CCSprite spriteWithFile:@"number7.png"];
+            number8 = [CCSprite spriteWithFile:@"number8.png"];
+            number9 = [CCSprite spriteWithFile:@"number9.png"];
+        } else {
+            number0 = [CCSprite spriteWithFile:@"NRnumber0.png"];
+            number1 = [CCSprite spriteWithFile:@"NRnumber1.png"];
+            number2 = [CCSprite spriteWithFile:@"NRnumber2.png"];
+            number3 = [CCSprite spriteWithFile:@"NRnumber3.png"];
+            number4 = [CCSprite spriteWithFile:@"NRnumber4.png"];
+            number5 = [CCSprite spriteWithFile:@"NRnumber5.png"];
+            number6 = [CCSprite spriteWithFile:@"NRnumber6.png"];
+            number7 = [CCSprite spriteWithFile:@"NRnumber7.png"];
+            number8 = [CCSprite spriteWithFile:@"NRnumber8.png"];
+            number9 = [CCSprite spriteWithFile:@"NRnumber9.png"];
+        }
+        
+        numberArray = [[NSMutableArray alloc] initWithObjects:number0,number1,number2,number3, number4, number5,
+                       number6, number7, number8, number9, nil];
+        
+        
+        for (CCSprite *numSprite in numberArray) {
+            //load them all offscreen
+            numSprite.position = ccp(-1000, 0);
+            [self addChild:numSprite z:15];
+        }
+        
+        
         
         //variables
         kick1x = 0;
@@ -461,29 +503,12 @@ enum {
         }
     }
     
+    
+    
     //########################################
     //############# SCOREKEEPING #############
     //########################################
     
-    if (scoreColumn1) {
-        scoreColumn1.position = ccp(pos.x * PTM_RATIO + scoreColumn1X * PTM_RATIO + scoreOffset * PTM_RATIO, scoreColumn1Y * PTM_RATIO);
-    }
-    if (scoreColumn2) {
-        scoreColumn2.position = ccp(pos.x * PTM_RATIO + scoreColumn2X * PTM_RATIO + scoreOffset * PTM_RATIO, scoreColumn2Y * PTM_RATIO);
-    }
-    if (scoreColumn3) {
-        scoreColumn3.position = ccp(pos.x * PTM_RATIO + scoreColumn3X * PTM_RATIO + scoreOffset * PTM_RATIO, scoreColumn3Y * PTM_RATIO);
-    }
-    
-    if (highScoreColumn1) {
-        highScoreColumn1.position = ccp(pos.x * PTM_RATIO + highScoreColumn1X * PTM_RATIO + highScoreOffset * PTM_RATIO, highScoreColumn1Y * PTM_RATIO);
-    }
-    if (highScoreColumn2) {
-        highScoreColumn2.position = ccp(pos.x * PTM_RATIO + highScoreColumn2X * PTM_RATIO + highScoreOffset * PTM_RATIO, highScoreColumn2Y * PTM_RATIO);
-    }
-    if (highScoreColumn3) {
-        highScoreColumn3.position = ccp(pos.x * PTM_RATIO + highScoreColumn3X * PTM_RATIO + highScoreOffset * PTM_RATIO, highScoreColumn3Y * PTM_RATIO);
-    }
     
     if (!score_queue->empty() && score_queue->front() < pos.x) {
         score_queue->pop();
@@ -492,6 +517,8 @@ enum {
                 score ++;
             }
             
+            //###############################################
+            //replace with moving the correct number offscreen
             [self removeChild:scoreColumn1 cleanup:YES];
             [self removeChild:scoreColumn2 cleanup:YES];
             [self removeChild:scoreColumn3 cleanup:YES];
@@ -506,27 +533,59 @@ enum {
                         int column1 = score / 100;
                         int column2 = (score % 100) / 10;
                         int column3 = score % 10;
-                        scoreColumn1 = [CCSprite spriteWithFile:[NSString stringWithFormat:@"number%d.png",column1]];
-                        scoreColumn2 = [CCSprite spriteWithFile:[NSString stringWithFormat:@"number%d.png",column2]];
-                        scoreColumn3 = [CCSprite spriteWithFile:[NSString stringWithFormat:@"number%d.png",column3]];
+                        
+                        
+                        //###############################################
+                        //replace with moving the correct number onscreen
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        //scoreColumn1 = [CCSprite spriteWithFile:[NSString stringWithFormat:@"number%d.png",column1]];
+                        scoreColumn1 = [CCSprite spriteWithSpriteFrameName:[NSString stringWithFormat:@"number%d.png",column1]];
+                        scoreColumn2 = [CCSprite spriteWithSpriteFrameName:[NSString stringWithFormat:@"number%d.png",column2]];
+                        scoreColumn3 = [CCSprite spriteWithSpriteFrameName:[NSString stringWithFormat:@"number%d.png",column3]];
+                        
                         [self addChild:scoreColumn1 z:11];
                         [self addChild:scoreColumn2 z:11];
                         [self addChild:scoreColumn3 z:11];
+                        
+                        //scoreColumn1.position = ccp(-1000, 0);
+                        //scoreColumn2.position = ccp(-1000, 0);
+                        //scoreColumn3.position = ccp(-1000, 0);
+                        
+                        //scoreColumn1 = [numberArray objectAtIndex:column1];
+                        //scoreColumn2 = [numberArray objectAtIndex:column2];
+                        //scoreColumn3 = [numberArray objectAtIndex:column3];
+                        
 
                     } else {
                         //2 columns
                         int column1 = (score % 100) / 10;
                         int column2 = score % 10;
-                        scoreColumn1 = [CCSprite spriteWithFile:[NSString stringWithFormat:@"number%d.png",column1]];
-                        scoreColumn2 = [CCSprite spriteWithFile:[NSString stringWithFormat:@"number%d.png",column2]];
+                        scoreColumn1 = [CCSprite spriteWithSpriteFrameName:[NSString stringWithFormat:@"number%d.png",column1]];
+                        scoreColumn2 = [CCSprite spriteWithSpriteFrameName:[NSString stringWithFormat:@"number%d.png",column2]];
                         [self addChild:scoreColumn1 z:11];
                         [self addChild:scoreColumn2 z:11];
+                        
+                        //scoreColumn1.position = ccp(-1000, 0);
+                        //scoreColumn2.position = ccp(-1000, 0);
+                        
+                        //scoreColumn1 = [numberArray objectAtIndex:column1];
+                        //scoreColumn2 = [numberArray objectAtIndex:column2];
                     }
                 } else {
                     //1 column
                     int column1 = score % 10;
-                    scoreColumn1 = [CCSprite spriteWithFile:[NSString stringWithFormat:@"number%d.png",column1]];
+                    scoreColumn1 = [CCSprite spriteWithSpriteFrameName:[NSString stringWithFormat:@"number%d.png",column1]];
                     [self addChild:scoreColumn1 z:11];
+                    
+                    //scoreColumn1.position = ccp(-1000, 0);
+                    
+                    //scoreColumn1 = [numberArray objectAtIndex:column1];
                 }
                 
              //non-retina
@@ -540,6 +599,9 @@ enum {
                         int column1 = score / 100;
                         int column2 = (score % 100) / 10;
                         int column3 = score % 10;
+                        
+                        //###############################################
+                        //replace with moving the correct number onscreen
                         scoreColumn1 = [CCSprite spriteWithFile:[NSString stringWithFormat:@"NRnumber%d.png",column1]];
                         scoreColumn2 = [CCSprite spriteWithFile:[NSString stringWithFormat:@"NRnumber%d.png",column2]];
                         scoreColumn3 = [CCSprite spriteWithFile:[NSString stringWithFormat:@"NRnumber%d.png",column3]];
@@ -567,6 +629,27 @@ enum {
             
         }
     }
+    
+    if (scoreColumn1) {
+        scoreColumn1.position = ccp(pos.x * PTM_RATIO + scoreColumn1X * PTM_RATIO + scoreOffset * PTM_RATIO, scoreColumn1Y * PTM_RATIO);
+    }
+    if (scoreColumn2) {
+        scoreColumn2.position = ccp(pos.x * PTM_RATIO + scoreColumn2X * PTM_RATIO + scoreOffset * PTM_RATIO, scoreColumn2Y * PTM_RATIO);
+    }
+    if (scoreColumn3) {
+        scoreColumn3.position = ccp(pos.x * PTM_RATIO + scoreColumn3X * PTM_RATIO + scoreOffset * PTM_RATIO, scoreColumn3Y * PTM_RATIO);
+    }
+    
+    if (highScoreColumn1) {
+        highScoreColumn1.position = ccp(pos.x * PTM_RATIO + highScoreColumn1X * PTM_RATIO + highScoreOffset * PTM_RATIO, highScoreColumn1Y * PTM_RATIO);
+    }
+    if (highScoreColumn2) {
+        highScoreColumn2.position = ccp(pos.x * PTM_RATIO + highScoreColumn2X * PTM_RATIO + highScoreOffset * PTM_RATIO, highScoreColumn2Y * PTM_RATIO);
+    }
+    if (highScoreColumn3) {
+        highScoreColumn3.position = ccp(pos.x * PTM_RATIO + highScoreColumn3X * PTM_RATIO + highScoreOffset * PTM_RATIO, highScoreColumn3Y * PTM_RATIO);
+    }
+
    
 }
 
@@ -745,21 +828,27 @@ enum {
     [self removeChild:scoreColumn2 cleanup:YES];
     [self removeChild:scoreColumn3 cleanup:YES];
     
-    [self removeChild:highScoreColumn1 cleanup:YES];
-    [self removeChild:highScoreColumn2 cleanup:YES];
-    [self removeChild:highScoreColumn3 cleanup:YES];
+    //scoreColumn1.position = ccp(-1000,0);
+    //scoreColumn2.position = ccp(-1000,0);
+    //scoreColumn3.position = ccp(-1000,0);
     
     scoreColumn2 = nil;
     scoreColumn3 = nil;
+    
+    
+    
+    [self removeChild:highScoreColumn1 cleanup:YES];
+    [self removeChild:highScoreColumn2 cleanup:YES];
+    [self removeChild:highScoreColumn3 cleanup:YES];
     
     highScoreColumn1 = nil;
     highScoreColumn2 = nil;
     highScoreColumn3 = nil;
     
     if (isRetina) {
-        scoreColumn1 = [CCSprite spriteWithFile:[NSString stringWithFormat:@"number0.png"]];
+        scoreColumn1 = [CCSprite spriteWithFile:@"number0.png"];
     } else {
-        scoreColumn1 = [CCSprite spriteWithFile:[NSString stringWithFormat:@"NRnumber0.png"]];
+        scoreColumn1 = [CCSprite spriteWithFile:@"NRnumber0.png"];
     }
     [self addChild:scoreColumn1 z:11];
     

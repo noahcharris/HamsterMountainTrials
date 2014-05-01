@@ -128,13 +128,27 @@
     BannerViewController *_banner;
     
     
-    
     std::queue<int> *score_queue;
     int score;
     CCLabelTTF *scoreLabel;
     CCLabelTTF *highScoreLabel;
     
     CCSprite *instructions;
+    
+    CCSpriteBatchNode *numberSprites;
+    
+    NSMutableArray *numberArray;
+    
+    CCSprite *number0;
+    CCSprite *number1;
+    CCSprite *number2;
+    CCSprite *number3;
+    CCSprite *number4;
+    CCSprite *number5;
+    CCSprite *number6;
+    CCSprite *number7;
+    CCSprite *number8;
+    CCSprite *number9;
     
     CCSprite *scoreColumn1;
     CCSprite *scoreColumn2;
