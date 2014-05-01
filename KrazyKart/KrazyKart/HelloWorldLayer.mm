@@ -425,20 +425,46 @@ enum {
                     screenOffsetX  = -30;
                     screenOffsetY = -1;
                     
-                    scoreColumn1X = 8.75;
-                    scoreColumn2X = 9.75;
-                    scoreColumn3X = 10.75;
-                    scoreColumn1Y = 9;
-                    scoreColumn2Y = 9;
-                    scoreColumn3Y = 9;
+                    backgroundOffsetX = 2;
                     
-                    highScoreColumn1X = 5;
-                    highScoreColumn2X = 6;
-                    highScoreColumn3X = 7;
+                    scoreColumn1X1 = 9.3;
+                    scoreColumn2X1 = 10.3;
+                    scoreColumn3X1 = 11.3;
                     
-                    highScoreColumn1Y = 2;
-                    highScoreColumn2Y = 2;
-                    highScoreColumn3Y = 2;
+                    scoreColumn1X2 = -0.7;
+                    scoreColumn2X2 = 0.3;
+                    scoreColumn3X2 = 1.3;
+                    
+                    scoreColumn1Y1 = 10;
+                    scoreColumn2Y1 = 10;
+                    scoreColumn3Y1 = 10;
+                    
+                    scoreColumn1Y2 = 8;
+                    scoreColumn2Y2 = 8;
+                    scoreColumn3Y2 = 8;
+                    
+                    scorePrefixX = -0.7;
+                    scorePrefixY = 10;
+                    
+                    highScoreColumn1X = 19;
+                    highScoreColumn2X = 20;
+                    highScoreColumn3X = 21;
+                    
+                    highScoreColumn1Y = 8;
+                    highScoreColumn2Y = 8;
+                    highScoreColumn3Y = 8;
+                    
+                    highScorePrefixX = 19.5;
+                    highScorePrefixY = 10;
+                    
+                    instructionsX = 9;
+                    instructionsY = 5;
+                    
+                    restartX = 2.7;
+                    restartY = 0;
+                    
+                    removeAdsX = 15.5;
+                    removeAdsY = 0;
                 }
                 
                 
@@ -490,9 +516,6 @@ enum {
     
                 removeAdsX = 12.8;
                 removeAdsY = 0;
-
-
-                
             }
         }
         
