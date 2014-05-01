@@ -163,7 +163,7 @@ enum {
             [[CCDirector sharedDirector].openGLView addSubview:_banner.view];
         }
         
-        //load numberSpriteSheet
+        //load numberSpriteSheet (when removing this be sure to load from files not sprite frames when scorekeeping
         [[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:@"numberSheet.plist"];
         
         numberSprites = [CCSpriteBatchNode batchNodeWithFile:@"numberSheet.png"];
@@ -287,6 +287,8 @@ enum {
                 scaling = 1.0f;
                 screenOffsetX = 200;
                 screenOffsetY = 4;
+                
+                backgroundOffsetX = -5;
                 
                 scoreColumn1X = 9.75;
                 scoreColumn2X = 10.75;
