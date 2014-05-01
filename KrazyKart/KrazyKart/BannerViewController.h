@@ -31,6 +31,7 @@
 -(void)initgAdBanner;
 -(void)showBanner:(UIView *)banner;
 -(void)hideBanner:(UIView *)banner;
+-(void)stop;
 
 //iAd delegate methods
 -(void)bannerViewWillLoadAd:(ADBannerView *)banner;

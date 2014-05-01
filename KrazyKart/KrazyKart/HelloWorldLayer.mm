@@ -108,6 +108,14 @@ enum {
     if ([_products count] != 0) {
         NSLog(@"SK product objects stored");
         _removeAds = [_products objectAtIndex:0];
+        
+        
+        //#########
+        showRemoveAdsButton = true;
+        //##########
+        
+        
+        
     }
     NSLog(@"no product objects to store");
     NSLog(_removeAds.productIdentifier);
@@ -122,9 +130,12 @@ enum {
     NSLog(@"Attempting to provide products..");
     NSLog(transaction.originalTransaction.payment.productIdentifier);
     if ([transaction.originalTransaction.payment.productIdentifier isEqualToString:@"removeads"]) {
+        
+        
         [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"removedAds"];
         
         adsRemoved = true;
+        showRemoveAdsButton = false;
         [_banner stop];
         
     }
@@ -152,7 +163,6 @@ enum {
 {
 	if( (self=[super init])) {
         
-        starting = true;
         
         [self handlePurchases];
 
@@ -170,6 +180,8 @@ enum {
         
         numberSprites = [CCSpriteBatchNode batchNodeWithFile:@"numberSheet.png"];
         
+        starting = true;
+        showRemoveAdsButton = false;
         
         
         //variables
@@ -203,6 +215,9 @@ enum {
         
         highScorePrefixX = 0;
         highScorePrefixY = 8;
+        
+        scorePrefixX = 4;
+        scorePrefixY = 4;
         
         highScoreX = 2;
         highScoreY = 8;
@@ -477,8 +492,9 @@ enum {
         instructions.position = ccp(pos.x * PTM_RATIO + instructionsX * PTM_RATIO, instructionsY * PTM_RATIO);
         highScorePrefixLabel.position = ccp(pos.x * PTM_RATIO + highScorePrefixX * PTM_RATIO, highScorePrefixY * PTM_RATIO);
         _restartButton.position = ccp(pos.x * PTM_RATIO + restartX * PTM_RATIO, self.position.y * PTM_RATIO + restartY * PTM_RATIO);
+        scorePrefix.position = ccp(pos.x * PTM_RATIO + scorePrefixX * PTM_RATIO, self.position.y * PTM_RATIO + scorePrefixY * PTM_RATIO);
         
-        if ([_products count] != 0) {
+        if (showRemoveAdsButton) {
             _removeAdsButton.position = ccp(pos.x * PTM_RATIO + removeAdsX * PTM_RATIO, self.position.y * PTM_RATIO + removeAdsY * PTM_RATIO);
         }
     }
@@ -650,18 +666,23 @@ enum {
                          target:self selector:@selector(restartTapped)];
         _restartButton.position = ccp(-300, 280);
         
-//        _removeAdsButton= [CCMenuItemImage
-//                           itemFromNormalImage:@"removeAdsButton.png" selectedImage:@"removeAdsButton.png"
-//                           target:self selector:@selector(removeAdsTapped)];
-//        _removeAdsButton.position = ccp(-500, 280);
-        
-//        highScorePrefixLabel = [CCMenuItemImage
-//         itemFromNormalImage:@"bestButton.png" selectedImage:@"bestButton.png"
-//         target:self selector:@selector(nothing)];
-
-        starMenu = [CCMenu menuWithItems:_restartButton, /*removeAdsButton,*/ nil];
+        if (showRemoveAdsButton) {
+            _removeAdsButton= [CCMenuItemImage
+                               itemFromNormalImage:@"removeAdsButton.png" selectedImage:@"removeAdsButton.png"
+                               target:self selector:@selector(removeAdsTapped)];
+            _removeAdsButton.position = ccp(-500, 280);
+            
+            starMenu = [CCMenu menuWithItems:_restartButton, _removeAdsButton, nil];
+        } else {
+            starMenu = [CCMenu menuWithItems:_restartButton, nil];
+        }
         starMenu.position = CGPointZero;
         [self addChild:starMenu];
+        
+        //CHANGE THIS TO THE RIGHT FILE
+        scorePrefix = [CCSprite spriteWithFile:@"bestButton.png"];
+        scorePrefix.position = ccp(-300, 280);
+        [self addChild:scorePrefix z:11];
         
         highScorePrefixLabel = [CCSprite spriteWithFile:@"bestButton.png"];
         highScorePrefixLabel.position = ccp(-300, 280);
@@ -677,21 +698,22 @@ enum {
                          target:self selector:@selector(restartTapped)];
         _restartButton.position = ccp(-300, 280);
         
-//        _removeAdsButton= [CCMenuItemImage
-//                           itemFromNormalImage:@"NRremoveAdsButton.png" selectedImage:@"NRremoveAdsButton.png"
-//                           target:self selector:@selector(removeAdsTapped)];
-//        _removeAdsButton.position = ccp(-300, 280);
-        
-
-//        highScorePrefixLabel = [CCMenuItemImage
-//                                itemFromNormalImage:@"NRbestButton.png" selectedImage:@"NRbestButton.png"
-//                                target:self selector:@selector(nothing)];
-//        highScorePrefixLabel.position = ccp(-300, 280);
-        
-        
-        starMenu = [CCMenu menuWithItems:_restartButton,/*removeAdsButton,*/ nil];
+        if (showRemoveAdsButton) {
+            _removeAdsButton= [CCMenuItemImage
+                               itemFromNormalImage:@"NRremoveAdsButton.png" selectedImage:@"NRremoveAdsButton.png"
+                               target:self selector:@selector(removeAdsTapped)];
+            _removeAdsButton.position = ccp(-300, 280);
+            starMenu = [CCMenu menuWithItems:_restartButton, _removeAdsButton, nil];
+        } else {
+            starMenu = [CCMenu menuWithItems:_restartButton, nil];
+        }
         starMenu.position = CGPointZero;
         [self addChild:starMenu];
+        
+        //CHANGE THIS TO THE RIGHT FILE
+        scorePrefix = [CCSprite spriteWithFile:@"NRbestButton.png"];
+        scorePrefix.position = ccp(-300, 280);
+        [self addChild:scorePrefix z:11];
         
         highScorePrefixLabel = [CCSprite spriteWithFile:@"NRbestButton.png"];
         highScorePrefixLabel.position = ccp(-300, 280);
@@ -785,7 +807,11 @@ enum {
     [self removeChild:starMenu cleanup:YES];
     [self removeChild:highScoreLabel cleanup:YES];
     [self removeChild:highScorePrefixLabel cleanup:YES];
+    [self removeChild:scorePrefix cleanup:YES];
     [self removeChild:instructions cleanup:YES];
+    if (showRemoveAdsButton) {
+        [self removeChild:_removeAdsButton cleanup:YES];
+    }
     
     score = 0;
     scoreOffset = 0;

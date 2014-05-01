@@ -81,6 +81,9 @@
     float highScorePrefixX;
     float highScorePrefixY;
     
+    float scorePrefixX;
+    float scorePrefixY;
+    
     float highScoreX;
     float highScoreY;
     
@@ -127,6 +130,8 @@
     BOOL adsRemoved;
     BOOL showingBuyPopup;
     
+    BOOL showRemoveAdsButton;
+    
     BannerViewController *_banner;
     
     
@@ -159,8 +164,8 @@
     CCSprite *highScoreColumn2;
     CCSprite *highScoreColumn3;
     
-    
-    CCMenuItem *highScorePrefixLabel;
+    CCSprite *scorePrefix;
+    CCSprite *highScorePrefixLabel;
     CCMenuItem *_restartButton;
     CCMenuItem *_removeAdsButton;
     CCMenu *starMenu;
