@@ -402,19 +402,46 @@ enum {
                     screenOffsetX  = -30;
                     screenOffsetY = -1;
                     
-                    scoreColumn1X = 8.75;
-                    scoreColumn2X = 9.75;
-                    scoreColumn3X = 10.75;
-                    highScoreColumn1X = 5;
-                    highScoreColumn2X = 6;
-                    highScoreColumn3X = 7;
+                    backgroundOffsetX = 2;
                     
-                    scoreColumn1Y = 9;
-                    scoreColumn2Y = 9;
-                    scoreColumn3Y = 9;
-                    highScoreColumn1Y = 2;
-                    highScoreColumn2Y = 2;
-                    highScoreColumn3Y = 2;
+                    scoreColumn1X1 = 10.4;
+                    scoreColumn2X1 = 11.4;
+                    scoreColumn3X1 = 12.4;
+                    
+                    scoreColumn1X2 = 0.8;
+                    scoreColumn2X2 = 1.8;
+                    scoreColumn3X2 = 2.8;
+                    
+                    scoreColumn1Y1 = 10;
+                    scoreColumn2Y1 = 10;
+                    scoreColumn3Y1 = 10;
+                    
+                    scoreColumn1Y2 = 8;
+                    scoreColumn2Y2 = 8;
+                    scoreColumn3Y2 = 8;
+                    
+                    scorePrefixX = 0.8;
+                    scorePrefixY = 10;
+                    
+                    highScoreColumn1X = 20.5;
+                    highScoreColumn2X = 21.5;
+                    highScoreColumn3X = 22.5;
+                    
+                    highScoreColumn1Y = 8;
+                    highScoreColumn2Y = 8;
+                    highScoreColumn3Y = 8;
+                    
+                    highScorePrefixX = 21;
+                    highScorePrefixY = 10;
+                    
+                    instructionsX = 10.5;
+                    instructionsY = 5;
+                    
+                    restartX = 4.2;
+                    restartY = 0;
+                    
+                    removeAdsX = 17;
+                    removeAdsY = 0;
 
                     
                 } else {
