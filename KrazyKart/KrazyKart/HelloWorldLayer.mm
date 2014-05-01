@@ -189,6 +189,7 @@ enum {
         screenOffsetX = 0;
         //this affects column draw height (in 'meters')
         screenOffsetY = 0;
+        backgroundOffsetX = 2;
         
         hamsterStartX = 6.25;
         hamsterStartY = 26;
@@ -213,8 +214,9 @@ enum {
         highScoreColumn1Y = 2;
         highScoreColumn2Y = 2;
         highScoreColumn3Y = 2;
-
         
+        scoreOffset = 0;
+        highScoreOffset = 0;
         
         restartX = 7;
         restartY = 8;
@@ -431,7 +433,7 @@ enum {
     
     //scroll background
     CGSize winSize = [CCDirector sharedDirector].winSize;
-    _background.position = ccp(pos.x * PTM_RATIO + winSize.width/(2) - screenOffsetX, self.position.y * PTM_RATIO + winSize.height/(2));
+    _background.position = ccp(pos.x * PTM_RATIO + winSize.width/(2) + backgroundOffsetX * PTM_RATIO, self.position.y * PTM_RATIO + winSize.height/(2));
     
     
     //starting screen (gameover) stuff
@@ -464,23 +466,23 @@ enum {
     //########################################
     
     if (scoreColumn1) {
-        scoreColumn1.position = ccp(pos.x * PTM_RATIO + scoreColumn1X * PTM_RATIO, scoreColumn1Y * PTM_RATIO);
+        scoreColumn1.position = ccp(pos.x * PTM_RATIO + scoreColumn1X * PTM_RATIO + scoreOffset * PTM_RATIO, scoreColumn1Y * PTM_RATIO);
     }
     if (scoreColumn2) {
-        scoreColumn2.position = ccp(pos.x * PTM_RATIO + scoreColumn2X * PTM_RATIO, scoreColumn2Y * PTM_RATIO);
+        scoreColumn2.position = ccp(pos.x * PTM_RATIO + scoreColumn2X * PTM_RATIO + scoreOffset * PTM_RATIO, scoreColumn2Y * PTM_RATIO);
     }
     if (scoreColumn3) {
-        scoreColumn3.position = ccp(pos.x * PTM_RATIO + scoreColumn3X * PTM_RATIO, scoreColumn3Y * PTM_RATIO);
+        scoreColumn3.position = ccp(pos.x * PTM_RATIO + scoreColumn3X * PTM_RATIO + scoreOffset * PTM_RATIO, scoreColumn3Y * PTM_RATIO);
     }
     
     if (highScoreColumn1) {
-        highScoreColumn1.position = ccp(pos.x * PTM_RATIO + highScoreColumn1X * PTM_RATIO, highScoreColumn1Y * PTM_RATIO);
+        highScoreColumn1.position = ccp(pos.x * PTM_RATIO + highScoreColumn1X * PTM_RATIO + highScoreOffset * PTM_RATIO, highScoreColumn1Y * PTM_RATIO);
     }
     if (highScoreColumn2) {
-        highScoreColumn2.position = ccp(pos.x * PTM_RATIO + highScoreColumn2X * PTM_RATIO, highScoreColumn2Y * PTM_RATIO);
+        highScoreColumn2.position = ccp(pos.x * PTM_RATIO + highScoreColumn2X * PTM_RATIO + highScoreOffset * PTM_RATIO, highScoreColumn2Y * PTM_RATIO);
     }
     if (highScoreColumn3) {
-        highScoreColumn3.position = ccp(pos.x * PTM_RATIO + highScoreColumn3X * PTM_RATIO, highScoreColumn3Y * PTM_RATIO);
+        highScoreColumn3.position = ccp(pos.x * PTM_RATIO + highScoreColumn3X * PTM_RATIO + highScoreOffset * PTM_RATIO, highScoreColumn3Y * PTM_RATIO);
     }
     
     if (!score_queue->empty() && score_queue->front() < pos.x) {
@@ -497,7 +499,9 @@ enum {
             if (isRetina ) {
                 
                 if (score > 9) {
+                    scoreOffset = -2.0;
                     if (score > 99) {
+                        scoreOffset = -3.0;
                         //3 columns
                         int column1 = score / 100;
                         int column2 = (score % 100) / 10;
@@ -529,7 +533,9 @@ enum {
             } else {
                 
                 if (score > 9) {
+                    scoreOffset = -0.5;
                     if (score > 99) {
+                        scoreOffset = -1.0;
                         //3 columns
                         int column1 = score / 100;
                         int column2 = (score % 100) / 10;

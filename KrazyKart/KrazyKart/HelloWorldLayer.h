@@ -68,6 +68,8 @@
     float screenOffsetX;
     float screenOffsetY;
     
+    float backgroundOffsetX;
+    
     float hamsterStartX;
     float hamsterStartY;
     
@@ -102,6 +104,9 @@
     float highScoreColumn1Y;
     float highScoreColumn2Y;
     float highScoreColumn3Y;
+    
+    float scoreOffset;
+    float highScoreOffset;
 
     
     BOOL starting;
