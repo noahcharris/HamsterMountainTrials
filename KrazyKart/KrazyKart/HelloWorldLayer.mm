@@ -528,9 +528,9 @@ enum {
             if (isRetina ) {
                 
                 if (score > 9) {
-                    scoreOffset = -2.0;
+                    scoreOffset = -1.0;
                     if (score > 99) {
-                        scoreOffset = -3.0;
+                        scoreOffset = -2.0;
                         //3 columns
                         int column1 = score / 100;
                         int column2 = (score % 100) / 10;
@@ -631,6 +631,7 @@ enum {
             
         }
     }
+    
     
     if (scoreColumn1) {
         scoreColumn1.position = ccp(pos.x * PTM_RATIO + scoreColumn1X * PTM_RATIO + scoreOffset * PTM_RATIO, scoreColumn1Y * PTM_RATIO);
@@ -827,6 +828,7 @@ enum {
     [self removeChild:instructions cleanup:YES];
     
     score = 0;
+    scoreOffset = 0;
     
     [self removeChild:scoreColumn1 cleanup:YES];
     [self removeChild:scoreColumn2 cleanup:YES];
