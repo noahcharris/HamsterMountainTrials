@@ -81,6 +81,9 @@
         self.gAdBannerView.delegate = self;
         self.gAdBannerView.hidden = TRUE;
         [self.view addSubview:self.gAdBannerView];
+        
+        //for testing
+        //[self.gAdBannerView loadRequest:[GADRequest request]];
     }
 }
 
@@ -120,8 +123,13 @@
         }
         else
         {
-            bannerWidth = 480;
-            bannerHeight = 32;
+            if ([UIScreen mainScreen].bounds.size.height == 568) {
+                bannerWidth = 568;
+                bannerHeight = 32;
+            } else {
+                bannerWidth = 480;
+                bannerHeight = 32;
+            }
         }
         
         CGSize winSize = [CCDirector sharedDirector].winSize;

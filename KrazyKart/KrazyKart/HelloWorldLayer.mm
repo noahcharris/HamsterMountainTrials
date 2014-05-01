@@ -114,6 +114,8 @@ enum {
     
 }
 
+// ##########  THIS IS WHERE THE PRODUCTS ARE ACTUALLY PROVIDED TO THE USER ################
+
 -(void)provideProducts:(NSNotification *)note {
     NSDictionary *theData = [note userInfo];
     SKPaymentTransaction *transaction = [theData objectForKey:@"transaction"];
@@ -250,10 +252,13 @@ enum {
             isiPhone = true;
         }
         
+        NSLog(@"HEIGHT OF THE MAIN SCREEN %f", [UIScreen mainScreen].bounds.size.height);
+        
         //check phone version ( I DON'T THINK THIS IS WORKING )
         if (isiPhone) {
             if([UIScreen mainScreen].bounds.size.height == 568){
                 isiPhone5 = true;
+                NSLog(@"IPHONE 5");
             } else{
                 isiPhone5 = false;
             }
@@ -308,26 +313,51 @@ enum {
             }
         } else {
             if (isRetina) {
-                 
-                //TODO IPHONE RETINA
-                NSLog(@"3.5-inch iphone retina");
-                scaling = 0.5f;
-                screenOffsetX  = -30;
-                screenOffsetY = -1;
                 
-                scoreColumn1X = 8.75;
-                scoreColumn2X = 9.75;
-                scoreColumn3X = 10.75;
-                highScoreColumn1X = 5;
-                highScoreColumn2X = 6;
-                highScoreColumn3X = 7;
+                if (isiPhone5) {
+                    NSLog(@"4 inch retina iphone");
+                    scaling = 0.5f;
+                    screenOffsetX  = -30;
+                    screenOffsetY = -1;
+                    
+                    scoreColumn1X = 8.75;
+                    scoreColumn2X = 9.75;
+                    scoreColumn3X = 10.75;
+                    highScoreColumn1X = 5;
+                    highScoreColumn2X = 6;
+                    highScoreColumn3X = 7;
+                    
+                    scoreColumn1Y = 9;
+                    scoreColumn2Y = 9;
+                    scoreColumn3Y = 9;
+                    highScoreColumn1Y = 2;
+                    highScoreColumn2Y = 2;
+                    highScoreColumn3Y = 2;
+
+                    
+                } else {
+                    
+                    //TODO IPHONE RETINA 3.5 inch
+                    NSLog(@"3.5-inch iphone retina");
+                    scaling = 0.5f;
+                    screenOffsetX  = -30;
+                    screenOffsetY = -1;
+                    
+                    scoreColumn1X = 8.75;
+                    scoreColumn2X = 9.75;
+                    scoreColumn3X = 10.75;
+                    highScoreColumn1X = 5;
+                    highScoreColumn2X = 6;
+                    highScoreColumn3X = 7;
+                    
+                    scoreColumn1Y = 9;
+                    scoreColumn2Y = 9;
+                    scoreColumn3Y = 9;
+                    highScoreColumn1Y = 2;
+                    highScoreColumn2Y = 2;
+                    highScoreColumn3Y = 2;
+                }
                 
-                scoreColumn1Y = 9;
-                scoreColumn2Y = 9;
-                scoreColumn3Y = 9;
-                highScoreColumn1Y = 2;
-                highScoreColumn2Y = 2;
-                highScoreColumn3Y = 2;
                 
             } else {
              
@@ -496,9 +526,12 @@ enum {
                         int column2 = (score % 100) / 10;
                         int column3 = score % 10;
                         
-                        scoreColumn1 = [CCSprite spriteWithSpriteFrameName:[NSString stringWithFormat:@"number%d.png",column1]];
-                        scoreColumn2 = [CCSprite spriteWithSpriteFrameName:[NSString stringWithFormat:@"number%d.png",column2]];
-                        scoreColumn3 = [CCSprite spriteWithSpriteFrameName:[NSString stringWithFormat:@"number%d.png",column3]];
+                        scoreColumn1 = [CCSprite spriteWithFile:[NSString stringWithFormat:@"number%d.png",column1]];
+                        scoreColumn2 = [CCSprite spriteWithFile:[NSString stringWithFormat:@"number%d.png",column2]];
+                        scoreColumn3 = [CCSprite spriteWithFile:[NSString stringWithFormat:@"number%d.png",column3]];
+                        //scoreColumn1 = [CCSprite spriteWithSpriteFrameName:[NSString stringWithFormat:@"number%d.png",column1]];
+                        //scoreColumn2 = [CCSprite spriteWithSpriteFrameName:[NSString stringWithFormat:@"number%d.png",column2]];
+                        //scoreColumn3 = [CCSprite spriteWithSpriteFrameName:[NSString stringWithFormat:@"number%d.png",column3]];
                         
                         [self addChild:scoreColumn1 z:11];
                         [self addChild:scoreColumn2 z:11];
@@ -507,8 +540,10 @@ enum {
                         //2 columns
                         int column1 = (score % 100) / 10;
                         int column2 = score % 10;
-                        scoreColumn1 = [CCSprite spriteWithSpriteFrameName:[NSString stringWithFormat:@"number%d.png",column1]];
-                        scoreColumn2 = [CCSprite spriteWithSpriteFrameName:[NSString stringWithFormat:@"number%d.png",column2]];
+                        scoreColumn1 = [CCSprite spriteWithFile:[NSString stringWithFormat:@"number%d.png",column1]];
+                        scoreColumn2 = [CCSprite spriteWithFile:[NSString stringWithFormat:@"number%d.png",column2]];
+                        //scoreColumn1 = [CCSprite spriteWithSpriteFrameName:[NSString stringWithFormat:@"number%d.png",column1]];
+                        //scoreColumn2 = [CCSprite spriteWithSpriteFrameName:[NSString stringWithFormat:@"number%d.png",column2]];
                         [self addChild:scoreColumn1 z:11];
                         [self addChild:scoreColumn2 z:11];
 
@@ -516,7 +551,8 @@ enum {
                 } else {
                     //1 column
                     int column1 = score % 10;
-                    scoreColumn1 = [CCSprite spriteWithSpriteFrameName:[NSString stringWithFormat:@"number%d.png",column1]];
+                    scoreColumn1 = [CCSprite spriteWithFile:[NSString stringWithFormat:@"number%d.png",column1]];
+                    //scoreColumn1 = [CCSprite spriteWithSpriteFrameName:[NSString stringWithFormat:@"number%d.png",column1]];
                     [self addChild:scoreColumn1 z:11];
 
                 }
@@ -619,15 +655,17 @@ enum {
 //                           target:self selector:@selector(removeAdsTapped)];
 //        _removeAdsButton.position = ccp(-500, 280);
         
-        //not actually a button JANKY
-        highScorePrefixLabel = [CCMenuItemImage
-         itemFromNormalImage:@"bestButton.png" selectedImage:@"bestButton.png"
-         target:self selector:@selector(nothing)];
-        highScorePrefixLabel.position = ccp(-300, 280);
+//        highScorePrefixLabel = [CCMenuItemImage
+//         itemFromNormalImage:@"bestButton.png" selectedImage:@"bestButton.png"
+//         target:self selector:@selector(nothing)];
 
-        starMenu = [CCMenu menuWithItems:_restartButton, /*removeAdsButton,*/ highScorePrefixLabel, nil];
+        starMenu = [CCMenu menuWithItems:_restartButton, /*removeAdsButton,*/ nil];
         starMenu.position = CGPointZero;
         [self addChild:starMenu];
+        
+        highScorePrefixLabel = [CCSprite spriteWithFile:@"bestButton.png"];
+        highScorePrefixLabel.position = ccp(-300, 280);
+        [self addChild:highScorePrefixLabel z:11];
         
         instructions = [CCSprite spriteWithFile:@"instructions.png"];
         instructions.position = ccp(-300, 280);
@@ -644,16 +682,20 @@ enum {
 //                           target:self selector:@selector(removeAdsTapped)];
 //        _removeAdsButton.position = ccp(-300, 280);
         
-        //not actually a button JANKY
-        highScorePrefixLabel = [CCMenuItemImage
-                                itemFromNormalImage:@"NRbestButton.png" selectedImage:@"NRbestButton.png"
-                                target:self selector:@selector(nothing)];
-        highScorePrefixLabel.position = ccp(-300, 280);
+
+//        highScorePrefixLabel = [CCMenuItemImage
+//                                itemFromNormalImage:@"NRbestButton.png" selectedImage:@"NRbestButton.png"
+//                                target:self selector:@selector(nothing)];
+//        highScorePrefixLabel.position = ccp(-300, 280);
         
         
-        starMenu = [CCMenu menuWithItems:_restartButton,/*removeAdsButton,*/ highScorePrefixLabel, nil];
+        starMenu = [CCMenu menuWithItems:_restartButton,/*removeAdsButton,*/ nil];
         starMenu.position = CGPointZero;
         [self addChild:starMenu];
+        
+        highScorePrefixLabel = [CCSprite spriteWithFile:@"NRbestButton.png"];
+        highScorePrefixLabel.position = ccp(-300, 280);
+        [self addChild:highScorePrefixLabel z:11];
         
         instructions = [CCSprite spriteWithFile:@"NRinstructions.png"];
         instructions.position = ccp(-300, 1000);
