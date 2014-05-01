@@ -163,47 +163,10 @@ enum {
             [[CCDirector sharedDirector].openGLView addSubview:_banner.view];
         }
         
-        
+        //load numberSpriteSheet
         [[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:@"numberSheet.plist"];
         
         numberSprites = [CCSpriteBatchNode batchNodeWithFile:@"numberSheet.png"];
-        
-        
-        
-        //have to create sprites here and then just pull from the pointers
-        if (isRetina) {
-            number0 = [CCSprite spriteWithFile:@"number0.png"];
-            number1 = [CCSprite spriteWithFile:@"number1.png"];
-            number2 = [CCSprite spriteWithFile:@"number2.png"];
-            number3 = [CCSprite spriteWithFile:@"number3.png"];
-            number4 = [CCSprite spriteWithFile:@"number4.png"];
-            number5 = [CCSprite spriteWithFile:@"number5.png"];
-            number6 = [CCSprite spriteWithFile:@"number6.png"];
-            number7 = [CCSprite spriteWithFile:@"number7.png"];
-            number8 = [CCSprite spriteWithFile:@"number8.png"];
-            number9 = [CCSprite spriteWithFile:@"number9.png"];
-        } else {
-            number0 = [CCSprite spriteWithFile:@"NRnumber0.png"];
-            number1 = [CCSprite spriteWithFile:@"NRnumber1.png"];
-            number2 = [CCSprite spriteWithFile:@"NRnumber2.png"];
-            number3 = [CCSprite spriteWithFile:@"NRnumber3.png"];
-            number4 = [CCSprite spriteWithFile:@"NRnumber4.png"];
-            number5 = [CCSprite spriteWithFile:@"NRnumber5.png"];
-            number6 = [CCSprite spriteWithFile:@"NRnumber6.png"];
-            number7 = [CCSprite spriteWithFile:@"NRnumber7.png"];
-            number8 = [CCSprite spriteWithFile:@"NRnumber8.png"];
-            number9 = [CCSprite spriteWithFile:@"NRnumber9.png"];
-        }
-        
-        numberArray = [[NSMutableArray alloc] initWithObjects:number0,number1,number2,number3, number4, number5,
-                       number6, number7, number8, number9, nil];
-        
-        
-        for (CCSprite *numSprite in numberArray) {
-            //load them all offscreen
-            numSprite.position = ccp(-1000, 0);
-            [self addChild:numSprite z:15];
-        }
         
         
         
@@ -306,7 +269,8 @@ enum {
         }
         
         
-        //DEVICE IDENTIFICATION LOGIC
+        
+        // ####### DEVICE IDENTIFICATION LOGIC #########
         if (!isiPhone) {
             if (isRetina) {
                 
@@ -385,8 +349,6 @@ enum {
         score_queue = new std::queue<int>();
         score_queue->push(2);
         
-        
-        
         //draw background
         if (isRetina) {
             _background = [CCSprite spriteWithFile:@"background.png"];
@@ -398,9 +360,7 @@ enum {
             [self addChild:_background];
         }
         
-        
         // Create a world
-        // -10.5
         _world = new b2World(gravity1);
         
         //contact listener
@@ -519,8 +479,6 @@ enum {
                 score ++;
             }
             
-            //###############################################
-            //replace with moving the correct number offscreen
             [self removeChild:scoreColumn1 cleanup:YES];
             [self removeChild:scoreColumn2 cleanup:YES];
             [self removeChild:scoreColumn3 cleanup:YES];
@@ -528,25 +486,14 @@ enum {
             if (isRetina ) {
                 
                 if (score > 9) {
-                    scoreOffset = -1.0;
+                    scoreOffset = -0.5;
                     if (score > 99) {
-                        scoreOffset = -2.0;
+                        scoreOffset = -1.0;
                         //3 columns
                         int column1 = score / 100;
                         int column2 = (score % 100) / 10;
                         int column3 = score % 10;
                         
-                        
-                        //###############################################
-                        //replace with moving the correct number onscreen
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                        //scoreColumn1 = [CCSprite spriteWithFile:[NSString stringWithFormat:@"number%d.png",column1]];
                         scoreColumn1 = [CCSprite spriteWithSpriteFrameName:[NSString stringWithFormat:@"number%d.png",column1]];
                         scoreColumn2 = [CCSprite spriteWithSpriteFrameName:[NSString stringWithFormat:@"number%d.png",column2]];
                         scoreColumn3 = [CCSprite spriteWithSpriteFrameName:[NSString stringWithFormat:@"number%d.png",column3]];
@@ -554,16 +501,6 @@ enum {
                         [self addChild:scoreColumn1 z:11];
                         [self addChild:scoreColumn2 z:11];
                         [self addChild:scoreColumn3 z:11];
-                        
-                        //scoreColumn1.position = ccp(-1000, 0);
-                        //scoreColumn2.position = ccp(-1000, 0);
-                        //scoreColumn3.position = ccp(-1000, 0);
-                        
-                        //scoreColumn1 = [numberArray objectAtIndex:column1];
-                        //scoreColumn2 = [numberArray objectAtIndex:column2];
-                        //scoreColumn3 = [numberArray objectAtIndex:column3];
-                        
-
                     } else {
                         //2 columns
                         int column1 = (score % 100) / 10;
@@ -572,22 +509,14 @@ enum {
                         scoreColumn2 = [CCSprite spriteWithSpriteFrameName:[NSString stringWithFormat:@"number%d.png",column2]];
                         [self addChild:scoreColumn1 z:11];
                         [self addChild:scoreColumn2 z:11];
-                        
-                        //scoreColumn1.position = ccp(-1000, 0);
-                        //scoreColumn2.position = ccp(-1000, 0);
-                        
-                        //scoreColumn1 = [numberArray objectAtIndex:column1];
-                        //scoreColumn2 = [numberArray objectAtIndex:column2];
+
                     }
                 } else {
                     //1 column
                     int column1 = score % 10;
                     scoreColumn1 = [CCSprite spriteWithSpriteFrameName:[NSString stringWithFormat:@"number%d.png",column1]];
                     [self addChild:scoreColumn1 z:11];
-                    
-                    //scoreColumn1.position = ccp(-1000, 0);
-                    
-                    //scoreColumn1 = [numberArray objectAtIndex:column1];
+
                 }
                 
              //non-retina
@@ -601,16 +530,12 @@ enum {
                         int column1 = score / 100;
                         int column2 = (score % 100) / 10;
                         int column3 = score % 10;
-                        
-                        //###############################################
-                        //replace with moving the correct number onscreen
                         scoreColumn1 = [CCSprite spriteWithFile:[NSString stringWithFormat:@"NRnumber%d.png",column1]];
                         scoreColumn2 = [CCSprite spriteWithFile:[NSString stringWithFormat:@"NRnumber%d.png",column2]];
                         scoreColumn3 = [CCSprite spriteWithFile:[NSString stringWithFormat:@"NRnumber%d.png",column3]];
                         [self addChild:scoreColumn1 z:11];
                         [self addChild:scoreColumn2 z:11];
                         [self addChild:scoreColumn3 z:11];
-                        
                     } else {
                         //2 columns
                         int column1 = (score % 100) / 10;
@@ -631,7 +556,6 @@ enum {
             
         }
     }
-    
     
     if (scoreColumn1) {
         scoreColumn1.position = ccp(pos.x * PTM_RATIO + scoreColumn1X * PTM_RATIO + scoreOffset * PTM_RATIO, scoreColumn1Y * PTM_RATIO);
@@ -666,10 +590,8 @@ enum {
         while (!score_queue->empty()) {
             score_queue->pop();
         }
-
         //remove platforms
         [self checkAndRemoveColumns];
-        
         platformNumber = 0;
         
         //remove hamster
@@ -695,13 +617,12 @@ enum {
 //                           target:self selector:@selector(removeAdsTapped)];
 //        _removeAdsButton.position = ccp(-500, 280);
         
-        //not actually a button
+        //not actually a button JANKY
         highScorePrefixLabel = [CCMenuItemImage
          itemFromNormalImage:@"bestButton.png" selectedImage:@"bestButton.png"
          target:self selector:@selector(nothing)];
         highScorePrefixLabel.position = ccp(-300, 280);
 
-        
         starMenu = [CCMenu menuWithItems:_restartButton, /*removeAdsButton,*/ highScorePrefixLabel, nil];
         starMenu.position = CGPointZero;
         [self addChild:starMenu];
@@ -721,7 +642,7 @@ enum {
 //                           target:self selector:@selector(removeAdsTapped)];
 //        _removeAdsButton.position = ccp(-300, 280);
         
-        //not actually a button
+        //not actually a button JANKY
         highScorePrefixLabel = [CCMenuItemImage
                                 itemFromNormalImage:@"NRbestButton.png" selectedImage:@"NRbestButton.png"
                                 target:self selector:@selector(nothing)];
@@ -735,9 +656,7 @@ enum {
         instructions = [CCSprite spriteWithFile:@"NRinstructions.png"];
         instructions.position = ccp(-300, 1000);
         [self addChild:instructions z:12];
-        
     }
-    
     
     //highscore keeping
     if (score > [[NSUserDefaults standardUserDefaults] integerForKey:@"highScore"]
@@ -745,7 +664,6 @@ enum {
         
         [[NSUserDefaults standardUserDefaults] setInteger:score forKey:@"highScore"];
     }
-    
     int highScore = [[NSUserDefaults standardUserDefaults] integerForKey:@"highScore"];
     
     //display highscore
@@ -762,7 +680,6 @@ enum {
                 [self addChild:highScoreColumn1 z:11];
                 [self addChild:highScoreColumn2 z:11];
                 [self addChild:highScoreColumn3 z:11];
-                
             } else {
                 //2 columns
                 int column1 = (highScore % 100) / 10;
@@ -793,7 +710,6 @@ enum {
                 [self addChild:highScoreColumn1 z:11];
                 [self addChild:highScoreColumn2 z:11];
                 [self addChild:highScoreColumn3 z:11];
-                
             } else {
                 //2 columns
                 int column1 = (highScore % 100) / 10;
@@ -834,14 +750,8 @@ enum {
     [self removeChild:scoreColumn2 cleanup:YES];
     [self removeChild:scoreColumn3 cleanup:YES];
     
-    //scoreColumn1.position = ccp(-1000,0);
-    //scoreColumn2.position = ccp(-1000,0);
-    //scoreColumn3.position = ccp(-1000,0);
-    
     scoreColumn2 = nil;
     scoreColumn3 = nil;
-    
-    
     
     [self removeChild:highScoreColumn1 cleanup:YES];
     [self removeChild:highScoreColumn2 cleanup:YES];
@@ -859,7 +769,6 @@ enum {
     [self addChild:scoreColumn1 z:11];
     
     [self drawStartingArea];
-    
 }
 
 
@@ -879,7 +788,6 @@ enum {
         return;
     }
     [_helper buyProduct:_removeAds];
-        
     
 }
 
@@ -889,7 +797,6 @@ enum {
     NetworkStatus networkStatus = [reachability currentReachabilityStatus];
     return !(networkStatus == NotReachable);
 }
-
 
 
 
@@ -918,8 +825,6 @@ enum {
                 [self scheduleOnce:@selector(kick2) delay:0.3];
             }
         }
-    
-
 }
 
 -(void) kick2 {
@@ -942,7 +847,6 @@ enum {
     
     _ball.position = ccp(-300, 300);
     [self addChild:_ball z:0];
-    //[self addChild:_hamster z:1];
     
     // Create ball body and shape
     b2BodyDef ballBodyDef;
@@ -1061,7 +965,6 @@ enum {
         _lines.position = ccp(100, 300);
         [self addChild:_lines z:10];
     }
-    
 }
 
 
@@ -1075,7 +978,7 @@ enum {
 -(void) drawNextColumn {
     float x = (float)[self getRandomNumberBetween:3 to:7];
     
-    
+    //first 4 platforms have less height variance
     float y;
     if (platformNumber < 5) {
         y = (float)[self getRandomNumberBetween:1 to:2];
@@ -1095,10 +998,12 @@ enum {
 
     int n = [self getRandomNumberBetween:1 to:12];
     
+    //removes hard and medium difficulty platforms for the first 5
     while (platformNumber < 6 && (n == 2 || n == 3 || n == 6 || n == 9 || n == 1 || n == 8)) {
         n = [self getRandomNumberBetween:1 to:12];
     }
     
+    //removes hard platforms from the first nine
     while (platformNumber < 10 && platformNumber > 5 && (n == 2 || n == 3 || n == 6 || n == 9)) {
         n = [self getRandomNumberBetween:1 to:12];
     }
@@ -1130,7 +1035,6 @@ enum {
 
 
 -(int)getRandomNumberBetween:(int)from to:(int)to {
-    
     return (int)from + arc4random() % (to-from+1);
 }
 

@@ -10,11 +10,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "KrazyKart/HelloWorldLayer.mm"
-            timestampString = "420622432.7825"
+            timestampString = "420623872.365866"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "998"
-            endingLineNumber = "998"
+            startingLineNumber = "901"
+            endingLineNumber = "901"
             landmarkName = "-createNewHamster"
             landmarkType = "5">
          </BreakpointContent>
@@ -26,11 +26,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "KrazyKart/HelloWorldLayer.mm"
-            timestampString = "420622432.7825"
+            timestampString = "420623872.365866"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1162"
-            endingLineNumber = "1162"
+            startingLineNumber = "1065"
+            endingLineNumber = "1065"
             landmarkName = "-drawColumn:atDistance:atHeight:"
             landmarkType = "5">
          </BreakpointContent>
@@ -58,11 +58,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "KrazyKart/HelloWorldLayer.mm"
-            timestampString = "420622432.7825"
+            timestampString = "420623872.365866"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "930"
-            endingLineNumber = "930"
+            startingLineNumber = "834"
+            endingLineNumber = "834"
             landmarkName = "-kick2"
             landmarkType = "5">
          </BreakpointContent>
@@ -74,11 +74,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "KrazyKart/HelloWorldLayer.mm"
-            timestampString = "420619686.336775"
+            timestampString = "420623872.365866"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "612"
-            endingLineNumber = "612"
+            startingLineNumber = "538"
+            endingLineNumber = "538"
             landmarkName = "-tick:"
             landmarkType = "5">
          </BreakpointContent>
@@ -90,11 +90,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "KrazyKart/HelloWorldLayer.mm"
-            timestampString = "420619686.336775"
+            timestampString = "420623872.365866"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "507"
-            endingLineNumber = "507"
+            startingLineNumber = "467"
+            endingLineNumber = "467"
             landmarkName = "-tick:"
             landmarkType = "5">
          </BreakpointContent>
@@ -106,11 +106,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "KrazyKart/HelloWorldLayer.mm"
-            timestampString = "420619686.336775"
+            timestampString = "420623872.365866"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "510"
-            endingLineNumber = "510"
+            startingLineNumber = "470"
+            endingLineNumber = "470"
             landmarkName = "-tick:"
             landmarkType = "5">
          </BreakpointContent>
@@ -122,11 +122,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "KrazyKart/HelloWorldLayer.mm"
-            timestampString = "420619686.336775"
+            timestampString = "420623872.365866"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "531"
-            endingLineNumber = "531"
+            startingLineNumber = "489"
+            endingLineNumber = "489"
             landmarkName = "-tick:"
             landmarkType = "5">
          </BreakpointContent>
