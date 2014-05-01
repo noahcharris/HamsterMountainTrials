@@ -194,6 +194,11 @@
 		B9673B441908A6A60029EB7A /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B9673B431908A6A60029EB7A /* MessageUI.framework */; };
 		B9673B451908A6AD0029EB7A /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B9673B3D1908A43D0029EB7A /* StoreKit.framework */; };
 		B9673B461908A6B60029EB7A /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B9673B3F1908A44C0029EB7A /* SystemConfiguration.framework */; };
+		B97299F11911CD50008725D3 /* hamsterIcon 120.png in Resources */ = {isa = PBXBuildFile; fileRef = B97299EE1911C651008725D3 /* hamsterIcon 120.png */; };
+		B97299F21911CD5A008725D3 /* hamsterIcon 114.png in Resources */ = {isa = PBXBuildFile; fileRef = B97299EF1911C859008725D3 /* hamsterIcon 114.png */; };
+		B97299F31911CD5F008725D3 /* hamsterIcon 57.png in Resources */ = {isa = PBXBuildFile; fileRef = B97299F01911C95C008725D3 /* hamsterIcon 57.png */; };
+		B97299F71911D062008725D3 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B97299F61911D062008725D3 /* Images.xcassets */; };
+		B97299F91911D400008725D3 /* hamsterLaunch 1136.png in Resources */ = {isa = PBXBuildFile; fileRef = B97299F81911D400008725D3 /* hamsterLaunch 1136.png */; };
 		B9996EE01911796700137B3C /* number0.png in Resources */ = {isa = PBXBuildFile; fileRef = B9996ED61911796700137B3C /* number0.png */; };
 		B9996EE11911796700137B3C /* number1.png in Resources */ = {isa = PBXBuildFile; fileRef = B9996ED71911796700137B3C /* number1.png */; };
 		B9996EE21911796700137B3C /* number2.png in Resources */ = {isa = PBXBuildFile; fileRef = B9996ED81911796700137B3C /* number2.png */; };
@@ -633,6 +638,8 @@
 		B97299EE1911C651008725D3 /* hamsterIcon 120.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "hamsterIcon 120.png"; sourceTree = "<group>"; };
 		B97299EF1911C859008725D3 /* hamsterIcon 114.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "hamsterIcon 114.png"; sourceTree = "<group>"; };
 		B97299F01911C95C008725D3 /* hamsterIcon 57.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "hamsterIcon 57.png"; sourceTree = "<group>"; };
+		B97299F61911D062008725D3 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		B97299F81911D400008725D3 /* hamsterLaunch 1136.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "hamsterLaunch 1136.png"; sourceTree = "<group>"; };
 		B9996ED61911796700137B3C /* number0.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = number0.png; sourceTree = "<group>"; };
 		B9996ED71911796700137B3C /* number1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = number1.png; sourceTree = "<group>"; };
 		B9996ED81911796700137B3C /* number2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = number2.png; sourceTree = "<group>"; };
@@ -721,6 +728,7 @@
 		B94A523C19011C25005CD71E = {
 			isa = PBXGroup;
 			children = (
+				B97299F81911D400008725D3 /* hamsterLaunch 1136.png */,
 				B97299F01911C95C008725D3 /* hamsterIcon 57.png */,
 				B97299EF1911C859008725D3 /* hamsterIcon 114.png */,
 				B97299EE1911C651008725D3 /* hamsterIcon 120.png */,
@@ -782,6 +790,7 @@
 				B94A546F19011C29005CD71E /* GLES-Render.mm */,
 				B94A525B19011C25005CD71E /* Resources */,
 				B94A527519011C25005CD71E /* libs */,
+				B97299F61911D062008725D3 /* Images.xcassets */,
 				B94A546119011C29005CD71E /* Supporting Files */,
 			);
 			path = KrazyKart;
@@ -1488,6 +1497,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B97299F91911D400008725D3 /* hamsterLaunch 1136.png in Resources */,
+				B97299F31911CD5F008725D3 /* hamsterIcon 57.png in Resources */,
+				B97299F21911CD5A008725D3 /* hamsterIcon 114.png in Resources */,
+				B97299F11911CD50008725D3 /* hamsterIcon 120.png in Resources */,
 				B9996EFB1911797600137B3C /* NRnumber7.png in Resources */,
 				B91FA8A41910AAA4003E28A2 /* NRinstructions.png in Resources */,
 				B9C13D3A190EEA9C00C47D89 /* NRhamsterRun.png in Resources */,
@@ -1510,6 +1523,7 @@
 				B9C13D27190EE1B800C47D89 /* NRplatform2.png in Resources */,
 				B91FA8A01910A297003E28A2 /* NRremoveAdsButton.png in Resources */,
 				B9996EE71911796700137B3C /* number7.png in Resources */,
+				B97299F71911D062008725D3 /* Images.xcassets in Resources */,
 				B9996EF71911797600137B3C /* NRnumber3.png in Resources */,
 				B91FA89619109A20003E28A2 /* NRbackground.png in Resources */,
 				B9996EF91911797600137B3C /* NRnumber5.png in Resources */,
@@ -1758,6 +1772,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = YES;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_OBJC_ARC = NO;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -1792,6 +1808,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = YES;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_OBJC_ARC = NO;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
