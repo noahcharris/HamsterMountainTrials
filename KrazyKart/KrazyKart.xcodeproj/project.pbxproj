@@ -37,7 +37,6 @@
 		B91C9B991912F86C0017F42E /* NRstartButton.png in Resources */ = {isa = PBXBuildFile; fileRef = B91C9B951912F86C0017F42E /* NRstartButton.png */; };
 		B91C9B9B19131C380017F42E /* hamsterBallLines.png in Resources */ = {isa = PBXBuildFile; fileRef = B91C9B9A19131C380017F42E /* hamsterBallLines.png */; };
 		B91C9B9D19131C3F0017F42E /* NRhamsterBallLines.png in Resources */ = {isa = PBXBuildFile; fileRef = B91C9B9C19131C3F0017F42E /* NRhamsterBallLines.png */; };
-		B91C9B9F19132C3F0017F42E /* background.png in Resources */ = {isa = PBXBuildFile; fileRef = B91C9B9E19132C3F0017F42E /* background.png */; };
 		B91CF9A71904D4C800E92440 /* MyContactListener.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B91CF9A51904D4C800E92440 /* MyContactListener.cpp */; };
 		B91FA89619109A20003E28A2 /* NRbackground.png in Resources */ = {isa = PBXBuildFile; fileRef = B91FA89519109A20003E28A2 /* NRbackground.png */; };
 		B91FA8A41910AAA4003E28A2 /* NRinstructions.png in Resources */ = {isa = PBXBuildFile; fileRef = B91FA8A31910AAA4003E28A2 /* NRinstructions.png */; };
@@ -223,10 +222,6 @@
 		B97299F31911CD5F008725D3 /* hamsterIcon 57.png in Resources */ = {isa = PBXBuildFile; fileRef = B97299F01911C95C008725D3 /* hamsterIcon 57.png */; };
 		B97299F71911D062008725D3 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B97299F61911D062008725D3 /* Images.xcassets */; };
 		B97299F91911D400008725D3 /* hamsterLaunch 1136.png in Resources */ = {isa = PBXBuildFile; fileRef = B97299F81911D400008725D3 /* hamsterLaunch 1136.png */; };
-		B97299FC191200A9008725D3 /* NRnumberSheet.plist in Resources */ = {isa = PBXBuildFile; fileRef = B97299FA191200A8008725D3 /* NRnumberSheet.plist */; };
-		B97299FD191200A9008725D3 /* NRnumberSheet.png in Resources */ = {isa = PBXBuildFile; fileRef = B97299FB191200A9008725D3 /* NRnumberSheet.png */; };
-		B9729A00191202BB008725D3 /* numberSheet.plist in Resources */ = {isa = PBXBuildFile; fileRef = B97299FE191202BB008725D3 /* numberSheet.plist */; };
-		B9729A01191202BB008725D3 /* numberSheet.png in Resources */ = {isa = PBXBuildFile; fileRef = B97299FF191202BB008725D3 /* numberSheet.png */; };
 		B9C13D26190EE1B800C47D89 /* NRplatform1.png in Resources */ = {isa = PBXBuildFile; fileRef = B9C13D1B190EE1B800C47D89 /* NRplatform1.png */; };
 		B9C13D27190EE1B800C47D89 /* NRplatform2.png in Resources */ = {isa = PBXBuildFile; fileRef = B9C13D1C190EE1B800C47D89 /* NRplatform2.png */; };
 		B9C13D28190EE1B800C47D89 /* NRplatform3.png in Resources */ = {isa = PBXBuildFile; fileRef = B9C13D1D190EE1B800C47D89 /* NRplatform3.png */; };
@@ -249,6 +244,8 @@
 		B9DD5705190D983A009A99EA /* IAPHelper.h in Headers */ = {isa = PBXBuildFile; fileRef = B9DD5703190D983A009A99EA /* IAPHelper.h */; };
 		B9DD5706190D983A009A99EA /* IAPHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = B9DD5704190D983A009A99EA /* IAPHelper.m */; };
 		B9E7454319088274007C15D7 /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B9E7454219088274007C15D7 /* AdSupport.framework */; };
+		B9F2E44A19133895008060D8 /* background.png in Resources */ = {isa = PBXBuildFile; fileRef = B9F2E44919133895008060D8 /* background.png */; };
+		B9F2E44C191338F8008060D8 /* wideBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = B9F2E44B191338F8008060D8 /* wideBackground.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -282,7 +279,6 @@
 		B91C9B951912F86C0017F42E /* NRstartButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = NRstartButton.png; sourceTree = "<group>"; };
 		B91C9B9A19131C380017F42E /* hamsterBallLines.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = hamsterBallLines.png; sourceTree = "<group>"; };
 		B91C9B9C19131C3F0017F42E /* NRhamsterBallLines.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = NRhamsterBallLines.png; sourceTree = "<group>"; };
-		B91C9B9E19132C3F0017F42E /* background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = background.png; sourceTree = "<group>"; };
 		B91CF9A51904D4C800E92440 /* MyContactListener.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = MyContactListener.cpp; path = ../MyContactListener.cpp; sourceTree = "<group>"; };
 		B91CF9A61904D4C800E92440 /* MyContactListener.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MyContactListener.h; path = ../MyContactListener.h; sourceTree = "<group>"; };
 		B91FA89519109A20003E28A2 /* NRbackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = NRbackground.png; sourceTree = "<group>"; };
@@ -659,10 +655,6 @@
 		B97299F01911C95C008725D3 /* hamsterIcon 57.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "hamsterIcon 57.png"; sourceTree = "<group>"; };
 		B97299F61911D062008725D3 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		B97299F81911D400008725D3 /* hamsterLaunch 1136.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "hamsterLaunch 1136.png"; sourceTree = "<group>"; };
-		B97299FA191200A8008725D3 /* NRnumberSheet.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = NRnumberSheet.plist; sourceTree = "<group>"; };
-		B97299FB191200A9008725D3 /* NRnumberSheet.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = NRnumberSheet.png; sourceTree = "<group>"; };
-		B97299FE191202BB008725D3 /* numberSheet.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = numberSheet.plist; sourceTree = "<group>"; };
-		B97299FF191202BB008725D3 /* numberSheet.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = numberSheet.png; sourceTree = "<group>"; };
 		B9C13D1B190EE1B800C47D89 /* NRplatform1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = NRplatform1.png; sourceTree = "<group>"; };
 		B9C13D1C190EE1B800C47D89 /* NRplatform2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = NRplatform2.png; sourceTree = "<group>"; };
 		B9C13D1D190EE1B800C47D89 /* NRplatform3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = NRplatform3.png; sourceTree = "<group>"; };
@@ -698,6 +690,8 @@
 		B9E6D3FF1909D5D000DAF980 /* platform8.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = platform8.png; sourceTree = "<group>"; };
 		B9E6D4001909D5D000DAF980 /* platform9.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = platform9.png; sourceTree = "<group>"; };
 		B9E7454219088274007C15D7 /* AdSupport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdSupport.framework; path = System/Library/Frameworks/AdSupport.framework; sourceTree = SDKROOT; };
+		B9F2E44919133895008060D8 /* background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = background.png; sourceTree = "<group>"; };
+		B9F2E44B191338F8008060D8 /* wideBackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = wideBackground.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1329,7 +1323,8 @@
 		B9DB247A190E1970000A4681 /* Retina */ = {
 			isa = PBXGroup;
 			children = (
-				B91C9B9E19132C3F0017F42E /* background.png */,
+				B9F2E44B191338F8008060D8 /* wideBackground.png */,
+				B9F2E44919133895008060D8 /* background.png */,
 				B91C9B9A19131C380017F42E /* hamsterBallLines.png */,
 				B91C9B8A1912F8390017F42E /* bestButton.png */,
 				B91C9B8B1912F8390017F42E /* removeAdsButton.png */,
@@ -1345,8 +1340,6 @@
 				B91C9B691912F7790017F42E /* number7.png */,
 				B91C9B6A1912F7790017F42E /* number8.png */,
 				B91C9B6B1912F7790017F42E /* number9.png */,
-				B97299FE191202BB008725D3 /* numberSheet.plist */,
-				B97299FF191202BB008725D3 /* numberSheet.png */,
 				B91FA8A51910B620003E28A2 /* instructions.png */,
 				B9DBCAD919106CF400426C2B /* platform10.png */,
 				B9C13D44190F0C5C00C47D89 /* platform12.png */,
@@ -1386,8 +1379,6 @@
 				B91C9B7D1912F7880017F42E /* NRnumber7.png */,
 				B91C9B7E1912F7880017F42E /* NRnumber8.png */,
 				B91C9B7F1912F7880017F42E /* NRnumber9.png */,
-				B97299FA191200A8008725D3 /* NRnumberSheet.plist */,
-				B97299FB191200A9008725D3 /* NRnumberSheet.png */,
 				B91FA8A31910AAA4003E28A2 /* NRinstructions.png */,
 				B91FA89519109A20003E28A2 /* NRbackground.png */,
 				B9C13D3C190F04E000C47D89 /* NRplatform12.png */,
@@ -1461,7 +1452,6 @@
 				LastUpgradeCheck = 0460;
 				TargetAttributes = {
 					B94A524419011C25005CD71E = {
-						DevelopmentTeam = 889W52Q6D4;
 						SystemCapabilities = {
 							com.apple.GameCenter = {
 								enabled = 0;
@@ -1504,14 +1494,14 @@
 				B91C9B6E1912F7790017F42E /* number2.png in Resources */,
 				B9C13D3A190EEA9C00C47D89 /* NRhamsterRun.png in Resources */,
 				B91C9B891912F7880017F42E /* NRnumber9.png in Resources */,
+				B9F2E44C191338F8008060D8 /* wideBackground.png in Resources */,
 				B9C13D2E190EE1B800C47D89 /* NRplatform9.png in Resources */,
+				B9F2E44A19133895008060D8 /* background.png in Resources */,
 				B91C9B6C1912F7790017F42E /* number0.png in Resources */,
 				B91C9B811912F7880017F42E /* NRnumber1.png in Resources */,
-				B91C9B9F19132C3F0017F42E /* background.png in Resources */,
 				B91C9B9D19131C3F0017F42E /* NRhamsterBallLines.png in Resources */,
 				B91C9B8F1912F8390017F42E /* removeAdsButton.png in Resources */,
 				B91C9B961912F86C0017F42E /* NRbestButton.png in Resources */,
-				B97299FD191200A9008725D3 /* NRnumberSheet.png in Resources */,
 				B91C9B861912F7880017F42E /* NRnumber6.png in Resources */,
 				B9C13D39190EEA9C00C47D89 /* NRhamsterRun.plist in Resources */,
 				B9C13D2F190EE1B800C47D89 /* NRplatform10.png in Resources */,
@@ -1519,10 +1509,8 @@
 				B91C9B911912F8390017F42E /* startButton.png in Resources */,
 				B91C9B831912F7880017F42E /* NRnumber3.png in Resources */,
 				B91C9B9B19131C380017F42E /* hamsterBallLines.png in Resources */,
-				B97299FC191200A9008725D3 /* NRnumberSheet.plist in Resources */,
 				B9C13D28190EE1B800C47D89 /* NRplatform3.png in Resources */,
 				B91C9B801912F7880017F42E /* NRnumber0.png in Resources */,
-				B9729A01191202BB008725D3 /* numberSheet.png in Resources */,
 				B9C13D26190EE1B800C47D89 /* NRplatform1.png in Resources */,
 				B9C13D3B190EF14100C47D89 /* NRhamsterEmptyBall.png in Resources */,
 				B91C9B901912F8390017F42E /* scorePrefix.png in Resources */,
@@ -1542,7 +1530,6 @@
 				B9C13D36190EEA9100C47D89 /* NRhamsterShading.png in Resources */,
 				B9C13D42190F0BE200C47D89 /* platform11.png in Resources */,
 				B9C13D2B190EE1B800C47D89 /* NRplatform6.png in Resources */,
-				B9729A00191202BB008725D3 /* numberSheet.plist in Resources */,
 				B91C9B851912F7880017F42E /* NRnumber5.png in Resources */,
 				B9DBCADA19106CF400426C2B /* platform10.png in Resources */,
 				B91FA8A61910B620003E28A2 /* instructions.png in Resources */,
@@ -1777,7 +1764,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_OBJC_ARC = NO;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Noah Harris (84EK29DWLG)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Noah Harris (84EK29DWLG)";
 				COPY_PHASE_STRIP = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
@@ -1814,7 +1801,7 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_OBJC_ARC = NO;
 				"CODE_SIGN_ENTITLEMENTS[sdk=*]" = "";
-				CODE_SIGN_IDENTITY = "iPhone Developer: Noah Harris (84EK29DWLG)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Noah Harris (84EK29DWLG)";
 				COPY_PHASE_STRIP = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;

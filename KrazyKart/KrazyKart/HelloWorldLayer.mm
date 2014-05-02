@@ -163,17 +163,13 @@ enum {
 
         
         //AD CONTROLLER INITIALIZATION
-        if (!adsRemoved) {
-            _banner = [[BannerViewController alloc] init];
-            [_banner initiAdBanner];
-            [_banner initgAdBanner];
-            [[CCDirector sharedDirector].openGLView addSubview:_banner.view];
-        }
+//        if (!adsRemoved) {
+//            _banner = [[BannerViewController alloc] init];
+//            [_banner initiAdBanner];
+//            [_banner initgAdBanner];
+//            [[CCDirector sharedDirector].openGLView addSubview:_banner.view];
+//        }
         
-        //load numberSpriteSheet (when removing this be sure to load from files not sprite frames when scorekeeping
-        [[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:@"numberSheet.plist"];
-        
-        numberSprites = [CCSpriteBatchNode batchNodeWithFile:@"numberSheet.png"];
         
         starting = true;
         
@@ -255,7 +251,8 @@ enum {
                 screenOffsetX = 305;
                 screenOffsetY = 4;
                 
-                backgroundOffsetX = -10;
+                backgroundOffsetX = -9.55;
+                backgroundOffsetY = 0;
                 
                 scoreColumn1X1 = 6;
                 scoreColumn2X1 = 7;
@@ -411,7 +408,7 @@ enum {
                     NSLog(@"3.5-inch iphone retina");
                     scaling = 0.5f;
                     screenOffsetX  = -30;
-                    screenOffsetY = -1;
+                    screenOffsetY = 0;
                     
                     backgroundOffsetX = 2;
                     
@@ -538,9 +535,15 @@ enum {
         
         //draw background
         if (isRetina) {
-            _background = [CCSprite spriteWithFile:@"background.png"];
-            _background.position = ccp(winSize.width/(2), winSize.height/(2));
-            [self addChild:_background];
+            if (isiPhone5) {
+                _background = [CCSprite spriteWithFile:@"wideBackground.png"];
+                _background.position = ccp(winSize.width/(2), winSize.height/(2));
+                [self addChild:_background];
+            } else {
+                _background = [CCSprite spriteWithFile:@"background.png"];
+                _background.position = ccp(winSize.width/(2), winSize.height/(2));
+                [self addChild:_background];
+            }
         } else {
             _background = [CCSprite spriteWithFile:@"NRbackground.png"];
             _background.position = ccp(winSize.width/(2), winSize.height/(2));
@@ -632,7 +635,7 @@ enum {
     
     //scroll background
     CGSize winSize = [CCDirector sharedDirector].winSize;
-    _background.position = ccp(pos.x * PTM_RATIO + winSize.width/(2) + backgroundOffsetX * PTM_RATIO, self.position.y * PTM_RATIO + winSize.height/(2));
+    _background.position = ccp(pos.x * PTM_RATIO + winSize.width/(2) + backgroundOffsetX * PTM_RATIO, self.position.y * PTM_RATIO + winSize.height/(2) + backgroundOffsetY * PTM_RATIO);
     
     
     //starting screen (gameover) stuff

@@ -71,6 +71,7 @@
     float screenOffsetY;
     
     float backgroundOffsetX;
+    float backgroundOffsetY;
     
     float hamsterStartX;
     float hamsterStartY;
