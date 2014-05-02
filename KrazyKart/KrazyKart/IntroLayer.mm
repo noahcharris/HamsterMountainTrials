@@ -10,6 +10,7 @@
 // Import the interfaces
 #import "IntroLayer.h"
 #import "HelloWorldLayer.h"
+#import "SimpleAudioEngine.h"
 
 
 #pragma mark - IntroLayer
@@ -37,25 +38,13 @@
 -(void) onEnter
 {
 	[super onEnter];
-
-	// ask director for the window size
-	CGSize size = [[CCDirector sharedDirector] winSize];
-
-	CCSprite *background;
-	
-	if( UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone ) {
-		background = [CCSprite spriteWithFile:@"Default.png"];
-		background.rotation = 90;
-	} else {
-		background = [CCSprite spriteWithFile:@"Default-Landscape~ipad.png"];
-	}
-	background.position = ccp(size.width/2, size.height/2);
-
-	// add the label as a child to this Layer
-	//[self addChild: background];
+    NSLog(@"On ENTER!");
+    //much better here don't you think?
+    [[SimpleAudioEngine sharedEngine] playBackgroundMusic:@"wind.mp3"];
 	
 	// In one second transition to the new scene
-	[self scheduleOnce:@selector(makeTransition:) delay:0];
+	//[self scheduleOnce:@selector(makeTransition:) delay:0];
+    [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:0.0 scene:[HelloWorldLayer scene] withColor:ccWHITE]];
 }
 
 -(void) makeTransition:(ccTime)dt

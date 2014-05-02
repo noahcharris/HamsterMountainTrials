@@ -171,7 +171,7 @@ enum {
         }
         
         //maybe try putting this in the app delegate so it plays earlier?
-        [[SimpleAudioEngine sharedEngine] playBackgroundMusic:@"wind.mp3"];
+        //[[SimpleAudioEngine sharedEngine] playBackgroundMusic:@"wind.mp3"];
         
         starting = true;
         
