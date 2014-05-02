@@ -163,13 +163,15 @@ enum {
 
         
         //AD CONTROLLER INITIALIZATION
-//        if (!adsRemoved) {
-//            _banner = [[BannerViewController alloc] init];
-//            [_banner initiAdBanner];
-//            [_banner initgAdBanner];
-//            [[CCDirector sharedDirector].openGLView addSubview:_banner.view];
-//        }
+        if (!adsRemoved) {
+            _banner = [[BannerViewController alloc] init];
+            [_banner initiAdBanner];
+            [_banner initgAdBanner];
+            [[CCDirector sharedDirector].openGLView addSubview:_banner.view];
+        }
         
+        //maybe try putting this in the app delegate so it plays earlier?
+        [[SimpleAudioEngine sharedEngine] playBackgroundMusic:@"wind.mp3"];
         
         starting = true;
         
@@ -396,7 +398,7 @@ enum {
                     restartY1 = 0;
                     
                     restartX2 = 10.5;
-                    restartY2 = 0;
+                    restartY2 = -1.0;
                     
                     removeAdsX = 17;
                     removeAdsY = 0;
@@ -790,6 +792,8 @@ enum {
 -(void)gameOver {
     gameOver = true;
     
+    restartY = restartY1;
+    
     if (!starting) {
         //empty the score queue
         while (!score_queue->empty()) {
@@ -821,7 +825,6 @@ enum {
     restartY = restartY1;
     if (!showRemoveAdsButton) {
         restartX = restartX2;
-        restartY = restartY2;
     }
 
     
@@ -961,12 +964,9 @@ enum {
 }
 
 
--(void)nothing {
-    //for highscore prefix label
-}
-
 - (void)restartTapped {
     gameOver = false;
+    
     
     
     [self createNewHamster];
@@ -974,6 +974,7 @@ enum {
     [self removeChild:starMenu cleanup:YES];
     [self removeChild:highScoreLabel cleanup:YES];
     [self removeChild:highScorePrefixLabel cleanup:YES];
+    [self removeChild:_restartButton cleanup:YES];
     [self removeChild:scorePrefix cleanup:YES];
     [self removeChild:instructions cleanup:YES];
     if (showRemoveAdsButton) {
@@ -1069,6 +1070,7 @@ enum {
                 _body->ApplyLinearImpulse(force,_body->GetPosition());
                 //_body->ApplyTorque(-10);
                 [self scheduleOnce:@selector(kick2) delay:0.3];
+                [[SimpleAudioEngine sharedEngine] playEffect:@"Jump1.caf"];
             }
         }
 }
@@ -1077,6 +1079,7 @@ enum {
     if (nextKick) {
         b2Vec2 force = b2Vec2(kick2x, kick2y);
         _body->ApplyLinearImpulse(force,_body->GetPosition());
+        [[SimpleAudioEngine sharedEngine] playEffect:@"Jump2.caf"];
     }
 }
 

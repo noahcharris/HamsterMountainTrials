@@ -15,6 +15,7 @@
 #import "BannerViewController.h"
 #import "IAPHelper.h"
 #include <queue>
+#import "SimpleAudioEngine.h"
 
 #import "Reachability.h"
 

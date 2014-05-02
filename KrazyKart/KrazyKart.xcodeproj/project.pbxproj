@@ -246,6 +246,9 @@
 		B9E7454319088274007C15D7 /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B9E7454219088274007C15D7 /* AdSupport.framework */; };
 		B9F2E44A19133895008060D8 /* background.png in Resources */ = {isa = PBXBuildFile; fileRef = B9F2E44919133895008060D8 /* background.png */; };
 		B9F2E44C191338F8008060D8 /* wideBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = B9F2E44B191338F8008060D8 /* wideBackground.png */; };
+		B9F2E4501913452B008060D8 /* Jump1.caf in Resources */ = {isa = PBXBuildFile; fileRef = B9F2E44D1913452B008060D8 /* Jump1.caf */; };
+		B9F2E4511913452B008060D8 /* Jump2.caf in Resources */ = {isa = PBXBuildFile; fileRef = B9F2E44E1913452B008060D8 /* Jump2.caf */; };
+		B9F2E4521913452B008060D8 /* wind.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = B9F2E44F1913452B008060D8 /* wind.mp3 */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -692,6 +695,9 @@
 		B9E7454219088274007C15D7 /* AdSupport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdSupport.framework; path = System/Library/Frameworks/AdSupport.framework; sourceTree = SDKROOT; };
 		B9F2E44919133895008060D8 /* background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = background.png; sourceTree = "<group>"; };
 		B9F2E44B191338F8008060D8 /* wideBackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = wideBackground.png; sourceTree = "<group>"; };
+		B9F2E44D1913452B008060D8 /* Jump1.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Jump1.caf; sourceTree = "<group>"; };
+		B9F2E44E1913452B008060D8 /* Jump2.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Jump2.caf; sourceTree = "<group>"; };
+		B9F2E44F1913452B008060D8 /* wind.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = wind.mp3; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -794,6 +800,9 @@
 		B94A525B19011C25005CD71E /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				B9F2E44D1913452B008060D8 /* Jump1.caf */,
+				B9F2E44E1913452B008060D8 /* Jump2.caf */,
+				B9F2E44F1913452B008060D8 /* wind.mp3 */,
 				B9DB247B190E19B9000A4681 /* NonRetina */,
 				B9DB247A190E1970000A4681 /* Retina */,
 				B94A527219011C25005CD71E /* Info.plist */,
@@ -1492,6 +1501,7 @@
 				B91C9B731912F7790017F42E /* number7.png in Resources */,
 				B91FA8A41910AAA4003E28A2 /* NRinstructions.png in Resources */,
 				B91C9B6E1912F7790017F42E /* number2.png in Resources */,
+				B9F2E4501913452B008060D8 /* Jump1.caf in Resources */,
 				B9C13D3A190EEA9C00C47D89 /* NRhamsterRun.png in Resources */,
 				B91C9B891912F7880017F42E /* NRnumber9.png in Resources */,
 				B9F2E44C191338F8008060D8 /* wideBackground.png in Resources */,
@@ -1501,6 +1511,7 @@
 				B91C9B811912F7880017F42E /* NRnumber1.png in Resources */,
 				B91C9B9D19131C3F0017F42E /* NRhamsterBallLines.png in Resources */,
 				B91C9B8F1912F8390017F42E /* removeAdsButton.png in Resources */,
+				B9F2E4521913452B008060D8 /* wind.mp3 in Resources */,
 				B91C9B961912F86C0017F42E /* NRbestButton.png in Resources */,
 				B91C9B861912F7880017F42E /* NRnumber6.png in Resources */,
 				B9C13D39190EEA9C00C47D89 /* NRhamsterRun.plist in Resources */,
@@ -1538,6 +1549,7 @@
 				B91C9B6F1912F7790017F42E /* number3.png in Resources */,
 				B9C13D30190EE1B800C47D89 /* NRplatform11.png in Resources */,
 				B91C9B881912F7880017F42E /* NRnumber8.png in Resources */,
+				B9F2E4511913452B008060D8 /* Jump2.caf in Resources */,
 				B9C13D2D190EE1B800C47D89 /* NRplatform8.png in Resources */,
 				B91C9B751912F7790017F42E /* number9.png in Resources */,
 				B91C9B741912F7790017F42E /* number8.png in Resources */,
@@ -1764,7 +1776,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_OBJC_ARC = NO;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Noah Harris (84EK29DWLG)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Noah Harris (84EK29DWLG)";
 				COPY_PHASE_STRIP = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
@@ -1801,7 +1813,7 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_OBJC_ARC = NO;
 				"CODE_SIGN_ENTITLEMENTS[sdk=*]" = "";
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Noah Harris (84EK29DWLG)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Noah Harris (84EK29DWLG)";
 				COPY_PHASE_STRIP = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
