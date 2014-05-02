@@ -831,7 +831,7 @@ enum {
     //show all the buttons and whatnot
     if (isRetina) {
         _restartButton= [CCMenuItemImage
-                         itemFromNormalImage:@"startButton.png" selectedImage:@"startButton.png"
+                         itemFromNormalImage:@"startButton.png" selectedImage:@"startButtonPressed.png"
                          target:self selector:@selector(restartTapped)];
         _restartButton.position = ccp(-300, 280);
         
@@ -862,7 +862,7 @@ enum {
 
     } else {
         _restartButton= [CCMenuItemImage
-                         itemFromNormalImage:@"NRstartButton.png" selectedImage:@"NRstartButton.png"
+                         itemFromNormalImage:@"NRstartButton.png" selectedImage:@"NRstartButtonPressed.png"
                          target:self selector:@selector(restartTapped)];
         _restartButton.position = ccp(-300, 280);
         

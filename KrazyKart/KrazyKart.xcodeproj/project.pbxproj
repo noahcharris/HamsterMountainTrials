@@ -249,6 +249,8 @@
 		B9F2E4501913452B008060D8 /* Jump1.caf in Resources */ = {isa = PBXBuildFile; fileRef = B9F2E44D1913452B008060D8 /* Jump1.caf */; };
 		B9F2E4511913452B008060D8 /* Jump2.caf in Resources */ = {isa = PBXBuildFile; fileRef = B9F2E44E1913452B008060D8 /* Jump2.caf */; };
 		B9F2E4521913452B008060D8 /* wind.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = B9F2E44F1913452B008060D8 /* wind.mp3 */; };
+		B9F2E45C191359F7008060D8 /* startButtonPressed.png in Resources */ = {isa = PBXBuildFile; fileRef = B9F2E45B191359F7008060D8 /* startButtonPressed.png */; };
+		B9F2E45E191359FC008060D8 /* NRstartButtonPressed.png in Resources */ = {isa = PBXBuildFile; fileRef = B9F2E45D191359FC008060D8 /* NRstartButtonPressed.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -698,6 +700,8 @@
 		B9F2E44D1913452B008060D8 /* Jump1.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Jump1.caf; sourceTree = "<group>"; };
 		B9F2E44E1913452B008060D8 /* Jump2.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Jump2.caf; sourceTree = "<group>"; };
 		B9F2E44F1913452B008060D8 /* wind.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = wind.mp3; sourceTree = "<group>"; };
+		B9F2E45B191359F7008060D8 /* startButtonPressed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = startButtonPressed.png; sourceTree = "<group>"; };
+		B9F2E45D191359FC008060D8 /* NRstartButtonPressed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = NRstartButtonPressed.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1332,6 +1336,7 @@
 		B9DB247A190E1970000A4681 /* Retina */ = {
 			isa = PBXGroup;
 			children = (
+				B9F2E45B191359F7008060D8 /* startButtonPressed.png */,
 				B9F2E44B191338F8008060D8 /* wideBackground.png */,
 				B9F2E44919133895008060D8 /* background.png */,
 				B91C9B9A19131C380017F42E /* hamsterBallLines.png */,
@@ -1373,6 +1378,7 @@
 		B9DB247B190E19B9000A4681 /* NonRetina */ = {
 			isa = PBXGroup;
 			children = (
+				B9F2E45D191359FC008060D8 /* NRstartButtonPressed.png */,
 				B91C9B9C19131C3F0017F42E /* NRhamsterBallLines.png */,
 				B91C9B921912F86C0017F42E /* NRbestButton.png */,
 				B91C9B931912F86C0017F42E /* NRremoveAdsButton.png */,
@@ -1461,6 +1467,7 @@
 				LastUpgradeCheck = 0460;
 				TargetAttributes = {
 					B94A524419011C25005CD71E = {
+						DevelopmentTeam = 889W52Q6D4;
 						SystemCapabilities = {
 							com.apple.GameCenter = {
 								enabled = 0;
@@ -1534,6 +1541,7 @@
 				B91C9B871912F7880017F42E /* NRnumber7.png in Resources */,
 				B91C9B841912F7880017F42E /* NRnumber4.png in Resources */,
 				B91C9B991912F86C0017F42E /* NRstartButton.png in Resources */,
+				B9F2E45E191359FC008060D8 /* NRstartButtonPressed.png in Resources */,
 				B97299F71911D062008725D3 /* Images.xcassets in Resources */,
 				B91C9B8E1912F8390017F42E /* bestButton.png in Resources */,
 				B91FA89619109A20003E28A2 /* NRbackground.png in Resources */,
@@ -1550,6 +1558,7 @@
 				B9C13D30190EE1B800C47D89 /* NRplatform11.png in Resources */,
 				B91C9B881912F7880017F42E /* NRnumber8.png in Resources */,
 				B9F2E4511913452B008060D8 /* Jump2.caf in Resources */,
+				B9F2E45C191359F7008060D8 /* startButtonPressed.png in Resources */,
 				B9C13D2D190EE1B800C47D89 /* NRplatform8.png in Resources */,
 				B91C9B751912F7790017F42E /* number9.png in Resources */,
 				B91C9B741912F7790017F42E /* number8.png in Resources */,
@@ -1776,7 +1785,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_OBJC_ARC = NO;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Noah Harris (84EK29DWLG)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Noah Harris (84EK29DWLG)";
 				COPY_PHASE_STRIP = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
@@ -1798,7 +1807,7 @@
 					"-ObjC",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "F8C8BA0E-57C9-4AFB-AA4F-E5439C2068B7";
+				PROVISIONING_PROFILE = "462E1023-9188-448D-9E5B-ECCDF20B1803";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				USER_HEADER_SEARCH_PATHS = "\"KrazyKart/libs\"";
 				WRAPPER_EXTENSION = app;
@@ -1813,7 +1822,7 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_OBJC_ARC = NO;
 				"CODE_SIGN_ENTITLEMENTS[sdk=*]" = "";
-				CODE_SIGN_IDENTITY = "iPhone Developer: Noah Harris (84EK29DWLG)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Noah Harris (84EK29DWLG)";
 				COPY_PHASE_STRIP = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -1834,7 +1843,7 @@
 					"-ObjC",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "F8C8BA0E-57C9-4AFB-AA4F-E5439C2068B7";
+				PROVISIONING_PROFILE = "462E1023-9188-448D-9E5B-ECCDF20B1803";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				USER_HEADER_SEARCH_PATHS = "\"KrazyKart/libs\"";
 				VALIDATE_PRODUCT = YES;
