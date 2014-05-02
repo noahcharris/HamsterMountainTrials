@@ -35,6 +35,8 @@
 		B91C9B971912F86C0017F42E /* NRremoveAdsButton.png in Resources */ = {isa = PBXBuildFile; fileRef = B91C9B931912F86C0017F42E /* NRremoveAdsButton.png */; };
 		B91C9B981912F86C0017F42E /* NRscorePrefix.png in Resources */ = {isa = PBXBuildFile; fileRef = B91C9B941912F86C0017F42E /* NRscorePrefix.png */; };
 		B91C9B991912F86C0017F42E /* NRstartButton.png in Resources */ = {isa = PBXBuildFile; fileRef = B91C9B951912F86C0017F42E /* NRstartButton.png */; };
+		B91C9B9B19131C380017F42E /* hamsterBallLines.png in Resources */ = {isa = PBXBuildFile; fileRef = B91C9B9A19131C380017F42E /* hamsterBallLines.png */; };
+		B91C9B9D19131C3F0017F42E /* NRhamsterBallLines.png in Resources */ = {isa = PBXBuildFile; fileRef = B91C9B9C19131C3F0017F42E /* NRhamsterBallLines.png */; };
 		B91CF9A71904D4C800E92440 /* MyContactListener.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B91CF9A51904D4C800E92440 /* MyContactListener.cpp */; };
 		B91FA89419109A16003E28A2 /* background.png in Resources */ = {isa = PBXBuildFile; fileRef = B91FA89319109A16003E28A2 /* background.png */; };
 		B91FA89619109A20003E28A2 /* NRbackground.png in Resources */ = {isa = PBXBuildFile; fileRef = B91FA89519109A20003E28A2 /* NRbackground.png */; };
@@ -236,7 +238,6 @@
 		B9C13D2E190EE1B800C47D89 /* NRplatform9.png in Resources */ = {isa = PBXBuildFile; fileRef = B9C13D23190EE1B800C47D89 /* NRplatform9.png */; };
 		B9C13D2F190EE1B800C47D89 /* NRplatform10.png in Resources */ = {isa = PBXBuildFile; fileRef = B9C13D24190EE1B800C47D89 /* NRplatform10.png */; };
 		B9C13D30190EE1B800C47D89 /* NRplatform11.png in Resources */ = {isa = PBXBuildFile; fileRef = B9C13D25190EE1B800C47D89 /* NRplatform11.png */; };
-		B9C13D32190EE4E400C47D89 /* NRhamsterBallLines.png in Resources */ = {isa = PBXBuildFile; fileRef = B9C13D31190EE4E400C47D89 /* NRhamsterBallLines.png */; };
 		B9C13D36190EEA9100C47D89 /* NRhamsterShading.png in Resources */ = {isa = PBXBuildFile; fileRef = B9C13D35190EEA9100C47D89 /* NRhamsterShading.png */; };
 		B9C13D39190EEA9C00C47D89 /* NRhamsterRun.plist in Resources */ = {isa = PBXBuildFile; fileRef = B9C13D37190EEA9C00C47D89 /* NRhamsterRun.plist */; };
 		B9C13D3A190EEA9C00C47D89 /* NRhamsterRun.png in Resources */ = {isa = PBXBuildFile; fileRef = B9C13D38190EEA9C00C47D89 /* NRhamsterRun.png */; };
@@ -279,6 +280,8 @@
 		B91C9B931912F86C0017F42E /* NRremoveAdsButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = NRremoveAdsButton.png; sourceTree = "<group>"; };
 		B91C9B941912F86C0017F42E /* NRscorePrefix.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = NRscorePrefix.png; sourceTree = "<group>"; };
 		B91C9B951912F86C0017F42E /* NRstartButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = NRstartButton.png; sourceTree = "<group>"; };
+		B91C9B9A19131C380017F42E /* hamsterBallLines.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = hamsterBallLines.png; sourceTree = "<group>"; };
+		B91C9B9C19131C3F0017F42E /* NRhamsterBallLines.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = NRhamsterBallLines.png; sourceTree = "<group>"; };
 		B91CF9A51904D4C800E92440 /* MyContactListener.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = MyContactListener.cpp; path = ../MyContactListener.cpp; sourceTree = "<group>"; };
 		B91CF9A61904D4C800E92440 /* MyContactListener.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MyContactListener.h; path = ../MyContactListener.h; sourceTree = "<group>"; };
 		B91FA89319109A16003E28A2 /* background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = background.png; sourceTree = "<group>"; };
@@ -671,7 +674,6 @@
 		B9C13D23190EE1B800C47D89 /* NRplatform9.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = NRplatform9.png; sourceTree = "<group>"; };
 		B9C13D24190EE1B800C47D89 /* NRplatform10.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = NRplatform10.png; sourceTree = "<group>"; };
 		B9C13D25190EE1B800C47D89 /* NRplatform11.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = NRplatform11.png; sourceTree = "<group>"; };
-		B9C13D31190EE4E400C47D89 /* NRhamsterBallLines.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = NRhamsterBallLines.png; sourceTree = "<group>"; };
 		B9C13D35190EEA9100C47D89 /* NRhamsterShading.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = NRhamsterShading.png; sourceTree = "<group>"; };
 		B9C13D37190EEA9C00C47D89 /* NRhamsterRun.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = NRhamsterRun.plist; sourceTree = "<group>"; };
 		B9C13D38190EEA9C00C47D89 /* NRhamsterRun.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = NRhamsterRun.png; sourceTree = "<group>"; };
@@ -682,7 +684,6 @@
 		B9DBCAD919106CF400426C2B /* platform10.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = platform10.png; sourceTree = "<group>"; };
 		B9DD5703190D983A009A99EA /* IAPHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IAPHelper.h; sourceTree = "<group>"; };
 		B9DD5704190D983A009A99EA /* IAPHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IAPHelper.m; sourceTree = "<group>"; };
-		B9E6D3EA1909D34B00DAF980 /* hamsterBallLines.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = hamsterBallLines.png; sourceTree = "<group>"; };
 		B9E6D3EC1909D35200DAF980 /* hamsterEmptyBall.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = hamsterEmptyBall.png; sourceTree = "<group>"; };
 		B9E6D3EE1909D36E00DAF980 /* hamsterShading.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = hamsterShading.png; sourceTree = "<group>"; };
 		B9E6D3F41909D4D100DAF980 /* hamsterRun.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = hamsterRun.png; sourceTree = "<group>"; };
@@ -1328,6 +1329,7 @@
 		B9DB247A190E1970000A4681 /* Retina */ = {
 			isa = PBXGroup;
 			children = (
+				B91C9B9A19131C380017F42E /* hamsterBallLines.png */,
 				B91C9B8A1912F8390017F42E /* bestButton.png */,
 				B91C9B8B1912F8390017F42E /* removeAdsButton.png */,
 				B91C9B8C1912F8390017F42E /* scorePrefix.png */,
@@ -1350,7 +1352,6 @@
 				B9C13D44190F0C5C00C47D89 /* platform12.png */,
 				B9C13D40190F0BE200C47D89 /* platform11.png */,
 				B9E6D3F51909D4D100DAF980 /* hamsterRun.plist */,
-				B9E6D3EA1909D34B00DAF980 /* hamsterBallLines.png */,
 				B9E6D3EE1909D36E00DAF980 /* hamsterShading.png */,
 				B9E6D3EC1909D35200DAF980 /* hamsterEmptyBall.png */,
 				B9E6D3F81909D5D000DAF980 /* platform1.png */,
@@ -1370,6 +1371,7 @@
 		B9DB247B190E19B9000A4681 /* NonRetina */ = {
 			isa = PBXGroup;
 			children = (
+				B91C9B9C19131C3F0017F42E /* NRhamsterBallLines.png */,
 				B91C9B921912F86C0017F42E /* NRbestButton.png */,
 				B91C9B931912F86C0017F42E /* NRremoveAdsButton.png */,
 				B91C9B941912F86C0017F42E /* NRscorePrefix.png */,
@@ -1392,7 +1394,6 @@
 				B9C13D37190EEA9C00C47D89 /* NRhamsterRun.plist */,
 				B9C13D38190EEA9C00C47D89 /* NRhamsterRun.png */,
 				B9C13D35190EEA9100C47D89 /* NRhamsterShading.png */,
-				B9C13D31190EE4E400C47D89 /* NRhamsterBallLines.png */,
 				B9D7D9DA19060B0B007429B3 /* NRhamsterEmptyBall.png */,
 				B9C13D1B190EE1B800C47D89 /* NRplatform1.png */,
 				B9C13D1C190EE1B800C47D89 /* NRplatform2.png */,
@@ -1506,6 +1507,7 @@
 				B9C13D2E190EE1B800C47D89 /* NRplatform9.png in Resources */,
 				B91C9B6C1912F7790017F42E /* number0.png in Resources */,
 				B91C9B811912F7880017F42E /* NRnumber1.png in Resources */,
+				B91C9B9D19131C3F0017F42E /* NRhamsterBallLines.png in Resources */,
 				B91C9B8F1912F8390017F42E /* removeAdsButton.png in Resources */,
 				B91C9B961912F86C0017F42E /* NRbestButton.png in Resources */,
 				B97299FD191200A9008725D3 /* NRnumberSheet.png in Resources */,
@@ -1515,9 +1517,9 @@
 				B9C13D45190F0C5C00C47D89 /* platform12.png in Resources */,
 				B91C9B911912F8390017F42E /* startButton.png in Resources */,
 				B91C9B831912F7880017F42E /* NRnumber3.png in Resources */,
+				B91C9B9B19131C380017F42E /* hamsterBallLines.png in Resources */,
 				B97299FC191200A9008725D3 /* NRnumberSheet.plist in Resources */,
 				B9C13D28190EE1B800C47D89 /* NRplatform3.png in Resources */,
-				B9C13D32190EE4E400C47D89 /* NRhamsterBallLines.png in Resources */,
 				B91C9B801912F7880017F42E /* NRnumber0.png in Resources */,
 				B9729A01191202BB008725D3 /* numberSheet.png in Resources */,
 				B9C13D26190EE1B800C47D89 /* NRplatform1.png in Resources */,
