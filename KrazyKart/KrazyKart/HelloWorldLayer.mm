@@ -965,6 +965,7 @@ enum {
 - (void)restartTapped {
     gameOver = false;
     
+    
     [self createNewHamster];
     
     [self removeChild:starMenu cleanup:YES];
