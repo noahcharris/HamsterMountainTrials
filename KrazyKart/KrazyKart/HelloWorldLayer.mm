@@ -159,7 +159,7 @@ enum {
 	if( (self=[super init])) {
         
         
-        [self handlePurchases];
+        //[self handlePurchases];
 
         
         //AD CONTROLLER INITIALIZATION
@@ -662,6 +662,7 @@ enum {
     //game over detection
     if (pos.y < -10) {
         if (!gameOver) {
+            [[SimpleAudioEngine sharedEngine] playEffect:@"death.caf"];
             [self gameOver];
         }
     }

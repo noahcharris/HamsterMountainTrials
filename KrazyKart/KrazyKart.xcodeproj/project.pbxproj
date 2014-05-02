@@ -221,7 +221,7 @@
 		B97299F21911CD5A008725D3 /* hamsterIcon 114.png in Resources */ = {isa = PBXBuildFile; fileRef = B97299EF1911C859008725D3 /* hamsterIcon 114.png */; };
 		B97299F31911CD5F008725D3 /* hamsterIcon 57.png in Resources */ = {isa = PBXBuildFile; fileRef = B97299F01911C95C008725D3 /* hamsterIcon 57.png */; };
 		B97299F71911D062008725D3 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B97299F61911D062008725D3 /* Images.xcassets */; };
-		B97299F91911D400008725D3 /* hamsterLaunch 1136.png in Resources */ = {isa = PBXBuildFile; fileRef = B97299F81911D400008725D3 /* hamsterLaunch 1136.png */; };
+		B9BD4A1D1913699B00ED137D /* death.caf in Resources */ = {isa = PBXBuildFile; fileRef = B9BD4A1C1913699B00ED137D /* death.caf */; };
 		B9C13D26190EE1B800C47D89 /* NRplatform1.png in Resources */ = {isa = PBXBuildFile; fileRef = B9C13D1B190EE1B800C47D89 /* NRplatform1.png */; };
 		B9C13D27190EE1B800C47D89 /* NRplatform2.png in Resources */ = {isa = PBXBuildFile; fileRef = B9C13D1C190EE1B800C47D89 /* NRplatform2.png */; };
 		B9C13D28190EE1B800C47D89 /* NRplatform3.png in Resources */ = {isa = PBXBuildFile; fileRef = B9C13D1D190EE1B800C47D89 /* NRplatform3.png */; };
@@ -659,7 +659,7 @@
 		B97299EF1911C859008725D3 /* hamsterIcon 114.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "hamsterIcon 114.png"; sourceTree = "<group>"; };
 		B97299F01911C95C008725D3 /* hamsterIcon 57.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "hamsterIcon 57.png"; sourceTree = "<group>"; };
 		B97299F61911D062008725D3 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-		B97299F81911D400008725D3 /* hamsterLaunch 1136.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "hamsterLaunch 1136.png"; sourceTree = "<group>"; };
+		B9BD4A1C1913699B00ED137D /* death.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = death.caf; sourceTree = "<group>"; };
 		B9C13D1B190EE1B800C47D89 /* NRplatform1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = NRplatform1.png; sourceTree = "<group>"; };
 		B9C13D1C190EE1B800C47D89 /* NRplatform2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = NRplatform2.png; sourceTree = "<group>"; };
 		B9C13D1D190EE1B800C47D89 /* NRplatform3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = NRplatform3.png; sourceTree = "<group>"; };
@@ -733,7 +733,6 @@
 		B94A523C19011C25005CD71E = {
 			isa = PBXGroup;
 			children = (
-				B97299F81911D400008725D3 /* hamsterLaunch 1136.png */,
 				B97299F01911C95C008725D3 /* hamsterIcon 57.png */,
 				B97299EF1911C859008725D3 /* hamsterIcon 114.png */,
 				B97299EE1911C651008725D3 /* hamsterIcon 120.png */,
@@ -804,6 +803,7 @@
 		B94A525B19011C25005CD71E /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				B9BD4A1C1913699B00ED137D /* death.caf */,
 				B9F2E44D1913452B008060D8 /* Jump1.caf */,
 				B9F2E44E1913452B008060D8 /* Jump2.caf */,
 				B9F2E44F1913452B008060D8 /* wind.mp3 */,
@@ -1498,7 +1498,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B97299F91911D400008725D3 /* hamsterLaunch 1136.png in Resources */,
 				B97299F31911CD5F008725D3 /* hamsterIcon 57.png in Resources */,
 				B91C9B981912F86C0017F42E /* NRscorePrefix.png in Resources */,
 				B91C9B711912F7790017F42E /* number5.png in Resources */,
@@ -1538,6 +1537,7 @@
 				B9C13D27190EE1B800C47D89 /* NRplatform2.png in Resources */,
 				B91C9B721912F7790017F42E /* number6.png in Resources */,
 				B91C9B6D1912F7790017F42E /* number1.png in Resources */,
+				B9BD4A1D1913699B00ED137D /* death.caf in Resources */,
 				B91C9B871912F7880017F42E /* NRnumber7.png in Resources */,
 				B91C9B841912F7880017F42E /* NRnumber4.png in Resources */,
 				B91C9B991912F86C0017F42E /* NRstartButton.png in Resources */,
@@ -1737,7 +1737,8 @@
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				CLANG_ENABLE_OBJC_ARC = NO;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Noah Harris (84EK29DWLG)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Noah Harris (84EK29DWLG)";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = (
@@ -1749,8 +1750,9 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				HEADER_SEARCH_PATHS = "KrazyKart/GoogleAdMobAdsSdkiOS-6.8.0";
-				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
 				LIBRARY_SEARCH_PATHS = "KrazyKart/GoogleAdMobAdsSdkiOS-6.8.0";
+				PROVISIONING_PROFILE = "462E1023-9188-448D-9E5B-ECCDF20B1803";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -1761,7 +1763,8 @@
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				CLANG_ENABLE_OBJC_ARC = NO;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Noah Harris (84EK29DWLG)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Noah Harris (84EK29DWLG)";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					NDEBUG,
@@ -1771,8 +1774,9 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				HEADER_SEARCH_PATHS = "KrazyKart/GoogleAdMobAdsSdkiOS-6.8.0";
-				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
 				LIBRARY_SEARCH_PATHS = "KrazyKart/GoogleAdMobAdsSdkiOS-6.8.0";
+				PROVISIONING_PROFILE = "462E1023-9188-448D-9E5B-ECCDF20B1803";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = 1;
 			};

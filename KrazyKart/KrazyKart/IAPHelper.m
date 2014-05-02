@@ -117,6 +117,7 @@ NSString *const IAPHelperProductPurchasedNotification = @"IAPHelperProductPurcha
     
     NSLog(@"Loaded list of products...");
     _productsRequest = nil;
+    NSLog(@"%@", response.products);
     
     NSArray * skProducts = response.products;
     for (SKProduct * skProduct in skProducts) {
