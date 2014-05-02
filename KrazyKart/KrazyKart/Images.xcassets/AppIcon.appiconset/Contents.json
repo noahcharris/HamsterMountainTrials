@@ -1,9 +1,22 @@
 {
   "images" : [
     {
-      "idiom" : "ipad",
-      "scale" : "1x",
-      "size" : "72x72"
+      "size" : "29x29",
+      "idiom" : "iphone",
+      "filename" : "hamsterIcon 29.png",
+      "scale" : "1x"
+    },
+    {
+      "size" : "29x29",
+      "idiom" : "iphone",
+      "filename" : "hamsterIcon 58.png",
+      "scale" : "2x"
+    },
+    {
+      "size" : "40x40",
+      "idiom" : "iphone",
+      "filename" : "hamsterIcon 40.png",
+      "scale" : "2x"
     },
     {
       "size" : "57x57",
@@ -24,68 +37,63 @@
       "scale" : "2x"
     },
     {
-      "idiom" : "ipad",
-      "scale" : "2x",
-      "size" : "72x72"
-    },
-    {
-      "idiom" : "ipad",
-      "scale" : "1x",
-      "size" : "76x76"
-    },
-    {
-      "idiom" : "ipad",
-      "scale" : "2x",
-      "size" : "76x76"
-    },
-    {
       "size" : "29x29",
-      "idiom" : "iphone",
-      "filename" : "Icon-Small.png",
+      "idiom" : "ipad",
+      "filename" : "hamsterIcon 29-1.png",
       "scale" : "1x"
     },
     {
       "size" : "29x29",
-      "idiom" : "iphone",
-      "filename" : "Icon-Small@2x.png",
+      "idiom" : "ipad",
+      "filename" : "hamsterIcon 58-1.png",
       "scale" : "2x"
     },
     {
-      "idiom" : "iphone",
-      "scale" : "2x",
-      "size" : "40x40"
+      "size" : "40x40",
+      "idiom" : "ipad",
+      "filename" : "hamsterIcon 40-1.png",
+      "scale" : "1x"
+    },
+    {
+      "size" : "40x40",
+      "idiom" : "ipad",
+      "filename" : "hamsterIcon 80.png",
+      "scale" : "2x"
     },
     {
       "size" : "50x50",
       "idiom" : "ipad",
-      "filename" : "Icon-Small-50.png",
+      "filename" : "hamsterIcon 50.png",
       "scale" : "1x"
     },
     {
+      "size" : "50x50",
       "idiom" : "ipad",
-      "scale" : "2x",
-      "size" : "50x50"
+      "filename" : "hamsterIcon 100.png",
+      "scale" : "2x"
     },
     {
+      "size" : "72x72",
       "idiom" : "ipad",
-      "scale" : "1x",
-      "size" : "40x40"
-    },
-    {
-      "idiom" : "ipad",
-      "scale" : "2x",
-      "size" : "40x40"
-    },
-    {
-      "size" : "29x29",
-      "idiom" : "ipad",
-      "filename" : "Icon-Small.png",
+      "filename" : "hamsterIcon 72.png",
       "scale" : "1x"
     },
     {
-      "size" : "29x29",
+      "size" : "72x72",
       "idiom" : "ipad",
-      "filename" : "Icon-Small@2x.png",
+      "filename" : "hamsterIcon 144.png",
+      "scale" : "2x"
+    },
+    {
+      "size" : "76x76",
+      "idiom" : "ipad",
+      "filename" : "hamsterIcon 76.png",
+      "scale" : "1x"
+    },
+    {
+      "size" : "76x76",
+      "idiom" : "ipad",
+      "filename" : "hamsterIcon 152.png",
       "scale" : "2x"
     }
   ],
