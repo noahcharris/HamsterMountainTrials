@@ -36,9 +36,9 @@
 		<true/>
 	</dict>
 	<key>UIStatusBarHidden</key>
-	<false/>
+	<true/>
 	<key>UIStatusBarHidden~ipad</key>
-	<false/>
+	<true/>
 	<key>UISupportedInterfaceOrientations</key>
 	<array>
 		<string>UIInterfaceOrientationLandscapeLeft</string>

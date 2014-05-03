@@ -1754,7 +1754,7 @@
 				LIBRARY_SEARCH_PATHS = "KrazyKart/GoogleAdMobAdsSdkiOS-6.8.0";
 				PROVISIONING_PROFILE = "462E1023-9188-448D-9E5B-ECCDF20B1803";
 				SDKROOT = iphoneos;
-				TARGETED_DEVICE_FAMILY = 1;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
@@ -1778,7 +1778,7 @@
 				LIBRARY_SEARCH_PATHS = "KrazyKart/GoogleAdMobAdsSdkiOS-6.8.0";
 				PROVISIONING_PROFILE = "462E1023-9188-448D-9E5B-ECCDF20B1803";
 				SDKROOT = iphoneos;
-				TARGETED_DEVICE_FAMILY = 1;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};
