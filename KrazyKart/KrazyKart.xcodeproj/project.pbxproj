@@ -41,6 +41,19 @@
 		B91FA89619109A20003E28A2 /* NRbackground.png in Resources */ = {isa = PBXBuildFile; fileRef = B91FA89519109A20003E28A2 /* NRbackground.png */; };
 		B91FA8A41910AAA4003E28A2 /* NRinstructions.png in Resources */ = {isa = PBXBuildFile; fileRef = B91FA8A31910AAA4003E28A2 /* NRinstructions.png */; };
 		B91FA8A61910B620003E28A2 /* instructions.png in Resources */ = {isa = PBXBuildFile; fileRef = B91FA8A51910B620003E28A2 /* instructions.png */; };
+		B923A962191B28CF0099A509 /* hamsterEmptyBall.png in Resources */ = {isa = PBXBuildFile; fileRef = B9E6D3EC1909D35200DAF980 /* hamsterEmptyBall.png */; };
+		B923A963191B290D0099A509 /* hamsterShading.png in Resources */ = {isa = PBXBuildFile; fileRef = B9E6D3EE1909D36E00DAF980 /* hamsterShading.png */; };
+		B923A964191B29FC0099A509 /* hamsterRun.plist in Resources */ = {isa = PBXBuildFile; fileRef = B9E6D3F51909D4D100DAF980 /* hamsterRun.plist */; };
+		B923A965191B2A010099A509 /* hamsterRun.png in Resources */ = {isa = PBXBuildFile; fileRef = B9E6D3F41909D4D100DAF980 /* hamsterRun.png */; };
+		B923A966191B2BEB0099A509 /* platform1.png in Resources */ = {isa = PBXBuildFile; fileRef = B9E6D3F81909D5D000DAF980 /* platform1.png */; };
+		B923A967191B2BEE0099A509 /* platform2.png in Resources */ = {isa = PBXBuildFile; fileRef = B9E6D3F91909D5D000DAF980 /* platform2.png */; };
+		B923A968191B2BF10099A509 /* platform3.png in Resources */ = {isa = PBXBuildFile; fileRef = B9E6D3FA1909D5D000DAF980 /* platform3.png */; };
+		B923A969191B2BF30099A509 /* platform4.png in Resources */ = {isa = PBXBuildFile; fileRef = B9E6D3FB1909D5D000DAF980 /* platform4.png */; };
+		B923A96A191B2BF50099A509 /* platform5.png in Resources */ = {isa = PBXBuildFile; fileRef = B9E6D3FC1909D5D000DAF980 /* platform5.png */; };
+		B923A96B191B2BF80099A509 /* platform6.png in Resources */ = {isa = PBXBuildFile; fileRef = B9E6D3FD1909D5D000DAF980 /* platform6.png */; };
+		B923A96C191B2BFB0099A509 /* platform7.png in Resources */ = {isa = PBXBuildFile; fileRef = B9E6D3FE1909D5D000DAF980 /* platform7.png */; };
+		B923A96D191B2BFD0099A509 /* platform8.png in Resources */ = {isa = PBXBuildFile; fileRef = B9E6D3FF1909D5D000DAF980 /* platform8.png */; };
+		B923A96E191B2C000099A509 /* platform9.png in Resources */ = {isa = PBXBuildFile; fileRef = B9E6D4001909D5D000DAF980 /* platform9.png */; };
 		B94A524919011C25005CD71E /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B94A524819011C25005CD71E /* QuartzCore.framework */; };
 		B94A524B19011C25005CD71E /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B94A524A19011C25005CD71E /* OpenGLES.framework */; };
 		B94A524D19011C25005CD71E /* OpenAL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B94A524C19011C25005CD71E /* OpenAL.framework */; };
@@ -1507,26 +1520,34 @@
 				B91C9B731912F7790017F42E /* number7.png in Resources */,
 				B91FA8A41910AAA4003E28A2 /* NRinstructions.png in Resources */,
 				B91C9B6E1912F7790017F42E /* number2.png in Resources */,
+				B923A96C191B2BFB0099A509 /* platform7.png in Resources */,
+				B923A969191B2BF30099A509 /* platform4.png in Resources */,
 				B9F2E4501913452B008060D8 /* Jump1.caf in Resources */,
 				B9C13D3A190EEA9C00C47D89 /* NRhamsterRun.png in Resources */,
 				B91C9B891912F7880017F42E /* NRnumber9.png in Resources */,
 				B9F2E44C191338F8008060D8 /* wideBackground.png in Resources */,
+				B923A964191B29FC0099A509 /* hamsterRun.plist in Resources */,
 				B9C13D2E190EE1B800C47D89 /* NRplatform9.png in Resources */,
 				B9F2E44A19133895008060D8 /* background.png in Resources */,
 				B91C9B6C1912F7790017F42E /* number0.png in Resources */,
 				B91C9B811912F7880017F42E /* NRnumber1.png in Resources */,
 				B91C9B9D19131C3F0017F42E /* NRhamsterBallLines.png in Resources */,
+				B923A967191B2BEE0099A509 /* platform2.png in Resources */,
 				B91C9B8F1912F8390017F42E /* removeAdsButton.png in Resources */,
 				B9F2E4521913452B008060D8 /* wind.mp3 in Resources */,
 				B91C9B961912F86C0017F42E /* NRbestButton.png in Resources */,
 				B91C9B861912F7880017F42E /* NRnumber6.png in Resources */,
 				B9C13D39190EEA9C00C47D89 /* NRhamsterRun.plist in Resources */,
+				B923A966191B2BEB0099A509 /* platform1.png in Resources */,
 				B9C13D2F190EE1B800C47D89 /* NRplatform10.png in Resources */,
+				B923A968191B2BF10099A509 /* platform3.png in Resources */,
 				B9C13D45190F0C5C00C47D89 /* platform12.png in Resources */,
 				B91C9B911912F8390017F42E /* startButton.png in Resources */,
 				B91C9B831912F7880017F42E /* NRnumber3.png in Resources */,
 				B91C9B9B19131C380017F42E /* hamsterBallLines.png in Resources */,
 				B9C13D28190EE1B800C47D89 /* NRplatform3.png in Resources */,
+				B923A965191B2A010099A509 /* hamsterRun.png in Resources */,
+				B923A96B191B2BF80099A509 /* platform6.png in Resources */,
 				B91C9B801912F7880017F42E /* NRnumber0.png in Resources */,
 				B9C13D26190EE1B800C47D89 /* NRplatform1.png in Resources */,
 				B9C13D3B190EF14100C47D89 /* NRhamsterEmptyBall.png in Resources */,
@@ -1539,6 +1560,7 @@
 				B91C9B6D1912F7790017F42E /* number1.png in Resources */,
 				B9BD4A1D1913699B00ED137D /* death.caf in Resources */,
 				B91C9B871912F7880017F42E /* NRnumber7.png in Resources */,
+				B923A96D191B2BFD0099A509 /* platform8.png in Resources */,
 				B91C9B841912F7880017F42E /* NRnumber4.png in Resources */,
 				B91C9B991912F86C0017F42E /* NRstartButton.png in Resources */,
 				B9F2E45E191359FC008060D8 /* NRstartButtonPressed.png in Resources */,
@@ -1547,13 +1569,17 @@
 				B91FA89619109A20003E28A2 /* NRbackground.png in Resources */,
 				B9C13D3E190F04E000C47D89 /* NRplatform12.png in Resources */,
 				B9C13D36190EEA9100C47D89 /* NRhamsterShading.png in Resources */,
+				B923A96A191B2BF50099A509 /* platform5.png in Resources */,
 				B9C13D42190F0BE200C47D89 /* platform11.png in Resources */,
 				B9C13D2B190EE1B800C47D89 /* NRplatform6.png in Resources */,
+				B923A962191B28CF0099A509 /* hamsterEmptyBall.png in Resources */,
 				B91C9B851912F7880017F42E /* NRnumber5.png in Resources */,
 				B9DBCADA19106CF400426C2B /* platform10.png in Resources */,
 				B91FA8A61910B620003E28A2 /* instructions.png in Resources */,
 				B9C13D2A190EE1B800C47D89 /* NRplatform5.png in Resources */,
 				B9C13D29190EE1B800C47D89 /* NRplatform4.png in Resources */,
+				B923A963191B290D0099A509 /* hamsterShading.png in Resources */,
+				B923A96E191B2C000099A509 /* platform9.png in Resources */,
 				B91C9B6F1912F7790017F42E /* number3.png in Resources */,
 				B9C13D30190EE1B800C47D89 /* NRplatform11.png in Resources */,
 				B91C9B881912F7880017F42E /* NRnumber8.png in Resources */,

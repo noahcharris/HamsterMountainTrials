@@ -10,11 +10,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "KrazyKart/HelloWorldLayer.mm"
-            timestampString = "420702670.427117"
+            timestampString = "421210920.438671"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1152"
-            endingLineNumber = "1152"
+            startingLineNumber = "1151"
+            endingLineNumber = "1151"
             landmarkName = "-createNewHamster"
             landmarkType = "5">
          </BreakpointContent>
@@ -26,11 +26,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "KrazyKart/HelloWorldLayer.mm"
-            timestampString = "420702670.427117"
+            timestampString = "421210920.438671"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1316"
-            endingLineNumber = "1316"
+            startingLineNumber = "1315"
+            endingLineNumber = "1315"
             landmarkName = "-drawColumn:atDistance:atHeight:"
             landmarkType = "5">
          </BreakpointContent>
@@ -58,11 +58,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "KrazyKart/HelloWorldLayer.mm"
-            timestampString = "420702670.427117"
+            timestampString = "421210920.438671"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1085"
-            endingLineNumber = "1085"
+            startingLineNumber = "1084"
+            endingLineNumber = "1084"
             landmarkName = "-kick2"
             landmarkType = "5">
          </BreakpointContent>
@@ -128,6 +128,38 @@
             startingLineNumber = "692"
             endingLineNumber = "692"
             landmarkName = "-tick:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "KrazyKart/HelloWorldLayer.mm"
+            timestampString = "421210920.438671"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "1089"
+            endingLineNumber = "1089"
+            landmarkName = "-createNewHamster"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "KrazyKart/HelloWorldLayer.mm"
+            timestampString = "421210969.924797"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "974"
+            endingLineNumber = "974"
+            landmarkName = "-restartTapped"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

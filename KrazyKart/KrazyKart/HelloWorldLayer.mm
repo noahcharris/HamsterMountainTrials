@@ -973,7 +973,6 @@ enum {
     [self createNewHamster];
     
     [self removeChild:starMenu cleanup:YES];
-    [self removeChild:highScoreLabel cleanup:YES];
     [self removeChild:highScorePrefixLabel cleanup:YES];
     [self removeChild:_restartButton cleanup:YES];
     [self removeChild:scorePrefix cleanup:YES];
